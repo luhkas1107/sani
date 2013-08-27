@@ -1,21 +1,22 @@
 package br.com.sani.telas;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import br.com.sani.util.SwingUtil;
-import com.toedter.calendar.JDateChooser;
-import org.jdesktop.swingx.JXDatePicker;
 
 public class frmLogin extends JFrame implements KeyListener {
 
