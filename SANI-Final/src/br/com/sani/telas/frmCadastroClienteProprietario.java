@@ -1,45 +1,55 @@
 package br.com.sani.telas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import javax.swing.JSeparator;
-import java.awt.ScrollPane;
 import java.awt.Panel;
+import java.awt.ScrollPane;
 import java.awt.Toolkit;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import br.com.sani.bean.ClienteProprietario;
+import br.com.sani.dao.ClienteProprietarioDAO;
+import br.com.sani.exception.DAOException;
+import br.com.sani.exception.EntradaUsuarioException;
+import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
+import br.com.sani.util.TelaUtil;
 
 public class frmCadastroClienteProprietario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNomeClienteProprietario;
-	private JTextField txtCpfClienteProprietario;
-	private JTextField txtRgClienteProprietario;
+	
+	private JFormattedTextField ftCpfClienteProprietario;
+	private JFormattedTextField ftRgClienteProprietario;
 	private JTextField txtNacionalidadeClienteProprietario;
 	private JTextField txtEnderecoClienteProprietario;
 	private JTextField txtNumeroClienteProprietario;
 	private JTextField txtComplementoClienteProprietario;
-	private JTextField txtCepClienteProprietario;
-	private JTextField txtTelefoneResidencialClienteProprietario;
-	private JTextField txtTelefoneCelularClienteProprietario;
-	private JTextField txtEmailClienteProprietario;
+	private JFormattedTextField ftCepClienteProprietario;
+	private JFormattedTextField ftTelefoneResidencialClienteProprietario;
+	private JFormattedTextField ftTelefoneCelularClienteProprietario;
+	private JFormattedTextField ftEmailClienteProprietario;
 	private JTextField txtSiteClienteProprietario;
+	
+	private JRadioButton rdbtnMasculinoCadastroClienteProprietario;
 
 	/**
 	 * Launch the application.
@@ -50,7 +60,7 @@ public class frmCadastroClienteProprietario extends JFrame {
 				try {
 					frmCadastroClienteProprietario frame = new frmCadastroClienteProprietario();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					e.printStackTrace();
 				}
 			}
@@ -59,8 +69,9 @@ public class frmCadastroClienteProprietario extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws Throwable 
 	 */
-	public frmCadastroClienteProprietario() {
+	public frmCadastroClienteProprietario() throws Throwable {
 		SwingUtil.lookWindows(this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietario.class.getResource("/br/com/images/home_badge.png")));
 		setTitle("Cadastro Cliente Propriet\u00E1rio");
@@ -104,13 +115,13 @@ public class frmCadastroClienteProprietario extends JFrame {
 		panel.add(txtNomeClienteProprietario);
 		
 		JLabel lblCpfCadastroClienteProprietario = new JLabel("CPF: * ");
-		lblCpfCadastroClienteProprietario.setBounds(10, 61, 29, 14);
+		lblCpfCadastroClienteProprietario.setBounds(10, 61, 46, 14);
 		panel.add(lblCpfCadastroClienteProprietario);
 		
-		txtCpfClienteProprietario = new JTextField();
-		txtCpfClienteProprietario.setColumns(10);
-		txtCpfClienteProprietario.setBounds(57, 58, 109, 20);
-		panel.add(txtCpfClienteProprietario);
+		ftCpfClienteProprietario = new JFormattedTextField(Mascara.setMaskCpfInTf(ftCpfClienteProprietario));
+		ftCpfClienteProprietario.setColumns(10);
+		ftCpfClienteProprietario.setBounds(57, 58, 109, 20);
+		panel.add(ftCpfClienteProprietario);
 		
 		JLabel lblEstadoCivilCadastroClienteProprietario = new JLabel("Estado Civil:");
 		lblEstadoCivilCadastroClienteProprietario.setBounds(10, 86, 81, 14);
@@ -126,10 +137,10 @@ public class frmCadastroClienteProprietario extends JFrame {
 		lblRgCadastroClienteProprietario.setBounds(182, 61, 46, 14);
 		panel.add(lblRgCadastroClienteProprietario);
 		
-		txtRgClienteProprietario = new JTextField();
-		txtRgClienteProprietario.setColumns(10);
-		txtRgClienteProprietario.setBounds(215, 58, 109, 20);
-		panel.add(txtRgClienteProprietario);
+		ftRgClienteProprietario = new JFormattedTextField(Mascara.setMaskRgInTf(ftRgClienteProprietario));
+		ftRgClienteProprietario.setColumns(10);
+		ftRgClienteProprietario.setBounds(215, 58, 109, 20);
+		panel.add(ftRgClienteProprietario);
 		
 		JLabel lblNacionalidadeCadastroClienteProprietario = new JLabel("Nacionalidade:");
 		lblNacionalidadeCadastroClienteProprietario.setBounds(240, 86, 98, 14);
@@ -171,28 +182,28 @@ public class frmCadastroClienteProprietario extends JFrame {
 		lblCepCadastroClienteProprietario.setBounds(225, 136, 46, 14);
 		panel.add(lblCepCadastroClienteProprietario);
 		
-		txtCepClienteProprietario = new JTextField();
-		txtCepClienteProprietario.setColumns(10);
-		txtCepClienteProprietario.setBounds(265, 133, 86, 20);
-		panel.add(txtCepClienteProprietario);
+		ftCepClienteProprietario = new JFormattedTextField(Mascara.setMaskCepInTf(ftCepClienteProprietario));
+		ftCepClienteProprietario.setColumns(10);
+		ftCepClienteProprietario.setBounds(265, 133, 86, 20);
+		panel.add(ftCepClienteProprietario);
 		
 		JLabel lblTelefoneResidencialCadastroClienteProprietario = new JLabel("Telefone Residencial:");
 		lblTelefoneResidencialCadastroClienteProprietario.setBounds(10, 244, 132, 14);
 		panel.add(lblTelefoneResidencialCadastroClienteProprietario);
 		
-		txtTelefoneResidencialClienteProprietario = new JTextField();
-		txtTelefoneResidencialClienteProprietario.setColumns(10);
-		txtTelefoneResidencialClienteProprietario.setBounds(138, 241, 106, 20);
-		panel.add(txtTelefoneResidencialClienteProprietario);
+		ftTelefoneResidencialClienteProprietario = new JFormattedTextField(Mascara.setMaskTelefoneInTf(ftTelefoneResidencialClienteProprietario));
+		ftTelefoneResidencialClienteProprietario.setColumns(10);
+		ftTelefoneResidencialClienteProprietario.setBounds(138, 241, 106, 20);
+		panel.add(ftTelefoneResidencialClienteProprietario);
 		
 		JLabel lblTelefoneCelularCadastroClienteProprietario = new JLabel("Telefone Celular: *");
 		lblTelefoneCelularCadastroClienteProprietario.setBounds(265, 244, 118, 14);
 		panel.add(lblTelefoneCelularCadastroClienteProprietario);
 		
-		txtTelefoneCelularClienteProprietario = new JTextField();
-		txtTelefoneCelularClienteProprietario.setColumns(10);
-		txtTelefoneCelularClienteProprietario.setBounds(369, 241, 106, 20);
-		panel.add(txtTelefoneCelularClienteProprietario);
+		ftTelefoneCelularClienteProprietario = new JFormattedTextField(Mascara.setMaskCelularInTf(ftTelefoneCelularClienteProprietario));
+		ftTelefoneCelularClienteProprietario.setColumns(10);
+		ftTelefoneCelularClienteProprietario.setBounds(369, 241, 106, 20);
+		panel.add(ftTelefoneCelularClienteProprietario);
 		
 		JLabel lblImagemCadastroClienteProprietario = new JLabel("Imagem:");
 		lblImagemCadastroClienteProprietario.setBounds(10, 282, 54, 14);
@@ -241,6 +252,11 @@ public class frmCadastroClienteProprietario extends JFrame {
 		panel.add(btnCancelarCadastroClienteProprietario);
 		
 		JButton btnSalvarCadastroClienteProprietario = new JButton("Cadastrar");
+		btnSalvarCadastroClienteProprietario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salvarClienteProprietario();
+			}
+		});
 		btnSalvarCadastroClienteProprietario.setBounds(388, 480, 101, 23);
 		panel.add(btnSalvarCadastroClienteProprietario);
 		
@@ -252,10 +268,10 @@ public class frmCadastroClienteProprietario extends JFrame {
 		lblEmailCadastroClienteProprietario.setBounds(10, 216, 46, 14);
 		panel.add(lblEmailCadastroClienteProprietario);
 		
-		txtEmailClienteProprietario = new JTextField();
-		txtEmailClienteProprietario.setColumns(10);
-		txtEmailClienteProprietario.setBounds(90, 213, 154, 20);
-		panel.add(txtEmailClienteProprietario);
+		ftEmailClienteProprietario = new JFormattedTextField();
+		ftEmailClienteProprietario.setColumns(10);
+		ftEmailClienteProprietario.setBounds(90, 213, 154, 20);
+		panel.add(ftEmailClienteProprietario);
 		
 		JLabel lblSiteCadastroClienteProprietario = new JLabel("Site:");
 		lblSiteCadastroClienteProprietario.setBounds(265, 216, 46, 14);
@@ -326,16 +342,49 @@ public class frmCadastroClienteProprietario extends JFrame {
 	
 	public void limpaFormulario(){
 		txtNomeClienteProprietario.setText("");
-		txtCpfClienteProprietario.setText("");
-		txtRgClienteProprietario.setText("");
+		ftCpfClienteProprietario.setText("");
+		ftRgClienteProprietario.setText("");
 		txtNacionalidadeClienteProprietario.setText("");
 		txtEnderecoClienteProprietario.setText("");
 		txtNumeroClienteProprietario.setText("");
 		txtComplementoClienteProprietario.setText("");
-		txtCepClienteProprietario.setText("");
-		txtTelefoneResidencialClienteProprietario.setText("");
-		txtTelefoneCelularClienteProprietario.setText("");
-		txtEmailClienteProprietario.setText("");
+		ftCepClienteProprietario.setText("");
+		ftTelefoneResidencialClienteProprietario.setText("");
+		ftTelefoneCelularClienteProprietario.setText("");
+		ftEmailClienteProprietario.setText("");
 		txtSiteClienteProprietario.setText("");
+	}
+	
+	public ClienteProprietario getBean() throws EntradaUsuarioException{
+		ClienteProprietario CliProp = new ClienteProprietario();
+		CliProp.setNome(TelaUtil.getCampoObrigatorio(txtNomeClienteProprietario, true));
+		CliProp.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoCadastroClienteProprietario));
+		CliProp.setCpf(TelaUtil.getCpf(ftCpfClienteProprietario, true));
+		CliProp.setRg(TelaUtil.getRg(ftRgClienteProprietario, true));
+		CliProp.setRenda(TelaUtil.getCampoObrigatorio(txtNacionalidadeClienteProprietario, false));
+		//CliProp.setEstadoCivil(estadoCivil[comboBoxEstadoCivilCadastroClienteProprietario.getSelectedIndex()]);
+		CliProp.setEndereco(TelaUtil.getCampoObrigatorio(txtEnderecoClienteProprietario, true));
+		CliProp.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroClienteProprietario, true));
+		CliProp.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoClienteProprietario, true));
+		CliProp.setCep(TelaUtil.getCep(ftCepClienteProprietario, true));
+		CliProp.setEmailPessoal(TelaUtil.getEmail(ftEmailClienteProprietario));
+		CliProp.setSiteClienteProprietario(TelaUtil.getCampoObrigatorio(txtSiteClienteProprietario, false));
+		CliProp.setTelefoneResidencial(TelaUtil.getTelefone(ftTelefoneResidencialClienteProprietario, false));
+		CliProp.setTelefoneCelular(TelaUtil.getCelular(ftTelefoneCelularClienteProprietario, true));
+		
+		return CliProp;
+	}
+	
+	private void salvarClienteProprietario(){
+		try{
+			ClienteProprietario CliProp = getBean();
+			new ClienteProprietarioDAO().inserirClienteProprietario(CliProp);
+			limpaFormulario();
+			JOptionPane.showMessageDialog(this, "Transação efetuada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+		}catch(DAOException e){
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		}
 	}
 }

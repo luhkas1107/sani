@@ -184,7 +184,7 @@ public class FuncionarioDAO {
 		return objFunc;		
 	}
 
-	public boolean inserirFuncionarios(Funcionario obj) throws DAOException{		
+	public boolean inserirFuncionario(Funcionario obj) throws DAOException{		
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;

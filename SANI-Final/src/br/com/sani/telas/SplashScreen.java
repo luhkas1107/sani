@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 
 public class SplashScreen extends JWindow {
 
@@ -90,6 +91,8 @@ public class SplashScreen extends JWindow {
 		panel.add(lblTodosOsDireitos);
 		
 		JLabel lblClose = new JLabel("");
+		lblClose.setToolTipText("Fechar");
+		lblClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

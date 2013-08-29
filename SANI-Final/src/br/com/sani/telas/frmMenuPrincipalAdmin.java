@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -106,7 +107,13 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JMenuItem mntmFuncionarios = new JMenuItem("Funcion\u00E1rios");
 		mntmFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmCadastroFuncionario frameCadFun = new frmCadastroFuncionario();
+			frmCadastroFuncionario frameCadFun = null;
+			try {
+				frameCadFun = new frmCadastroFuncionario();
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			frameCadFun.setVisible(true);
 			}
 		});
@@ -135,11 +142,20 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JMenuItem mntmClienteProprietario = new JMenuItem("Cliente Propriet\u00E1rio");
 		mntmClienteProprietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmCadastroClienteProprietario frameCadCliProp = new frmCadastroClienteProprietario();
-			frameCadCliProp.setVisible(true);
+				frmCadastroClienteProprietario frameCadCliProp;
+				try {
+					frameCadCliProp = new frmCadastroClienteProprietario();
+					frameCadCliProp.setVisible(true);
+				} catch (Throwable e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				//frameCadCliProp.setVisible(true);
+				
 			}
 		});
 		mnClientes.add(mntmClienteProprietario);
+
 		mnCadastro.add(mntmFuncionarios);
 				
 		JMenuItem mntmMetas = new JMenuItem("Metas");
@@ -184,8 +200,14 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JMenuItem mntmMetasConsulta = new JMenuItem("Metas");
 		mntmMetasConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmConsultaMetas frameConsMetas = new frmConsultaMetas();
-			frameConsMetas.setVisible(true);
+			frmConsultaMetas frameConsMetas;
+			try {
+				frameConsMetas = new frmConsultaMetas();
+				frameConsMetas.setVisible(true);
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			}
 		});
 		mnConsulta.add(mntmMetasConsulta);

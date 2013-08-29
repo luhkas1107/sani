@@ -1,42 +1,43 @@
 package br.com.sani.telas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import javax.swing.JSeparator;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
-import java.awt.ScrollPane;
-import javax.swing.ImageIcon;
 import java.awt.Color;
-import javax.swing.JPasswordField;
+import java.awt.EventQueue;
+import java.awt.ScrollPane;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
 
 public class frmCadastroFuncionario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNomeFuncionario;
-	private JTextField txtCpfFuncionario;
-	private JTextField txtRgFuncionario;
+	//private JTextField txtCpfFuncionario;
+	//private JTextField txtRgFuncionario;
 	private JTextField txtEnderecoFuncionario;
 	private JTextField txtNumeroEnderecoFuncionario;
 	private JTextField txtComplementoFuncionario;
-	private JTextField txtCepFuncionario;
-	private JTextField txtTelefoneResidencialFuncionario;
-	private JTextField txtTelefoneCelularFuncionario;
+	//private JTextField txtCepFuncionario;
+	//private JTextField txtTelefoneResidencialFuncionario;
+	//private JTextField txtTelefoneCelularFuncionario;
 	private JTextField txtSiteFuncionario;
 	private JTextField txtEmailFuncionario;
 	private JTextField txtNacionalidadeFuncionario;
@@ -44,6 +45,12 @@ public class frmCadastroFuncionario extends JFrame {
 	private JPasswordField passwordFieldSenhaFuncionario;
 	private JPasswordField passwordFieldConfSenhaFuncionario;
 	private JTextField txtRegistroFuncionario;
+	
+	private JFormattedTextField ftCepFuncionario;
+	private JFormattedTextField ftCpfFuncionario;
+	private JFormattedTextField ftRgFuncionario;
+	private JFormattedTextField ftTelefoneResidencialFuncionario;
+	private JFormattedTextField ftTelefoneCelularFuncionario;
 
 	/**
 	 * Launch the application.
@@ -54,7 +61,7 @@ public class frmCadastroFuncionario extends JFrame {
 				try {
 					frmCadastroFuncionario frame = new frmCadastroFuncionario();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					e.printStackTrace();
 				}
 			}
@@ -63,8 +70,9 @@ public class frmCadastroFuncionario extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws Throwable 
 	 */
-	public frmCadastroFuncionario() {
+	public frmCadastroFuncionario() throws Throwable {
 		SwingUtil.lookWindows(this);
 		setResizable(false);
 		setTitle("Cadastro Funcionario");
@@ -111,10 +119,10 @@ public class frmCadastroFuncionario extends JFrame {
 		lblCpfFuncionario.setBounds(10, 61, 46, 14);
 		panel.add(lblCpfFuncionario);
 		
-		txtCpfFuncionario = new JTextField();
-		txtCpfFuncionario.setColumns(10);
-		txtCpfFuncionario.setBounds(57, 58, 109, 20);
-		panel.add(txtCpfFuncionario);
+		ftCpfFuncionario = new JFormattedTextField();
+		ftCpfFuncionario.setColumns(10);
+		ftCpfFuncionario.setBounds(57, 58, 109, 20);
+		panel.add(ftCpfFuncionario);
 		
 		JLabel lblEstadoCivilFuncionario = new JLabel("Estado Civil:");
 		lblEstadoCivilFuncionario.setBounds(10, 86, 81, 14);
@@ -129,10 +137,10 @@ public class frmCadastroFuncionario extends JFrame {
 		lblRgFuncionario.setBounds(182, 61, 46, 14);
 		panel.add(lblRgFuncionario);
 		
-		txtRgFuncionario = new JTextField();
-		txtRgFuncionario.setColumns(10);
-		txtRgFuncionario.setBounds(215, 58, 109, 20);
-		panel.add(txtRgFuncionario);
+		ftRgFuncionario = new JFormattedTextField();
+		ftRgFuncionario.setColumns(10);
+		ftRgFuncionario.setBounds(215, 58, 109, 20);
+		panel.add(ftRgFuncionario);
 		
 		JLabel lblNacionalidadeFuncionario = new JLabel("Nacionalidade:");
 		lblNacionalidadeFuncionario.setBounds(240, 86, 98, 14);
@@ -174,28 +182,28 @@ public class frmCadastroFuncionario extends JFrame {
 		lblCepFuncionario.setBounds(225, 136, 46, 14);
 		panel.add(lblCepFuncionario);
 		
-		txtCepFuncionario = new JTextField();
-		txtCepFuncionario.setColumns(10);
-		txtCepFuncionario.setBounds(265, 133, 86, 20);
-		panel.add(txtCepFuncionario);
+		ftCepFuncionario = new JFormattedTextField(Mascara.setMaskCepInTf(ftCepFuncionario));
+		ftCepFuncionario.setColumns(10);
+		ftCepFuncionario.setBounds(265, 133, 86, 20);
+		panel.add(ftCepFuncionario);
 		
 		JLabel lblTelefoneResidencialFuncionario = new JLabel("Telefone Residencial:");
 		lblTelefoneResidencialFuncionario.setBounds(10, 161, 132, 14);
 		panel.add(lblTelefoneResidencialFuncionario);
 		
-		txtTelefoneResidencialFuncionario = new JTextField();
-		txtTelefoneResidencialFuncionario.setColumns(10);
-		txtTelefoneResidencialFuncionario.setBounds(136, 158, 106, 20);
-		panel.add(txtTelefoneResidencialFuncionario);
+		ftTelefoneResidencialFuncionario = new JFormattedTextField(Mascara.setMaskTelefoneInTf(ftTelefoneResidencialFuncionario));
+		ftTelefoneResidencialFuncionario.setColumns(10);
+		ftTelefoneResidencialFuncionario.setBounds(136, 158, 106, 20);
+		panel.add(ftTelefoneResidencialFuncionario);
 		
 		JLabel lblTelefoneCelularFuncionario = new JLabel("Telefone Celular: *");
 		lblTelefoneCelularFuncionario.setBounds(265, 161, 118, 14);
 		panel.add(lblTelefoneCelularFuncionario);
 		
-		txtTelefoneCelularFuncionario = new JTextField();
-		txtTelefoneCelularFuncionario.setColumns(10);
-		txtTelefoneCelularFuncionario.setBounds(372, 158, 106, 20);
-		panel.add(txtTelefoneCelularFuncionario);
+		ftTelefoneCelularFuncionario = new JFormattedTextField(Mascara.setMaskCelularInTf(ftTelefoneCelularFuncionario));
+		ftTelefoneCelularFuncionario.setColumns(10);
+		ftTelefoneCelularFuncionario.setBounds(372, 158, 106, 20);
+		panel.add(ftTelefoneCelularFuncionario);
 		
 		JLabel lblImagemFuncionario = new JLabel("Imagem:");
 		lblImagemFuncionario.setBounds(10, 196, 54, 14);
@@ -381,15 +389,15 @@ public class frmCadastroFuncionario extends JFrame {
 	
 	public void limpaFormulario(){
 		txtNomeFuncionario.setText("");
-		txtCpfFuncionario.setText("");
-		txtRgFuncionario.setText("");
+		ftCpfFuncionario.setText("");
+		ftRgFuncionario.setText("");
 		txtNacionalidadeFuncionario.setText("");
 		txtEnderecoFuncionario.setText("");
 		txtNumeroEnderecoFuncionario.setText("");
 		txtComplementoFuncionario.setText("");
-		txtCepFuncionario.setText("");
-		txtTelefoneResidencialFuncionario.setText("");
-		txtTelefoneCelularFuncionario.setText("");
+		ftCepFuncionario.setText("");
+		ftTelefoneResidencialFuncionario.setText("");
+		ftTelefoneCelularFuncionario.setText("");
 		txtLoginFuncionario.setText("");
 		txtSiteFuncionario.setText("");
 		txtEmailFuncionario.setText("");
@@ -397,4 +405,43 @@ public class frmCadastroFuncionario extends JFrame {
 		passwordFieldSenhaFuncionario.setText("");
 		passwordFieldConfSenhaFuncionario.setText("");
 	}
+	
+	/*public Funcionario getBean() throws EntradaUsuarioException{
+		Funcionario func = new Funcionario();
+		func.setNome(TelaUtil.getCampoObrigatorio(txtNomeFuncionario, true));
+		//func.setId(TelaUtil.);
+		func.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoFuncionario));
+		func.setCpf(TelaUtil.getCpf(ftCpfFuncionario, true));
+		func.setRg(TelaUtil.getRg(ftRgFuncionario, true));
+		func.setEstadoCivil(estadoCivil[comboBoxEstadoCivilFuncionario.getSelectedIndex()]);
+		func.setNacionalidade(TelaUtil.getCampoObrigatorio(txtNacionalidadeFuncionario, true));
+		func.setEndereco(TelaUtil.getCampoObrigatorio(txtEnderecoFuncionario, true));
+		func.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroEnderecoFuncionario, true));
+		func.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoFuncionario, true));
+		func.setCep(TelaUtil.getCep(ftCepFuncionario, true));
+		func.setTelefoneResidencial(TelaUtil.getTelefone(ftTelefoneResidencialFuncionario, false));
+		func.setTelefoneCelular(TelaUtil.getCelular(ftTelefoneCelularFuncionario, true));
+		func.setCargoFuncionario(TelaUtil.getCharFuncao(rdbtnCargoGerenteFuncionario));
+		func.setLoginFuncionario(TelaUtil.getUsuario(txtLoginFuncionario));
+		func.setSenhaFuncionario(TelaUtil.getSenha(passwordFieldSenhaFuncionario, passwordFieldConfSenhaFuncionario));
+		func.setConfirmaSenhaFuncionario(TelaUtil.getCompararSenhas(passwordFieldConfSenhaFuncionario, passwordFieldConfSenhaFuncionario));
+		func.setEmailPessoal(TelaUtil.getEmail(txtEmailFuncionario));
+		func.setSiteFuncionario(TelaUtil.getCampoObrigatorio(txtSiteFuncionario, false));
+				
+		return func;
+	}*/
+	
+	/*private void salvarFuncionario(){
+		try{
+			Funcionario Func = getBean();
+			new FuncionarioDAO().inserirFuncionario(Func);
+			limpaFormulario();
+			JOptionPane.showMessageDialog(this, "Transação efetuada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+		}catch(DAOException e){
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		}
+	}*/
+	
 }

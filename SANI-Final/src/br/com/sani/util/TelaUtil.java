@@ -71,6 +71,19 @@ public class TelaUtil {
 		}
 	}
 	
+	public static String getRg(JFormattedTextField ftRg, boolean obrigatorio) throws EntradaUsuarioException{
+		String rg = ftRg.getText().replace(".", "").replace("-", "").trim();
+		if(obrigatorio == true){
+			if(rg.equals("") || "".equals(rg)){
+				throw new EntradaUsuarioException(ftRg, "Valor inválido no campo " + ftRg.getName());
+			} else{
+				return rg;
+			}
+		}else{
+			return rg;
+		}
+	}
+	
 	public static String getValueCheck(JCheckBox ck){
 		if(ck.isSelected()){
 			return "S";
@@ -136,6 +149,14 @@ public class TelaUtil {
 			return "M";
 		} else {
 			return "F";
+		}
+	}
+	
+	public static String getCharFuncao(JRadioButton rbGerente) throws EntradaUsuarioException{
+		if((rbGerente != null) && rbGerente.isSelected()){
+			return "ADM";
+		} else {
+			return "Func";
 		}
 	}
 	

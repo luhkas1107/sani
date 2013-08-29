@@ -2,29 +2,30 @@ package br.com.sani.telas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.ButtonGroup;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import javax.swing.JSeparator;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
 import java.awt.ScrollPane;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import br.com.sani.bean.ClienteComprador;
+import br.com.sani.dao.ClienteCompradorDAO;
+import br.com.sani.exception.DAOException;
 import br.com.sani.exception.EntradaUsuarioException;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
@@ -34,7 +35,6 @@ public class frmCadastroClienteComprador extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNomeClienteComprador;
-	private JTextField txtRgClienteComprador;
 	private JTextField txtNacionalidadeClienteComprador;
 	private JTextField txtEnderecoClienteComprador;
 	private JTextField txtNumeroClienteComprador;
@@ -51,6 +51,7 @@ public class frmCadastroClienteComprador extends JFrame {
 	private JFormattedTextField ftCepClienteComprador;
 	private JFormattedTextField ftTelefoneResidencialClienteComprador;
 	private JFormattedTextField ftTelefoneCelularClienteComprador;
+	private JFormattedTextField ftRgClienteComprador;
 
 	/**
 	 * Launch the application.
@@ -148,10 +149,10 @@ public class frmCadastroClienteComprador extends JFrame {
 		lblRgClienteComprador.setBounds(182, 61, 46, 14);
 		panel.add(lblRgClienteComprador);
 		
-		txtRgClienteComprador = new JTextField();
-		txtRgClienteComprador.setColumns(10);
-		txtRgClienteComprador.setBounds(215, 58, 109, 20);
-		panel.add(txtRgClienteComprador);
+		ftRgClienteComprador = new JFormattedTextField(Mascara.setMaskRgInTf(ftRgClienteComprador));
+		ftRgClienteComprador.setColumns(10);
+		ftRgClienteComprador.setBounds(215, 58, 109, 20);
+		panel.add(ftRgClienteComprador);
 		
 		JLabel lblNacionalidadeClienteComprador = new JLabel("Nacionalidade:");
 		lblNacionalidadeClienteComprador.setBounds(240, 86, 98, 14);
@@ -263,6 +264,11 @@ public class frmCadastroClienteComprador extends JFrame {
 		panel.add(btnCancelarClienteComprador);
 		
 		JButton btnSalvarClienteComprador = new JButton("Cadastrar");
+		btnSalvarClienteComprador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salvarClienteComprador();
+			}
+		});
 		btnSalvarClienteComprador.setBounds(388, 480, 101, 23);
 		panel.add(btnSalvarClienteComprador);
 		
@@ -341,7 +347,7 @@ public class frmCadastroClienteComprador extends JFrame {
 	public void limpaFormulario(){
 		txtNomeClienteComprador.setText("");
 		ftCpfClienteComprador.setText("");
-		txtRgClienteComprador.setText("");
+		ftRgClienteComprador.setText("");
 		txtNacionalidadeClienteComprador.setText("");
 		txtEnderecoClienteComprador.setText("");
 		txtNumeroClienteComprador.setText("");
@@ -359,7 +365,7 @@ public class frmCadastroClienteComprador extends JFrame {
 		CliComp.setNome(TelaUtil.getCampoObrigatorio(txtNomeClienteComprador, true));
 		CliComp.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoClienteComprador));
 		CliComp.setCpf(TelaUtil.getCpf(ftCpfClienteComprador, true));
-		CliComp.setRg(TelaUtil.getCampoObrigatorio(txtRgClienteComprador, false));
+		CliComp.setRg(TelaUtil.getRg(ftRgClienteComprador, true));
 		CliComp.setRenda(TelaUtil.getCampoObrigatorio(txtRendaClienteComprador, true));
 		CliComp.setEstadoCivil(estadoCivil[comboBoxEstadoCivil.getSelectedIndex()]);
 		CliComp.setNacionalidade(TelaUtil.getCampoObrigatorio(txtNacionalidadeClienteComprador, false));
@@ -373,5 +379,18 @@ public class frmCadastroClienteComprador extends JFrame {
 		CliComp.setTelefoneCelular(TelaUtil.getCelular(ftTelefoneCelularClienteComprador, true));
 		
 		return CliComp;
+	}
+	
+	private void salvarClienteComprador(){
+		try{
+			ClienteComprador CliComp = getBean();
+			new ClienteCompradorDAO().inserirClienteComprador(CliComp);
+			limpaFormulario();
+			JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+		}catch(DAOException e){
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		}
 	}
 }

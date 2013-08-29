@@ -27,6 +27,7 @@ import br.com.sani.util.SwingUtil;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 
 public class frmConsultaClientes extends JFrame {
 
@@ -132,6 +133,8 @@ public class frmConsultaClientes extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JLabel lblRemove = new JLabel("");
+		lblRemove.setToolTipText("Apagar Cliente");
+		lblRemove.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblRemove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -143,6 +146,8 @@ public class frmConsultaClientes extends JFrame {
 		panel.add(lblRemove);
 		
 		JLabel lblEdit = new JLabel("");
+		lblEdit.setToolTipText("Editar Cliente");
+		lblEdit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblEdit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -155,6 +160,8 @@ public class frmConsultaClientes extends JFrame {
 		panel.add(lblEdit);
 		
 		JLabel lblSearch = new JLabel("");
+		lblSearch.setToolTipText("Pesquisar Clientes");
+		lblSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblSearch.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

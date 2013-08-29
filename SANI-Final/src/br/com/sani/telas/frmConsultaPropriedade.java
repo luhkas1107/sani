@@ -20,6 +20,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
 import br.com.sani.util.SwingUtil;
+import java.awt.Cursor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmConsultaPropriedade extends JFrame {
 
@@ -97,6 +100,11 @@ public class frmConsultaPropriedade extends JFrame {
 		panel.add(comboBoxEstado);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fechar();
+			}
+		});
 		btnCancelar.setBounds(10, 362, 89, 23);
 		panel.add(btnCancelar);
 		
@@ -118,20 +126,30 @@ public class frmConsultaPropriedade extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JLabel lblEdit = new JLabel("");
+		lblEdit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblEdit.setToolTipText("Editar Propriedade");
 		lblEdit.setIcon(new ImageIcon(frmConsultaPropriedade.class.getResource("/br/com/images/edit-.png")));
 		lblEdit.setBounds(629, 360, 25, 25);
 		panel.add(lblEdit);
 		
 		JLabel lblDelete = new JLabel("");
+		lblDelete.setToolTipText("Apagar Propriedade");
+		lblDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblDelete.setIcon(new ImageIcon(frmConsultaPropriedade.class.getResource("/br/com/images/delete-.png")));
 		lblDelete.setBounds(594, 360, 25, 25);
 		panel.add(lblDelete);
 		
 		JLabel lblSearch = new JLabel("");
+		lblSearch.setToolTipText("Pesquisar Propriedades");
+		lblSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblSearch.setIcon(new ImageIcon(frmConsultaPropriedade.class.getResource("/br/com/images/search-ico.png")));
 		lblSearch.setBounds(630, 59, 25, 25);
 		panel.add(lblSearch);
 		
 		setLocationRelativeTo(null);
+	}
+
+	public void fechar() {
+		this.dispose();
 	}
 }

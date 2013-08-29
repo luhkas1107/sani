@@ -1,33 +1,46 @@
 package br.com.sani.telas;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JSeparator;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import br.com.sani.bean.Metas;
+import br.com.sani.dao.MetasDAO;
+import br.com.sani.exception.DAOException;
+import br.com.sani.exception.EntradaUsuarioException;
+import br.com.sani.util.DbUtil;
+import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class frmConsultaMetas extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtFieldConsultaDataInicioMetas;
-	private JTextField txtFieldConsultaDataFinalMetas;
+	//private JTextField txtFieldConsultaDataInicioMetas;
+	//private JTextField txtFieldConsultaDataFinalMetas;
 	private JTable table;
+	
+	private JFormattedTextField ftFieldConsultaDataInicioMetas;
+	private JFormattedTextField ftFieldConsultaDataFinalMetas;
 
 	/**
 	 * Launch the application.
@@ -38,7 +51,7 @@ public class frmConsultaMetas extends JFrame {
 				try {
 					frmConsultaMetas frame = new frmConsultaMetas();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					e.printStackTrace();
 				}
 			}
@@ -47,8 +60,9 @@ public class frmConsultaMetas extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws Throwable 
 	 */
-	public frmConsultaMetas() {
+	public frmConsultaMetas() throws Throwable {
 		SwingUtil.lookWindows(this);
 		setTitle("Consulta Metas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaMetas.class.getResource("/br/com/images/home_badge.png")));
@@ -79,18 +93,23 @@ public class frmConsultaMetas extends JFrame {
 		panel.add(lblDataFinalMetas);
 		
 		JButton button_1 = new JButton("Cancelar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fechar();
+			}
+		});
 		button_1.setBounds(10, 368, 89, 23);
 		panel.add(button_1);
 		
-		txtFieldConsultaDataInicioMetas = new JTextField();
-		txtFieldConsultaDataInicioMetas.setBounds(99, 33, 86, 20);
-		panel.add(txtFieldConsultaDataInicioMetas);
-		txtFieldConsultaDataInicioMetas.setColumns(10);
+		ftFieldConsultaDataInicioMetas = new JFormattedTextField(Mascara.setMaskDateInTf(ftFieldConsultaDataInicioMetas));
+		ftFieldConsultaDataInicioMetas.setBounds(99, 33, 86, 20);
+		panel.add(ftFieldConsultaDataInicioMetas);
+		ftFieldConsultaDataInicioMetas.setColumns(10);
 		
-		txtFieldConsultaDataFinalMetas = new JTextField();
-		txtFieldConsultaDataFinalMetas.setColumns(10);
-		txtFieldConsultaDataFinalMetas.setBounds(275, 33, 86, 20);
-		panel.add(txtFieldConsultaDataFinalMetas);
+		ftFieldConsultaDataFinalMetas = new JFormattedTextField(Mascara.setMaskDateInTf(ftFieldConsultaDataFinalMetas));
+		ftFieldConsultaDataFinalMetas.setColumns(10);
+		ftFieldConsultaDataFinalMetas.setBounds(275, 33, 86, 20);
+		panel.add(ftFieldConsultaDataFinalMetas);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 99, 644, 242);
@@ -110,20 +129,64 @@ public class frmConsultaMetas extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JLabel lblEdit = new JLabel("");
+		lblEdit.setToolTipText("Editar Meta");
+		lblEdit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblEdit.setIcon(new ImageIcon(frmConsultaMetas.class.getResource("/br/com/images/edit-.png")));
 		lblEdit.setBounds(630, 366, 25, 25);
 		panel.add(lblEdit);
 		
 		JLabel lblDelete = new JLabel("");
+		lblDelete.setToolTipText("Apagar Meta");
+		lblDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblDelete.setIcon(new ImageIcon(frmConsultaMetas.class.getResource("/br/com/images/delete-.png")));
 		lblDelete.setBounds(592, 366, 25, 25);
 		panel.add(lblDelete);
 		
 		JLabel lblSearch = new JLabel("");
+		lblSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					buscarMeta();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		lblSearch.setToolTipText("Pesquisar Metas");
+		lblSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblSearch.setIcon(new ImageIcon(frmConsultaMetas.class.getResource("/br/com/images/search-ico.png")));
 		lblSearch.setBounds(610, 33, 25, 25);
 		panel.add(lblSearch);
 		
 		setLocationRelativeTo(null);
 	}
+
+	public void fechar() {
+		this.dispose();
+	}
+	
+	private Metas getBean(ResultSet result) throws SQLException, DAOException{
+		Metas metas = new Metas();
+		
+		metas.setIdMeta(result.getInt("idMeta"));
+		metas.setDescrMeta(result.getString("descrMeta"));
+		metas.setDataInicio(DbUtil.getJavaDate(result, "dataInicio"));
+		metas.setDataFim(DbUtil.getJavaDate(result, "dataFinal"));
+		metas.setStMeta(result.getString("stMeta"));
+		
+		return metas;
+	}
+	
+	private void buscarMeta() throws SQLException{
+		try{
+			Metas m = getBean(null);
+			new MetasDAO().buscarTodos();
+			//limpaFormulario();
+			JOptionPane.showMessageDialog(this, "Busca efetuada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+		}catch(DAOException e){
+			e.printStackTrace();
+		}
+	}	
 }

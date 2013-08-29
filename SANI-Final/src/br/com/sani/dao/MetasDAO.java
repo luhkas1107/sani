@@ -18,66 +18,66 @@ public class MetasDAO {
 		"SELECT ISNULL(MAX(idMeta), 0) + 1 AS NOVO_ID FROM tbMetas";
 	
 	private static final String QUERY_INSERIR = 
-		"INSERT INTO tbMetas (IDMETA, DESCRMETA, DATAINICIO, DATAFIM, STMETA) "+
+		"INSERT INTO tbMetas (idMeta, descrMeta, dataInicio, dataFinal, stMeta) "+
 		"VALUES (?,?,?,?,?)";
 	
 	private static final String QUERY_ATUALIZAR = 
 		"UPDATE tbMetas "
-		+ "SET	DESCRMETA = ?, "
-		+ "		DATAINICIO = ?, "
-		+ "		DATAFIM = ? "
-		+"WHERE IDMETA = ?";
+		+ "SET	descrMeta = ?, "
+		+ "		dataInicio = ?, "
+		+ "		dataFinal = ? "
+		+"WHERE idMeta = ?";
 	
 	private static final String QUERY_FINALIZAR_META = 
-		"UPDATE tbMetas SET STMETA = 'F' WHERE IDMETA = ?";
+		"UPDATE tbMetas SET stMeta = 'F' WHERE idMeta = ?";
 	
 	private static final String QUERY_BUSCAR_TODOS = 
-		"SELECT IDMETA, "
-		+ "		DESCRMETA,"
-		+ "		DATAINICIO,"
-		+ "		DATAFIM,"
-		+ "		STMETA"
-		+"WHERE NOT STMETA = 'F' ";
+		"SELECT idMeta, "
+		+ "		descrMeta,"
+		+ "		dataInicio,"
+		+ "		dataFinal,"
+		+ "		stMeta"
+		+"WHERE NOT stMeta = 'F' ";
 	
 	private static final String QUERY_BUSCAR_POR_ID =
-		"SELECT IDMETA, "
-		+ "		DESCRMETA,"
-		+ "		DATAINICIO,"
-		+ "		DATAFIM,"
-		+ "		STMETA"
-		+"WHERE NOT STMETA = 'F' AND IDMETA = ?";
+		"SELECT idMeta, "
+		+ "		descrMeta,"
+		+ "		dataInicio,"
+		+ "		dataFinal,"
+		+ "		stMeta"
+		+"WHERE NOT stMeta = 'F' AND idMeta = ?";
 	
 	private static final String QUERY_BUSCAR_POR_DATA = 
-		"SELECT IDMETA, "
-		+ "		DESCRMETA,"
-		+ "		DATAINICIO,"
-		+ "		DATAFIM,"
-		+ "		STMETA"
-		+"WHERE NOT STMETA = 'F' AND DATAINICIO = ?";
+		"SELECT idMeta, "
+		+ "		descrMeta,"
+		+ "		dataInicio,"
+		+ "		dataFinal,"
+		+ "		stMeta"
+		+"WHERE NOT stMeta = 'F' AND dataInicio = ?";
 	
 	private static final String QUERY_BUSCAR_POR_ENTRE_DATAS =
-		"SELECT IDMETA, "
-		+ "		DESCRMETA,"
-		+ "		DATAINICIO,"
-		+ "		DATAFIM,"
-		+ "		STMETA"
-		+"WHERE NOT STMETA = 'F' AND DATAINICIO BETWEEN ? AND ?";
+		"SELECT idMeta, "
+		+ "		descrMeta,"
+		+ "		dataInicio,"
+		+ "		dataFinal,"
+		+ "		stMeta"
+		+"WHERE NOT stMeta = 'F' AND dataInicio BETWEEN ? AND ?";
 	
 	private Metas getBean(ResultSet result) throws SQLException, DAOException{
 		Metas metas = new Metas();
 		
-		metas.setIdMeta(result.getInt("IDMETA"));
-		metas.setDescrMeta(result.getString("DESCRMETA"));
-		metas.setDataInicio(DbUtil.getJavaDate(result, "DATAINICIO"));
-		metas.setDataFim(DbUtil.getJavaDate(result, "DATAFIM"));
-		metas.setStMeta(result.getString("STMETA"));
+		metas.setIdMeta(result.getInt("idMeta"));
+		metas.setDescrMeta(result.getString("descrMeta"));
+		metas.setDataInicio(DbUtil.getJavaDate(result, "dataInicio"));
+		metas.setDataFim(DbUtil.getJavaDate(result, "dataFinal"));
+		metas.setStMeta(result.getString("stMeta"));
 		
 		return metas;
 	}
 	
 	/** getSequencia
-	 * M√©todo que busca o pr√≥ximo id para ser usando antes de inserir no banco de dados
-	 * (substitui) o identity!!! Trans√µes!!
+	 * MÈtodo que busca o prÛximo id para ser usando antes de inserir no banco de dados
+	 * (substitui) o identity!!! Transıes!!
 	 * @return
 	 * @throws DAOException
 	 */

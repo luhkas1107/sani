@@ -1,12 +1,21 @@
 package br.com.sani.telas;
 
-import java.awt.*;
+import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
 import br.com.sani.util.SwingUtil;
+import br.com.sani.util.Wallpaper;
 
 
 public class frmMenuPrincipalFuncionario extends JFrame {
@@ -39,7 +48,7 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 		setTitle("FUNCION\u00C1RIO - Sistema Administrador de Neg\u00F3cios Imobili\u00E1rios - v0.3.4");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 675, 450);
-		contentPane = new JPanel();
+		contentPane = new Wallpaper();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -96,7 +105,13 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 		mntmFuncionarios.setEnabled(false);
 		mntmFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmCadastroFuncionario frameCadFun = new frmCadastroFuncionario();
+			frmCadastroFuncionario frameCadFun = null;
+			try {
+				frameCadFun = new frmCadastroFuncionario();
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			frameCadFun.setVisible(true);
 			}
 		});
@@ -125,8 +140,14 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 		JMenuItem mntmClienteProprietario = new JMenuItem("Cliente Propriet\u00E1rio");
 		mntmClienteProprietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmCadastroClienteProprietario frameCadCliProp = new frmCadastroClienteProprietario();
-			frameCadCliProp.setVisible(true);
+			frmCadastroClienteProprietario frameCadCliProp;
+			try {
+				frameCadCliProp = new frmCadastroClienteProprietario();
+				frameCadCliProp.setVisible(true);
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			}
 		});
 		mnClientes.add(mntmClienteProprietario);
@@ -169,8 +190,14 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 		JMenuItem mntmMetasConsulta = new JMenuItem("Metas");
 		mntmMetasConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmConsultaMetas frameConsMetas = new frmConsultaMetas();
-			frameConsMetas.setVisible(true);
+			frmConsultaMetas frameConsMetas;
+			try {
+				frameConsMetas = new frmConsultaMetas();
+				frameConsMetas.setVisible(true);
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			}
 		});
 		mnConsulta.add(mntmMetasConsulta);

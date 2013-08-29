@@ -44,7 +44,7 @@ public class frmAbout extends JFrame {
 		setType(Type.UTILITY);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmAbout.class.getResource("/br/com/images/home_badge.png")));
 		setTitle("Ajuda - Sobre...");
-		setBounds(100, 100, 480, 326);
+		setBounds(100, 100, 400, 250);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,19 +52,19 @@ public class frmAbout extends JFrame {
 		
 		JLabel lblSobreOSani = new JLabel("Sobre o SANI");
 		lblSobreOSani.setFont(new Font("Arial", Font.BOLD, 18));
-		lblSobreOSani.setBounds(155, 11, 138, 14);
+		lblSobreOSani.setBounds(114, 11, 138, 14);
 		contentPane.add(lblSobreOSani);
 		
 		JTextPane txtpnSaniSistema = new JTextPane();
 		txtpnSaniSistema.setEditable(false);
 		txtpnSaniSistema.setBackground(SystemColor.control);
-		txtpnSaniSistema.setText("SANI - Sistema Administrador de Neg\u00F3cios Imobili\u00E1rios foi desenvolvido para ser voltado ao mercado Imobili\u00E1rio, abastecendo as Pequenas, M\u00E9dias e Grandes Empresas da \u00E1rea, com uma variedade de fun\u00E7\u00F5es. Adaptado para qualquer ambiente, sendo ele Windows, Linux ou Mac OS, sendo necess\u00E1rio apenas de um interpretador JAVA.\r\n\r\nSANI foi desenvolvido em linguagem JAVA e projetado para os Banco de Dados SQL Server, PLSQL entre outros.\r\n\r\nDesenvolvido por: Andr\u00E9 Eduardo\r\nContato: andre.edgs@gmail.com");
-		txtpnSaniSistema.setBounds(48, 77, 368, 204);
+		txtpnSaniSistema.setText("SANI - Sistema Administrador de Neg\u00F3cios Imobili\u00E1rios foi desenvolvido para ser voltado ao mercado Imobili\u00E1rio, abastecendo as Pequenas, M\u00E9dias e Grandes Empresas da \u00E1rea, com uma variedade de fun\u00E7\u00F5es. Adaptado para qualquer ambiente, sendo ele Windows, Linux ou Mac OS, sendo necess\u00E1rio apenas de um interpretador JAVA.\r\n\r\nSANI foi desenvolvido em linguagem JAVA e projetado para os Banco de Dados SQL Server, PLSQL entre outros.\r\n\r\nContato: andre.edgs@gmail.com");
+		txtpnSaniSistema.setBounds(10, 61, 368, 151);
 		contentPane.add(txtpnSaniSistema);
 		
 		JLabel lblVersion = new JLabel("Vers\u00E3o BETA v0.3.4");
 		lblVersion.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lblVersion.setBounds(165, 36, 109, 14);
+		lblVersion.setBounds(124, 36, 109, 14);
 		contentPane.add(lblVersion);
 	}
 

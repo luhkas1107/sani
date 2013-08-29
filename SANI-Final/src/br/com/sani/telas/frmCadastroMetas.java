@@ -166,7 +166,7 @@ public class frmCadastroMetas extends JFrame {
 			Metas m = getBean();
 			new MetasDAO().inserir(m);
 			limpaFormulario();
-			JOptionPane.showMessageDialog(this, "Transação efetuada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
 		}catch(DAOException e){
 			e.printStackTrace();
 		} catch (EntradaUsuarioException e) {

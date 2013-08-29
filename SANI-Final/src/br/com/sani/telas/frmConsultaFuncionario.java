@@ -23,6 +23,9 @@ import br.com.sani.util.SwingUtil;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Cursor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmConsultaFuncionario extends JFrame {
 
@@ -100,6 +103,11 @@ public class frmConsultaFuncionario extends JFrame {
 		panel.add(comboBox);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				fechar();
+			}
+		});
 		btnCancelar.setBounds(10, 368, 89, 23);
 		panel.add(btnCancelar);
 		
@@ -132,6 +140,8 @@ public class frmConsultaFuncionario extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JLabel lblEdit = new JLabel("");
+		lblEdit.setToolTipText("Editar Funcionario");
+		lblEdit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblEdit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -143,6 +153,8 @@ public class frmConsultaFuncionario extends JFrame {
 		panel.add(lblEdit);
 		
 		JLabel lblRemove = new JLabel("");
+		lblRemove.setToolTipText("Apagar Funcionario");
+		lblRemove.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblRemove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -154,6 +166,8 @@ public class frmConsultaFuncionario extends JFrame {
 		panel.add(lblRemove);
 		
 		JLabel lblSearch = new JLabel("");
+		lblSearch.setToolTipText("Pesquisar Funcionarios");
+		lblSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblSearch.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -165,5 +179,9 @@ public class frmConsultaFuncionario extends JFrame {
 		panel.add(lblSearch);
 		
 		setLocationRelativeTo(null);
+	}
+
+	public void fechar() {
+		this.dispose();		
 	}
 }

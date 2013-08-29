@@ -223,7 +223,7 @@ public class Funcionario {
 	private String getConfirmaSenhaFuncionario() {
 		return confirmaSenhaFuncionario;
 	}
-	private void setConfirmaSenhaFuncionario(String confirmaSenhaFuncionario) {
+	public void setConfirmaSenhaFuncionario(String confirmaSenhaFuncionario) {
 		if (confirmaSenhaFuncionario.equals("") || confirmaSenhaFuncionario.equals(null)) {
 			JOptionPane.showMessageDialog(null, "Campo Confirme a Senha OBRIGATÓRIO!");
 		} else {

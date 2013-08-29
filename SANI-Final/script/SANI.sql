@@ -1,9 +1,9 @@
 --Cria o DB SANI
-create database SANII
+create database SANI
 go
 
 --Usa o DB SANI
-use SANII
+use SANI
 go
 
 --Tabela Cliente Comprador
@@ -105,3 +105,8 @@ stMeta char(1) not null default 'A' constraint check_st check (stMeta in ('A', '
 )
 go
 
+select * from tbClienteComprador
+select * from tbClienteProprietario
+select * from tbFuncionario
+select * from tbPropriedades
+select * from tbMetas

@@ -24,12 +24,11 @@ public class frmLogin extends JFrame implements KeyListener {
 	private JTextField txtLogin;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
+	//Launch the application
+	
 	public static void main(String[] args) {
 		
-		/**GRAÇAS AO IGOR**/
+		//GRAÇAS AO IGOR
 		
 		SplashScreen teste = new SplashScreen();
 		teste.initSplash();
@@ -58,9 +57,7 @@ public class frmLogin extends JFrame implements KeyListener {
 		});**/
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Create the frame
 	public frmLogin() {
 		SwingUtil.lookWindows(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
