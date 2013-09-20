@@ -39,7 +39,7 @@ public class Mascara {
 	}
 	
 	public static AbstractFormatter setMaskRgInTf(JFormattedTextField ftRg) throws java.text.ParseException {
-		MaskFormatter mk = new MaskFormatter("##.###.###-#");
+		MaskFormatter mk = new MaskFormatter("#########");
 		mk.setValidCharacters("0123456789");
 		return mk;
 	}
