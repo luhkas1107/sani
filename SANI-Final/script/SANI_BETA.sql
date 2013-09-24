@@ -20,7 +20,7 @@ CREATE
     END_CLI_COMPRADOR   VARCHAR (100) NOT NULL ,
     NUM_CLI_COMPRADOR   CHAR (10) NOT NULL ,
     COMP_CLI_COMPRADOR  VARCHAR (100) NOT NULL ,
-    CEP_CLI_COMPRADOR   CHAR (8) NOT NULL ,
+    CEP_CLI_COMPRADOR   VARCHAR (10) NOT NULL ,
     EMAIL_CLI_COMPRADOR VARCHAR (120) NOT NULL ,
     SITE_CLI_COMPRADOR  VARCHAR (120) NOT NULL ,
     TEL_CLI_COMPRADOR   CHAR (8) NOT NULL ,
@@ -65,7 +65,7 @@ CREATE
     END_CLI_PROPRIETARIO   VARCHAR (100) NOT NULL ,
     NUM_CLI_PROPRIETARIO   CHAR (10) NOT NULL ,
     COMP_CLI_PROPRIETARIO  VARCHAR (100) NOT NULL ,
-    CEP_CLI_PROPRIETARIO   CHAR (8) NOT NULL ,
+    CEP_CLI_PROPRIETARIO   VARCHAR (10) NOT NULL ,
     EMAIL_CLI_PROPRIETARIO VARCHAR (120) NOT NULL ,
     SITE_CLI_PROPRIETARIO  VARCHAR (120) NOT NULL ,
     TEL_CLI_PROPRIETARIO   CHAR (8) NOT NULL ,
@@ -112,22 +112,21 @@ CREATE
     COD_FUNC   DECIMAL (15) NOT NULL ,
     NM__FUNC   VARCHAR (60) NOT NULL ,
     SX_FUNC    CHAR (1) NOT NULL DEFAULT 'M' ,
-    CPF_FUNC   CHAR (11) NOT NULL ,
-    RG_FUNC    CHAR (9) NOT NULL ,
+    CPF_FUNC   VARCHAR (11) NOT NULL ,
+    RG_FUNC    VARCHAR (9) NOT NULL ,
     EC_FUNC    CHAR (1) NOT NULL DEFAULT 'S' ,
     NASC_FUNC  VARCHAR (30) NOT NULL ,
-    END_FUNC   VARCHAR (100) NOT NULL ,
     NUM_FUNC   CHAR (10) NOT NULL ,
     COMP_FUNC  VARCHAR (100) NOT NULL ,
-    CEP_FUNC   CHAR (8) NOT NULL ,
-    TEL_FUNC   CHAR (8) NOT NULL ,
-    CEL_FUNC   CHAR (9) ,
+    CEP_FUNC   VARCHAR (10) NOT NULL ,
+    TEL_FUNC   VARCHAR (10) NOT NULL ,
+    CEL_FUNC   VARCHAR (11) ,
     CG_FUNC    CHAR (2) NOT NULL DEFAULT 'CI' ,
     LG_FUNC    VARCHAR (50) NOT NULL ,
     SN_FUNC    VARCHAR (50) NOT NULL ,
-    CSN_FUNC   VARCHAR (50) ,
     EMAIL_FUNC VARCHAR (100) NOT NULL ,
     SITE_FUNC  VARCHAR (100) NOT NULL ,
+	IMG_FUNC varbinary(MAX) NULL,
     CONSTRAINT tbFuncionario_PK PRIMARY KEY CLUSTERED (COD_FUNC)
 WITH
   (
@@ -200,7 +199,7 @@ CREATE
     CPF_PROP             CHAR (11) NOT NULL ,
     EMAIL_PROP           VARCHAR (120) NOT NULL ,
     END_PROP             VARCHAR (100) NOT NULL ,
-    CEP_PROP             CHAR (8) NOT NULL ,
+    CEP_PROP             VARCHAR (10) NOT NULL ,
     NUM_PROP             CHAR (10) NOT NULL ,
     COMP_PROP            VARCHAR (100) NOT NULL ,
     MTG_PROP             VARCHAR (100) NOT NULL ,
@@ -252,28 +251,77 @@ UPDATE NO ACTION
 GO
 
 
--- Relatório do Resumo do Oracle SQL Developer Data Modeler: 
--- 
--- CREATE TABLE                             5
--- CREATE INDEX                             0
--- ALTER TABLE                             13
--- CREATE VIEW                              0
--- CREATE PACKAGE                           0
--- CREATE PACKAGE BODY                      0
--- CREATE PROCEDURE                         0
--- CREATE FUNCTION                          0
--- CREATE TRIGGER                           0
--- ALTER TRIGGER                            0
--- CREATE DATABASE                          0
--- CREATE DEFAULT                           0
--- CREATE INDEX ON VIEW                     0
--- CREATE ROLLBACK SEGMENT                  0
--- CREATE ROLE                              0
--- CREATE RULE                              0
--- CREATE PARTITION FUNCTION                0
--- CREATE PARTITION SCHEME                  0
--- 
--- DROP DATABASE                            0
--- 
--- ERRORS                                   0
--- WARNINGS                                 0
+
+CREATE TABLE tbBairro (
+  id_bairro INTEGER NOT NULL,
+  bairro varchar(50) NOT NULL,
+  id_cidade INTEGER NOT NULL
+)
+go
+
+CREATE TABLE tbCidade (
+  id_cidade INTEGER NOT NULL,
+  cidade varchar(100) NOT NULL,
+  uf varchar(2) NOT NULL
+)
+go
+
+CREATE TABLE tbEndereco (
+  cep varchar(10) NOT NULL DEFAULT '',
+  endereco varchar(200) NOT NULL DEFAULT '',
+  id_cidade INTEGER NOT NULL,
+  id_bairro INTEGER DEFAULT NULL
+) 
+go
+
+
+ALTER TABLE tbCidade
+ADD CONSTRAINT PK_ID_CIDADE
+PRIMARY KEY (ID_CIDADE)
+go
+
+ALTER TABLE tbBairro
+ADD CONSTRAINT PK_ID_BAIRRO
+PRIMARY KEY (ID_BAIRRO)
+go
+
+ALTER TABLE tbBairro
+ADD CONSTRAINT FK_ID_CIDADE
+FOREIGN KEY (ID_CIDADE) REFERENCES tbCidade (ID_CIDADE)
+go
+
+ALTER TABLE tbEndereco 
+ADD CONSTRAINT PK_CEP
+PRIMARY KEY (CEP)
+go
+
+ALTER TABLE tbEndereco 
+ADD CONSTRAINT ID_CIDADE
+FOREIGN KEY (ID_CIDADE) REFERENCES tbCidade (ID_CIDADE)
+go
+
+ALTER TABLE tbEndereco
+ADD CONSTRAINT FK_ID_BAIRRO
+FOREIGN KEY (ID_BAIRRO) REFERENCES tbBairro (ID_BAIRRO)
+go
+
+ALTER TABLE tbClienteComprador
+ADD CONSTRAINT fk_cli_comprador_enderedo
+FOREIGN KEY (CEP_CLI_COMPRADOR) REFERENCES tbEndereco (CEP)
+GO
+
+ALTER TABLE tbClienteProprietario
+ADD CONSTRAINT fk_cli_pro_enderedo
+FOREIGN KEY (CEP_CLI_PROPRIETARIO) REFERENCES tbEndereco (CEP)
+GO
+
+ALTER TABLE tbFuncionario
+ADD CONSTRAINT fk_func_enderedo
+FOREIGN KEY (CEP_FUNC) REFERENCES tbEndereco (CEP)
+GO
+
+ALTER TABLE tbPropriedades
+ADD CONSTRAINT fk_prop_enderedo
+FOREIGN KEY (CEP_PROP) REFERENCES tbEndereco (CEP)
+GO
+

@@ -22,6 +22,7 @@ public class Funcionario {
 	private String telefoneCelular;
 	private String emailPessoal;	
 	private Date dataNascimento;
+	private byte[] imgFunc;
 	
 	private int id;
 	private String cargoFuncionario;
@@ -237,5 +238,13 @@ public class Funcionario {
 
 	public String getSiteFuncionario() {
 		return siteFuncionario;
+	}
+	
+	public byte[] getImgFunc() {
+		return imgFunc;
+	}
+
+	public void setImgFunc(byte[] imgFunc) {
+		this.imgFunc = imgFunc;
 	}
 }

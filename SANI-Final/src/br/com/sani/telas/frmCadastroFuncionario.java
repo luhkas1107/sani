@@ -2,10 +2,10 @@ package br.com.sani.telas;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.ScrollPane;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.ParseException;
 
 import javax.swing.ButtonGroup;
@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -23,34 +24,59 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import br.com.sani.bean.Endereco;
+import br.com.sani.bean.Funcionario;
+import br.com.sani.dao.EnderecoDao;
+import br.com.sani.dao.FuncionarioDAO;
+import br.com.sani.exception.DAOException;
+import br.com.sani.exception.EntradaUsuarioException;
+import br.com.sani.util.ImagePanel;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
+import br.com.sani.util.TelaUtil;
+
+import com.toedter.calendar.JDateChooser;
+
+import javax.swing.border.TitledBorder;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class frmCadastroFuncionario extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtNomeFuncionario;
-	//private JTextField txtCpfFuncionario;
-	//private JTextField txtRgFuncionario;
 	private JTextField txtEnderecoFuncionario;
 	private JTextField txtNumeroEnderecoFuncionario;
 	private JTextField txtComplementoFuncionario;
-	//private JTextField txtCepFuncionario;
-	//private JTextField txtTelefoneResidencialFuncionario;
-	//private JTextField txtTelefoneCelularFuncionario;
 	private JTextField txtSiteFuncionario;
 	private JTextField txtEmailFuncionario;
 	private JTextField txtNacionalidadeFuncionario;
 	private JTextField txtLoginFuncionario;
-	private JPasswordField passwordFieldSenhaFuncionario;
-	private JPasswordField passwordFieldConfSenhaFuncionario;
-	private JTextField txtRegistroFuncionario;
+	private JPasswordField pfSenhaFuncionario;
+	private JPasswordField pfConfSenhaFuncionario;
 	
 	private JFormattedTextField ftCepFuncionario;
 	private JFormattedTextField ftCpfFuncionario;
 	private JFormattedTextField ftRgFuncionario;
 	private JFormattedTextField ftTelefoneResidencialFuncionario;
 	private JFormattedTextField ftTelefoneCelularFuncionario;
+	private JRadioButton rbMasculinoFuncionario;
+	private JRadioButton rbFemininoFuncionario;
+	private JComboBox cbEstadoCivilFuncionario;
+	private JRadioButton rbCargoCorretorFuncionario;
+	private JRadioButton rbCargoSecretariaFuncionario;
+	private JRadioButton rbCargoGerenteFuncionario;
+	private JRadioButton rbCargoConsultorFuncionario;
+	private ImagePanel imagePanel;
+	private JButton btnSalvarFuncionario;
+	private JButton btnCancelarFuncionario;
+	private JButton btnLimparCamposFuncionario;
+	
+	private byte[] foto;
+	private JPanel pnSexo;
+	private JPanel pnCargo;
+	private JDateChooser dtNascimento;
 
 	/**
 	 * Launch the application.
@@ -77,7 +103,7 @@ public class frmCadastroFuncionario extends JFrame {
 		setResizable(false);
 		setTitle("Cadastro Funcionario");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroFuncionario.class.getResource("/br/com/images/home_badge.png")));
-		setBounds(100, 100, 521, 547);
+		setBounds(100, 100, 700, 511);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -85,243 +111,199 @@ public class frmCadastroFuncionario extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(0, 0, 515, 523);
+		panel.setBounds(0, 0, 694, 485);
 		contentPane.add(panel);
 		
-		JLabel lblNomeFuncionario = new JLabel("Nome: *");
-		lblNomeFuncionario.setBounds(10, 11, 46, 14);
+		JLabel lblNomeFuncionario = new JLabel("Nome:*");
+		lblNomeFuncionario.setBounds(73, 29, 37, 14);
 		panel.add(lblNomeFuncionario);
-		
-		JLabel lblSexoFuncionario = new JLabel("Sexo: *");
-		lblSexoFuncionario.setBounds(10, 36, 46, 14);
-		panel.add(lblSexoFuncionario);
-		
-		JRadioButton rdbtnMasculinoFuncionario = new JRadioButton("Masculino");
-		rdbtnMasculinoFuncionario.setBounds(56, 32, 109, 23);
-		panel.add(rdbtnMasculinoFuncionario);
-		
-		JRadioButton rdbtnFemininoFuncionario = new JRadioButton("Feminino");
-		rdbtnFemininoFuncionario.setBounds(172, 32, 109, 23);
-		panel.add(rdbtnFemininoFuncionario);
 		
 		//Cria o Button Group
 		
 		ButtonGroup grupoSexo = new ButtonGroup();  
-        grupoSexo.add(rdbtnMasculinoFuncionario);  
-        grupoSexo.add(rdbtnFemininoFuncionario);
 		
 		txtNomeFuncionario = new JTextField();
+		txtNomeFuncionario.setName("Nome");
 		txtNomeFuncionario.setColumns(10);
-		txtNomeFuncionario.setBounds(56, 8, 327, 20);
+		txtNomeFuncionario.setBounds(120, 26, 299, 20);
 		panel.add(txtNomeFuncionario);
 		
-		JLabel lblCpfFuncionario = new JLabel("CPF: *");
-		lblCpfFuncionario.setBounds(10, 61, 46, 14);
+		JLabel lblCpfFuncionario = new JLabel("CPF:*");
+		lblCpfFuncionario.setBounds(80, 82, 30, 14);
 		panel.add(lblCpfFuncionario);
 		
-		ftCpfFuncionario = new JFormattedTextField();
+		ftCpfFuncionario = new JFormattedTextField(Mascara.setMaskCpfInTf(ftCpfFuncionario));
+		ftCpfFuncionario.setName("CPF");
 		ftCpfFuncionario.setColumns(10);
-		ftCpfFuncionario.setBounds(57, 58, 109, 20);
+		ftCpfFuncionario.setBounds(120, 79, 106, 20);
 		panel.add(ftCpfFuncionario);
 		
 		JLabel lblEstadoCivilFuncionario = new JLabel("Estado Civil:");
-		lblEstadoCivilFuncionario.setBounds(10, 86, 81, 14);
+		lblEstadoCivilFuncionario.setBounds(444, 29, 60, 14);
 		panel.add(lblEstadoCivilFuncionario);
 		
-		JComboBox comboBoxEstadoCivilFuncionario = new JComboBox();
-		comboBoxEstadoCivilFuncionario.setModel(new DefaultComboBoxModel(new String[] {"Solteiro (a)", "Casado (a)", "Divorciado (a)", "Vi\u00FAvo (a)"}));
-		comboBoxEstadoCivilFuncionario.setBounds(80, 83, 137, 20);
-		panel.add(comboBoxEstadoCivilFuncionario);
+		cbEstadoCivilFuncionario = new JComboBox();
+		cbEstadoCivilFuncionario.setName("Estado Civil");
+		cbEstadoCivilFuncionario.setModel(new DefaultComboBoxModel(new String[] {"Solteiro (a)", "Casado (a)", "Divorciado (a)", "Vi\u00FAvo (a)"}));
+		cbEstadoCivilFuncionario.setBounds(514, 26, 137, 20);
+		panel.add(cbEstadoCivilFuncionario);
 		
 		JLabel lblRgFuncionario = new JLabel("RG:");
-		lblRgFuncionario.setBounds(182, 61, 46, 14);
+		lblRgFuncionario.setBounds(293, 82, 18, 14);
 		panel.add(lblRgFuncionario);
 		
 		ftRgFuncionario = new JFormattedTextField();
+		ftRgFuncionario.setName("RG");
 		ftRgFuncionario.setColumns(10);
-		ftRgFuncionario.setBounds(215, 58, 109, 20);
+		ftRgFuncionario.setBounds(321, 79, 98, 20);
 		panel.add(ftRgFuncionario);
 		
 		JLabel lblNacionalidadeFuncionario = new JLabel("Nacionalidade:");
-		lblNacionalidadeFuncionario.setBounds(240, 86, 98, 14);
+		lblNacionalidadeFuncionario.setBounds(433, 57, 71, 14);
 		panel.add(lblNacionalidadeFuncionario);
 		
 		txtNacionalidadeFuncionario = new JTextField();
+		txtNacionalidadeFuncionario.setName("Nacionalidade");
 		txtNacionalidadeFuncionario.setColumns(10);
-		txtNacionalidadeFuncionario.setBounds(335, 83, 116, 20);
+		txtNacionalidadeFuncionario.setBounds(514, 54, 137, 20);
 		panel.add(txtNacionalidadeFuncionario);
 		
-		JLabel lblEnderecoFuncionario = new JLabel("Endere\u00E7o: *");
-		lblEnderecoFuncionario.setBounds(10, 111, 63, 14);
+		JLabel lblEnderecoFuncionario = new JLabel("Endere\u00E7o:");
+		lblEnderecoFuncionario.setBounds(61, 132, 49, 14);
 		panel.add(lblEnderecoFuncionario);
 		
 		txtEnderecoFuncionario = new JTextField();
+		txtEnderecoFuncionario.setEditable(false);
+		txtEnderecoFuncionario.setName("Endere\u00E7o");
 		txtEnderecoFuncionario.setColumns(10);
-		txtEnderecoFuncionario.setBounds(80, 108, 244, 20);
+		txtEnderecoFuncionario.setBounds(120, 129, 299, 20);
 		panel.add(txtEnderecoFuncionario);
 		
-		JLabel lblNumeroFuncionario = new JLabel("N\u00FAmero: *");
-		lblNumeroFuncionario.setBounds(329, 111, 54, 14);
+		JLabel lblNumeroFuncionario = new JLabel("N\u00FAmero:*");
+		lblNumeroFuncionario.setBounds(264, 107, 47, 14);
 		panel.add(lblNumeroFuncionario);
 		
 		txtNumeroEnderecoFuncionario = new JTextField();
+		txtNumeroEnderecoFuncionario.setName("N\u00FAmero da Residencia");
 		txtNumeroEnderecoFuncionario.setColumns(10);
-		txtNumeroEnderecoFuncionario.setBounds(388, 108, 63, 20);
+		txtNumeroEnderecoFuncionario.setBounds(321, 104, 98, 20);
 		panel.add(txtNumeroEnderecoFuncionario);
 		
 		JLabel lblComplementoFuncionario = new JLabel("Complemento:");
-		lblComplementoFuncionario.setBounds(10, 136, 96, 14);
+		lblComplementoFuncionario.setBounds(39, 158, 71, 14);
 		panel.add(lblComplementoFuncionario);
 		
 		txtComplementoFuncionario = new JTextField();
+		txtComplementoFuncionario.setName("Complemento");
 		txtComplementoFuncionario.setColumns(10);
-		txtComplementoFuncionario.setBounds(101, 133, 102, 20);
+		txtComplementoFuncionario.setBounds(120, 155, 299, 20);
 		panel.add(txtComplementoFuncionario);
 		
-		JLabel lblCepFuncionario = new JLabel("CEP: *");
-		lblCepFuncionario.setBounds(225, 136, 46, 14);
+		JLabel lblCepFuncionario = new JLabel("CEP:*");
+		lblCepFuncionario.setBounds(80, 107, 30, 14);
 		panel.add(lblCepFuncionario);
 		
 		ftCepFuncionario = new JFormattedTextField(Mascara.setMaskCepInTf(ftCepFuncionario));
+		ftCepFuncionario.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				buscarEndereco();
+			}
+		});
+		ftCepFuncionario.setName("CEP");
 		ftCepFuncionario.setColumns(10);
-		ftCepFuncionario.setBounds(265, 133, 86, 20);
+		ftCepFuncionario.setBounds(120, 104, 106, 20);
 		panel.add(ftCepFuncionario);
 		
-		JLabel lblTelefoneResidencialFuncionario = new JLabel("Telefone Residencial:");
-		lblTelefoneResidencialFuncionario.setBounds(10, 161, 132, 14);
+		JLabel lblTelefoneResidencialFuncionario = new JLabel("Telefone Res.:");
+		lblTelefoneResidencialFuncionario.setBounds(39, 57, 71, 14);
 		panel.add(lblTelefoneResidencialFuncionario);
 		
 		ftTelefoneResidencialFuncionario = new JFormattedTextField(Mascara.setMaskTelefoneInTf(ftTelefoneResidencialFuncionario));
+		ftTelefoneResidencialFuncionario.setName("Telefone Residencial");
 		ftTelefoneResidencialFuncionario.setColumns(10);
-		ftTelefoneResidencialFuncionario.setBounds(136, 158, 106, 20);
+		ftTelefoneResidencialFuncionario.setBounds(120, 54, 106, 20);
 		panel.add(ftTelefoneResidencialFuncionario);
 		
-		JLabel lblTelefoneCelularFuncionario = new JLabel("Telefone Celular: *");
-		lblTelefoneCelularFuncionario.setBounds(265, 161, 118, 14);
+		JLabel lblTelefoneCelularFuncionario = new JLabel("Telefone Cel.:*");
+		lblTelefoneCelularFuncionario.setBounds(236, 57, 75, 14);
 		panel.add(lblTelefoneCelularFuncionario);
 		
 		ftTelefoneCelularFuncionario = new JFormattedTextField(Mascara.setMaskCelularInTf(ftTelefoneCelularFuncionario));
+		ftTelefoneCelularFuncionario.setName("Telefone Celular");
 		ftTelefoneCelularFuncionario.setColumns(10);
-		ftTelefoneCelularFuncionario.setBounds(372, 158, 106, 20);
+		ftTelefoneCelularFuncionario.setBounds(321, 54, 98, 20);
 		panel.add(ftTelefoneCelularFuncionario);
 		
-		JLabel lblImagemFuncionario = new JLabel("Imagem:");
-		lblImagemFuncionario.setBounds(10, 196, 54, 14);
-		panel.add(lblImagemFuncionario);
-		
-		JButton btnProcurarImagemFuncionario = new JButton("Procurar...");
-		btnProcurarImagemFuncionario.setBounds(180, 225, 134, 23);
-		panel.add(btnProcurarImagemFuncionario);
-		
-		JButton btnDefinirImagemFuncionario = new JButton("Definir Imagem");
-		btnDefinirImagemFuncionario.setBounds(180, 260, 134, 23);
-		panel.add(btnDefinirImagemFuncionario);
-		
-		JButton btnExcluirImagemFuncionario = new JButton("Excluir Imagem");
-		btnExcluirImagemFuncionario.setBounds(180, 295, 134, 23);
-		panel.add(btnExcluirImagemFuncionario);
-		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 186, 479, 2);
+		separator.setBounds(10, 186, 674, 2);
 		panel.add(separator);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 350, 479, 2);
 		panel.add(separator_1);
 		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 462, 479, 2);
-		panel.add(separator_2);
-		
-		JButton btnLimparCamposFuncionario = new JButton("Limpar Campos");
+		btnLimparCamposFuncionario = new JButton("Limpar Campos");
+		btnLimparCamposFuncionario.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/clear.png")));
 		btnLimparCamposFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				limpaFormulario();
 			}
 		});
-		btnLimparCamposFuncionario.setBounds(39, 475, 126, 23);
+		btnLimparCamposFuncionario.setBounds(514, 363, 137, 32);
 		panel.add(btnLimparCamposFuncionario);
 		
-		JButton btnCancelarFuncionario = new JButton("Cancelar");
+		btnCancelarFuncionario = new JButton("Cancelar");
+		btnCancelarFuncionario.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/delete-.png")));
 		btnCancelarFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				fechar();
 			}
 		});
-		btnCancelarFuncionario.setBounds(225, 475, 89, 23);
+		btnCancelarFuncionario.setBounds(514, 399, 137, 32);
 		panel.add(btnCancelarFuncionario);
 		
-		JButton btnSalvarFuncionario = new JButton("Salvar");
-		btnSalvarFuncionario.setBounds(400, 475, 89, 23);
+		btnSalvarFuncionario = new JButton("Salvar");
+		btnSalvarFuncionario.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/save.png")));
+		btnSalvarFuncionario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salvarCadastro();
+			}
+		});
+		btnSalvarFuncionario.setBounds(514, 435, 137, 32);
 		panel.add(btnSalvarFuncionario);
 		
 		JLabel lblContatoOnlineFuncionario = new JLabel("Contato Online:");
-		lblContatoOnlineFuncionario.setBounds(268, 372, 89, 14);
+		lblContatoOnlineFuncionario.setBounds(294, 377, 89, 14);
 		panel.add(lblContatoOnlineFuncionario);
 		
-		JLabel lblEmailFuncionario = new JLabel("Email: *");
-		lblEmailFuncionario.setBounds(268, 397, 46, 14);
+		JLabel lblEmailFuncionario = new JLabel("Email:*");
+		lblEmailFuncionario.setBounds(294, 402, 46, 14);
 		panel.add(lblEmailFuncionario);
 		
 		JLabel lblSiteFuncionario = new JLabel("Site:");
-		lblSiteFuncionario.setBounds(268, 422, 46, 14);
+		lblSiteFuncionario.setBounds(294, 427, 46, 14);
 		panel.add(lblSiteFuncionario);
 		
 		txtSiteFuncionario = new JTextField();
+		txtSiteFuncionario.setName("Site");
 		txtSiteFuncionario.setColumns(10);
-		txtSiteFuncionario.setBounds(324, 419, 154, 20);
+		txtSiteFuncionario.setBounds(335, 424, 154, 20);
 		panel.add(txtSiteFuncionario);
 		
 		txtEmailFuncionario = new JTextField();
+		txtEmailFuncionario.setName("Email");
 		txtEmailFuncionario.setColumns(10);
-		txtEmailFuncionario.setBounds(324, 394, 154, 20);
+		txtEmailFuncionario.setBounds(335, 399, 154, 20);
 		panel.add(txtEmailFuncionario);
-		
-		JLabel lblCargo = new JLabel("Cargo na Empresa: *");
-		lblCargo.setBounds(343, 201, 116, 14);
-		panel.add(lblCargo);
-		
-		JRadioButton rdbtnCargoCorretorFuncionario = new JRadioButton("Corretor (a) de Im\u00F3veis");
-		rdbtnCargoCorretorFuncionario.setBounds(343, 225, 166, 23);
-		panel.add(rdbtnCargoCorretorFuncionario);
-		
-		JRadioButton rdbtnCargoSecretariaFuncionario = new JRadioButton("Secret\u00E1ria ");
-		rdbtnCargoSecretariaFuncionario.setBounds(343, 251, 109, 23);
-		panel.add(rdbtnCargoSecretariaFuncionario);
-		
-		JRadioButton rdbtnCargoGerenteFuncionario = new JRadioButton("Gerente");
-		rdbtnCargoGerenteFuncionario.setBounds(343, 277, 109, 23);
-		panel.add(rdbtnCargoGerenteFuncionario);
-		
-		JRadioButton rdbtnCargoConsultorFuncionario = new JRadioButton("Consultor (a)");
-		rdbtnCargoConsultorFuncionario.setBounds(343, 303, 109, 23);
-		panel.add(rdbtnCargoConsultorFuncionario);
 		
 		//Cria o Button Group
 		
-		ButtonGroup grupoCargo = new ButtonGroup();  
-		grupoCargo.add(rdbtnCargoCorretorFuncionario);  
-		grupoCargo.add(rdbtnCargoSecretariaFuncionario);
-		grupoCargo.add(rdbtnCargoGerenteFuncionario);  
-		grupoCargo.add(rdbtnCargoConsultorFuncionario);
-		
-		ScrollPane scrollPane = new ScrollPane();
-		scrollPane.setBounds(10, 216, 118, 128);
-		panel.add(scrollPane);
-		
-		JLabel lblSave = new JLabel("");
-		lblSave.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/save.png")));
-		lblSave.setBounds(365, 475, 25, 25);
-		panel.add(lblSave);
-		
-		JLabel lblCancelar = new JLabel("");
-		lblCancelar.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/delete-.png")));
-		lblCancelar.setBounds(192, 475, 25, 25);
-		panel.add(lblCancelar);
+		ButtonGroup grupoCargo = new ButtonGroup();
 		
 		JPanel panelLogin = new JPanel();
 		panelLogin.setBackground(Color.GRAY);
-		panelLogin.setBounds(10, 355, 248, 103);
+		panelLogin.setBounds(39, 363, 248, 95);
 		panel.add(panelLogin);
 		panelLogin.setLayout(null);
 		
@@ -334,6 +316,7 @@ public class frmCadastroFuncionario extends JFrame {
 		panelLogin.add(lblSenhaFuncionario);
 		
 		txtLoginFuncionario = new JTextField();
+		txtLoginFuncionario.setName("Login");
 		txtLoginFuncionario.setColumns(10);
 		txtLoginFuncionario.setBounds(114, 13, 124, 20);
 		panelLogin.add(txtLoginFuncionario);
@@ -342,43 +325,115 @@ public class frmCadastroFuncionario extends JFrame {
 		lblConfSenhaFuncionario.setBounds(10, 66, 102, 14);
 		panelLogin.add(lblConfSenhaFuncionario);
 		
-		passwordFieldSenhaFuncionario = new JPasswordField();
-		passwordFieldSenhaFuncionario.setBounds(114, 38, 124, 20);
-		panelLogin.add(passwordFieldSenhaFuncionario);
+		pfSenhaFuncionario = new JPasswordField();
+		pfSenhaFuncionario.setName("Senha");
+		pfSenhaFuncionario.setBounds(114, 38, 124, 20);
+		panelLogin.add(pfSenhaFuncionario);
 		
-		passwordFieldConfSenhaFuncionario = new JPasswordField();
-		passwordFieldConfSenhaFuncionario.setBounds(114, 63, 124, 20);
-		panelLogin.add(passwordFieldConfSenhaFuncionario);
+		pfConfSenhaFuncionario = new JPasswordField();
+		pfConfSenhaFuncionario.setName("Confirma\u00E7\u00E3o de Senha");
+		pfConfSenhaFuncionario.setBounds(114, 63, 124, 20);
+		panelLogin.add(pfConfSenhaFuncionario);
 		
-		JLabel lblClear = new JLabel("");
-		lblClear.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/clear.png")));
-		lblClear.setBounds(10, 475, 25, 25);
-		panel.add(lblClear);
+		pnSexo = new JPanel();
+		pnSexo.setBorder(new TitledBorder(null, "Sexo*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnSexo.setBounds(514, 107, 137, 68);
+		panel.add(pnSexo);
+		pnSexo.setLayout(null);
+		
+		rbMasculinoFuncionario = new JRadioButton("Masculino");
+		rbMasculinoFuncionario.setSelected(true);
+		rbMasculinoFuncionario.setBounds(17, 15, 109, 23);
+		pnSexo.add(rbMasculinoFuncionario);
+		grupoSexo.add(rbMasculinoFuncionario);  
+		
+		rbFemininoFuncionario = new JRadioButton("Feminino");
+		rbFemininoFuncionario.setBounds(17, 35, 109, 23);
+		pnSexo.add(rbFemininoFuncionario);
+		grupoSexo.add(rbFemininoFuncionario);
+		
+		JLabel lblDataNasc = new JLabel("Data Nasc.:");
+		lblDataNasc.setBounds(444, 82, 60, 14);
+		panel.add(lblDataNasc);
+		
+		pnCargo = new JPanel();
+		pnCargo.setBorder(new TitledBorder(null, "Cargo*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnCargo.setBounds(433, 200, 218, 149);
+		panel.add(pnCargo);
+		pnCargo.setLayout(null);
+		
+		rbCargoCorretorFuncionario = new JRadioButton("Corretor (a) de Im\u00F3veis");
+		rbCargoCorretorFuncionario.setBounds(19, 29, 139, 23);
+		pnCargo.add(rbCargoCorretorFuncionario);
+		rbCargoCorretorFuncionario.setSelected(true);
+		grupoCargo.add(rbCargoCorretorFuncionario);  
+		
+		rbCargoSecretariaFuncionario = new JRadioButton("Secret\u00E1ria ");
+		rbCargoSecretariaFuncionario.setBounds(19, 55, 109, 23);
+		pnCargo.add(rbCargoSecretariaFuncionario);
+		grupoCargo.add(rbCargoSecretariaFuncionario);
+		
+		rbCargoGerenteFuncionario = new JRadioButton("Gerente");
+		rbCargoGerenteFuncionario.setBounds(19, 81, 109, 23);
+		pnCargo.add(rbCargoGerenteFuncionario);
+		grupoCargo.add(rbCargoGerenteFuncionario);  
+		
+		rbCargoConsultorFuncionario = new JRadioButton("Consultor (a)");
+		rbCargoConsultorFuncionario.setBounds(19, 106, 109, 23);
+		pnCargo.add(rbCargoConsultorFuncionario);
+		grupoCargo.add(rbCargoConsultorFuncionario);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Imagem*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(39, 199, 380, 149);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JButton btnProcurarImagemFuncionario = new JButton("Procurar...");
+		btnProcurarImagemFuncionario.setBounds(224, 31, 134, 23);
+		panel_1.add(btnProcurarImagemFuncionario);
+		
+		JButton btnDefinirImagemFuncionario = new JButton("Definir Imagem");
+		btnDefinirImagemFuncionario.setBounds(224, 66, 134, 23);
+		panel_1.add(btnDefinirImagemFuncionario);
+		
+		JButton btnExcluirImagemFuncionario = new JButton("Excluir Imagem");
+		btnExcluirImagemFuncionario.setBounds(224, 101, 134, 23);
+		panel_1.add(btnExcluirImagemFuncionario);
 		
 		JLabel lblExcluirImagem = new JLabel("");
+		lblExcluirImagem.setBounds(184, 101, 25, 25);
+		panel_1.add(lblExcluirImagem);
 		lblExcluirImagem.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/delete-.png")));
-		lblExcluirImagem.setBounds(140, 295, 25, 25);
-		panel.add(lblExcluirImagem);
 		
 		JLabel label = new JLabel("");
+		label.setBounds(184, 66, 25, 25);
+		panel_1.add(label);
 		label.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/apply-.png")));
-		label.setBounds(140, 260, 25, 25);
-		panel.add(label);
 		
 		JLabel label_1 = new JLabel("");
+		label_1.setBounds(180, 31, 25, 25);
+		panel_1.add(label_1);
 		label_1.setIcon(new ImageIcon(frmCadastroFuncionario.class.getResource("/br/com/images/search-ico.png")));
-		label_1.setBounds(136, 225, 25, 25);
-		panel.add(label_1);
 		
-		JLabel lblRegistroFuncionario = new JLabel("ID:");
-		lblRegistroFuncionario.setBounds(399, 11, 29, 14);
-		panel.add(lblRegistroFuncionario);
+		imagePanel = new ImagePanel(null);
+		imagePanel.setName("Imagem");
+		imagePanel.setBounds(10, 19, 120, 123);
+		panel_1.add(imagePanel);
 		
-		txtRegistroFuncionario = new JTextField();
-		txtRegistroFuncionario.setEditable(false);
-		txtRegistroFuncionario.setBounds(426, 8, 63, 20);
-		panel.add(txtRegistroFuncionario);
-		txtRegistroFuncionario.setColumns(10);
+		dtNascimento = new JDateChooser();
+		dtNascimento.setName("Data de Nascimento");
+		dtNascimento.setBounds(514, 79, 89, 20);
+		panel.add(dtNascimento);
+		btnProcurarImagemFuncionario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					escolherFoto();
+				} catch (EntradaUsuarioException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		setLocationRelativeTo(null);		
 	}
@@ -402,46 +457,92 @@ public class frmCadastroFuncionario extends JFrame {
 		txtSiteFuncionario.setText("");
 		txtEmailFuncionario.setText("");
 		txtLoginFuncionario.setText("");
-		passwordFieldSenhaFuncionario.setText("");
-		passwordFieldConfSenhaFuncionario.setText("");
+		pfSenhaFuncionario.setText("");
+		pfConfSenhaFuncionario.setText("");
+		
+		imagePanel.setImagem(null);
+		imagePanel.repaint();
+		imagePanel.revalidate();
 	}
 	
-	/*public Funcionario getBean() throws EntradaUsuarioException{
-		Funcionario func = new Funcionario();
-		func.setNome(TelaUtil.getCampoObrigatorio(txtNomeFuncionario, true));
-		//func.setId(TelaUtil.);
-		func.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoFuncionario));
-		func.setCpf(TelaUtil.getCpf(ftCpfFuncionario, true));
-		func.setRg(TelaUtil.getRg(ftRgFuncionario, true));
-		func.setEstadoCivil(estadoCivil[comboBoxEstadoCivilFuncionario.getSelectedIndex()]);
-		func.setNacionalidade(TelaUtil.getCampoObrigatorio(txtNacionalidadeFuncionario, true));
-		func.setEndereco(TelaUtil.getCampoObrigatorio(txtEnderecoFuncionario, true));
-		func.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroEnderecoFuncionario, true));
-		func.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoFuncionario, true));
-		func.setCep(TelaUtil.getCep(ftCepFuncionario, true));
-		func.setTelefoneResidencial(TelaUtil.getTelefone(ftTelefoneResidencialFuncionario, false));
-		func.setTelefoneCelular(TelaUtil.getCelular(ftTelefoneCelularFuncionario, true));
-		func.setCargoFuncionario(TelaUtil.getCharFuncao(rdbtnCargoGerenteFuncionario));
-		func.setLoginFuncionario(TelaUtil.getUsuario(txtLoginFuncionario));
-		func.setSenhaFuncionario(TelaUtil.getSenha(passwordFieldSenhaFuncionario, passwordFieldConfSenhaFuncionario));
-		func.setConfirmaSenhaFuncionario(TelaUtil.getCompararSenhas(passwordFieldConfSenhaFuncionario, passwordFieldConfSenhaFuncionario));
-		func.setEmailPessoal(TelaUtil.getEmail(txtEmailFuncionario));
-		func.setSiteFuncionario(TelaUtil.getCampoObrigatorio(txtSiteFuncionario, false));
-				
-		return func;
-	}*/
+	private String getCargo(JRadioButton[] bts){
+		if(bts[1].isSelected()){
+			return "S";
+		}else if(bts[2].isSelected()){
+			return "G";
+		}else if(bts[3].isSelected()){
+			return "C";
+		}else{
+			return "CI";
+		}
+		
+	}
 	
-	/*private void salvarFuncionario(){
+	public Funcionario getBean() throws EntradaUsuarioException, ParseException {
+		JRadioButton[] rbs = {rbCargoCorretorFuncionario, rbCargoSecretariaFuncionario, rbCargoGerenteFuncionario, rbCargoConsultorFuncionario};
+		Funcionario f = new Funcionario();
+		
+		f.setNome(TelaUtil.getCampoObrigatorio(txtNomeFuncionario, true));
+		f.setSexo(TelaUtil.getCharSexo(rbMasculinoFuncionario));
+		f.setCpf(TelaUtil.getCpf(ftCpfFuncionario, true));
+		f.setRg(TelaUtil.getCampoObrigatorio(ftRgFuncionario, true));
+		f.setEstadoCivil(cbEstadoCivilFuncionario.getSelectedItem().toString().substring(0, 1));//pega somente o primeiro caractere do item selecionado
+		f.setNacionalidade(txtNacionalidadeFuncionario.getText());
+		f.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroEnderecoFuncionario, true));
+		f.setComplementoEndereco(txtComplementoFuncionario.getText());
+		f.setCep(TelaUtil.getCep(ftCepFuncionario, true));
+		f.setTelefoneResidencial(TelaUtil.getTelefone(ftTelefoneResidencialFuncionario, false));
+		f.setTelefoneCelular(TelaUtil.getCelular(ftTelefoneCelularFuncionario, true));
+		f.setCargoFuncionario(getCargo(rbs));
+		f.setImgFunc(foto);
+		f.setLoginFuncionario(TelaUtil.getCampoObrigatorio(txtLoginFuncionario, true));
+		f.setSenhaFuncionario(TelaUtil.getCompararSenhas(pfSenhaFuncionario, pfConfSenhaFuncionario));
+		f.setEmailPessoal(TelaUtil.getEmail(txtEmailFuncionario));
+		f.setSiteFuncionario(txtSiteFuncionario.getText());
+
+		System.out.println();
+		
+		return f;
+	}
+	
+	private void escolherFoto() throws EntradaUsuarioException {
+		JTextField foto = new JTextField();
+		
+		this.foto = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagePanel, foto, this, "jpg", "gif", "png");
+		
+	}
+	
+	private void buscarEndereco() {
 		try{
-			Funcionario Func = getBean();
-			new FuncionarioDAO().inserirFuncionario(Func);
-			limpaFormulario();
-			JOptionPane.showMessageDialog(this, "Transação efetuada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+			String cep = TelaUtil.getCep(ftCepFuncionario, false);
+			Endereco end = new EnderecoDao().buscarPorCep(cep);
+			if(end != null){
+				txtEnderecoFuncionario.setText(end.getEndereco() + " - " + end.getBairro() + ", " + end.getCidade() + "/" + end.getUf());
+				txtNumeroEnderecoFuncionario.requestFocus();
+			}else{
+				JOptionPane.showMessageDialog(this, "O CEP Digitado é invalido!");
+				ftCepFuncionario.setText("");
+				txtNumeroEnderecoFuncionario.requestFocus();
+			}
 		}catch(DAOException e){
 			e.printStackTrace();
 		} catch (EntradaUsuarioException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
+	private void salvarCadastro(){
+		try{
+			Funcionario bean = getBean();
+			new FuncionarioDAO().inserirFuncionario(bean);
+			JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+			limpaFormulario();
+		}catch(DAOException e){
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
 }

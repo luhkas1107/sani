@@ -16,26 +16,30 @@ public class FuncionarioDAO {
 	private static final String EXCLUIR_FUNCIONARIO = 
 			"delete from tbFuncionario where id_funcionario = ?";
 	
+	private static final String QUERY_SEQUENCIA_ID = 
+			"SELECT ISNULL(MAX(COD_FUNC), 0) + 1 AS NOVO_ID FROM tbFuncionario";
+	
 	private static final String INSERIR_FUNCIONARIO =
-			"insert into tbFuncionario" +
-			"(nome_funcionario," +
-			"sexo," +
-			"cpf_funcionario," +
-			"rg_funcionario," +
-			"estadoCivil_funcionario," +
-			"nacionalidade_funcionario," +
-			"endereco_funcionario," +
-			"numeroEndereco_funcionario," +
-			"complementoEndereco_funcionario," +
-			"cep_funcionario," +
-			"telefoneResidencial_funcionario," +
-			"telefoneCelular_funcionario," +
-			"cargo_funcionario," +
-			"login_funcionario," +
-			"senha_funcionario," +
-			"email_funcionario," +
-			"site_funcionario)" +
-			"values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO tbFuncionario "+
+	        "   (COD_FUNC "+
+	        "   ,NM__FUNC "+
+	        "   ,SX_FUNC "+
+	        "   ,CPF_FUNC "+
+	        "   ,RG_FUNC "+
+	        "   ,EC_FUNC "+
+	        "   ,NASC_FUNC "+
+	        "   ,NUM_FUNC "+
+	        "   ,COMP_FUNC "+
+	        "   ,CEP_FUNC "+
+	        "   ,TEL_FUNC "+
+	        "   ,CEL_FUNC "+
+	        "   ,CG_FUNC "+
+	        "   ,LG_FUNC "+
+	        "   ,SN_FUNC "+
+	        "   ,EMAIL_FUNC "+
+	        "   ,SITE_FUNC " +
+	        "   ,IMG_FUNC) "+
+			"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	private static final String ATUALIZAR_FUNCIONARIO =
 			"update tbFuncionario set " +
@@ -75,6 +79,26 @@ public class FuncionarioDAO {
 	
 	private static final  String CONSULTA_FUNCIONARIO_ID = 
 			"select * from tbFuncionario where idfuncionario = ?";
+	
+	public int getSequenciaId() throws DAOException{
+		Connection conn = DbUtil.getConnection();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		int retorno = 0;
+		try{
+			statement = conn.prepareStatement(QUERY_SEQUENCIA_ID);
+			result = statement.executeQuery();
+			if(result.next()){
+				retorno = result.getInt("NOVO_ID");
+			}
+		}catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			DbUtil.close(conn, statement, result);
+		}
+		
+		return retorno;
+	}
 	
 	public boolean getAutenticacao(String nome, String senha) throws DAOException {
 		Connection conn = DbUtil.getConnection();
@@ -190,13 +214,13 @@ public class FuncionarioDAO {
 		ResultSet result = null;
 		try {
 			statement = conn.prepareStatement(INSERIR_FUNCIONARIO);
-			statement.setString(1, obj.getNome());
-			statement.setString(2, obj.getSexo());
-			statement.setString(3, obj.getCpf());
-			statement.setString(4, obj.getRg());
-			statement.setString(5, obj.getEstadoCivil());
-			statement.setString(6, obj.getNacionalidade());
-			statement.setString(7, obj.getEndereco());
+			statement.setInt(1, getSequenciaId());
+			statement.setString(2, obj.getNome());
+			statement.setString(3, obj.getSexo());
+			statement.setString(4, obj.getCpf());
+			statement.setString(5, obj.getRg());
+			statement.setString(6, obj.getEstadoCivil());
+			statement.setString(7, obj.getNacionalidade());
 			statement.setString(8, obj.getNumeroEndereco());
 			statement.setString(9, obj.getComplementoEndereco());
 			statement.setString(10, obj.getCep());
@@ -207,8 +231,9 @@ public class FuncionarioDAO {
 			statement.setString(15, obj.getSenhaFuncionario());
 			statement.setString(16, obj.getEmailPessoal());
 			statement.setString(17, obj.getSiteFuncionario());
+			statement.setBytes(18, obj.getImgFunc());
+			
 			statement.executeUpdate();
-
 		} catch (SQLException e) {
 			throw new DAOException(e);
 		} finally {

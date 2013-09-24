@@ -15,62 +15,62 @@ import br.com.sani.util.DbUtil;
 public class MetasDAO {
 	
 	private static final String QUERY_SEQUENCIA = 
-		"SELECT ISNULL(MAX(idMeta), 0) + 1 AS NOVO_ID FROM tbMetas";
+		"SELECT ISNULL(MAX(COD_META), 0) + 1 AS NOVO_ID FROM tbMetas";
 	
 	private static final String QUERY_INSERIR = 
-		"INSERT INTO tbMetas (idMeta, descrMeta, dataInicio, dataFinal, stMeta) "+
+		"INSERT INTO tbMetas (COD_META, DESC_META, DI_META, DF_META, ST_META) "+
 		"VALUES (?,?,?,?,?)";
 	
 	private static final String QUERY_ATUALIZAR = 
 		"UPDATE tbMetas "
-		+ "SET	descrMeta = ?, "
-		+ "		dataInicio = ?, "
-		+ "		dataFinal = ? "
-		+"WHERE idMeta = ?";
+		+ "SET	DESC_META = ?, "
+		+ "		DI_META = ?, "
+		+ "		DF_META = ? "
+		+"WHERE COD_META = ?";
 	
 	private static final String QUERY_FINALIZAR_META = 
-		"UPDATE tbMetas SET stMeta = 'F' WHERE idMeta = ?";
+		"UPDATE tbMetas SET ST_META = 'F' WHERE COD_META = ?";
 	
 	private static final String QUERY_BUSCAR_TODOS = 
-		"SELECT idMeta, "
-		+ "		descrMeta,"
-		+ "		dataInicio,"
-		+ "		dataFinal,"
-		+ "		stMeta"
-		+"WHERE NOT stMeta = 'F' ";
+		"SELECT COD_META, "
+		+ "		DESC_META,"
+		+ "		DI_META,"
+		+ "		DF_META,"
+		+ "		ST_META"
+		+"WHERE NOT ST_META = 'F' ";
 	
 	private static final String QUERY_BUSCAR_POR_ID =
-		"SELECT idMeta, "
-		+ "		descrMeta,"
-		+ "		dataInicio,"
-		+ "		dataFinal,"
-		+ "		stMeta"
-		+"WHERE NOT stMeta = 'F' AND idMeta = ?";
+		"SELECT COD_META, "
+		+ "		DESC_META,"
+		+ "		DI_META,"
+		+ "		DF_META,"
+		+ "		ST_META"
+		+"WHERE NOT ST_META = 'F' AND COD_META = ?";
 	
 	private static final String QUERY_BUSCAR_POR_DATA = 
-		"SELECT idMeta, "
-		+ "		descrMeta,"
-		+ "		dataInicio,"
-		+ "		dataFinal,"
-		+ "		stMeta"
-		+"WHERE NOT stMeta = 'F' AND dataInicio = ?";
+		"SELECT COD_META, "
+		+ "		DESC_META,"
+		+ "		DI_META,"
+		+ "		DF_META,"
+		+ "		ST_META"
+		+"WHERE NOT ST_META = 'F' AND DI_META = ?";
 	
 	private static final String QUERY_BUSCAR_POR_ENTRE_DATAS =
-		"SELECT idMeta, "
-		+ "		descrMeta,"
-		+ "		dataInicio,"
-		+ "		dataFinal,"
-		+ "		stMeta"
-		+"WHERE NOT stMeta = 'F' AND dataInicio BETWEEN ? AND ?";
+		"SELECT COD_META, "
+		+ "		DESC_META,"
+		+ "		DI_META,"
+		+ "		DF_META,"
+		+ "		ST_META"
+		+"WHERE NOT ST_META = 'F' AND DI_META BETWEEN ? AND ?";
 	
 	private Metas getBean(ResultSet result) throws SQLException, DAOException{
 		Metas metas = new Metas();
 		
-		metas.setIdMeta(result.getInt("idMeta"));
-		metas.setDescrMeta(result.getString("descrMeta"));
-		metas.setDataInicio(DbUtil.getJavaDate(result, "dataInicio"));
-		metas.setDataFim(DbUtil.getJavaDate(result, "dataFinal"));
-		metas.setStMeta(result.getString("stMeta"));
+		metas.setIdMeta(result.getInt("COD_META"));
+		metas.setDescrMeta(result.getString("DESC_META"));
+		metas.setDataInicio(DbUtil.getJavaDate(result, "DI_META"));
+		metas.setDataFim(DbUtil.getJavaDate(result, "DF_META"));
+		metas.setStMeta(result.getString("ST_META"));
 		
 		return metas;
 	}
