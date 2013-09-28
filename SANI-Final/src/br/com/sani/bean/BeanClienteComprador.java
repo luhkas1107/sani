@@ -11,7 +11,7 @@ public class BeanClienteComprador {
 	
 	//Getters & Setters
 	
-	public int getCodCliComprador() {
+	public int getCodCliComprador(int i) {
 		return codCliComprador;
 	}
 	public void setCodCliComprador(int codCliComprador) {
