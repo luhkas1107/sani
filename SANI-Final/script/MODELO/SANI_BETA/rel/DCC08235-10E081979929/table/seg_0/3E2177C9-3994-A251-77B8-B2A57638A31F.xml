@@ -1,0 +1,48 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3E2177C9-3994-A251-77B8-B2A57638A31F" name="TB_REGRA">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:31:21 UTC</createdTime>
+<generatorID>F31D6051-074B-ED3F-602B-9B196563CC57</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COD_REGRA" id="EF1F8AE5-69CB-CF9C-6FA7-BA32030EEBA5">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:31:21 UTC</createdTime>
+<generatorID>59E2E341-B50B-BD77-A215-2684AD3899EE</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DESC_REGRA" id="2839254E-FE18-40F0-292D-83202239AE7F">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:31:21 UTC</createdTime>
+<generatorID>1FF56934-2356-9598-20F6-FEA897AB2FB5</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CEA6D40D-EBB8-43EE-6299-C8D4BBC8E2E5" name="TB_REGRA PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:31:21 UTC</createdTime>
+<generatorID>676B0453-B4DA-0EC3-9B64-2CC5F934FD94</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EF1F8AE5-69CB-CF9C-6FA7-BA32030EEBA5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

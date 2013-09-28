@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="E9C46AA1-B5BB-2304-EA02-11F01C4206E6" mainViewID="663067DF-F4F2-700C-C4D3-9D8D6EFBF435">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:44:13 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

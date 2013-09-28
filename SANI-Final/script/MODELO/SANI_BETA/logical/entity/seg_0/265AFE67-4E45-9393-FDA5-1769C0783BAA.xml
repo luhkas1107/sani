@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="265AFE67-4E45-9393-FDA5-1769C0783BAA" name="TB_CLI_COMP_JURIDICA">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:41:14 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name=" COD_CLI_COMPRADOR" id="0296D474-9B3C-04F4-AF64-14E7DF066E02">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:43:59 UTC</createdTime>
+<generatorID>0A9B01F2-2CF0-61D8-E103-99A8CB0BB20E</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<referedAttribute>EBA24A98-21F5-2F60-0000-04FF5529DEF7</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="RAZAO_SOCIAL" id="46948871-7B34-65A1-B048-12243740A7F5">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:42:52 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+</Attribute>
+<Attribute name="CNPJ_PESSOA" id="C6E31FE5-419F-B5CA-15E4-BDD1D1F0FEDC">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:42:52 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>14</dataTypeSize>
+</Attribute>
+<Attribute name="INSC_ESTADUAL_PESSOA" id="585BFAF9-76FB-D4BE-D01E-71BD1A8C129B">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:42:52 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+</Attribute>
+<Attribute name="DT_FUNDACAO" id="197A2F84-7426-F1BD-542D-0A7CD8421E90">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:42:52 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="RAMO_ATIVIDADE" id="6287D177-1C4E-CC36-1384-93A965259FED">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:42:52 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2959BED4-6E7B-A88C-7E45-9BCED17719ED" name="TB_CLI_COMP_JURIDICA PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:44:16 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0296D474-9B3C-04F4-AF64-14E7DF066E02</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="710E249E-9DDB-25BB-A25D-BCBD9651D8A9" name="TB_METAS">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:36:25 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="COD_META" id="ABF776C6-6C8A-7691-193C-30CBC45919C2">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:36:32 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="COD_CORRETOR" id="849F140C-6BED-2D9F-362C-FD060B383253">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:37:00 UTC</createdTime>
+<generatorID>E967360F-0BC3-1ED3-2467-9A0F94F78E57</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<referedAttribute>F893D241-91DE-4EF5-5762-238E6431743D</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="DT_INICIO" id="81EBCDE4-C9A7-E3C2-CD40-D330AFCAADD6">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:22:34 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="DT_FINAL" id="F7197ADD-0AB5-E508-0315-DFC9A3773705">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:23:01 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="VALOR_META" id="5C171FC6-6AA9-6CE6-ADE9-992402F64F01">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:23:19 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8C3BACAB-A857-A7AE-13A1-05F53B1917E9" name="TB_METAS PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:36:43 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>ABF776C6-6C8A-7691-193C-30CBC45919C2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

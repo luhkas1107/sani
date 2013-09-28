@@ -1,0 +1,139 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AB48DB20-4FCC-8E99-D96E-144388F57D6B" name="TB_CLI_PROP_FISICA">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:25:46 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="COD_CLI_PROPRIETARIO" id="52AB8E48-C0FF-A74E-7A63-8872FB38AF55">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:37:40 UTC</createdTime>
+<generatorID>4F954727-57DC-1F2A-F4F5-9B3CF1EC9191</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<referedAttribute>5121C771-47F4-2809-8ED2-B740833AE20E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="NOME_PESSOA" id="F518E413-BA8B-5686-6BCE-03BA33EA546A">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:27:02 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>120</dataTypeSize>
+</Attribute>
+<Attribute name="RG_PESSOA" id="8D030F33-38E8-950F-A8D3-373C27DFD90A">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:27:17 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>16</dataTypeSize>
+</Attribute>
+<Attribute name="CPF_PESSOA" id="B3586C48-13D2-34E2-09C0-E337EA33FF53">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:27:34 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+</Attribute>
+<Attribute name="DT_NASCIMENTO" id="C6A65CC4-2C3C-2592-B463-3E6D56C62803">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:27:50 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="DT_FALESCIMENTO" id="5442CDDD-8B6A-1F0D-7382-4BCFC00424DE">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:27:50 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="SEXO_PESSOA" id="17D9EC17-3327-E00E-4203-6C2A0C706FBC">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:28:29 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<defaultValue>F</defaultValue>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>FBD4D20D-464B-A8D7-2844-BBDBC1935952</domain>
+</Attribute>
+<Attribute name="EST_CIVIL_PESSOA" id="BDBC34D5-0173-1727-AC6F-4597C1D81E5E">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:29:29 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>2773CFDB-55AD-BE13-0BBA-96BD2E2D9572</domain>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9C555F24-D9DE-6CA5-9ADF-1AF56A02428B" name="TB_CLI_PROP_FISICA PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:38:00 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>52AB8E48-C0FF-A74E-7A63-8872FB38AF55</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

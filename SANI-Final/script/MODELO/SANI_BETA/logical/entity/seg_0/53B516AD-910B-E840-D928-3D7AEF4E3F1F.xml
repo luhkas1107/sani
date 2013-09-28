@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="53B516AD-910B-E840-D928-3D7AEF4E3F1F" name="TB_USUARIO">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:41:04 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="USER_NAME" id="EEA9FAE9-574E-F3DE-9F56-DDC4C59FCF94">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:41:13 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+</Attribute>
+<Attribute name="SENHA" id="B1CC4E91-C7E7-7795-CEEC-4BA999860E2C">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:41:28 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+</Attribute>
+<Attribute name="NOME_COMPLETO" id="44CC21C8-DF04-337E-899A-75816DD0C07F">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:41:42 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>120</dataTypeSize>
+</Attribute>
+<Attribute name="EMAIL" id="8BA5F297-0501-C4A7-2CAB-F95B595CEB08">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:42:06 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+</Attribute>
+<Attribute name="COD_GRUPO" id="71FFBCB3-58DF-DFC7-7CDD-383F53D33BE9">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:45:55 UTC</createdTime>
+<generatorID>533C89D6-32CE-1DFF-1621-949640FBD70D</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<referedAttribute>9590AACC-66A0-1BDA-178D-12F6B0A7A314</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A7C9658B-55A1-E1FF-FA0E-7D3F4D9DEBBD" name="TB_USUARIO PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:41:26 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EEA9FAE9-574E-F3DE-9F56-DDC4C59FCF94</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

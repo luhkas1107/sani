@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_IMOVEL_PROPOSTA" directorySegmentName="seg_0" id="60D9EB16-A795-D29F-719D-AF22D5DB29B8">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:31:58 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>D6398B21-3465-FCBF-A1CF-C21027E43CDB</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E29E4222-2230-87F4-B2F0-DBD577E8EAE3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>B3649FF8-0038-56E6-608F-68D79ACA681D</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

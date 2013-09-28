@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_GRUPO_LISTA" directorySegmentName="seg_0" id="2A78D92B-9C98-3BB5-7B56-2AECAA1D6D34">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:46:31 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>E0C157A4-EAE3-C59E-AA9A-2F331D75D671</sourcePk>
+<identifying>true</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>230438D2-20E5-6C46-CDB8-46EDB7DF4723</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C676C6D9-4241-71C1-DB1B-F419AD3DF821</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

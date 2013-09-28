@@ -1,0 +1,179 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A990BF70-14AC-DDDD-A2B9-E51D58B066EC" name="TB_CORRETOR">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:29:57 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="COD_CORRETOR" id="F893D241-91DE-4EF5-5762-238E6431743D">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:30:05 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="CEP" id="DE60D8E8-CC40-BD8E-1DBE-47CBCBCB0340">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:38:48 UTC</createdTime>
+<generatorID>3B0EA4F6-14A4-3E63-D3CF-219D410C7265</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<referedAttribute>098D70C8-57B5-4EDA-2153-0509A444D3C7</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8</dataTypeSize>
+</Attribute>
+<Attribute name="NR_ENDERECO" id="673B3181-3473-F56B-59CA-8FA3FEBB958D">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:15:55 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="COMPL_ENDERECO" id="CF31C4F5-C0B0-61F8-D313-30C271ADB57D">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:16:16 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+</Attribute>
+<Attribute name="NOME_CORRETOR" id="C1C1DE14-0FA5-471D-FDAA-4CFA146EF96D">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:16:16 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>120</dataTypeSize>
+</Attribute>
+<Attribute name="CPF_CORRETOR" id="5752C0A5-51E9-4E79-E8BE-86B863E23034">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:17:44 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+</Attribute>
+<Attribute name="RG_CORRETOR" id="5141387D-D6AB-DDD3-FE6C-95FC1A81468B">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:18:02 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>16</dataTypeSize>
+</Attribute>
+<Attribute name="NR_CRECI_CORRETOR" id="BEC4D506-EB08-9957-A98C-1D69BCC56DD7">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:19:56 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+</Attribute>
+<Attribute name="SEXO_CORRETOR" id="A1EA4ABD-B238-8AA4-C266-8B1982EC986A">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:19:56 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<defaultValue>F</defaultValue>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>FBD4D20D-464B-A8D7-2844-BBDBC1935952</domain>
+</Attribute>
+<Attribute name="DT_NASCIMENTO" id="5F6B9F3A-C482-F172-4FFE-652A36FB9E87">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:20:58 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="EST_CIVIL_CORRETOR" id="30D24FB1-2C6C-DCD5-7E93-B75119B1C584">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:21:08 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>2773CFDB-55AD-BE13-0BBA-96BD2E2D9572</domain>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="6EAD2500-3EA0-55E8-BC08-FAF44803D311" name="TB_CORRETOR PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:30:15 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F893D241-91DE-4EF5-5762-238E6431743D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

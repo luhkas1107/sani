@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C3CA170C-AD9E-977E-5131-DF1E3B7A8501" name="tbCidade">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>642D5981-B957-D000-035F-F41D38511B3F</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_CIDADE" id="4583B48D-9A8E-21B9-DB97-5EFFC8EFF177">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>6E6F19B7-3343-D88F-CFC2-69A8F7AF605B</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="CIDADE" id="ED273B5F-82DB-4091-0BAA-41BE8D502F0E">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>F2AE5AA5-0DF5-F84C-54CA-CE15D336902F</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+</Attribute>
+<Attribute name="UF" id="088B3723-B14C-A0B3-E6D8-3149C3E667D6">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>4046F69E-0456-3458-7BA3-A24C6DDF0F24</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="5600FC20-7D30-7EAC-7BA7-8CD803AFE4FE" name="tbCidade PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:17:00 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4583B48D-9A8E-21B9-DB97-5EFFC8EFF177</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

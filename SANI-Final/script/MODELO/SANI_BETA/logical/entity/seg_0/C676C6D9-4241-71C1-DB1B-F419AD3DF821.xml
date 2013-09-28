@@ -1,0 +1,66 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C676C6D9-4241-71C1-DB1B-F419AD3DF821" name="TB_LISTA_REGRA">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:43:11 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="COD_GRUPO" id="A6BA17C3-EBAE-5E54-0DA0-BC0D309D9302">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:46:31 UTC</createdTime>
+<generatorID>2A78D92B-9C98-3BB5-7B56-2AECAA1D6D34</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<referedAttribute>9590AACC-66A0-1BDA-178D-12F6B0A7A314</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="COD_REGRA" id="35C56816-C3B9-0CF8-AB39-79F1386E4B93">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:47:04 UTC</createdTime>
+<generatorID>7CB02705-266B-DD1C-0167-32D6E0B80095</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<referedAttribute>59E2E341-B50B-BD77-A215-2684AD3899EE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="146B06C0-F724-2B91-F593-70B85482BA69" name="TB_LISTA_REGRA PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:46:47 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>A6BA17C3-EBAE-5E54-0DA0-BC0D309D9302</attributeRef>
+<attributeRef>35C56816-C3B9-0CF8-AB39-79F1386E4B93</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

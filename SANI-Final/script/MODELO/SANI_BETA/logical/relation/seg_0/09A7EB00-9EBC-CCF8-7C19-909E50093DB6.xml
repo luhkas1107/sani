@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_PROPOSTA_VENDA_LOC" directorySegmentName="seg_0" id="09A7EB00-9EBC-CCF8-7C19-909E50093DB6">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:35:33 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>FAB7479B-E5C8-DFBA-77DC-9341A6DCC99A</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>B3649FF8-0038-56E6-608F-68D79ACA681D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>CBCC9D60-E90B-250B-72AB-B4E0BD24B986</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

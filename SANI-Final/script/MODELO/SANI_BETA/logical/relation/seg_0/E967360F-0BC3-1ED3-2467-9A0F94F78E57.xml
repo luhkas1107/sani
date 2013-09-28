@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_CORRETOR_META" directorySegmentName="seg_0" id="E967360F-0BC3-1ED3-2467-9A0F94F78E57">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:37:00 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>6EAD2500-3EA0-55E8-BC08-FAF44803D311</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>A990BF70-14AC-DDDD-A2B9-E51D58B066EC</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>710E249E-9DDB-25BB-A25D-BCBD9651D8A9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

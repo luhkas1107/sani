@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="SANI_BETA" id="18E3F826-F491-523F-7F54-05C281FD4CD4" version="3.5">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:44:13 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>18E3F826-F491-523F-7F54-05C281FD4CD4</designId>
+</OSDM_Design>

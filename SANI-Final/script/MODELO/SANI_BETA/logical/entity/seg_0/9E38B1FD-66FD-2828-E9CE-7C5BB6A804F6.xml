@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9E38B1FD-66FD-2828-E9CE-7C5BB6A804F6" name="tbBairro">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>9258620A-8302-CC85-1A00-81A64AA2983D</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_BAIRRO" id="9EEA3F1B-193D-07F4-0598-0E51D0FAD361">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>D2E52CA2-97DB-0F1E-A742-5DA90CE92C81</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="BAIRRO" id="45CEA5E3-21E9-F4A6-9F68-E47F1CD249D1">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>3BFCB7A9-C931-9E6B-3B8D-9E51B598A6D3</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+</Attribute>
+<Attribute name="ID_CIDADE" id="1415D5E9-3414-6949-C571-E6648DCBAD44">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:19:08 UTC</createdTime>
+<generatorID>3A808CA3-BA73-27FD-320C-590157C304A4</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<referedAttribute>4583B48D-9A8E-21B9-DB97-5EFFC8EFF177</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="46AD1BF6-9448-4392-F4E6-5B3C275E5C66" name="tbBairro PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:19:22 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>9EEA3F1B-193D-07F4-0598-0E51D0FAD361</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

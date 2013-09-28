@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_CIDADE_BAIRRO" directorySegmentName="seg_0" id="3A808CA3-BA73-27FD-320C-590157C304A4">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:16:05 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>5600FC20-7D30-7EAC-7BA7-8CD803AFE4FE</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C3CA170C-AD9E-977E-5131-DF1E3B7A8501</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9E38B1FD-66FD-2828-E9CE-7C5BB6A804F6</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

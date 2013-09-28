@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="B3649FF8-0038-56E6-608F-68D79ACA681D" name="TB_PROPOSTA">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:28:47 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="COD_PROPOSTA" id="C1534A13-623B-D28C-D321-F9E8A002A425">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:29:01 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name=" COD_CLI_COMPRADOR" id="4D5C5844-5A0C-9C72-6657-0465CA790C6A">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:32:24 UTC</createdTime>
+<generatorID>DC747EFE-0905-9D4A-0863-D6FDCDD2B142</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<referedAttribute>EBA24A98-21F5-2F60-0000-04FF5529DEF7</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="COD_IMOVEL" id="D1E73E50-AB4F-5614-90F5-7E8295E125E5">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:31:58 UTC</createdTime>
+<generatorID>60D9EB16-A795-D29F-719D-AF22D5DB29B8</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<referedAttribute>3AFF0EA6-9071-ABAF-1A29-858131ADA1AA</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
+<Attribute name="VL_PROPOSTA" id="113815C1-72E9-5F3A-6F6E-65A0AD3FC1EF">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:07:50 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+</Attribute>
+<Attribute name="VALIDADE_PROPOSTA" id="E9BF80F0-6CF8-528C-8950-E254425B51F3">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:08:03 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+</Attribute>
+<Attribute name="ESTADO_PROPOSTA" id="3D1AD402-6757-6499-1012-767615509929">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:12:29 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<defaultValue>N</defaultValue>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>682C91F6-9931-ED59-464A-C4FFBA458422</domain>
+</Attribute>
+<Attribute name="ST_PROPOSTA" id="54BE92D7-432F-CC4E-80B7-4E1899C0508C">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 19:12:42 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<defaultValue>A</defaultValue>
+<use>0</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<domain>9BE24986-7E5D-8ED0-E642-118FCBC5BD38</domain>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="FAB7479B-E5C8-DFBA-77DC-9341A6DCC99A" name="TB_PROPOSTA PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:29:14 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C1534A13-623B-D28C-D321-F9E8A002A425</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

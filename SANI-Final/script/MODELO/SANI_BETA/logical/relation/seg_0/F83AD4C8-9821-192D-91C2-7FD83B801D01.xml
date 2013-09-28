@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_IMOVEL_IMAGENS" directorySegmentName="seg_0" id="F83AD4C8-9821-192D-91C2-7FD83B801D01">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 18:59:32 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>D6398B21-3465-FCBF-A1CF-C21027E43CDB</sourcePk>
+<identifying>true</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>E29E4222-2230-87F4-B2F0-DBD577E8EAE3</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>131F7DB4-2DCA-BA4C-5D8C-565304AE7AEE</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

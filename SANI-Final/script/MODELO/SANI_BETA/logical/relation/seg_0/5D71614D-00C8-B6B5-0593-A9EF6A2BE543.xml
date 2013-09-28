@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_CIDADE_ENDERECO" directorySegmentName="seg_0" id="5D71614D-00C8-B6B5-0593-A9EF6A2BE543">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:19:53 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>5600FC20-7D30-7EAC-7BA7-8CD803AFE4FE</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C3CA170C-AD9E-977E-5131-DF1E3B7A8501</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C40DA5EC-0EF0-21D4-2796-7BB4202B74C5</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C40DA5EC-0EF0-21D4-2796-7BB4202B74C5" name="tbEndereco">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>53035B03-9AA2-C9F0-4E20-AF87006FE9FD</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="CEP" id="098D70C8-57B5-4EDA-2153-0509A444D3C7">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>42A018BE-0341-2787-4321-58C1E4CC029B</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>&apos;&apos;</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+</Attribute>
+<Attribute name="ENDERECO" id="C8D5C9B0-037F-4555-D985-5AD7F645D901">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 16:53:46 UTC</createdTime>
+<generatorID>3CA1EBAE-6759-BCC2-C56F-0CB0BCAD3B13</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>&apos;&apos;</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+</Attribute>
+<Attribute name="ID_CIDADE" id="A51BEF65-7007-4531-F0F8-D6469F8C44AC">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:19:53 UTC</createdTime>
+<generatorID>5D71614D-00C8-B6B5-0593-A9EF6A2BE543</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<referedAttribute>4583B48D-9A8E-21B9-DB97-5EFFC8EFF177</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+<Attribute name="ID_BAIRRO" id="DC6832A5-5E13-60BC-B399-2D36BE844054">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:20:08 UTC</createdTime>
+<generatorID>DB79B578-DE30-6C16-44B2-D3B81C14C1FF</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<referedAttribute>9EEA3F1B-193D-07F4-0598-0E51D0FAD361</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CABF8639-9B23-F368-1992-B4A392BD77CC" name="tbEndereco PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:20:29 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="DCC08235-9D73-12A7-2FC9-10E081979929" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>098D70C8-57B5-4EDA-2153-0509A444D3C7</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

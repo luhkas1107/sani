@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_ENDERECO_IMOVEL" directorySegmentName="seg_0" id="C3D3827B-D811-D714-34D3-43526D040443">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 17:39:56 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="751D0857-6DFE-4520-1681-489F4B2242A7" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>CABF8639-9B23-F368-1992-B4A392BD77CC</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C40DA5EC-0EF0-21D4-2796-7BB4202B74C5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E29E4222-2230-87F4-B2F0-DBD577E8EAE3</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
