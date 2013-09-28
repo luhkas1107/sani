@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7C885EC5-2402-4DFA-7C3A-A4652D49A6BC" name="TB_LISTA_REGRA">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>C676C6D9-4241-71C1-DB1B-F419AD3DF821</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COD_GRUPO" id="9942C7BE-AD61-492C-6766-907BEFABC5FC">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>A6BA17C3-EBAE-5E54-0DA0-BC0D309D9302</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>60AC62C7-B2CF-2123-B809-F6872A023FE0</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8A268B7C-A298-66D3-59F9-78831F0CAF1C" referredColumn="60AC62C7-B2CF-2123-B809-F6872A023FE0"/>
+</associations>
+</Column>
+<Column name="COD_REGRA" id="62871D60-5C39-DCAE-106A-D9814753F701">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>35C56816-C3B9-0CF8-AB39-79F1386E4B93</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>925D0CC2-BBDA-7F41-23A3-12556C0990BD</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3BB428EF-3590-0C2B-7BC4-DE06D316655F" referredColumn="925D0CC2-BBDA-7F41-23A3-12556C0990BD"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="14F201DF-7281-40B4-7C07-BFD8EA6CEE7B" name="TB_LISTA_REGRA PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>146B06C0-F724-2B91-F593-70B85482BA69</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9942C7BE-AD61-492C-6766-907BEFABC5FC"/>
+<colUsage columnID="62871D60-5C39-DCAE-106A-D9814753F701"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BE2FDAED-CC42-FF09-0256-ABC23ADCD902" name="FK_GRUPO_LISTA">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>2A78D92B-9C98-3BB5-7B56-2AECAA1D6D34</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9942C7BE-AD61-492C-6766-907BEFABC5FC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5919854A-41C5-774F-600C-D6E1BB1FFCEB" name="Relation_20">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>7CB02705-266B-DD1C-0167-32D6E0B80095</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="62871D60-5C39-DCAE-106A-D9814753F701"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

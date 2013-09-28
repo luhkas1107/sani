@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_CLI_COMP_PESS_JUR" directorySegmentName="seg_0" id="721A24C3-CC56-C798-F680-1D50EAFD0172">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:54:07 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>E5EF385A-35FA-2A05-1661-32027EC9352F</sourcePk>
+<arc>2C63B5E2-F6D5-5B74-D705-014517732417</arc>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>F88506E1-328D-74A9-27AB-0975671EE291</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>265AFE67-4E45-9393-FDA5-1769C0783BAA</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

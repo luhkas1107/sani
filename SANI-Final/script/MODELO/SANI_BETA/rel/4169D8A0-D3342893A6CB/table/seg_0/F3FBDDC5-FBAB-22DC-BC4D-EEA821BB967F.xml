@@ -1,0 +1,72 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F3FBDDC5-FBAB-22DC-BC4D-EEA821BB967F" name="tbBairro">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>9E38B1FD-66FD-2828-E9CE-7C5BB6A804F6</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_BAIRRO" id="D17C86F2-E2B7-825E-7827-0BB743FC2455">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>9EEA3F1B-193D-07F4-0598-0E51D0FAD361</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BAIRRO" id="BDB73E0E-C876-723D-76B2-32DAE5F21161">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>45CEA5E3-21E9-F4A6-9F68-E47F1CD249D1</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_CIDADE" id="FB403369-7E5A-463D-4A20-31A54CD42A77">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>1415D5E9-3414-6949-C571-E6648DCBAD44</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<delegate>980B7752-79E8-5E2C-6FFD-7D95F5C55DA9</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B5FDFDC0-93FF-787A-0F38-796F9A161CDE" referredColumn="980B7752-79E8-5E2C-6FFD-7D95F5C55DA9"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="233F9315-8A81-C660-6732-64B4ABF86CB0" name="tbBairro PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>46AD1BF6-9448-4392-F4E6-5B3C275E5C66</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D17C86F2-E2B7-825E-7827-0BB743FC2455"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6CAA4594-7E08-E1E2-D32B-D38758B71515" name="FK_CIDADE_BAIRRO">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>3A808CA3-BA73-27FD-320C-590157C304A4</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FB403369-7E5A-463D-4A20-31A54CD42A77"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

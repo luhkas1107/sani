@@ -5,7 +5,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -22,7 +22,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -30,15 +30,15 @@
 <dataTypePrecision>11</dataTypePrecision>
 <dataTypeScale>0</dataTypeScale>
 </Attribute>
-<Attribute name=" COD_CLI_COMPRADOR" id="4D5C5844-5A0C-9C72-6657-0465CA790C6A">
+<Attribute name="COD_CLI_COMPRADOR" id="F2292ADA-2CF5-F255-A5B5-06CA1FDAFB1E">
 <createdBy>usuario</createdBy>
-<createdTime>2013-09-28 17:32:24 UTC</createdTime>
-<generatorID>DC747EFE-0905-9D4A-0863-D6FDCDD2B142</generatorID>
+<createdTime>2013-09-28 22:54:54 UTC</createdTime>
+<generatorID>917CE53C-4A4A-C3E0-B770-7AD891BA6472</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
-<referedAttribute>EBA24A98-21F5-2F60-0000-04FF5529DEF7</referedAttribute>
+<referedAttribute>3008591A-A0E1-3912-DBB4-87FB969F7B1B</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
@@ -51,7 +51,7 @@
 <generatorID>60D9EB16-A795-D29F-719D-AF22D5DB29B8</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <referedAttribute>3AFF0EA6-9071-ABAF-1A29-858131ADA1AA</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -66,7 +66,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -80,7 +80,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -92,7 +92,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <defaultValue>N</defaultValue>
 <use>0</use>
@@ -105,7 +105,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <defaultValue>A</defaultValue>
 <use>0</use>
@@ -120,7 +120,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

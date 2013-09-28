@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EB5DF1D4-4B60-3431-DBDE-A2324E90768D" name="tbEndereco">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>C40DA5EC-0EF0-21D4-2796-7BB4202B74C5</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CEP" id="7768D2DA-4528-795E-FAE1-E697FC2ECB12">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>098D70C8-57B5-4EDA-2153-0509A444D3C7</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>&apos;&apos;</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ENDERECO" id="4E7398AA-E030-F298-EA05-3F1EC19C5262">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>C8D5C9B0-037F-4555-D985-5AD7F645D901</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>&apos;&apos;</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<usesDefaultValue>true</usesDefaultValue>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ID_CIDADE" id="D7B21CE2-9A5C-276F-C4E6-AD2B5509DDB4">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>A51BEF65-7007-4531-F0F8-D6469F8C44AC</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<delegate>980B7752-79E8-5E2C-6FFD-7D95F5C55DA9</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="07817178-01C2-890C-6C78-EA5E2A964D8E" referredColumn="980B7752-79E8-5E2C-6FFD-7D95F5C55DA9"/>
+</associations>
+</Column>
+<Column name="ID_BAIRRO" id="9774EFF2-2354-359C-811D-BF1DAED186AB">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>DC6832A5-5E13-60BC-B399-2D36BE844054</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<delegate>D17C86F2-E2B7-825E-7827-0BB743FC2455</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E24FED0A-0FD7-4842-6BCB-57B803968117" referredColumn="D17C86F2-E2B7-825E-7827-0BB743FC2455"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B117377F-D334-7C53-5E43-96C31DAC2BA4" name="tbEndereco PK">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>CABF8639-9B23-F368-1992-B4A392BD77CC</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7768D2DA-4528-795E-FAE1-E697FC2ECB12"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0B2DBF6E-953D-7B5E-30BD-CDCB15FD2FA7" name="FK_BAIRRO_ENDERECO">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>DB79B578-DE30-6C16-44B2-D3B81C14C1FF</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9774EFF2-2354-359C-811D-BF1DAED186AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="44293B8A-00E1-3195-C60C-D4C2572840A1" name="FK_CIDADE_ENDERECO">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:49:57 UTC</createdTime>
+<generatorID>5D71614D-00C8-B6B5-0593-A9EF6A2BE543</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D7B21CE2-9A5C-276F-C4E6-AD2B5509DDB4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

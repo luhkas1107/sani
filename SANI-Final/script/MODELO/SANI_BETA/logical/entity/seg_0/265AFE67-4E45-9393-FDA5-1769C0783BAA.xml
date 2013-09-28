@@ -5,7 +5,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -16,28 +16,13 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
-<Attribute name=" COD_CLI_COMPRADOR" id="0296D474-9B3C-04F4-AF64-14E7DF066E02">
-<createdBy>usuario</createdBy>
-<createdTime>2013-09-28 18:43:59 UTC</createdTime>
-<generatorID>0A9B01F2-2CF0-61D8-E103-99A8CB0BB20E</generatorID>
-<ownerDesignName>SANI_BETA</ownerDesignName>
-<engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
-</engineerTo>
-<referedAttribute>EBA24A98-21F5-2F60-0000-04FF5529DEF7</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>11</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-</Attribute>
 <Attribute name="RAZAO_SOCIAL" id="46948871-7B34-65A1-B048-12243740A7F5">
 <createdBy>usuario</createdBy>
 <createdTime>2013-09-28 18:42:52 UTC</createdTime>
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -50,7 +35,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -63,7 +48,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -76,7 +61,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -88,12 +73,28 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>80</dataTypeSize>
+</Attribute>
+<Attribute name="COD_CLI_COMPRADOR" id="DAAAC27B-FF90-9591-81D6-E3D9461C6DB0">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:54:07 UTC</createdTime>
+<generatorID>721A24C3-CC56-C798-F680-1D50EAFD0172</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>3008591A-A0E1-3912-DBB4-87FB969F7B1B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -103,12 +104,9 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <pk>true</pk>
-<usedAttributes>
-<attributeRef>0296D474-9B3C-04F4-AF64-14E7DF066E02</attributeRef>
-</usedAttributes>
 </identifier>
 </identifiers>
 </Entity>

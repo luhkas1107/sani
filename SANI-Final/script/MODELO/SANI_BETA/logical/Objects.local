@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <oracle.dbtools.crest.model.design.logical.LogicalDesign>
-   <object objectType="Entity" objectID="4229E5BC-B839-7298-18B9-0B07F994C928" name="TB_CLIENTE_COMPRADOR" seqName="seg_0"/>
+   <object objectType="Entity" objectID="F88506E1-328D-74A9-27AB-0975671EE291" name="TB_CLIENTE_COMPRADOR" seqName="seg_0"/>
    <object objectType="Entity" objectID="5337BF7A-66C5-50F2-E36F-0CE6CB1EC33B" name="TB_CLIENTE_PROPRIETARIO" seqName="seg_0"/>
    <object objectType="Entity" objectID="95BC5098-886E-0A4C-8BC6-91185AF78397" name="TB_CLI_COMP_FISICA" seqName="seg_0"/>
    <object objectType="Entity" objectID="265AFE67-4E45-9393-FDA5-1769C0783BAA" name="TB_CLI_COMP_JURIDICA" seqName="seg_0"/>
@@ -22,15 +22,14 @@
    <object objectType="Relation" objectID="DB79B578-DE30-6C16-44B2-D3B81C14C1FF" name="FK_BAIRRO_ENDERECO" seqName="seg_0"/>
    <object objectType="Relation" objectID="3A808CA3-BA73-27FD-320C-590157C304A4" name="FK_CIDADE_BAIRRO" seqName="seg_0"/>
    <object objectType="Relation" objectID="5D71614D-00C8-B6B5-0593-A9EF6A2BE543" name="FK_CIDADE_ENDERECO" seqName="seg_0"/>
-   <object objectType="Relation" objectID="DC747EFE-0905-9D4A-0863-D6FDCDD2B142" name="FK_CLI_COMPRADOR_PROP" seqName="seg_0"/>
-   <object objectType="Relation" objectID="0A9B01F2-2CF0-61D8-E103-99A8CB0BB20E" name="FK_CLI_COMPR_PESS_JURIDICA" seqName="seg_0"/>
-   <object objectType="Relation" objectID="A2093FD0-FC7A-474D-A729-EE32CE6A7070" name="FK_CLI_COMP_PESS_FIS" seqName="seg_0"/>
+   <object objectType="Relation" objectID="39816918-0D53-D323-78C8-F9A98CCA03E0" name="FK_CLI_COMP_PESS_FIS" seqName="seg_0"/>
+   <object objectType="Relation" objectID="721A24C3-CC56-C798-F680-1D50EAFD0172" name="FK_CLI_COMP_PESS_JUR" seqName="seg_0"/>
+   <object objectType="Relation" objectID="917CE53C-4A4A-C3E0-B770-7AD891BA6472" name="FK_CLI_COMP_PROPOSTA" seqName="seg_0"/>
    <object objectType="Relation" objectID="4B2539F8-1EC0-3C27-36C0-6F4CABAB085A" name="FK_CLI_PROPRIETARIO_IMOVEL" seqName="seg_0"/>
    <object objectType="Relation" objectID="4F954727-57DC-1F2A-F4F5-9B3CF1EC9191" name="FK_CLI_PROP_PESS_FISI" seqName="seg_0"/>
    <object objectType="Relation" objectID="6281E177-04DE-9AFD-F3C8-E6B8B0731D85" name="FK_CLI_PROP_PESS_JUR" seqName="seg_0"/>
    <object objectType="Relation" objectID="EC50C266-9C46-EFB8-B497-FF64957BAC2E" name="FK_CORRETOR_IMOVEL" seqName="seg_0"/>
    <object objectType="Relation" objectID="E967360F-0BC3-1ED3-2467-9A0F94F78E57" name="FK_CORRETOR_META" seqName="seg_0"/>
-   <object objectType="Relation" objectID="621E0F43-0820-68E6-F143-36B42C606EB5" name="FK_ENDERECO_CLI_COMP" seqName="seg_0"/>
    <object objectType="Relation" objectID="4BF98CD3-C2AB-D18B-A368-B3C4754C4947" name="FK_ENDERECO_CLI_PROP" seqName="seg_0"/>
    <object objectType="Relation" objectID="3B0EA4F6-14A4-3E63-D3CF-219D410C7265" name="FK_ENDERECO_CORRETOR" seqName="seg_0"/>
    <object objectType="Relation" objectID="C3D3827B-D811-D714-34D3-43526D040443" name="FK_ENDERECO_IMOVEL" seqName="seg_0"/>
@@ -41,5 +40,5 @@
    <object objectType="Relation" objectID="09A7EB00-9EBC-CCF8-7C19-909E50093DB6" name="FK_PROPOSTA_VENDA_LOC" seqName="seg_0"/>
    <object objectType="Relation" objectID="7CB02705-266B-DD1C-0167-32D6E0B80095" name="Relation_20" seqName="seg_0"/>
    <object objectType="Arc" objectID="77ED0544-4BD9-1DC3-AE0C-32B191D59E65" name="Arc_1" seqName="seg_0"/>
-   <object objectType="Arc" objectID="FE712047-8470-D1AB-D0CE-6814B001B021" name="Arc_2" seqName="seg_0"/>
+   <object objectType="Arc" objectID="2C63B5E2-F6D5-5B74-D705-014517732417" name="Arc_3" seqName="seg_0"/>
 </oracle.dbtools.crest.model.design.logical.LogicalDesign>
