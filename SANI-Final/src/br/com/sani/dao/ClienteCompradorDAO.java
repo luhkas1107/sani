@@ -7,17 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.sani.exception.DAOException;
+import br.com.sani.bean.BeanClienteComprador;
 import br.com.sani.bean.ClienteComprador;
+import br.com.sani.bean.Metas;
+import br.com.sani.exception.DAOException;
 import br.com.sani.util.DbUtil;
 
 public class ClienteCompradorDAO {
 
 	private static final String EXCLUIR_CLIENTE_COMPRADOR = 
-			"delete from tbClienteComprador where nome_ClienteComprador = ?";
+			"delete from TB_CLI_COMPRADOR where nome_ClienteComprador = ?";
 	
 	private static final String INSERIR_CLIENTE_COMPRADOR =
-			"insert into tbClienteComprador" +
+			"insert into TB_CLI_COMPRADOR" +
 			"(nome_ClienteComprador," +
 			"sexo_ClienteComprador," +
 			"cpf_ClienteComprador," +
@@ -37,7 +39,7 @@ public class ClienteCompradorDAO {
 			"values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	private static final String ATUALIZAR_CLIENTE_COMPRADOR =
-			"update tbClienteComprador set " +
+			"update TB_CLI_COMPRADOR set " +
 			"nome_ClienteComprador = ? " +
 			"sexo_ClienteComprador = ? " +
 			"cpf_ClienteComprador = ? " +
@@ -65,169 +67,74 @@ public class ClienteCompradorDAO {
 			"cc.senha_funcionario = ?";*/
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR =
-			"select * from tbClienteComprador order by nome_ClienteComprador";
+			"select * from TB_CLI_COMPRADOR order by nome_ClienteComprador";
 
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_NOME =
-			"select * from tbClienteComprador where nome_ClienteComprador like ? order by nome_ClienteComprador";
+			"select * from TB_CLI_COMPRADOR where nome_ClienteComprador like ? order by nome_ClienteComprador";
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_ID = 
-			"select * from tbClienteComprador where id_ClienteComprador = ?";
+			"select * from TB_CLI_COMPRADOR where COD_CLI_COMPRADOR = ?";
 	
-	public List<ClienteComprador> consultarClienteComprador(String idCliComp) throws DAOException{		
-		Connection conn = DbUtil.getConnection();
-		PreparedStatement statement = null;
-		ResultSet result = null;
-		List<ClienteComprador> listaCliComp = new ArrayList<ClienteComprador>();
-		try {
-			if(idCliComp.equals("")){
-				statement = conn.prepareStatement(CONSULTA_CLIENTE_COMPRADOR);
-			}else{
-				statement = conn.prepareStatement(CONSULTA_CLIENTE_COMPRADOR_NOME);
-				statement.setString(1, "%"+idCliComp+"%");
-			}
-			result = statement.executeQuery();
-			while (result.next()) {
-				ClienteComprador objCliComp = new ClienteComprador();
-				objCliComp.setId(result.getInt(1));
-				objCliComp.setNome(result.getString(2));
-				objCliComp.setSexo(result.getString(3));
-				objCliComp.setCpf(result.getString(4));
-				objCliComp.setRg(result.getString(5));
-				objCliComp.setRenda(result.getString(6));
-				objCliComp.setEstadoCivil(result.getString(7));
-				objCliComp.setNacionalidade(result.getString(8));
-				objCliComp.setEndereco(result.getString(9));
-				objCliComp.setNumeroEndereco(result.getString(10));
-				objCliComp.setComplementoEndereco(result.getString(11));
-				objCliComp.setCep(result.getString(12));
-				objCliComp.setTelefoneResidencial(result.getString(13));
-				objCliComp.setTelefoneCelular(result.getString(14));
-				objCliComp.setEmailPessoal(result.getString(15));
-				objCliComp.setSiteClienteComprador(result.getString(16));
-				
-				listaCliComp.add(objCliComp);
-			}
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DbUtil.close(conn, statement, result);
-		}
-		return listaCliComp;		
+	private BeanClienteComprador getBean(ResultSet result) throws SQLException, DAOException{
+		BeanClienteComprador cliComp = new BeanClienteComprador();
+		
+		cliComp.setCodCliComprador(result.getInt(""));
+		cliComp.setCep(result.getString(""));
+		cliComp.setNumeroEndereco(result.getString(""));
+		cliComp.setComplementoEndereco(result.getString(""));
+		cliComp.setRenda(result.getString(""));
+		cliComp.setProfissao(result.getString(""));
+		
+		return cliComp;
 	}
-
-	public ClienteComprador consultarClienteCompradorID(int idCliComp) throws DAOException{		
-		ClienteComprador objCliComp = new ClienteComprador();
+	
+	//INSERIR
+	
+	//ATUALIZAR
+	
+	//CONSULTA NOME
+	
+	public BeanClienteComprador consultaPorCod(int codCliComprador) throws DAOException{
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
-		try {
+		BeanClienteComprador retorno = null;
+		try{
 			statement = conn.prepareStatement(CONSULTA_CLIENTE_COMPRADOR_ID);
-			statement.setInt(1, idCliComp);
+			statement.setInt(1, codCliComprador);
 			result = statement.executeQuery();
-			while (result.next()) {
-				objCliComp.setId(result.getInt(1));
-				objCliComp.setNome(result.getString(2));
-				objCliComp.setSexo(result.getString(3));
-				objCliComp.setCpf(result.getString(4));
-				objCliComp.setRg(result.getString(5));
-				objCliComp.setRenda(result.getString(6));
-				objCliComp.setEstadoCivil(result.getString(7));
-				objCliComp.setNacionalidade(result.getString(8));
-				objCliComp.setEndereco(result.getString(9));
-				objCliComp.setNumeroEndereco(result.getString(10));
-				objCliComp.setComplementoEndereco(result.getString(11));
-				objCliComp.setCep(result.getString(12));
-				objCliComp.setTelefoneResidencial(result.getString(13));
-				objCliComp.setTelefoneCelular(result.getString(14));
-				objCliComp.setEmailPessoal(result.getString(15));
-				objCliComp.setSiteClienteComprador(result.getString(16));
+			if(result.next()){
+				retorno = getBean(result);
 			}
-		} catch (SQLException e) {
+		}catch(SQLException e){
 			throw new DAOException(e);
-		} finally {
+		}finally{
 			DbUtil.close(conn, statement, result);
 		}
-		return objCliComp;		
-	}
-
-	public boolean inserirClienteComprador(ClienteComprador objCliComp) throws DAOException{		
-		Connection conn = DbUtil.getConnection();
-		PreparedStatement statement = null;
-		ResultSet result = null;
-		try {
-			statement = conn.prepareStatement(INSERIR_CLIENTE_COMPRADOR);
-			statement.setInt(1, objCliComp.getId());
-			statement.setString(2, objCliComp.getNome());
-			statement.setString(3, objCliComp.getSexo());
-			statement.setString(4, objCliComp.getCpf());
-			statement.setString(5, objCliComp.getRg());
-			statement.setString(6, objCliComp.getRenda());
-			statement.setString(7, objCliComp.getEstadoCivil());
-			statement.setString(8, objCliComp.getNacionalidade());
-			statement.setString(9, objCliComp.getEndereco());
-			statement.setString(10, objCliComp.getNumeroEndereco());
-			statement.setString(11, objCliComp.getComplementoEndereco());
-			statement.setString(12, objCliComp.getCep());
-			statement.setString(13, objCliComp.getTelefoneResidencial());
-			statement.setString(14, objCliComp.getTelefoneCelular());
-			statement.setString(15, objCliComp.getEmailPessoal());
-			statement.setString(16, objCliComp.getSiteClienteComprador());
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DbUtil.close(conn, statement, result);
-		}
-		return true;		
+		
+		return retorno;
 	}
 	
-	public boolean atualizarClienteComprador(ClienteComprador objCliComp) throws DAOException{		
+	public BeanClienteComprador excluirClienteComprador(int codCliComprador) throws DAOException{		
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
-		try {
-			statement = conn.prepareStatement(ATUALIZAR_CLIENTE_COMPRADOR);
-			statement.setInt(1, objCliComp.getId());
-			statement.setString(2, objCliComp.getNome());
-			statement.setString(3, objCliComp.getSexo());
-			statement.setString(4, objCliComp.getCpf());
-			statement.setString(5, objCliComp.getRg());
-			statement.setString(6, objCliComp.getRenda());
-			statement.setString(7, objCliComp.getEstadoCivil());
-			statement.setString(8, objCliComp.getNacionalidade());
-			statement.setString(9, objCliComp.getEndereco());
-			statement.setString(10, objCliComp.getNumeroEndereco());
-			statement.setString(11, objCliComp.getComplementoEndereco());
-			statement.setString(12, objCliComp.getCep());
-			statement.setString(13, objCliComp.getTelefoneResidencial());
-			statement.setString(14, objCliComp.getTelefoneCelular());
-			statement.setString(15, objCliComp.getEmailPessoal());
-			statement.setString(16, objCliComp.getSiteClienteComprador());
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
+		BeanClienteComprador retorno = null;
+		try{
+			statement = conn.prepareStatement(CONSULTA_CLIENTE_COMPRADOR_ID);
+			statement.setInt(1, codCliComprador);
+			result = statement.executeQuery();
+			if(result.next()){
+				retorno = getBean(result);
+			}
+		}catch(SQLException e){
 			throw new DAOException(e);
-		} finally {
+		}finally{
 			DbUtil.close(conn, statement, result);
 		}
-		return true;		
+		
+		return retorno;
 	}
-
-	public boolean excluirClienteComprador(int idClienteComprador) throws DAOException{		
-		Connection conn = DbUtil.getConnection();
-		PreparedStatement statement = null;
-		ResultSet result = null;
-		try {
-			statement = conn.prepareStatement(EXCLUIR_CLIENTE_COMPRADOR);
-			statement.setInt(1, idClienteComprador);
-			statement.executeUpdate();
-
-		} catch (SQLException e) {
-			throw new DAOException(e);
-		} finally {
-			DbUtil.close(conn, statement, result);
-		}
-		return true;		
-	}
+	
+	
 }

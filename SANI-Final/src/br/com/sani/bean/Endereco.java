@@ -7,6 +7,8 @@ public class Endereco {
 	private String cidade;
 	private String bairro;
 	private String uf;
+	
+	
 	public String getCep() {
 		return cep;
 	}
