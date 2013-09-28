@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanImagemPropriedade {
+public class BeanImagemImovel {
 	
 	private byte[] idImagem;
 	private String dataImagem;

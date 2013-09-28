@@ -7,6 +7,8 @@ public class BeanVenda {
 	private int	numeroContrado;
 	private String arqContrato;
 	
+	private BeanProposta codProposta;
+	
 	//Getters & Setters
 	
 	public int getCodTransacao() {
@@ -32,6 +34,12 @@ public class BeanVenda {
 	}
 	public void setArqContrato(String arqContrato) {
 		this.arqContrato = arqContrato;
+	}
+	public BeanProposta getCodProposta() {
+		return codProposta;
+	}
+	public void setCodProposta(BeanProposta codProposta) {
+		this.codProposta = codProposta;
 	}
 
 }

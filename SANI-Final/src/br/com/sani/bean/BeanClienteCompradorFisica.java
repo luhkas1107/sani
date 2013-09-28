@@ -1,6 +1,8 @@
 package br.com.sani.bean;
 
-public class BeanClienteCompradorFisica extends BeanClienteComprador {
+public class BeanClienteCompradorFisica {
+	
+	private BeanClienteComprador codCliComprador;
 	
 	private String nome;
 	private String rg;
@@ -53,6 +55,12 @@ public class BeanClienteCompradorFisica extends BeanClienteComprador {
 	}
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
+	}
+	public BeanClienteComprador getCodCliComprador() {
+		return codCliComprador;
+	}
+	public void setCodCliComprador(BeanClienteComprador codCliComprador) {
+		this.codCliComprador = codCliComprador;
 	}
 	
 }

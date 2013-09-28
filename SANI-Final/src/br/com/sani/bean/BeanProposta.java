@@ -8,6 +8,9 @@ public class BeanProposta {
 	private String estadoProposta;
 	private String statusProposta;
 	
+	private BeanClienteComprador codCliComprador;
+	private BeanImovel codImovel;
+	
 	//Getters & Setters
 	
 	public int getCodProposta() {
@@ -39,6 +42,18 @@ public class BeanProposta {
 	}
 	public void setStatusProposta(String statusProposta) {
 		this.statusProposta = statusProposta;
+	}
+	public BeanClienteComprador getCodCliComprador() {
+		return codCliComprador;
+	}
+	public void setCodCliComprador(BeanClienteComprador codCliComprador) {
+		this.codCliComprador = codCliComprador;
+	}
+	public BeanImovel getCodImovel() {
+		return codImovel;
+	}
+	public void setCodImovel(BeanImovel codImovel) {
+		this.codImovel = codImovel;
 	}
 
 }

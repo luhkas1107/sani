@@ -1,8 +1,9 @@
 package br.com.sani.bean;
 
-public class BeanClienteProprietarioFisica extends BeanClienteProprietario {
+public class BeanClienteProprietarioFisica {
 	
-	private int codCliPropietario;
+	private BeanClienteProprietario codCliPropietario;
+	
 	private String nome;
 	private String rg;
 	private String cpf;
@@ -13,12 +14,6 @@ public class BeanClienteProprietarioFisica extends BeanClienteProprietario {
 	
 	//Getters & Setters
 	
-	public int getCodCliPropietario() {
-		return codCliPropietario;
-	}
-	public void setCodCliPropietario(int codCliPropietario) {
-		this.codCliPropietario = codCliPropietario;
-	}
 	public String getNome() {
 		return nome;
 	}
@@ -60,6 +55,12 @@ public class BeanClienteProprietarioFisica extends BeanClienteProprietario {
 	}
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
+	}
+	public BeanClienteProprietario getCodCliPropietario() {
+		return codCliPropietario;
+	}
+	public void setCodCliPropietario(BeanClienteProprietario codCliPropietario) {
+		this.codCliPropietario = codCliPropietario;
 	}
 	
 }

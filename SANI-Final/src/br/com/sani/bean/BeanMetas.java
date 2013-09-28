@@ -6,6 +6,8 @@ public class BeanMetas {
 	private String dataFinal;
 	private String valorMeta;
 	
+	private BeanCorretor codCorretor;
+	
 	//Getters & Setters
 	
 	public String getDataInicio() {
@@ -25,6 +27,12 @@ public class BeanMetas {
 	}
 	public void setValorMeta(String valorMeta) {
 		this.valorMeta = valorMeta;
+	}
+	public BeanCorretor getCodCorretor() {
+		return codCorretor;
+	}
+	public void setCodCorretor(BeanCorretor codCorretor) {
+		this.codCorretor = codCorretor;
 	}	
 
 }

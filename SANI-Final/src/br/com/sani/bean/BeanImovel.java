@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanPropriedade {
+public class BeanImovel {
 	
 	private int codImovel;
 	private String cep;
@@ -10,8 +10,30 @@ public class BeanPropriedade {
 	private String statusImovel;
 	private String metragemImovel;
 	
+	private Endereco endereco;
+	private BeanCorretor corretor;
+	private BeanClienteProprietario cliProprietario;
+	
 	//Getters & Setters
 	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	public BeanCorretor getCorretor() {
+		return corretor;
+	}
+	public void setCorretor(BeanCorretor corretor) {
+		this.corretor = corretor;
+	}
+	public BeanClienteProprietario getCliProprietario() {
+		return cliProprietario;
+	}
+	public void setCliProprietario(BeanClienteProprietario cliProprietario) {
+		this.cliProprietario = cliProprietario;
+	}
 	public int getCodImovel() {
 		return codImovel;
 	}
