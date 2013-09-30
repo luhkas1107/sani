@@ -9,7 +9,7 @@ import br.com.sani.bean.Endereco;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.DbUtil;
 
-public class EnderecoDao {
+public class EnderecoDAO {
 	
 	private static final String QUERY_BUSCAR_POR_CEP=
 			"SELECT " +

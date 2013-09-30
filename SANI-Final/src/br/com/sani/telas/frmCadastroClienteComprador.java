@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import br.com.sani.bean.ClienteComprador;
-import br.com.sani.dao.ClienteCompradorDAO;
+import br.com.sani.dao.ClienteCompradorFisicaDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.exception.EntradaUsuarioException;
 import br.com.sani.util.Mascara;
@@ -234,7 +234,7 @@ public class frmCadastroClienteComprador extends JFrame {
 		JButton btnSalvarClienteComprador = new JButton("Cadastrar");
 		btnSalvarClienteComprador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				salvarClienteComprador();
+				//salvarClienteComprador();
 			}
 		});
 		btnSalvarClienteComprador.setBounds(388, 480, 101, 23);
@@ -346,10 +346,10 @@ public class frmCadastroClienteComprador extends JFrame {
 		return CliComp;
 	}
 	
-	private void salvarClienteComprador(){
+	/*private void salvarClienteComprador(){
 		try{
 			ClienteComprador CliComp = getBean();
-			new ClienteCompradorDAO().inserirClienteComprador(CliComp);
+			new ClienteCompradorFisicaDAO().inserirClienteComprador(CliComp);
 			limpaFormulario();
 			JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
 		}catch(DAOException e){
@@ -357,5 +357,5 @@ public class frmCadastroClienteComprador extends JFrame {
 		} catch (EntradaUsuarioException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

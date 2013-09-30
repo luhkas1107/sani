@@ -26,7 +26,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.sani.bean.Endereco;
 import br.com.sani.bean.Funcionario;
-import br.com.sani.dao.EnderecoDao;
+import br.com.sani.dao.EnderecoDAO;
 import br.com.sani.dao.FuncionarioDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.exception.EntradaUsuarioException;
@@ -515,7 +515,7 @@ public class frmCadastroFuncionario extends JFrame {
 	private void buscarEndereco() {
 		try{
 			String cep = TelaUtil.getCep(ftCepFuncionario, false);
-			Endereco end = new EnderecoDao().buscarPorCep(cep);
+			Endereco end = new EnderecoDAO().buscarPorCep(cep);
 			if(end != null){
 				txtEnderecoFuncionario.setText(end.getEndereco() + " - " + end.getBairro() + ", " + end.getCidade() + "/" + end.getUf());
 				txtNumeroEnderecoFuncionario.requestFocus();

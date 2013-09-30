@@ -3,7 +3,8 @@ package br.com.sani.bean;
 public class BeanClienteCompradorFisica {
 	
 	private BeanClienteComprador codCliComprador;
-	
+	private BeanClienteComprador cep;
+		
 	private String nome;
 	private String rg;
 	private String cpf;
@@ -11,9 +12,23 @@ public class BeanClienteCompradorFisica {
 	private String dataFalecimento;
 	private String sexo;
 	private String estadoCivil;
+	private String renda;
+	private String profissao;
 	
 	//Getters & Setters
 	
+	public BeanClienteComprador getCodCliComprador() {
+		return codCliComprador;
+	}
+	public void setCodCliComprador(BeanClienteComprador codCliComprador) {
+		this.codCliComprador = codCliComprador;
+	}
+	public BeanClienteComprador getCep() {
+		return cep;
+	}
+	public void setCep(BeanClienteComprador cep) {
+		this.cep = cep;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -56,11 +71,17 @@ public class BeanClienteCompradorFisica {
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
-	public BeanClienteComprador getCodCliComprador() {
-		return codCliComprador;
+	public String getRenda() {
+		return renda;
 	}
-	public void setCodCliComprador(BeanClienteComprador codCliComprador) {
-		this.codCliComprador = codCliComprador;
+	public void setRenda(String renda) {
+		this.renda = renda;
+	}
+	public String getProfissao() {
+		return profissao;
+	}
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
 	}
 	
 }

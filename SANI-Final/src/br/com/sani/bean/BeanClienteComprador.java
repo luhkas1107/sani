@@ -6,12 +6,10 @@ public class BeanClienteComprador {
 	private String cep;
 	private String numeroEndereco;
 	private String complementoEndereco;
-	private String renda;
-	private String profissao;
 	
 	//Getters & Setters
 	
-	public int getCodCliComprador(int i) {
+	public int getCodCliComprador() {
 		return codCliComprador;
 	}
 	public void setCodCliComprador(int codCliComprador) {
@@ -35,17 +33,5 @@ public class BeanClienteComprador {
 	public void setComplementoEndereco(String complementoEndereco) {
 		this.complementoEndereco = complementoEndereco;
 	}
-	public String getRenda() {
-		return renda;
-	}
-	public void setRenda(String renda) {
-		this.renda = renda;
-	}
-	public String getProfissao() {
-		return profissao;
-	}
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
-	}
-
+		
 }
