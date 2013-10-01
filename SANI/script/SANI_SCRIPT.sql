@@ -3,7 +3,11 @@
 --   site:      SQL Server 2008
 --   tipo:      SQL Server 2008
 
+CREATE DATABASE SANI
+GO
 
+USE SANI
+GO
 
 
 CREATE
