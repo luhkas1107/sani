@@ -24,25 +24,24 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import br.com.sani.bean.ClienteComprador;
-import br.com.sani.dao.ClienteCompradorFisicaDAO;
+import br.com.sani.dao.ClienteCompradorDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.exception.EntradaUsuarioException;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
 import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
 
 public class frmCadastroClienteComprador extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNomeClienteComprador;
-	private JTextField txtNacionalidadeClienteComprador;
 	private JTextField txtEnderecoClienteComprador;
 	private JTextField txtNumeroClienteComprador;
 	private JTextField txtComplementoClienteComprador;
 	
 	private JTextField txtRendaClienteComprador;
-	private JTextField txtSiteClienteComprador;
 	private JTextField txtEmailClienteComprador;
 	private JRadioButton rdbtnMasculinoClienteComprador;
 	private JFormattedTextField ftCpfClienteComprador;
@@ -53,8 +52,7 @@ public class frmCadastroClienteComprador extends JFrame {
 	private JFormattedTextField ftTelefoneResidencialClienteComprador;
 	private JFormattedTextField ftTelefoneCelularClienteComprador;
 	private JFormattedTextField ftRgClienteComprador;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtProfissao;
 
 	/**
 	 * Launch the application.
@@ -91,216 +89,203 @@ public class frmCadastroClienteComprador extends JFrame {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteComprador.class.getResource("/br/com/images/home_badge.png")));
 		setTitle("Cadastro Cliente Comprador");
-		setBounds(100, 100, 655, 575);
+		setBounds(100, 100, 653, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setLayout(null);
 		contentPane.add(panel);
+		panel.setLayout(null);
 		
-		JLabel lblNomeClienteComprador = new JLabel("Nome: *");
-		lblNomeClienteComprador.setBounds(45, 39, 40, 14);
-		panel.add(lblNomeClienteComprador);
+				JPanel panelSexo = new JPanel();
+		panelSexo.setBounds(468, 11, 161, 92);
+		panelSexo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Sexo*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.add(panelSexo);
+		panelSexo.setLayout(null);
+		
+		ButtonGroup grupoSexo = new ButtonGroup();
+		
+		rdbtnMasculinoClienteComprador = new JRadioButton("Masculino");
+		rdbtnMasculinoClienteComprador.setBounds(22, 22, 109, 23);
+		panelSexo.add(rdbtnMasculinoClienteComprador);
+		rdbtnMasculinoClienteComprador.setSelected(true);
+		
+		JRadioButton rdbtnFemininoClienteComprador = new JRadioButton("Feminino");
+		rdbtnFemininoClienteComprador.setBounds(22, 48, 109, 23);
+		panelSexo.add(rdbtnFemininoClienteComprador);
+		
+		grupoSexo.add(rdbtnMasculinoClienteComprador);  
+		grupoSexo.add(rdbtnFemininoClienteComprador);
 		
 		//Cria o Button Group
 		
-		ButtonGroup grupoSexo = new ButtonGroup();  
 		
-		txtNomeClienteComprador = new JTextField();
-		txtNomeClienteComprador.setColumns(10);
-		txtNomeClienteComprador.setBounds(95, 36, 327, 20);
-		panel.add(txtNomeClienteComprador);
-		
-		JLabel lblCpfClienteComprador = new JLabel("CPF: *");
-		lblCpfClienteComprador.setBounds(53, 64, 32, 14);
-		panel.add(lblCpfClienteComprador);
-		
-		ftCpfClienteComprador = new JFormattedTextField(Mascara.setMaskCpfInTf(ftCpfClienteComprador));
-		ftCpfClienteComprador.setColumns(10);
-		ftCpfClienteComprador.setBounds(95, 61, 109, 20);
-		panel.add(ftCpfClienteComprador);
-		
-		JLabel lblEstadoCivilClienteComprador = new JLabel("Estado Civil:");
-		lblEstadoCivilClienteComprador.setBounds(26, 89, 59, 14);
-		panel.add(lblEstadoCivilClienteComprador);
-		
-		comboBoxEstadoCivil = new JComboBox();
-		comboBoxEstadoCivil.setToolTipText("Solteiro (a)\r\nCasado (a)\r\nDivorciado (a)\r\nVi\u00FAvo (a)");
-		comboBoxEstadoCivil.setModel(new DefaultComboBoxModel(new String[] {"Solteiro (a)", "Casado (a)", "Divorciado (a)", "Vi\u00FAvo (a)"}));
-		comboBoxEstadoCivil.setBounds(95, 86, 109, 20);
-		panel.add(comboBoxEstadoCivil);
-		
-		JLabel lblRgClienteComprador = new JLabel("RG:");
-		lblRgClienteComprador.setBounds(298, 64, 18, 14);
-		panel.add(lblRgClienteComprador);
-		
-		ftRgClienteComprador = new JFormattedTextField(Mascara.setMaskRgInTf(ftRgClienteComprador));
-		ftRgClienteComprador.setColumns(10);
-		ftRgClienteComprador.setBounds(326, 61, 96, 20);
-		panel.add(ftRgClienteComprador);
-		
-		JLabel lblNacionalidadeClienteComprador = new JLabel("Nacionalidade:");
-		lblNacionalidadeClienteComprador.setBounds(246, 89, 70, 14);
-		panel.add(lblNacionalidadeClienteComprador);
-		
-		txtNacionalidadeClienteComprador = new JTextField();
-		txtNacionalidadeClienteComprador.setColumns(10);
-		txtNacionalidadeClienteComprador.setBounds(326, 86, 96, 20);
-		panel.add(txtNacionalidadeClienteComprador);
-		
-		JLabel lblEnderecoClienteComprador = new JLabel("Endere\u00E7o: *");
-		lblEnderecoClienteComprador.setBounds(26, 218, 59, 14);
-		panel.add(lblEnderecoClienteComprador);
-		
-		txtEnderecoClienteComprador = new JTextField();
-		txtEnderecoClienteComprador.setColumns(10);
-		txtEnderecoClienteComprador.setBounds(95, 265, 96, 20);
-		panel.add(txtEnderecoClienteComprador);
-		
-		JLabel lblNumeroClienteComprador = new JLabel("N\u00FAmero: *");
-		lblNumeroClienteComprador.setBounds(257, 193, 56, 14);
-		panel.add(lblNumeroClienteComprador);
-		
-		txtNumeroClienteComprador = new JTextField();
-		txtNumeroClienteComprador.setColumns(10);
-		txtNumeroClienteComprador.setBounds(326, 190, 46, 20);
-		panel.add(txtNumeroClienteComprador);
-		
-		JLabel lblComplementoClienteComprador = new JLabel("Complemento:");
-		lblComplementoClienteComprador.setBounds(15, 243, 70, 14);
-		panel.add(lblComplementoClienteComprador);
-		
-		txtComplementoClienteComprador = new JTextField();
-		txtComplementoClienteComprador.setColumns(10);
-		txtComplementoClienteComprador.setBounds(95, 215, 229, 20);
-		panel.add(txtComplementoClienteComprador);
-		
-		JLabel lblCepClienteComprador = new JLabel("CEP: *");
-		lblCepClienteComprador.setBounds(53, 193, 32, 14);
-		panel.add(lblCepClienteComprador);
-		
-		ftCepClienteComprador = new JFormattedTextField(Mascara.setMaskCepInTf(ftCepClienteComprador));
-		ftCepClienteComprador.setColumns(10);
-		ftCepClienteComprador.setBounds(95, 190, 86, 20);
-		panel.add(ftCepClienteComprador);
-		
-		JLabel lblTelefoneResidencialClienteComprador = new JLabel("Telefone Residencial:");
-		lblTelefoneResidencialClienteComprador.setBounds(207, 268, 106, 14);
-		panel.add(lblTelefoneResidencialClienteComprador);
-		
-		ftTelefoneResidencialClienteComprador = new JFormattedTextField(Mascara.setMaskTelefoneInTf(ftTelefoneResidencialClienteComprador));
-		ftTelefoneResidencialClienteComprador.setColumns(10);
-		ftTelefoneResidencialClienteComprador.setBounds(326, 265, 96, 20);
-		panel.add(ftTelefoneResidencialClienteComprador);
-		
-		JLabel lblTelefoneCelularClienteComprador = new JLabel("Telefone Celular: *");
-		lblTelefoneCelularClienteComprador.setBounds(15, 296, 118, 14);
-		panel.add(lblTelefoneCelularClienteComprador);
-		
-		ftTelefoneCelularClienteComprador = new JFormattedTextField(Mascara.setMaskCelularInTf(ftTelefoneCelularClienteComprador));
-		ftTelefoneCelularClienteComprador.setColumns(10);
-		ftTelefoneCelularClienteComprador.setBounds(503, 351, 106, 20);
-		panel.add(ftTelefoneCelularClienteComprador);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(26, 171, 583, 2);
-		panel.add(separator);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(26, 407, 479, 2);
-		panel.add(separator_1);
 		
 		JButton btnLimparCamposClienteComprador = new JButton("Limpar Campos");
+		btnLimparCamposClienteComprador.setBounds(503, 209, 126, 23);
 		btnLimparCamposClienteComprador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				limpaFormulario();
 			}
 		});
-		btnLimparCamposClienteComprador.setBounds(39, 480, 126, 23);
 		panel.add(btnLimparCamposClienteComprador);
 		
 		JButton btnCancelarClienteComprador = new JButton("Cancelar");
+		btnCancelarClienteComprador.setBounds(503, 261, 126, 23);
 		btnCancelarClienteComprador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				fechar();
 			}
 		});
-		btnCancelarClienteComprador.setBounds(235, 480, 89, 23);
 		panel.add(btnCancelarClienteComprador);
 		
 		JButton btnSalvarClienteComprador = new JButton("Cadastrar");
+		btnSalvarClienteComprador.setBounds(503, 149, 126, 23);
 		btnSalvarClienteComprador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//salvarClienteComprador();
 			}
 		});
-		btnSalvarClienteComprador.setBounds(388, 480, 101, 23);
 		panel.add(btnSalvarClienteComprador);
 		
-		JLabel lblRendaClienteComprador = new JLabel("Renda R$:*");
-		lblRendaClienteComprador.setBounds(257, 133, 59, 14);
-		panel.add(lblRendaClienteComprador);
+		JPanel panelEndereco = new JPanel();
+		panelEndereco.setBounds(15, 183, 435, 139);
+		panelEndereco.setBorder(new TitledBorder(null, "Endere\u00E7o*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.add(panelEndereco);
+		panelEndereco.setLayout(null);
 		
-		txtRendaClienteComprador = new JTextField();
-		txtRendaClienteComprador.setBounds(326, 130, 96, 20);
-		panel.add(txtRendaClienteComprador);
-		txtRendaClienteComprador.setColumns(10);
+		txtEnderecoClienteComprador = new JTextField();
+		txtEnderecoClienteComprador.setEnabled(false);
+		txtEnderecoClienteComprador.setBounds(83, 56, 273, 20);
+		panelEndereco.add(txtEnderecoClienteComprador);
+		txtEnderecoClienteComprador.setColumns(10);
 		
-		JLabel lblContatoClienteComprador = new JLabel("Contato:");
-		lblContatoClienteComprador.setBounds(26, 268, 46, 14);
-		panel.add(lblContatoClienteComprador);
+		ftCepClienteComprador = new JFormattedTextField(Mascara.setMaskCepInTf(ftCepClienteComprador));
+		ftCepClienteComprador.setBounds(83, 27, 86, 20);
+		panelEndereco.add(ftCepClienteComprador);
+		ftCepClienteComprador.setColumns(10);
+		
+		txtComplementoClienteComprador = new JTextField();
+		txtComplementoClienteComprador.setBounds(258, 87, 86, 20);
+		panelEndereco.add(txtComplementoClienteComprador);
+		txtComplementoClienteComprador.setColumns(10);
+		
+		JLabel lblNumeroClienteComprador = new JLabel("N\u00FAmero:");
+		lblNumeroClienteComprador.setBounds(21, 90, 50, 14);
+		panelEndereco.add(lblNumeroClienteComprador);
+		
+		JLabel lblCepClienteComprador = new JLabel("CEP:");
+		lblCepClienteComprador.setBounds(21, 30, 32, 14);
+		panelEndereco.add(lblCepClienteComprador);
+		
+		JLabel lblEnderecoClienteComprador = new JLabel("Endere\u00E7o:\r\n");
+		lblEnderecoClienteComprador.setBounds(21, 60, 58, 14);
+		panelEndereco.add(lblEnderecoClienteComprador);
+		
+		JLabel lblComplementoClienteComprador = new JLabel("Complemento:");
+		lblComplementoClienteComprador.setBounds(179, 90, 69, 14);
+		panelEndereco.add(lblComplementoClienteComprador);
+		
+		txtNumeroClienteComprador = new JTextField();
+		txtNumeroClienteComprador.setBounds(83, 87, 86, 20);
+		panelEndereco.add(txtNumeroClienteComprador);
+		txtNumeroClienteComprador.setColumns(10);
+		
+		JPanel panelContato = new JPanel();
+		panelContato.setBounds(15, 333, 273, 139);
+		panelContato.setBorder(new TitledBorder(null, "Contato*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.add(panelContato);
+		panelContato.setLayout(null);
+		
+		ftTelefoneCelularClienteComprador = new JFormattedTextField(Mascara.setMaskCelularInTf(ftTelefoneCelularClienteComprador));
+		ftTelefoneCelularClienteComprador.setBounds(136, 29, 86, 20);
+		panelContato.add(ftTelefoneCelularClienteComprador);
+		ftTelefoneCelularClienteComprador.setColumns(10);
+		
+		JLabel lblTelefoneResidencialClienteComprador = new JLabel("Telefone Residencial:");
+		lblTelefoneResidencialClienteComprador.setBounds(22, 60, 102, 14);
+		panelContato.add(lblTelefoneResidencialClienteComprador);
+		
+		JLabel lblTelefoneCelularClienteComprador = new JLabel("Telefone Celular: *");
+		lblTelefoneCelularClienteComprador.setBounds(22, 30, 91, 14);
+		panelContato.add(lblTelefoneCelularClienteComprador);
 		
 		JLabel lblEmailClienteComprador = new JLabel("Email: *");
-		lblEmailClienteComprador.setBounds(45, 354, 40, 14);
-		panel.add(lblEmailClienteComprador);
+		lblEmailClienteComprador.setBounds(22, 90, 37, 14);
+		panelContato.add(lblEmailClienteComprador);
 		
 		txtEmailClienteComprador = new JTextField();
-		txtEmailClienteComprador.setBounds(288, 351, 154, 20);
-		panel.add(txtEmailClienteComprador);
+		txtEmailClienteComprador.setBounds(74, 87, 148, 20);
+		panelContato.add(txtEmailClienteComprador);
 		txtEmailClienteComprador.setColumns(10);
 		
-		JLabel lblSiteClienteComprador = new JLabel("Site:");
-		lblSiteClienteComprador.setBounds(53, 332, 32, 14);
-		panel.add(lblSiteClienteComprador);
+		ftTelefoneResidencialClienteComprador = new JFormattedTextField(Mascara.setMaskTelefoneInTf(ftTelefoneResidencialClienteComprador));
+		ftTelefoneResidencialClienteComprador.setBounds(136, 54, 86, 20);
+		panelContato.add(ftTelefoneResidencialClienteComprador);
+		ftTelefoneResidencialClienteComprador.setColumns(10);
 		
-		txtSiteClienteComprador = new JTextField();
-		txtSiteClienteComprador.setBounds(95, 329, 154, 20);
-		panel.add(txtSiteClienteComprador);
-		txtSiteClienteComprador.setColumns(10);
+		JPanel ppanelInfo = new JPanel();
+		ppanelInfo.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es B\u00E1sicas*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		ppanelInfo.setBounds(15, 11, 435, 161);
+		panel.add(ppanelInfo);
+		ppanelInfo.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Sexo*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(448, 36, 161, 78);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
+		txtRendaClienteComprador = new JTextField();
+		txtRendaClienteComprador.setBounds(329, 117, 96, 20);
+		ppanelInfo.add(txtRendaClienteComprador);
+		txtRendaClienteComprador.setColumns(10);
 		
-		JRadioButton rdbtnFemininoClienteComprador = new JRadioButton("Feminino");
-		rdbtnFemininoClienteComprador.setBounds(20, 44, 109, 23);
-		panel_1.add(rdbtnFemininoClienteComprador);
-		grupoSexo.add(rdbtnFemininoClienteComprador);
+		JLabel lblRendaClienteComprador = new JLabel("Renda R$:");
+		lblRendaClienteComprador.setBounds(260, 120, 59, 14);
+		ppanelInfo.add(lblRendaClienteComprador);
 		
-		rdbtnMasculinoClienteComprador = new JRadioButton("Masculino");
-		rdbtnMasculinoClienteComprador.setBounds(20, 18, 109, 23);
-		panel_1.add(rdbtnMasculinoClienteComprador);
-		rdbtnMasculinoClienteComprador.setSelected(true);
-		grupoSexo.add(rdbtnMasculinoClienteComprador);  
+		txtProfissao = new JTextField();
+		txtProfissao.setBounds(90, 117, 109, 20);
+		ppanelInfo.add(txtProfissao);
+		txtProfissao.setColumns(10);
 		
-		JLabel lblProfisso = new JLabel("Profiss\u00E3o:*");
-		lblProfisso.setBounds(26, 133, 59, 14);
-		panel.add(lblProfisso);
+		JLabel lblProfisso = new JLabel("Profiss\u00E3o:");
+		lblProfisso.setBounds(21, 120, 59, 14);
+		ppanelInfo.add(lblProfisso);
 		
-		textField = new JTextField();
-		textField.setBounds(95, 130, 109, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		JLabel lblEstadoCivilClienteComprador = new JLabel("Estado Civil:");
+		lblEstadoCivilClienteComprador.setBounds(21, 90, 59, 14);
+		ppanelInfo.add(lblEstadoCivilClienteComprador);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(95, 240, 65, 20);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		JLabel lblCpfClienteComprador = new JLabel("CPF:");
+		lblCpfClienteComprador.setBounds(21, 60, 32, 14);
+		ppanelInfo.add(lblCpfClienteComprador);
+		
+		JLabel lblNomeClienteComprador = new JLabel("Nome:");
+		lblNomeClienteComprador.setBounds(21, 30, 40, 14);
+		ppanelInfo.add(lblNomeClienteComprador);
+		
+		comboBoxEstadoCivil = new JComboBox();
+		comboBoxEstadoCivil.setBounds(90, 87, 109, 20);
+		ppanelInfo.add(comboBoxEstadoCivil);
+		comboBoxEstadoCivil.setToolTipText("Solteiro (a)\r\nCasado (a)\r\nDivorciado (a)\r\nVi\u00FAvo (a)");
+		comboBoxEstadoCivil.setModel(new DefaultComboBoxModel(new String[] {"Solteiro (a)", "Casado (a)", "Divorciado (a)", "Vi\u00FAvo (a)"}));
+		
+		ftCpfClienteComprador = new JFormattedTextField(Mascara.setMaskCpfInTf(ftCpfClienteComprador));
+		ftCpfClienteComprador.setBounds(90, 57, 109, 20);
+		ppanelInfo.add(ftCpfClienteComprador);
+		ftCpfClienteComprador.setColumns(10);
+		
+		JLabel lblRgClienteComprador = new JLabel("RG:");
+		lblRgClienteComprador.setBounds(286, 60, 18, 14);
+		ppanelInfo.add(lblRgClienteComprador);
+		
+		ftRgClienteComprador = new JFormattedTextField(Mascara.setMaskRgInTf(ftRgClienteComprador));
+		ftRgClienteComprador.setBounds(329, 57, 96, 20);
+		ppanelInfo.add(ftRgClienteComprador);
+		ftRgClienteComprador.setColumns(10);
+		
+		txtNomeClienteComprador = new JTextField();
+		txtNomeClienteComprador.setBounds(90, 27, 327, 20);
+		ppanelInfo.add(txtNomeClienteComprador);
+		txtNomeClienteComprador.setColumns(10);
 		
 		setLocationRelativeTo(null);		
 	}
@@ -313,7 +298,7 @@ public class frmCadastroClienteComprador extends JFrame {
 		txtNomeClienteComprador.setText("");
 		ftCpfClienteComprador.setText("");
 		ftRgClienteComprador.setText("");
-		txtNacionalidadeClienteComprador.setText("");
+		//txtNacionalidadeClienteComprador.setText("");
 		txtEnderecoClienteComprador.setText("");
 		txtNumeroClienteComprador.setText("");
 		txtComplementoClienteComprador.setText("");
@@ -322,7 +307,7 @@ public class frmCadastroClienteComprador extends JFrame {
 		ftTelefoneCelularClienteComprador.setText("");
 		txtRendaClienteComprador.setText("");
 		txtEmailClienteComprador.setText("");
-		txtSiteClienteComprador.setText("");
+		//txtSiteClienteComprador.setText("");
 	}
 	
 	public ClienteComprador getBean() throws EntradaUsuarioException{
@@ -333,29 +318,16 @@ public class frmCadastroClienteComprador extends JFrame {
 		CliComp.setRg(TelaUtil.getRg(ftRgClienteComprador, true));
 		CliComp.setRenda(TelaUtil.getCampoObrigatorio(txtRendaClienteComprador, true));
 		CliComp.setEstadoCivil(estadoCivil[comboBoxEstadoCivil.getSelectedIndex()]);
-		CliComp.setNacionalidade(TelaUtil.getCampoObrigatorio(txtNacionalidadeClienteComprador, false));
+		//CliComp.setNacionalidade(TelaUtil.getCampoObrigatorio(txtNacionalidadeClienteComprador, false));
 		CliComp.setEndereco(TelaUtil.getCampoObrigatorio(txtEnderecoClienteComprador, true));
 		CliComp.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroClienteComprador, true));
 		CliComp.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoClienteComprador, true));
 		CliComp.setCep(TelaUtil.getCep(ftCepClienteComprador, true));
 		CliComp.setEmailPessoal(TelaUtil.getEmail(txtEmailClienteComprador));
-		CliComp.setSiteClienteComprador(TelaUtil.getCampoObrigatorio(txtSiteClienteComprador, false));
+		//CliComp.setSiteClienteComprador(TelaUtil.getCampoObrigatorio(txtSiteClienteComprador, false));
 		CliComp.setTelefoneResidencial(TelaUtil.getTelefone(ftTelefoneResidencialClienteComprador, false));
 		CliComp.setTelefoneCelular(TelaUtil.getCelular(ftTelefoneCelularClienteComprador, true));
 		
 		return CliComp;
 	}
-	
-	/*private void salvarClienteComprador(){
-		try{
-			ClienteComprador CliComp = getBean();
-			new ClienteCompradorFisicaDAO().inserirClienteComprador(CliComp);
-			limpaFormulario();
-			JOptionPane.showMessageDialog(this, "Cadastro efetuado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
-		}catch(DAOException e){
-			e.printStackTrace();
-		} catch (EntradaUsuarioException e) {
-			e.printStackTrace();
-		}
-	}*/
 }

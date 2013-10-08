@@ -1,8 +1,8 @@
 package br.com.sani.bean;
 
-public class BeanClienteCompradorJuridica {
+public class BeanClienteCompradorJuridica extends BeanClienteComprador{
 	
-	private BeanClienteComprador codCliComprador;
+	//private BeanClienteComprador codCliComprador;
 	
 	private String razaoSocial;
 	private String cnpj;
@@ -42,11 +42,11 @@ public class BeanClienteCompradorJuridica {
 	public void setRamoAtividade(String ramoAtividade) {
 		this.ramoAtividade = ramoAtividade;
 	}
-	public BeanClienteComprador getCodCliComprador() {
+	/*public BeanClienteComprador getCodCliComprador() {
 		return codCliComprador;
 	}
 	public void setCodCliComprador(BeanClienteComprador codCliComprador) {
 		this.codCliComprador = codCliComprador;
-	}
+	}*/
 	
 }

@@ -14,20 +14,20 @@ import br.com.sani.bean.Metas;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.DbUtil;
 
-public class ClienteCompradorFisicaDAO {
+public class ClienteCompradorDAO {
 
 	private static final String EXCLUIR_CLIENTE_COMPRADOR_FISICA = 
-			"delete from TB_CLI_COMPRADOR where NOME_CLI_COMP = ?";
+			"delete from tbClienteComprador where id_ClienteComprador = ?";
 	
 	private static final String INSERIR_CLIENTE_COMPRADOR_FISICA =
-			"insert into TB_CLI_COMPRADOR" +
+			"insert into tbClienteComprador" +
 			"(nome_ClienteComprador," +
 			"sexo_ClienteComprador," +
 			"cpf_ClienteComprador," +
 			"rg_ClienteComprador," +
 			"renda_ClienteComprador," +
 			"estadoCivil_ClienteComprador," +
-			"nacionalidade_ClienteComprador," +
+			//"nacionalidade_ClienteComprador," +
 			"endereco_ClienteComprador," +
 			"numeroEndereco_ClienteComprador," +
 			"complementoEndereco_ClienteComprador," +
@@ -35,19 +35,19 @@ public class ClienteCompradorFisicaDAO {
 			"telefoneResidencial_ClienteComprador," +
 			"telefoneCelular_ClienteComprador," +
 			"email_ClienteComprador," +
-			"site_ClienteComprador," +
+			//"site_ClienteComprador," +
 			"id_ClienteComprador)" +
 			"values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	private static final String ATUALIZAR_CLIENTE_COMPRADOR_FISICA =
-			"update TB_CLI_COMPRADOR set " +
+			"update tbClienteComprador set " +
 			"nome_ClienteComprador = ? " +
 			"sexo_ClienteComprador = ? " +
 			"cpf_ClienteComprador = ? " +
 			"rg_ClienteComprador = ? " +
 			"renda_ClienteComprador = ?" +
 			"estadoCivil_ClienteComprador = ? " +
-			"nacionalidade_ClienteComprador = ? " +
+			//"nacionalidade_ClienteComprador = ? " +
 			"endereco_ClienteComprador = ? " +
 			"numeroEndereco_ClienteComprador = ? " +
 			"complementoEndereco_ClienteComprador = ? " +
@@ -55,7 +55,7 @@ public class ClienteCompradorFisicaDAO {
 			"telefoneResidencial_ClienteComprador = ? " +
 			"telefoneCelular_ClienteComprador = ? " +
 			"email_ClienteComprador = ? " +
-			"site_ClienteComprador = ? " +			
+			//"site_ClienteComprador = ? " +			
 			"where id_ClienteComprador = ? ";
 	
 	/*private static final String VALIDAR_LOGIN_SENHA = 
@@ -68,13 +68,13 @@ public class ClienteCompradorFisicaDAO {
 			"cc.senha_funcionario = ?";*/
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA =
-			"select * from TB_CLI_COMPRADOR order by nome_ClienteComprador";
+			"select * from tbClienteComprador order by nome_ClienteComprador";
 
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA_NOME =
-			"select * from TB_CLI_COMPRADOR where nome_ClienteComprador like ? order by nome_ClienteComprador";
+			"select * from tbClienteComprador where nome_ClienteComprador like ? order by nome_ClienteComprador";
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA_ID = 
-			"select * from TB_CLI_COMPRADOR where COD_CLI_COMPRADOR = ?";
+			"select * from tbClienteComprador where id_ClienteComprador = ?";
 	
 	private BeanClienteComprador getBean(ResultSet result) throws SQLException, DAOException{
 		BeanClienteComprador cliComp = new BeanClienteComprador();
@@ -94,11 +94,13 @@ public class ClienteCompradorFisicaDAO {
 		ResultSet result = null;
 		try{
 			statement = conn.prepareStatement(INSERIR_CLIENTE_COMPRADOR_FISICA);
-			//statement.setInt(1, cliComp.getCodCliComprador());
-			//statement.setString(2, cliCompFis.getDescrMeta());
-			//statement.setDate(3, DbUtil.getSqlDate(cliCompFis.getDataInicio()));
-			//statement.setDate(4, DbUtil.getSqlDate(cliCompFis.getDataFim()));
-			//statement.setString(5, "A");
+			statement.setInt(1, cliComp.getCodCliComprador());
+			statement.setString(2, cliComp.getCpf());
+			statement.setString(3, cliComp.getRg());
+			statement.setString(4, cliComp.getProfissao());
+			statement.setString(5, cliComp.getRenda());
+			statement.setString(6, cliComp.getCep());
+			
 			
 			statement.executeUpdate();
 		}catch(SQLException e){

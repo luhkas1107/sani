@@ -1,9 +1,9 @@
 package br.com.sani.bean;
 
-public class BeanClienteCompradorFisica {
+public class BeanClienteCompradorFisica extends BeanClienteComprador {
 	
-	private BeanClienteComprador codCliComprador;
-	private BeanClienteComprador cep;
+	//private BeanClienteComprador codCliComprador;
+	//private BeanClienteComprador cep;
 		
 	private String nome;
 	private String rg;
@@ -17,7 +17,7 @@ public class BeanClienteCompradorFisica {
 	
 	//Getters & Setters
 	
-	public BeanClienteComprador getCodCliComprador() {
+	/*public BeanClienteComprador getCodCliComprador() {
 		return codCliComprador;
 	}
 	public void setCodCliComprador(BeanClienteComprador codCliComprador) {
@@ -28,7 +28,8 @@ public class BeanClienteCompradorFisica {
 	}
 	public void setCep(BeanClienteComprador cep) {
 		this.cep = cep;
-	}
+	}*/
+	
 	public String getNome() {
 		return nome;
 	}
