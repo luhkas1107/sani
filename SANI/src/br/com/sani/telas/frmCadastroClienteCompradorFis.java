@@ -383,6 +383,10 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 		pnEndereco.add(txtEstado);
 		
 		btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnPesquisar.setBounds(321, 27, 91, 20);
 		pnEndereco.add(btnPesquisar);
 		
