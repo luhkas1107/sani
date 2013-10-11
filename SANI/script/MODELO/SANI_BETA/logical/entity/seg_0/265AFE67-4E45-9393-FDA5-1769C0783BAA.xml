@@ -16,6 +16,21 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="COD_CLI_COMPRADOR" id="DAAAC27B-FF90-9591-81D6-E3D9461C6DB0">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:54:07 UTC</createdTime>
+<generatorID>721A24C3-CC56-C798-F680-1D50EAFD0172</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
+</engineerTo>
+<referedAttribute>3008591A-A0E1-3912-DBB4-87FB969F7B1B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
 <Attribute name="RAZAO_SOCIAL" id="46948871-7B34-65A1-B048-12243740A7F5">
 <createdBy>usuario</createdBy>
 <createdTime>2013-09-28 18:42:52 UTC</createdTime>
@@ -80,22 +95,6 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>80</dataTypeSize>
 </Attribute>
-<Attribute name="COD_CLI_COMPRADOR" id="DAAAC27B-FF90-9591-81D6-E3D9461C6DB0">
-<createdBy>usuario</createdBy>
-<createdTime>2013-09-28 22:54:07 UTC</createdTime>
-<generatorID>721A24C3-CC56-C798-F680-1D50EAFD0172</generatorID>
-<ownerDesignName>SANI_BETA</ownerDesignName>
-<engineerTo>
-<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<referedAttribute>3008591A-A0E1-3912-DBB4-87FB969F7B1B</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>11</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="2959BED4-6E7B-A88C-7E45-9BCED17719ED" name="TB_CLI_COMP_JURIDICA PK">
@@ -107,6 +106,9 @@
 <item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <pk>true</pk>
+<usedAttributes>
+<attributeRef>DAAAC27B-FF90-9591-81D6-E3D9461C6DB0</attributeRef>
+</usedAttributes>
 </identifier>
 </identifiers>
 </Entity>

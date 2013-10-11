@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="AB2665A7-EA7E-592F-65E3-D78C387482C8" name="TB_CLIENTE_COMPRADOR" seqName="seg_0"/>
+   <object objectType="Table" objectID="C0B99E5B-11C6-9AD5-9AB0-F84309EBE53E" name="TB_CLIENTE_PROPRIETARIO" seqName="seg_0"/>
+   <object objectType="Table" objectID="B849BFE0-DB20-C927-76A7-7C5D99492C3D" name="TB_CLI_COMP_FISICA" seqName="seg_0"/>
+   <object objectType="Table" objectID="6FDBC5C7-0A90-A524-AEDE-3EFBE3D96781" name="TB_CLI_COMP_JURIDICA" seqName="seg_0"/>
+   <object objectType="Table" objectID="BD946837-B602-05AD-2462-26E553194F39" name="TB_CLI_PROP_FISICA" seqName="seg_0"/>
+   <object objectType="Table" objectID="2F49663B-5375-19A7-E272-DA5DA9C640D9" name="TB_CLI_PROP_JURIDICA" seqName="seg_0"/>
+   <object objectType="Table" objectID="375CFF15-C559-E466-DA0A-955072328BD1" name="TB_CORRETOR" seqName="seg_0"/>
+   <object objectType="Table" objectID="145557C1-EB00-B8F1-142B-3F169A76788A" name="TB_GRUPO" seqName="seg_0"/>
+   <object objectType="Table" objectID="9841BD73-E6E9-D43B-B390-B6B6F57E665F" name="TB_IMAGENS_IMOVEL" seqName="seg_0"/>
+   <object objectType="Table" objectID="1F6303A9-C1E4-1E6D-7E3C-FE1F5F886EF0" name="TB_IMOVEL" seqName="seg_0"/>
+   <object objectType="Table" objectID="65122B7E-20D6-9845-7C43-E48F77C7ED3E" name="TB_LISTA_REGRA" seqName="seg_0"/>
+   <object objectType="Table" objectID="70939641-4CBA-D4B4-794A-316A2B3F77BF" name="TB_METAS" seqName="seg_0"/>
+   <object objectType="Table" objectID="4D6BB1C9-9540-081B-4433-246F8587E6B1" name="TB_PROPOSTA" seqName="seg_0"/>
+   <object objectType="Table" objectID="88BBBA16-04C7-4171-92C3-72705B84EB87" name="TB_REGRA" seqName="seg_0"/>
+   <object objectType="Table" objectID="41D163C8-5C82-8D77-94BF-CD888C14C227" name="TB_USUARIO" seqName="seg_0"/>
+   <object objectType="Table" objectID="69A87E51-6C66-3698-71D3-4B74AC84C7C4" name="TB_VENDA_LOCACAO" seqName="seg_0"/>
+   <object objectType="Table" objectID="E742B8CC-5ADC-4895-ADA7-90E5756F5EA0" name="tbBairro" seqName="seg_0"/>
+   <object objectType="Table" objectID="E59E2EF5-AA83-895A-8EF7-434E97339544" name="tbCidade" seqName="seg_0"/>
+   <object objectType="Table" objectID="BC321EDD-5A68-2A7F-DCF6-DB8292EB6D87" name="tbEndereco" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="2DB45899-BFD7-9172-D7AF-AF4297BBC123" name="FK_BAIRRO_ENDERECO" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="9A688BCD-DAE6-DF8F-E957-296B38A6E4E5" name="FK_CIDADE_BAIRRO" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="F5E44E72-4BDF-BE82-98FA-ADE78963F1BD" name="FK_CIDADE_ENDERECO" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="34C1EE51-9CDC-F52A-DD47-F3F6C0D46DF3" name="FK_CLI_COMP_PESS_FIS" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="36F284DE-046B-884A-1706-7D8D1499551B" name="FK_CLI_COMP_PESS_JUR" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="D9927C6E-ED9F-E8BA-CE87-BC7B5E8A4D60" name="FK_CLI_COMP_PROPOSTA" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="45EF8AFC-BB26-0F03-7E3E-1252820B8EDE" name="FK_CLI_PROPRIETARIO_IMOVEL" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="28BA0B45-88F3-CD74-9F75-F73BBEEB0DD7" name="FK_CLI_PROP_PESS_FISI" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="58EE9D1D-9C37-2EA2-85C7-4075234E5325" name="FK_CLI_PROP_PESS_JUR" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="12723084-D733-3D16-A834-6E83ECD47EC5" name="FK_CORRETOR_IMOVEL" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="0884F05B-0DFD-3CE4-69E2-72FDDC83DFDD" name="FK_CORRETOR_META" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="04C59329-394F-98A3-A556-5DE724822BD1" name="FK_ENDERECO_CLI_COMP" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="1F13CFBF-A7EE-F4AF-D6E8-8BBE6C2C6030" name="FK_ENDERECO_CLI_PROP" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="864CE8A5-2332-05EA-7D9A-BC9BCF5E49BB" name="FK_ENDERECO_CORRETOR" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="0EFF9EB9-E38B-F682-49F6-6F2929D0B58C" name="FK_ENDERECO_IMOVEL" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="B8333092-E7F0-F8EB-C19B-D3D93C45B521" name="FK_GRUPO_LISTA" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="D4AF4660-4E9B-CBF9-6AB7-4237C6F5B138" name="FK_GRUPO_USUARIO" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="66263EE8-9C21-981F-D642-628C91487500" name="FK_IMOVEL_IMAGENS" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="CFD012F6-AB54-4C71-FA96-7979CAA955D2" name="FK_IMOVEL_PROPOSTA" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="E78293A8-5CEF-714D-723D-C1318253D23E" name="FK_PROPOSTA_VENDA_LOC" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="9552039D-CDB9-B272-1E1D-59A1D55BFD3B" name="Relation_20" seqName="seg_0"/>
+   <object objectType="FKArc" objectID="2066ED5F-0620-63D1-3F51-604B8334415A" name="FKArc_1" seqName="seg_0"/>
+   <object objectType="FKArc" objectID="D05752E4-B58C-CDB8-02A2-1D381ED37ECA" name="FKArc_2" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

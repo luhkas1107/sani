@@ -1,0 +1,48 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="145557C1-EB00-B8F1-142B-3F169A76788A" name="TB_GRUPO">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>230438D2-20E5-6C46-CDB8-46EDB7DF4723</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COD_GRUPO" id="49212836-A2E3-1471-F434-1862A03F655A">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>9590AACC-66A0-1BDA-178D-12F6B0A7A314</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NOME_GRUPO" id="FFFB2A84-7037-7527-2BFA-1D364E57E67F">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>87B53ADA-D235-92A5-8707-3FB927D6CEBE</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C4443D80-7228-AA0C-8E0B-9B2FA12BD332" name="TB_GRUPO PK">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>E0C157A4-EAE3-C59E-AA9A-2F331D75D671</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="49212836-A2E3-1471-F434-1862A03F655A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

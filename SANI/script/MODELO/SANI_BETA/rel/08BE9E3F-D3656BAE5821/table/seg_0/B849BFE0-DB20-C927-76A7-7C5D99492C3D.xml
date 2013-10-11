@@ -1,0 +1,162 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B849BFE0-DB20-C927-76A7-7C5D99492C3D" name="TB_CLI_COMP_FISICA">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>95BC5098-886E-0A4C-8BC6-91185AF78397</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COD_CLI_COMPRADOR" id="CDDEE837-9F4F-64EC-F05C-B3F973B3C77E">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>1613BC24-D386-83E0-7807-E0B67E99882A</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>EF1DA357-796B-E38F-0B29-1801F98A3D57</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="34C1EE51-9CDC-F52A-DD47-F3F6C0D46DF3" referredColumn="EF1DA357-796B-E38F-0B29-1801F98A3D57"/>
+</associations>
+</Column>
+<Column name="NOME_PESSOA" id="43276026-CD5B-6D7E-0EBC-E27C1AB554B0">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>D3A4D166-BF22-A6C4-F309-6A6BD555BD79</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>120</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RG_PESSOA" id="D8A68391-E43B-7C31-16CD-641C885AC873">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>1F856C23-45B0-58E1-3E8A-51B1DA4707F6</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>16</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CPF_PESSOA" id="EE040C61-0A92-0F2E-DC18-441C414B0C67">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>E307760E-60C8-538A-FCB8-EB9530516951</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DT_NASCIMENTO" id="68F029DB-461E-D71E-3846-910629BA796B">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>D5F7EEFB-E2AD-40A4-294D-6695D2191484</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DT_FALESCIMENTO" id="9B393208-3796-28C7-17AD-DFCE0A90D6B5">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>FC2ED7F9-E9A9-3F52-52FD-6E1747C186D3</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SEXO_PESSOA" id="D80A084C-24F5-17FA-232D-58C29B7FC4F0">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>209B448D-B0EA-6AB6-E67A-4DFFDD1C7B2A</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>F</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EST_CIVIL_PESSOA" id="1750FC75-E4CC-20BC-9080-44CAF0649D25">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>DA72003C-EEA3-10DC-9F22-5125DF8555ED</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RENDA" id="B37ACB51-1274-D31B-D9AB-E88D3A3C1CBF">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>221F1121-EBD1-B82E-8A2E-4A7694E9979E</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PROFISSAO" id="60E2CFB5-DC7C-E9E4-7DF5-BE606F60258E">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>9738C043-29AF-2CAD-5E3D-107E9E154FAE</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMAIL" id="7A1464EA-BE93-9A9B-FE65-5F2E9FB07A63">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>D620C908-A10B-0911-68FF-1E01AF314374</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>120</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="08B8F9AA-36D8-11C6-3C3E-1365E6B14F90" name="TB_CLI_COMP_FISICA PK">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>5ACE6DB6-ED44-A5DB-FC91-48A747F701B5</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CDDEE837-9F4F-64EC-F05C-B3F973B3C77E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EE46F55C-6BA1-8FD5-45EC-409CB4650C51" name="FK_CLI_COMP_PESS_FIS">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>39816918-0D53-D323-78C8-F9A98CCA03E0</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CDDEE837-9F4F-64EC-F05C-B3F973B3C77E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -13,10 +13,10 @@ import br.com.sani.exception.*;
 
 public class DbUtil {
 
-	private static final String URL_DATABASE = "jdbc:sqlserver://localhost:1433;databaseName=SANI_DO_ZERO;";
+	private static final String URL_DATABASE = "jdbc:sqlserver://localhost:1433;databaseName=SANI;";
 	private static final String DRIVER_JDBC = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		private static final String USUARIO_DB = "sa";
-	private static final String SENHA_USUARIO_DB = "12345678";
+	private static final String SENHA_USUARIO_DB = "123456";
 	
 	static {
 		try {
@@ -29,7 +29,7 @@ public class DbUtil {
 	public static Connection getConnection() throws DAOException {
 		try {
 			Connection connection = DriverManager.getConnection(URL_DATABASE, USUARIO_DB, SENHA_USUARIO_DB);
-			connection.setAutoCommit(true);
+			connection.setAutoCommit(false);
 			return connection;
 		} catch (SQLException e) {
 			throw new DAOException(e);

@@ -33,7 +33,7 @@ public class EnderecoDAO {
 		end.setEndereco(result.getString("ENDERECO"));
 		end.setBairro(result.getString("BAIRRO"));
 		end.setCidade(result.getString("CIDADE"));
-		end.setUf(result.getString("UF"));
+		end.setEstado(result.getString("UF"));
 		
 		return end;
 		

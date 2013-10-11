@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_ENDERECO_CLI_COMP" directorySegmentName="seg_0" id="CCD4AC84-1854-1B54-1C64-A4D3B76937BD">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:02:30 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
+</engineerTo>
+<sourceTransferable>false</sourceTransferable>
+<targetTransferable>false</targetTransferable>
+<sourcePk>CABF8639-9B23-F368-1992-B4A392BD77CC</sourcePk>
+<identifying>false</identifying>
+<optionalSource>false</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>C40DA5EC-0EF0-21D4-2796-7BB4202B74C5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>F88506E1-328D-74A9-27AB-0975671EE291</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

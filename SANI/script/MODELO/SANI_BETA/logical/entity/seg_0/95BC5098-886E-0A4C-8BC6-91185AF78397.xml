@@ -16,6 +16,21 @@
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="COD_CLI_COMPRADOR" id="1613BC24-D386-83E0-7807-E0B67E99882A">
+<createdBy>usuario</createdBy>
+<createdTime>2013-09-28 22:53:17 UTC</createdTime>
+<generatorID>39816918-0D53-D323-78C8-F9A98CCA03E0</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<engineerTo>
+<item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
+</engineerTo>
+<referedAttribute>3008591A-A0E1-3912-DBB4-87FB969F7B1B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+</Attribute>
 <Attribute name="NOME_PESSOA" id="D3A4D166-BF22-A6C4-F309-6A6BD555BD79">
 <createdBy>usuario</createdBy>
 <createdTime>2013-09-28 18:42:33 UTC</createdTime>
@@ -88,10 +103,10 @@
 <engineerTo>
 <item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
 <defaultValue>F</defaultValue>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
-<domain>FBD4D20D-464B-A8D7-2844-BBDBC1935952</domain>
 </Attribute>
 <Attribute name="EST_CIVIL_PESSOA" id="DA72003C-EEA3-10DC-9F22-5125DF8555ED">
 <createdBy>usuario</createdBy>
@@ -101,9 +116,9 @@
 <engineerTo>
 <item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
-<domain>2773CFDB-55AD-BE13-0BBA-96BD2E2D9572</domain>
 </Attribute>
 <Attribute name="RENDA" id="221F1121-EBD1-B82E-8A2E-4A7694E9979E">
 <createdBy>usuario</createdBy>
@@ -132,21 +147,18 @@
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>255</dataTypeSize>
 </Attribute>
-<Attribute name="COD_CLI_COMPRADOR" id="1613BC24-D386-83E0-7807-E0B67E99882A">
-<createdBy>usuario</createdBy>
-<createdTime>2013-09-28 22:53:17 UTC</createdTime>
-<generatorID>39816918-0D53-D323-78C8-F9A98CCA03E0</generatorID>
+<Attribute name="EMAIL" id="D620C908-A10B-0911-68FF-1E01AF314374">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:04:47 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
 <item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<referedAttribute>3008591A-A0E1-3912-DBB4-87FB969F7B1B</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<dataTypePrecision>11</dataTypePrecision>
-<dataTypeScale>0</dataTypeScale>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>120</dataTypeSize>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -159,6 +171,9 @@
 <item key="4169D8A0-E27B-C2C1-BF06-D3342893A6CB" value="true"/>
 </engineerTo>
 <pk>true</pk>
+<usedAttributes>
+<attributeRef>1613BC24-D386-83E0-7807-E0B67E99882A</attributeRef>
+</usedAttributes>
 </identifier>
 </identifiers>
 </Entity>

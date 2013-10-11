@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AB2665A7-EA7E-592F-65E3-D78C387482C8" name="TB_CLIENTE_COMPRADOR">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>F88506E1-328D-74A9-27AB-0975671EE291</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COD_CLI_COMPRADOR" id="EF1DA357-796B-E38F-0B29-1801F98A3D57">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>3008591A-A0E1-3912-DBB4-87FB969F7B1B</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CEP" id="DD3A0702-8FA8-AE44-C054-F33F33AC96D1">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>085DC7EC-B3AF-ACD6-55CD-F7557CF67A14</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8</dataTypeSize>
+<delegate>5598D93A-AB7F-B78A-A3F1-591AE8EE6AF1</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="04C59329-394F-98A3-A556-5DE724822BD1" referredColumn="5598D93A-AB7F-B78A-A3F1-591AE8EE6AF1"/>
+</associations>
+</Column>
+<Column name="NR_ENDERECO" id="C4BC7C8A-F78D-CF7C-E727-6367AD01E75C">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>E0E3F9DC-2AB6-63DB-760B-FF7EE1A9764C</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COMPL_ENDERECO" id="4E56BE91-7E0B-7F3F-FCE7-7A7044E08C71">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>9EED9E3F-9692-A4E2-E9BE-5A1997926458</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TEL_CLI_COMPRADOR" id="892E55B3-B4E5-E02B-CBF4-733C9EF68C7E">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>5A8E5232-BD5F-BD07-F71D-B54668BA7C83</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CEL_CLI_COMPRADOR" id="5912C290-4D70-491B-FEAD-237584F9D58A">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>67B084CE-B0A1-4A7C-8E6A-FFDA6174D6EB</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="92627046-A378-72EA-AEF8-9FCE1060E5DB" name="PK_TB_CLIENTE_COMPRADOR">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:33 UTC</createdTime>
+<generatorID>E5EF385A-35FA-2A05-1661-32027EC9352F</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EF1DA357-796B-E38F-0B29-1801F98A3D57"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="374CC07A-C094-6810-8EC6-2B70918A2E7D" name="FK_ENDERECO_CLI_COMP">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>CCD4AC84-1854-1B54-1C64-A4D3B76937BD</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DD3A0702-8FA8-AE44-C054-F33F33AC96D1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -133,7 +133,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JMenuItem mntmClienteComprador = new JMenuItem("Cliente Comprador");
 		mntmClienteComprador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmCadastroClienteComprador frameCCC = new frmCadastroClienteComprador();
+			frmCadastroClienteCompradorFis frameCCC = new frmCadastroClienteCompradorFis();
 			frameCCC.setVisible(true);
 			}
 		});

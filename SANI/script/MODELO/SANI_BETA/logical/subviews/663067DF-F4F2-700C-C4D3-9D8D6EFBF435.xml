@@ -86,7 +86,7 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.logical.TVEntity" oid="F88506E1-328D-74A9-27AB-0975671EE291" otype="Entity" vid="54F4908A-8FBC-2508-8823-28A0693321BA">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="280" y="0" width="251" height="110"/>
+<bounds x="280" y="0" width="251" height="132"/>
 </OView>
 </objectViews>
 <connectors>
@@ -110,8 +110,8 @@
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
 <points>
-<point x="531" y="40"/>
-<point x="610" y="40"/>
+<point x="531" y="80"/>
+<point x="610" y="80"/>
 </points>
 </Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="3A808CA3-BA73-27FD-320C-590157C304A4" otype="Relation" vid_source="DE82CF69-07EC-DF73-DAC4-124ACC055082" vid_target="3CE0CBD5-8DD3-73E1-654C-1388A45FD053">
@@ -228,6 +228,14 @@
 <point x="410" y="340"/>
 </points>
 </Connector>
+<Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="CCD4AC84-1854-1B54-1C64-A4D3B76937BD" otype="Relation" vid_source="8858048D-FF75-9168-3F71-5A258BE6B9B3" vid_target="54F4908A-8FBC-2508-8823-28A0693321BA">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="960" y="192"/>
+<point x="531" y="66"/>
+</points>
+</Connector>
 <Connector class="oracle.dbtools.crest.swingui.logical.TVRelation" oid="DB79B578-DE30-6C16-44B2-D3B81C14C1FF" otype="Relation" vid_source="3CE0CBD5-8DD3-73E1-654C-1388A45FD053" vid_target="8858048D-FF75-9168-3F71-5A258BE6B9B3">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <lineWidth>1</lineWidth>
@@ -264,7 +272,7 @@
 <arcs>
 <Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="2C63B5E2-F6D5-5B74-D705-014517732417" otype="Arc" vid="FD1B0D61-BDCC-51B6-ACF4-A2173439CCF3">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="260" y="-20" width="291" height="150"/>
+<bounds x="260" y="-20" width="291" height="172"/>
 </Arc>
 <Arc class="oracle.dbtools.crest.swingui.logical.TVArc" oid="77ED0544-4BD9-1DC3-AE0C-32B191D59E65" otype="Arc" vid="18493F86-C1BD-3277-343D-4759CD2E1C32">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>

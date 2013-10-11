@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4D6BB1C9-9540-081B-4433-246F8587E6B1" name="TB_PROPOSTA">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>B3649FF8-0038-56E6-608F-68D79ACA681D</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COD_PROPOSTA" id="16613031-D7E7-4B87-093E-DA26B3695DB5">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>C1534A13-623B-D28C-D321-F9E8A002A425</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COD_CLI_COMPRADOR" id="444BAD7C-7E21-C709-416F-5C18B8D80651">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>F2292ADA-2CF5-F255-A5B5-06CA1FDAFB1E</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>EF1DA357-796B-E38F-0B29-1801F98A3D57</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D9927C6E-ED9F-E8BA-CE87-BC7B5E8A4D60" referredColumn="EF1DA357-796B-E38F-0B29-1801F98A3D57"/>
+</associations>
+</Column>
+<Column name="COD_IMOVEL" id="D9B6B087-0949-4446-66C3-72CD34C5FF6F">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>D1E73E50-AB4F-5614-90F5-7E8295E125E5</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>ADF66633-66F9-4C50-0A89-87C54DEFD16B</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CFD012F6-AB54-4C71-FA96-7979CAA955D2" referredColumn="ADF66633-66F9-4C50-0A89-87C54DEFD16B"/>
+</associations>
+</Column>
+<Column name="VL_PROPOSTA" id="A5D1E89C-88E2-A079-27D8-BCAE96181CC0">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>113815C1-72E9-5F3A-6F6E-65A0AD3FC1EF</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="VALIDADE_PROPOSTA" id="2296AEF0-0429-CA82-47F3-EA0EC60D93E6">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>E9BF80F0-6CF8-528C-8950-E254425B51F3</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESTADO_PROPOSTA" id="3807BFE8-945A-B3E0-A821-A652A079F25D">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>3D1AD402-6757-6499-1012-767615509929</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>N</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ST_PROPOSTA" id="346D97D0-0925-868D-881B-7BDD48BB8B7D">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>54BE92D7-432F-CC4E-80B7-4E1899C0508C</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>A</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="63D97B43-0CD0-220B-9D4E-D467B0E666FD" name="TB_PROPOSTA PK">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>FAB7479B-E5C8-DFBA-77DC-9341A6DCC99A</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="16613031-D7E7-4B87-093E-DA26B3695DB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C14BE225-D66E-FE84-2F28-68BF1B68D76A" name="FK_CLI_COMP_PROPOSTA">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>917CE53C-4A4A-C3E0-B770-7AD891BA6472</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="444BAD7C-7E21-C709-416F-5C18B8D80651"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="26B6C892-C0CA-3499-9DB9-CE7B7054C7A7" name="FK_IMOVEL_PROPOSTA">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>60D9EB16-A795-D29F-719D-AF22D5DB29B8</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D9B6B087-0949-4446-66C3-72CD34C5FF6F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

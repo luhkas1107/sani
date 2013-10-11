@@ -11,9 +11,9 @@
 <targetTransferable>false</targetTransferable>
 <sourcePk>E5EF385A-35FA-2A05-1661-32027EC9352F</sourcePk>
 <arc>2C63B5E2-F6D5-5B74-D705-014517732417</arc>
-<identifying>false</identifying>
+<identifying>true</identifying>
 <optionalSource>true</optionalSource>
-<optionalTarget>true</optionalTarget>
+<optionalTarget>false</optionalTarget>
 <sourceCardinality>1</sourceCardinality>
 <sourceEntity>F88506E1-328D-74A9-27AB-0975671EE291</sourceEntity>
 <targetCardinalityString>*</targetCardinalityString>

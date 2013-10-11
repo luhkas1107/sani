@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9841BD73-E6E9-D43B-B390-B6B6F57E665F" name="TB_IMAGENS_IMOVEL">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>131F7DB4-2DCA-BA4C-5D8C-565304AE7AEE</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_IMAGEM" id="B8E69CDE-33CC-3982-3904-3700E3537CB1">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>351F98D8-BFE1-054C-4277-633643118D56</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COD_IMOVEL" id="504DB18F-7DCF-0CE3-1444-D95EF3556F93">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>C901BEA0-4042-D3FF-780E-9939E6560F42</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>ADF66633-66F9-4C50-0A89-87C54DEFD16B</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="66263EE8-9C21-981F-D642-628C91487500" referredColumn="ADF66633-66F9-4C50-0A89-87C54DEFD16B"/>
+</associations>
+</Column>
+<Column name="DT_IMAGEM" id="BDBD5485-6ED1-890B-CB5D-DD2A7C7DC0D8">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>B5969726-2F14-989B-9DF5-659C2E735089</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8BDB2EB4-7E0B-8AE6-2D39-0FDA34EC2109" name="TB_IMAGENS_IMOVEL PK">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>1600D3C0-6171-FE69-7175-873C8BABE596</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B8E69CDE-33CC-3982-3904-3700E3537CB1"/>
+<colUsage columnID="504DB18F-7DCF-0CE3-1444-D95EF3556F93"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4B95F213-8207-212C-665F-56B88850D8EE" name="FK_IMOVEL_IMAGENS">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>F83AD4C8-9821-192D-91C2-7FD83B801D01</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="504DB18F-7DCF-0CE3-1444-D95EF3556F93"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,178 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1F6303A9-C1E4-1E6D-7E3C-FE1F5F886EF0" name="TB_IMOVEL">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>E29E4222-2230-87F4-B2F0-DBD577E8EAE3</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COD_IMOVEL" id="ADF66633-66F9-4C50-0A89-87C54DEFD16B">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>3AFF0EA6-9071-ABAF-1A29-858131ADA1AA</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COD_CORRETOR" id="A91BACB7-D37C-B000-8AEF-042E87C743E5">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>7A38CC02-DFD2-6AB6-F1E7-61C3C3A33F72</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>1C1FB46B-8796-80C9-DFE8-08374F3137E4</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="12723084-D733-3D16-A834-6E83ECD47EC5" referredColumn="1C1FB46B-8796-80C9-DFE8-08374F3137E4"/>
+</associations>
+</Column>
+<Column name="COD_CLI_PROPRIETARIO" id="5D9D3D8F-8D3E-0EF3-CF1D-56A17A50E171">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>D8E1C8F0-6282-F838-D2D1-E3B07214507D</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>1CF5A103-331E-FF1E-87F4-407CDC9ADC00</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="45EF8AFC-BB26-0F03-7E3E-1252820B8EDE" referredColumn="1CF5A103-331E-FF1E-87F4-407CDC9ADC00"/>
+</associations>
+</Column>
+<Column name="CEP" id="C545EABA-6392-9A21-450C-38330354BE4F">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>AD0E2249-BC3C-0D24-566F-795DA2880AEE</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>8</dataTypeSize>
+<delegate>5598D93A-AB7F-B78A-A3F1-591AE8EE6AF1</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0EFF9EB9-E38B-F682-49F6-6F2929D0B58C" referredColumn="5598D93A-AB7F-B78A-A3F1-591AE8EE6AF1"/>
+</associations>
+</Column>
+<Column name="NR_ENDERECO" id="A5CAD7D9-C565-54F6-C120-F598B87FBD13">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>ADFF9AC6-5EC7-DFFE-0709-9529E7F5E020</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COMPL_ENDERECO" id="C5E441D8-BFF2-3D81-F63C-7793E1AE87B8">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>C89C4AC1-529A-1C30-ECE6-B25664AD9F17</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TP_IMOVEL" id="061B0B6F-A5C9-D2B6-AA02-F9DDF3F3FEB0">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>0BC6C074-2FB6-BC81-C8DB-972302033FDE</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>AP</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ST_IMOVEL" id="1CE12679-347D-76C9-96E6-B6258E4E049B">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>8232AED5-6AE6-64EF-2E78-F41F1F371A1F</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<defaultValue>DV</defaultValue>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="METRAGEM_IMOVEL" id="3027F450-CCF4-1884-AE10-2D23F1BCB163">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>3DDC5E9D-8BC2-3433-8744-4DF806FF73D6</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="74F651ED-158E-9CAC-B616-35338B74DACA" name="TB_PROPRIEDADE PK">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>D6398B21-3465-FCBF-A1CF-C21027E43CDB</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ADF66633-66F9-4C50-0A89-87C54DEFD16B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="35318BF2-FE37-D562-EAB3-95942FB1D611" name="FK_CLI_PROPRIETARIO_IMOVEL">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>4B2539F8-1EC0-3C27-36C0-6F4CABAB085A</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D9D3D8F-8D3E-0EF3-CF1D-56A17A50E171"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5AA89B13-CA4B-070A-E785-128ADA473495" name="FK_CORRETOR_IMOVEL">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>EC50C266-9C46-EFB8-B497-FF64957BAC2E</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A91BACB7-D37C-B000-8AEF-042E87C743E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9FC7B0E4-BC15-0E9C-25E7-3C2A3384B677" name="FK_ENDERECO_IMOVEL">
+<createdBy>Win7</createdBy>
+<createdTime>2013-10-11 06:05:34 UTC</createdTime>
+<generatorID>C3D3827B-D811-D714-34D3-43526D040443</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C545EABA-6392-9A21-450C-38330354BE4F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
