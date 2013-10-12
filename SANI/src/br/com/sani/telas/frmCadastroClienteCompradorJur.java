@@ -2,10 +2,13 @@ package br.com.sani.telas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.ScrollPane;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 import java.text.ParseException;
 
 import javax.swing.ButtonGroup;
@@ -18,22 +21,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+import org.jdesktop.swingx.JXDatePicker;
 
 import br.com.sani.bean.ClienteComprador;
+import br.com.sani.bean.ClienteCompradorFisica;
+import br.com.sani.bean.ClienteCompradorJuridica;
+import br.com.sani.bean.Endereco;
+import br.com.sani.dao.ClienteCompradorFisicaDAO;
 import br.com.sani.dao.ClienteCompradorJuridicaDAO;
+import br.com.sani.dao.EnderecoDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.exception.EntradaUsuarioException;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
-import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
-import org.jdesktop.swingx.JXDatePicker;
-import java.awt.Font;
 
 public class frmCadastroClienteCompradorJur extends JFrame {
 
@@ -59,6 +64,8 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 	private JButton btnLimpar;
 	private JButton btnCancelar;
 	private JComboBox cbRamoAtuacao;
+	private int modo = 0;
+	private ClienteCompradorJuridica cadastro;
 
 	/**
 	 * Launch the application.
@@ -95,7 +102,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteCompradorJur.class.getResource("/br/com/images/home_badge.png")));
 		setTitle("Cadastro Cliente Comprador / Pessoa Juridica");
-		setBounds(100, 100, 747, 477);
+		setBounds(100, 100, 747, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -110,17 +117,21 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		
 		btnLimpar = new JButton("Limpar Campos");
 		btnLimpar.setIcon(new ImageIcon(frmCadastroClienteCompradorJur.class.getResource("/br/com/images/clear.png")));
-		btnLimpar.setBounds(575, 302, 146, 29);
+		btnLimpar.setBounds(570, 302, 146, 29);
 		panel.add(btnLimpar);
 		
 		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnCancelar.setIcon(new ImageIcon(frmCadastroClienteCompradorJur.class.getResource("/br/com/images/delete-.png")));
-		btnCancelar.setBounds(575, 347, 146, 29);
+		btnCancelar.setBounds(570, 347, 146, 29);
 		panel.add(btnCancelar);
 		
 		btnSalvar = new JButton("Cadastrar");
 		btnSalvar.setIcon(new ImageIcon(frmCadastroClienteCompradorJur.class.getResource("/br/com/images/apply-.png")));
-		btnSalvar.setBounds(575, 257, 146, 29);
+		btnSalvar.setBounds(570, 257, 146, 29);
 		panel.add(btnSalvar);
 		
 		JPanel panelEndereco = new JPanel();
@@ -137,6 +148,13 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		
 		ftCep = new JFormattedTextField(Mascara.setMaskCepInTf(ftCep));
 		ftCep.setBounds(94, 27, 86, 20);
+		ftCep.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				buscarEndereco();
+				txtNumeroResidencia.requestFocus();
+			}
+		});
 		panelEndereco.add(ftCep);
 		ftCep.setColumns(10);
 		
@@ -289,4 +307,170 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		
 		setLocationRelativeTo(null);		
 	}
+	
+	private ClienteCompradorJuridica getBean() throws EntradaUsuarioException, ParseException{
+		
+		//primeiro eu instancio a classe pai que deve ser inserida primeiro
+		ClienteComprador cliComprador = new ClienteComprador();
+		
+		//preencho com os dados necessarios fazendo a validação de campos obrigatórios
+		cliComprador.setCep(TelaUtil.getCep(ftCep, true));
+		cliComprador.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroResidencia, true));
+		cliComprador.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplemento, false)); //false quando nao é obrig.
+		cliComprador.setTelefone(TelaUtil.getTelefone(ftTelefone, false));
+		cliComprador.setCelular(TelaUtil.getCelular(ftCelular, true));
+		
+		//verifica se está em modo edição, se estiver ele seta o id do cadastro que deseja alterar
+		if(this.modo  == 1){
+			cliComprador.setCodCliComprador(cadastro.getClienteComprador().getCodCliComprador());
+		}
+		
+		//agora eu vou instancia a classe filha que depende de um ID que ja foi inserido para ser inserida
+		ClienteCompradorJuridica cliJur = new ClienteCompradorJuridica();
+		
+		//preenche com os dados
+		cliJur.setRazaoSocial(TelaUtil.getCampoObrigatorio(txtRazaoSocial, true));
+		cliJur.setCnpj(TelaUtil.getCpf(ftCnpj, true));
+		cliJur.setInscricaoEstadual(TelaUtil.getCampoObrigatorio(ftInscEstadual, true));
+		cliJur.setDataFundacao(TelaUtil.getDateFromDatePicker(dtFundacao));
+		cliJur.setRamoAtividade(cbRamoAtuacao.getSelectedItem().toString().substring(0, 1));
+		cliJur.setEmail(TelaUtil.getEmail(txtEmail));
+		cliJur.setClienteComprador(cliComprador); //agora seto dentro da filha a classe pai.
+		
+		return cliJur;
+	}
+	
+	private void buscarEndereco(){
+		try{
+			Endereco endereco = new EnderecoDAO().buscarPorCep(TelaUtil.getCep(ftCep, true));
+			if(endereco != null){
+				txtEndereco.setText(endereco.getEndereco());
+				txtCidade.setText(endereco.getCidade());
+				txtBairro.setText(endereco.getBairro());
+				txtEstado.setText(endereco.getEstado());
+			}else{
+				JOptionPane.showMessageDialog(null, "O cep digitado não existe!");
+				ftCep.setText("");
+				ftCep.requestFocus();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	private void salvar(){
+		try{
+			ClienteCompradorJuridica bean = getBean(); //mando ele coletar os dados da tela e validadar
+			ClienteCompradorJuridicaDAO dao = new ClienteCompradorJuridicaDAO(); //intancio a dao
+			
+			dao.inserirClienteCompradorJuridica(bean);//chamo o metodo inserir e passo o bean como parametro
+			
+			//se não der erro ele exibe essa mensagem
+			JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+			
+			//limpa o formulario
+			//limparFormulario();
+		}catch(DAOException e){
+			JOptionPane.showMessageDialog(this, "Erro ao tentar Salvar os Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * Este método atualiza os dados no banco
+	 */
+	private void atualizar(){
+		try{
+			ClienteCompradorJuridica bean = getBean(); //mando ele coletar os dados da tela e validadar
+			ClienteCompradorFisicaDAO dao = new ClienteCompradorFisicaDAO(); //intancio a dao
+			
+			dao.atualizarClienteCompradorJuridica(bean);//chamo o metodo atualizar e passo o bean como parametro
+			
+			//se não der erro ele exibe essa mensagem
+			JOptionPane.showMessageDialog(this, "Dados atualizados com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+			
+			//volta para modo de cadastro
+			modoCadastro();
+		}catch(DAOException e){
+			JOptionPane.showMessageDialog(this, "Erro ao tentar Atualizar os Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private void exluir(){
+		//verifica se o usuário que mesmo exluir
+		int question = JOptionPane.showConfirmDialog(this, "Deseja realmente exluir este cadastro?", "Atenção!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		if(question == 0){
+			try{
+				ClienteCompradorFisicaDAO dao = new ClienteCompradorFisicaDAO(); //intancio a dao
+				
+				int codigoCliente = this.cadastro.getClienteComprador().getCodCliComprador(); //pega o id do cadastro que esta sendo editado
+				
+				dao.exluirClienteCompradorFisica(codigoCliente);//chamo o metodo atualizar e passo o codigo como parametro
+				
+				//se não der erro ele exibe essa mensagem
+				JOptionPane.showMessageDialog(this, "Dados exluídos com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+				
+				//volta para modo de cadastro
+				modoCadastro();
+			}catch(DAOException e){
+				JOptionPane.showMessageDialog(this, "Erro ao tentar exluir os Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void modoEdicao(ClienteCompradorJuridica cadastro){
+		setTitle("EDIÇÃO de Cadastro Cliente Comprador / Pessoa Física");
+		btnSalvar.setText("Salvar");
+		btnCancelar.setText("Deletar");
+		this.modo = 1;
+		
+		txtRazaoSocial.setText(cadastro.getRazaoSocial());
+		txtComplemento.setText(cadastro.getClienteComprador().getComplementoEndereco());
+		txtEmail.setText(cadastro.getEmail());
+		txtNumeroResidencia.setText(cadastro.getClienteComprador().getNumeroEndereco());
+		//txtProfissao.setText(cadastro.getProfissao());
+		//txtRenda.setText(TelaUtil.formataDinheiro(cadastro.getRenda()));
+		//txtRg.setText(cadastro.getRg());
+		ftCelular.setText(cadastro.getClienteComprador().getCelular());
+		ftCep.setText(cadastro.getClienteComprador().getCep());
+		ftInscEstadual.setText(cadastro.getInscricaoEstadual());
+		ftTelefone.setText(cadastro.getClienteComprador().getTelefone());
+		dtFundacao.setDate(cadastro.getDataFundacao());
+		
+		this.cadastro = cadastro;
+		
+		buscarEndereco();
+	}
+	
+	private void modoCadastro(){
+		//limparFormulario();
+		setTitle("Cadastro Cliente Comprador / Pessoa Física");
+		btnSalvar.setText("Cadastrar");
+		btnCancelar.setText("Cancelar");
+		this.modo = 0;
+		
+		this.cadastro = null;
+	}
+	
+	
 }
