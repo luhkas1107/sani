@@ -1,14 +1,18 @@
 package br.com.sani.bean;
 
-public class BeanClienteCompradorJuridica extends ClienteComprador{
+import java.util.Date;
+
+public class ClienteCompradorJuridica {
 	
 	//private ClienteComprador codCliComprador;
 	
 	private String razaoSocial;
 	private String cnpj;
 	private String inscricaoEstadual;
-	private String dataFundacao;
+	private Date dataFundacao;
 	private String ramoAtividade;
+	
+	private ClienteComprador clienteComprador;
 	
 	//Getters & Setters
 	
@@ -30,12 +34,14 @@ public class BeanClienteCompradorJuridica extends ClienteComprador{
 	public void setInscricaoEstadual(String inscricaoEstadual) {
 		this.inscricaoEstadual = inscricaoEstadual;
 	}
-	public String getDataFundacao() {
+	
+	public Date getDataFundacao() {
 		return dataFundacao;
 	}
-	public void setDataFundacao(String dataFundacao) {
+	public void setDataFundacao(Date dataFundacao) {
 		this.dataFundacao = dataFundacao;
 	}
+	
 	public String getRamoAtividade() {
 		return ramoAtividade;
 	}
@@ -48,5 +54,11 @@ public class BeanClienteCompradorJuridica extends ClienteComprador{
 	public void setCodCliComprador(ClienteComprador codCliComprador) {
 		this.codCliComprador = codCliComprador;
 	}*/
+	public ClienteComprador getClienteComprador() {
+		return clienteComprador;
+	}
+	public void setClienteComprador(ClienteComprador clienteComprador) {
+		this.clienteComprador = clienteComprador;
+	}
 	
 }

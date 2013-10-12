@@ -109,8 +109,7 @@ public class ClienteCompradorFisicaDAO {
 		
 		return retorno;
 	}
-	
-	
+		
 	//INSERIR
 	public void inserirClienteCompradorFisica(ClienteCompradorFisica cliComp) throws DAOException, SQLException{
 		Connection conn = DbUtil.getConnection();
@@ -148,8 +147,7 @@ public class ClienteCompradorFisicaDAO {
 	}
 	
 	//ATUALIZAR
-	
-	public void atualizarClienteCompradorFisica(ClienteCompradorFisica cliComp) throws DAOException, SQLException{
+		public void atualizarClienteCompradorFisica(ClienteCompradorFisica cliComp) throws DAOException, SQLException{
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -225,27 +223,5 @@ public class ClienteCompradorFisicaDAO {
 		
 		return retorno;
 	}
-	
-	public ClienteComprador excluirClienteComprador(int codCliComprador) throws DAOException{		
-		Connection conn = DbUtil.getConnection();
-		PreparedStatement statement = null;
-		ResultSet result = null;
-		ClienteComprador retorno = null;
-		try{
-			statement = conn.prepareStatement(CONSULTA_CLIENTE_COMPRADOR_FISICA_ID);
-			statement.setInt(1, codCliComprador);
-			result = statement.executeQuery();
-			if(result.next()){
-				retorno = getBean(result);
-			}
-		}catch(SQLException e){
-			throw new DAOException(e);
-		}finally{
-			DbUtil.close(conn, statement, result);
-		}
-		
-		return retorno;
-	}
-	
 	
 }
