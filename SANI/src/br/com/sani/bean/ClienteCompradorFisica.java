@@ -19,8 +19,8 @@ public class ClienteCompradorFisica {
 	
 	private ClienteComprador clienteComprador; // classe pai, ao invés de estender eu crio uma variavel com get e set
 
+	//Getters & Setters
 	
-		
 	public String getEmail() {
 		return email;
 	}

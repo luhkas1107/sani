@@ -517,7 +517,7 @@ public class frmCadastroFuncionario extends JFrame {
 			String cep = TelaUtil.getCep(ftCepFuncionario, false);
 			Endereco end = new EnderecoDAO().buscarPorCep(cep);
 			if(end != null){
-				txtEnderecoFuncionario.setText(end.getEndereco() + " - " + end.getBairro() + ", " + end.getCidade() + "/" + end.getUf());
+				txtEnderecoFuncionario.setText(end.getEndereco() + " - " + end.getBairro() + ", " + end.getCidade() + "/" + end.getEstado());
 				txtNumeroEnderecoFuncionario.requestFocus();
 			}else{
 				JOptionPane.showMessageDialog(this, "O CEP Digitado é invalido!");
