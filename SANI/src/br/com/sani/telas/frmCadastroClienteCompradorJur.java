@@ -334,7 +334,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		cliJur.setInscricaoEstadual(TelaUtil.getCampoObrigatorio(ftInscEstadual, true));
 		cliJur.setDataFundacao(TelaUtil.getDateFromDatePicker(dtFundacao));
 		cliJur.setRamoAtividade(cbRamoAtuacao.getSelectedItem().toString().substring(0, 1));
-		cliJur.setEmail(TelaUtil.getEmail(txtEmail));
+		//cliJur.setEmail(TelaUtil.getEmail(txtEmail));
 		cliJur.setClienteComprador(cliComprador); //agora seto dentro da filha a classe pai.
 		
 		return cliJur;
