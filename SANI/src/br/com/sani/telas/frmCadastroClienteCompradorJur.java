@@ -31,7 +31,6 @@ import br.com.sani.bean.ClienteComprador;
 import br.com.sani.bean.ClienteCompradorFisica;
 import br.com.sani.bean.ClienteCompradorJuridica;
 import br.com.sani.bean.Endereco;
-import br.com.sani.dao.ClienteCompradorFisicaDAO;
 import br.com.sani.dao.ClienteCompradorJuridicaDAO;
 import br.com.sani.dao.EnderecoDAO;
 import br.com.sani.exception.DAOException;
@@ -389,7 +388,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 	private void atualizar(){
 		try{
 			ClienteCompradorJuridica bean = getBean(); //mando ele coletar os dados da tela e validadar
-			ClienteCompradorFisicaDAO dao = new ClienteCompradorFisicaDAO(); //intancio a dao
+			ClienteCompradorJuridicaDAO dao = new ClienteCompradorJuridicaDAO(); //intancio a dao
 			
 			dao.atualizarClienteCompradorJuridica(bean);//chamo o metodo atualizar e passo o bean como parametro
 			
@@ -418,11 +417,11 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		int question = JOptionPane.showConfirmDialog(this, "Deseja realmente exluir este cadastro?", "Atenção!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if(question == 0){
 			try{
-				ClienteCompradorFisicaDAO dao = new ClienteCompradorFisicaDAO(); //intancio a dao
+				ClienteCompradorJuridicaDAO dao = new ClienteCompradorJuridicaDAO(); //intancio a dao
 				
 				int codigoCliente = this.cadastro.getClienteComprador().getCodCliComprador(); //pega o id do cadastro que esta sendo editado
 				
-				dao.exluirClienteCompradorFisica(codigoCliente);//chamo o metodo atualizar e passo o codigo como parametro
+				dao.exluirClienteCompradorJuridica(codigoCliente);//chamo o metodo atualizar e passo o codigo como parametro
 				
 				//se não der erro ele exibe essa mensagem
 				JOptionPane.showMessageDialog(this, "Dados exluídos com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -446,7 +445,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		
 		txtRazaoSocial.setText(cadastro.getRazaoSocial());
 		txtComplemento.setText(cadastro.getClienteComprador().getComplementoEndereco());
-		txtEmail.setText(cadastro.getEmail());
+		//txtEmail.setText(cadastro.getEmail());
 		txtNumeroResidencia.setText(cadastro.getClienteComprador().getNumeroEndereco());
 		//txtProfissao.setText(cadastro.getProfissao());
 		//txtRenda.setText(TelaUtil.formataDinheiro(cadastro.getRenda()));
