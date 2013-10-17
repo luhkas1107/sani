@@ -73,7 +73,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new frmCadastroClienteCompradorJur();
+					new frmCadastroClienteCompradorJur(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -81,13 +81,14 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		});
 	}
 	
-	public frmCadastroClienteCompradorJur(){
+	public frmCadastroClienteCompradorJur(ClienteCompradorJuridica cadastro){
 		try {
-			montarComponentes();
-			
-			setLocationRelativeTo(null);
+			montarComponentes();			
+			if(cadastro != null){
+				modoEdicao(cadastro);
+			}			
 			setVisible(true);
-		} catch (ParseException e) {
+		}catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
@@ -115,6 +116,11 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		
 		
 		btnLimpar = new JButton("Limpar Campos");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limparFormulario();
+			}
+		});
 		btnLimpar.setIcon(new ImageIcon(frmCadastroClienteCompradorJur.class.getResource("/br/com/images/clear.png")));
 		btnLimpar.setBounds(570, 302, 146, 29);
 		panel.add(btnLimpar);
@@ -122,6 +128,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				fechar();
 			}
 		});
 		btnCancelar.setIcon(new ImageIcon(frmCadastroClienteCompradorJur.class.getResource("/br/com/images/delete-.png")));
@@ -129,6 +136,15 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		panel.add(btnCancelar);
 		
 		btnSalvar = new JButton("Cadastrar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(modo == 0){
+					salvar();
+				}else{
+					atualizar();
+				}
+			}
+		});
 		btnSalvar.setIcon(new ImageIcon(frmCadastroClienteCompradorJur.class.getResource("/br/com/images/apply-.png")));
 		btnSalvar.setBounds(570, 257, 146, 29);
 		panel.add(btnSalvar);
@@ -306,7 +322,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		
 		setLocationRelativeTo(null);		
 	}
-	
+
 	private ClienteCompradorJuridica getBean() throws EntradaUsuarioException, ParseException{
 		
 		//primeiro eu instancio a classe pai que deve ser inserida primeiro
@@ -438,7 +454,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 	}
 	
 	private void modoEdicao(ClienteCompradorJuridica cadastro){
-		setTitle("EDIÇÃO de Cadastro Cliente Comprador / Pessoa Física");
+		setTitle("EDIÇÃO de Cadastro Cliente Comprador / Pessoa Jurídica");
 		btnSalvar.setText("Salvar");
 		btnCancelar.setText("Deletar");
 		this.modo = 1;
@@ -471,5 +487,28 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		this.cadastro = null;
 	}
 	
+	private void fechar() {
+		this.dispose();
+		
+	}
+	
+	private void limparFormulario(){
+		txtRazaoSocial.setText("");
+		txtBairro.setText("");
+		txtCidade.setText("");
+		txtComplemento.setText("");
+		txtEmail.setText("");
+		txtEndereco.setText("");
+		txtEstado.setText("");
+		txtNumeroResidencia.setText("");
+		//txtProfissao.setText("");
+		//txtRenda.setText("");
+		ftCnpj.setText("");
+		ftCelular.setText("");
+		ftCep.setText("");
+		ftInscEstadual.setText("");
+		ftTelefone.setText("");
+		dtFundacao.setDate(null);
+	}
 	
 }

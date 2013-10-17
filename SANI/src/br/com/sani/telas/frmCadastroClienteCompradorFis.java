@@ -150,7 +150,7 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 			}
 		});
 		btnCancelar.setIcon(new ImageIcon(frmCadastroClienteCompradorFis.class.getResource("/br/com/images/delete-.png")));
-		btnCancelar.setBounds(559, 420, 140, 28);
+		btnCancelar.setBounds(261, 420, 140, 28);
 		panel.add(btnCancelar);
 		
 		btnCadastrar = new JButton("Cadastrar");
@@ -165,7 +165,7 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 			}
 		});
 		btnCadastrar.setIcon(new ImageIcon(frmCadastroClienteCompradorFis.class.getResource("/br/com/images/apply-.png")));
-		btnCadastrar.setBounds(259, 420, 140, 28);
+		btnCadastrar.setBounds(559, 420, 140, 28);
 		panel.add(btnCadastrar);
 		
 		JPanel panelContato = new JPanel();
