@@ -115,8 +115,7 @@ public class ClienteCompradorJuridicaDAO {
 		
 		return retorno;
 	}
-	
-	
+		
 	//INSERIR
 	public void inserirClienteCompradorJuridica(ClienteCompradorJuridica cliComp) throws DAOException, SQLException{
 		Connection conn = DbUtil.getConnection();
