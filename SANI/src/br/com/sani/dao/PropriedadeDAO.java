@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.sani.bean.ClienteProprietario;
+import br.com.sani.bean.cp;
 import br.com.sani.bean.Propriedade;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.DbUtil;
@@ -120,7 +120,7 @@ public class PropriedadeDAO {
 			return objPropriedade;		
 		}
 
-		public boolean inserirPropriedade(ClienteProprietario objPropriedade) throws DAOException{		
+		public boolean inserirPropriedade(cp objPropriedade) throws DAOException{		
 			Connection conn = DbUtil.getConnection();
 			PreparedStatement statement = null;
 			ResultSet result = null;
@@ -152,7 +152,7 @@ public class PropriedadeDAO {
 			return true;		
 		}
 		
-		public boolean atualizarPropriedade(ClienteProprietario objPropriedade) throws DAOException{		
+		public boolean atualizarPropriedade(cp objPropriedade) throws DAOException{		
 			Connection conn = DbUtil.getConnection();
 			PreparedStatement statement = null;
 			ResultSet result = null;

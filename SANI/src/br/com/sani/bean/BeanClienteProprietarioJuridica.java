@@ -2,7 +2,7 @@ package br.com.sani.bean;
 
 public class BeanClienteProprietarioJuridica {
 	
-	private BeanClienteProprietario codCliPropietario;
+	private ClienteProprietario codCliPropietario;
 	
 	private String razaoSocial;
 	private String cnpj;
@@ -42,10 +42,10 @@ public class BeanClienteProprietarioJuridica {
 	public void setRamoAtividade(String ramoAtividade) {
 		this.ramoAtividade = ramoAtividade;
 	}
-	public BeanClienteProprietario getCodCliPropietario() {
+	public ClienteProprietario getCodCliPropietario() {
 		return codCliPropietario;
 	}
-	public void setCodCliPropietario(BeanClienteProprietario codCliPropietario) {
+	public void setCodCliPropietario(ClienteProprietario codCliPropietario) {
 		this.codCliPropietario = codCliPropietario;
 	}
 	

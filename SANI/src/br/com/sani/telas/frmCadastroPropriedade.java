@@ -27,7 +27,7 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 
-import br.com.sani.bean.ClienteProprietario;
+import br.com.sani.bean.cp;
 import br.com.sani.bean.Propriedade;
 import br.com.sani.util.SwingUtil;
 
@@ -44,7 +44,7 @@ public class frmCadastroPropriedade extends JFrame {
 	private JLabel lblClear;
 	private JTextField txtMetragem;
 	
-	private static ClienteProprietario proprietario;
+	private static cp proprietario;
 
 	/**
 	 * Launch the application.
@@ -391,7 +391,7 @@ public class frmCadastroPropriedade extends JFrame {
 		this.dispose();
 	}
 	
-	public static void setProprietario(ClienteProprietario p){
+	public static void setProprietario(cp p){
 		txtNomeProprietario.setText(p.getNome());
 		txtEmailProprietario.setText(p.getEmailPessoal());
 		txtCpfProprietario.setText(p.getCpf());

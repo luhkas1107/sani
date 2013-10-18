@@ -12,7 +12,7 @@ public class BeanImovel {
 	
 	private Endereco endereco;
 	private BeanCorretor corretor;
-	private BeanClienteProprietario cliProprietario;
+	private ClienteProprietario cliProprietario;
 	
 	//Getters & Setters
 	
@@ -28,10 +28,10 @@ public class BeanImovel {
 	public void setCorretor(BeanCorretor corretor) {
 		this.corretor = corretor;
 	}
-	public BeanClienteProprietario getCliProprietario() {
+	public ClienteProprietario getCliProprietario() {
 		return cliProprietario;
 	}
-	public void setCliProprietario(BeanClienteProprietario cliProprietario) {
+	public void setCliProprietario(ClienteProprietario cliProprietario) {
 		this.cliProprietario = cliProprietario;
 	}
 	public int getCodImovel() {

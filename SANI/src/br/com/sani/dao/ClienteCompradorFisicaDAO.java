@@ -62,13 +62,13 @@ public class ClienteCompradorFisicaDAO {
 	
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA =
-			"select * from tbClienteComprador order by nome_ClienteComprador";
+			"select * from TB_CLI_COMP_FISICA order by NOME_PESSOA";
 
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA_NOME =
-			"select * from tbClienteComprador where nome_ClienteComprador like ? order by nome_ClienteComprador";
+			"select * from TB_CLI_COMP_FISICA where NOME_PESSOA like ? order by NOME_PESSOA";
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA_ID = 
-			"select * from tbClienteComprador where id_ClienteComprador = ?";
+			"select * from TB_CLI_COMP_FISICA where COD_CLI_COMPRADOR = ?";
 	
 	private static final String BUSCAR_NOVO_ID = 
 			"SELECT ISNULL(MAX(COD_CLI_COMPRADOR), 0) + 1 AS NOVO_ID FROM TB_CLIENTE_COMPRADOR";

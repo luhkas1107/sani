@@ -6,6 +6,7 @@ import java.awt.ScrollPane;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.ParseException;
 
 import javax.swing.ButtonGroup;
@@ -25,7 +26,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import br.com.sani.bean.ClienteProprietario;
-import br.com.sani.dao.ClienteProprietarioDAO;
+import br.com.sani.bean.ClienteProprietarioFisica;
+import br.com.sani.dao.ClienteProprietarioFisicaDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.exception.EntradaUsuarioException;
 import br.com.sani.util.Mascara;
@@ -50,6 +52,8 @@ public class frmCadastroClienteProprietario extends JFrame {
 	private JTextField txtSiteClienteProprietario;
 	
 	private JRadioButton rdbtnMasculinoCadastroClienteProprietario;
+	private int modo = 0;
+	private ClienteProprietarioFisica cadastro;
 
 	/**
 	 * Launch the application.
@@ -254,7 +258,15 @@ public class frmCadastroClienteProprietario extends JFrame {
 		JButton btnSalvarCadastroClienteProprietario = new JButton("Cadastrar");
 		btnSalvarCadastroClienteProprietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				salvarClienteProprietario();
+				try {
+					salvarClienteProprietario();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnSalvarCadastroClienteProprietario.setBounds(388, 480, 101, 23);
@@ -355,30 +367,46 @@ public class frmCadastroClienteProprietario extends JFrame {
 		txtSiteClienteProprietario.setText("");
 	}
 	
-	public ClienteProprietario getBean() throws EntradaUsuarioException{
-		ClienteProprietario CliProp = new ClienteProprietario();
-		CliProp.setNome(TelaUtil.getCampoObrigatorio(txtNomeClienteProprietario, true));
-		CliProp.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoCadastroClienteProprietario));
-		CliProp.setCpf(TelaUtil.getCpf(ftCpfClienteProprietario, true));
-		CliProp.setRg(TelaUtil.getRg(ftRgClienteProprietario, true));
-		CliProp.setRenda(TelaUtil.getCampoObrigatorio(txtNacionalidadeClienteProprietario, false));
-		//CliProp.setEstadoCivil(estadoCivil[comboBoxEstadoCivilCadastroClienteProprietario.getSelectedIndex()]);
-		CliProp.setEndereco(TelaUtil.getCampoObrigatorio(txtEnderecoClienteProprietario, true));
-		CliProp.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroClienteProprietario, true));
-		CliProp.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoClienteProprietario, true));
-		CliProp.setCep(TelaUtil.getCep(ftCepClienteProprietario, true));
-		CliProp.setEmailPessoal(TelaUtil.getEmail(ftEmailClienteProprietario));
-		CliProp.setSiteClienteProprietario(TelaUtil.getCampoObrigatorio(txtSiteClienteProprietario, false));
-		CliProp.setTelefoneResidencial(TelaUtil.getTelefone(ftTelefoneResidencialClienteProprietario, false));
-		CliProp.setTelefoneCelular(TelaUtil.getCelular(ftTelefoneCelularClienteProprietario, true));
+private ClienteProprietarioFisica getBean() throws EntradaUsuarioException, ParseException{
 		
-		return CliProp;
+		//primeiro eu instancio a classe pai que deve ser inserida primeiro
+		ClienteProprietario cliComprador = new ClienteProprietario();
+		
+		//preencho com os dados necessarios fazendo a validação de campos obrigatórios
+		cliComprador.setCep(TelaUtil.getCep(ftCep, true));
+		cliComprador.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumero, true));
+		cliComprador.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplemento, false)); //false quando nao é obrig.
+		cliComprador.setTelefone(TelaUtil.getTelefone(ftTelefone, false));
+		cliComprador.setCelular(TelaUtil.getCelular(ftCelular, true));
+		
+		//verifica se está em modo edição, se estiver ele seta o id do cadastro que deseja alterar
+		if(this.modo  == 1){
+			cliComprador.setCodCliComprador(cadastro.getClienteComprador().getCodCliComprador());
+		}
+		
+		//agora eu vou instancia a classe filha que depende de um ID que ja foi inserido para ser inserida
+		ClienteProprietarioFisica cliFi = new ClienteProprietarioFisica();
+		
+		//preenche com os dados
+		cliFi.setNome(TelaUtil.getCampoObrigatorio(txtNome, true));
+		cliFi.setCpf(TelaUtil.getCpf(ftCpf, true));
+		cliFi.setRg(TelaUtil.getCampoObrigatorio(txtRg, true));
+		cliFi.setDataNascimento(TelaUtil.getDateFromDatePicker(dtNascimento));
+		cliFi.setEstadoCivil(cbEstadoCivil.getSelectedItem().toString().substring(0, 1));
+		cliFi.setProfissao(TelaUtil.getCampoObrigatorio(txtProfissao, true));
+		cliFi.setSexo(TelaUtil.getCharSexo(rbMasculino));
+		cliFi.setRenda(TelaUtil.getCampoObrigatorioDouble(txtRenda));
+		cliFi.setEmail(TelaUtil.getEmail(txtEmail));
+		cliFi.setClienteComprador(cliComprador); //agora seto dentro da filha a classe pai.
+		
+		
+		return cliFi;
 	}
 	
-	private void salvarClienteProprietario(){
+	private void salvarClienteProprietario() throws SQLException, ParseException{
 		try{
-			ClienteProprietario CliProp = getBean();
-			new ClienteProprietarioDAO().inserirClienteProprietario(CliProp);
+			ClienteProprietarioFisica CliProp = getBean();
+			new ClienteProprietarioFisicaDAO().inserirClienteProprietarioFisica(CliProp);
 			limpaFormulario();
 			JOptionPane.showMessageDialog(this, "Transação efetuada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
 		}catch(DAOException e){

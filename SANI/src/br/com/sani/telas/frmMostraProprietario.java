@@ -24,8 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.sani.bean.ClienteProprietario;
-import br.com.sani.dao.ClienteProprietarioDAO;
+import br.com.sani.bean.cp;
+import br.com.sani.dao.ClienteProprietarioFisicaDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.*;
 import java.awt.Cursor;
@@ -175,9 +175,9 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 		try{
 			DefaultTableModel dtm =(DefaultTableModel) table.getModel();
 			dtm.setRowCount(0);
-			List<ClienteProprietario> lista = new ClienteProprietarioDAO().consultarTodosClientes();
+			List<cp> lista = new ClienteProprietarioFisicaDAO().consultarTodosClientes();
 			if(lista != null){
-				for(ClienteProprietario p : lista){
+				for(cp p : lista){
 					addTable(dtm, p);
 				}
 			}
@@ -186,7 +186,7 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 		}
 	}
 	
-	private void addTable(DefaultTableModel dtm, ClienteProprietario pro){
+	private void addTable(DefaultTableModel dtm, cp pro){
 		Object[] object = new Object[4];
 		int i = 0;
 		
@@ -203,7 +203,7 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 		try{
 			if(row != -1){
 				int id = Integer.parseInt((String) table.getValueAt(row, 0));
-				ClienteProprietario cliPro = new ClienteProprietarioDAO().consultarClienteProprietarioID(id);
+				cp cliPro = new ClienteProprietarioFisicaDAO().consultarClienteProprietarioID(id);
 				frmCadastroPropriedade.setProprietario(cliPro);
 				dispose();
 			}
