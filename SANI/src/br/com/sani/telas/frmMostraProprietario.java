@@ -1,6 +1,7 @@
 package br.com.sani.telas;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -8,11 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,12 +24,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.sani.bean.cp;
+import br.com.sani.bean.ClienteProprietario;
 import br.com.sani.dao.ClienteProprietarioFisicaDAO;
 import br.com.sani.exception.DAOException;
-import br.com.sani.util.*;
-import java.awt.Cursor;
-import java.util.List;
+import br.com.sani.util.SwingUtil;
 
 public class frmMostraProprietario extends JFrame implements MouseListener {
 
@@ -175,9 +173,9 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 		try{
 			DefaultTableModel dtm =(DefaultTableModel) table.getModel();
 			dtm.setRowCount(0);
-			List<cp> lista = new ClienteProprietarioFisicaDAO().consultarTodosClientes();
+			List<ClienteProprietario> lista = new ClienteProprietarioFisicaDAO().consultarTodosClientes();
 			if(lista != null){
-				for(cp p : lista){
+				for(ClienteProprietario p : lista){
 					addTable(dtm, p);
 				}
 			}
@@ -186,7 +184,7 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 		}
 	}
 	
-	private void addTable(DefaultTableModel dtm, cp pro){
+	private void addTable(DefaultTableModel dtm, ClienteProprietario pro){
 		Object[] object = new Object[4];
 		int i = 0;
 		
@@ -203,7 +201,7 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 		try{
 			if(row != -1){
 				int id = Integer.parseInt((String) table.getValueAt(row, 0));
-				cp cliPro = new ClienteProprietarioFisicaDAO().consultarClienteProprietarioID(id);
+				ClienteProprietario cliPro = new ClienteProprietarioFisicaDAO().consultarClienteProprietarioID(id);
 				frmCadastroPropriedade.setProprietario(cliPro);
 				dispose();
 			}

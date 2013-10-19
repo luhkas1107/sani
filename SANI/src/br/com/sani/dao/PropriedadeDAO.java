@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.sani.bean.cp;
+import br.com.sani.bean.ClienteProprietario;
 import br.com.sani.bean.Propriedade;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.DbUtil;
@@ -120,28 +120,28 @@ public class PropriedadeDAO {
 			return objPropriedade;		
 		}
 
-		public boolean inserirPropriedade(cp objPropriedade) throws DAOException{		
+		public boolean inserirPropriedade(ClienteProprietario objPropriedade) throws DAOException{		
 			Connection conn = DbUtil.getConnection();
 			PreparedStatement statement = null;
 			ResultSet result = null;
 			try {
 				statement = conn.prepareStatement(INSERIR_PROPRIEDADE);
-				statement.setInt(1, objPropriedade.getId());
-				statement.setString(2, objPropriedade.getNome());
-				statement.setString(3, objPropriedade.getSexo());
-				statement.setString(4, objPropriedade.getCpf());
-				statement.setString(5, objPropriedade.getRg());
-				statement.setString(6, objPropriedade.getRenda());
-				statement.setString(7, objPropriedade.getEstadoCivil());
-				statement.setString(8, objPropriedade.getNacionalidade());
-				statement.setString(9, objPropriedade.getEndereco());
-				statement.setString(10, objPropriedade.getNumeroEndereco());
-				statement.setString(11, objPropriedade.getComplementoEndereco());
-				statement.setString(12, objPropriedade.getCep());
-				statement.setString(13, objPropriedade.getTelefoneResidencial());
-				statement.setString(14, objPropriedade.getTelefoneCelular());
-				statement.setString(15, objPropriedade.getEmailPessoal());
-				statement.setString(16, objPropriedade.getSiteClienteProprietario());
+				//statement.setInt(1, objPropriedade.getId());
+				//statement.setString(2, objPropriedade.getNome());
+				//statement.setString(3, objPropriedade.getSexo());
+				//statement.setString(4, objPropriedade.getCpf());
+				//statement.setString(5, objPropriedade.getRg());
+				//statement.setString(6, objPropriedade.getRenda());
+				//statement.setString(7, objPropriedade.getEstadoCivil());
+				//statement.setString(8, objPropriedade.getNacionalidade());
+				//statement.setString(9, objPropriedade.getEndereco());
+				//statement.setString(10, objPropriedade.getNumeroEndereco());
+				//statement.setString(11, objPropriedade.getComplementoEndereco());
+				//statement.setString(12, objPropriedade.getCep());
+				//statement.setString(13, objPropriedade.getTelefoneResidencial());
+				//statement.setString(14, objPropriedade.getTelefoneCelular());
+				//statement.setString(15, objPropriedade.getEmailPessoal());
+				//statement.setString(16, objPropriedade.getSiteClienteProprietario());
 				statement.executeUpdate();
 
 			} catch (SQLException e) {
@@ -152,28 +152,28 @@ public class PropriedadeDAO {
 			return true;		
 		}
 		
-		public boolean atualizarPropriedade(cp objPropriedade) throws DAOException{		
+		public boolean atualizarPropriedade(ClienteProprietario objPropriedade) throws DAOException{		
 			Connection conn = DbUtil.getConnection();
 			PreparedStatement statement = null;
 			ResultSet result = null;
 			try {
 				statement = conn.prepareStatement(ATUALIZAR_PROPRIEDADE);
-				statement.setInt(1, objPropriedade.getId());
-				statement.setString(2, objPropriedade.getNome());
-				statement.setString(3, objPropriedade.getSexo());
-				statement.setString(4, objPropriedade.getCpf());
-				statement.setString(5, objPropriedade.getRg());
-				statement.setString(6, objPropriedade.getRenda());
-				statement.setString(7, objPropriedade.getEstadoCivil());
-				statement.setString(8, objPropriedade.getNacionalidade());
-				statement.setString(9, objPropriedade.getEndereco());
-				statement.setString(10, objPropriedade.getNumeroEndereco());
-				statement.setString(11, objPropriedade.getComplementoEndereco());
-				statement.setString(12, objPropriedade.getCep());
-				statement.setString(13, objPropriedade.getTelefoneResidencial());
-				statement.setString(14, objPropriedade.getTelefoneCelular());
-				statement.setString(15, objPropriedade.getEmailPessoal());
-				statement.setString(16, objPropriedade.getSiteClienteProprietario());
+				//statement.setInt(1, objPropriedade.getId());
+				//statement.setString(2, objPropriedade.getNome());
+				//statement.setString(3, objPropriedade.getSexo());
+				//statement.setString(4, objPropriedade.getCpf());
+				//statement.setString(5, objPropriedade.getRg());
+				//statement.setString(6, objPropriedade.getRenda());
+				//statement.setString(7, objPropriedade.getEstadoCivil());
+				//statement.setString(8, objPropriedade.getNacionalidade());
+				//statement.setString(9, objPropriedade.getEndereco());
+				//statement.setString(10, objPropriedade.getNumeroEndereco());
+				//statement.setString(11, objPropriedade.getComplementoEndereco());
+				//statement.setString(12, objPropriedade.getCep());
+				//statement.setString(13, objPropriedade.getTelefoneResidencial());
+				//statement.setString(14, objPropriedade.getTelefoneCelular());
+				//statement.setString(15, objPropriedade.getEmailPessoal());
+				//statement.setString(16, objPropriedade.getSiteClienteProprietario());
 				statement.executeUpdate();
 
 			} catch (SQLException e) {
