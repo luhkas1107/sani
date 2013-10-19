@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanProposta {
+public class Proposta {
 	
 	private int codProposta;
 	private String valorProposta;
@@ -9,7 +9,7 @@ public class BeanProposta {
 	private String statusProposta;
 	
 	private ClienteComprador codCliComprador;
-	private BeanImovel codImovel;
+	private Imovel codImovel;
 	
 	//Getters & Setters
 	
@@ -49,10 +49,10 @@ public class BeanProposta {
 	public void setCodCliComprador(ClienteComprador codCliComprador) {
 		this.codCliComprador = codCliComprador;
 	}
-	public BeanImovel getCodImovel() {
+	public Imovel getCodImovel() {
 		return codImovel;
 	}
-	public void setCodImovel(BeanImovel codImovel) {
+	public void setCodImovel(Imovel codImovel) {
 		this.codImovel = codImovel;
 	}
 

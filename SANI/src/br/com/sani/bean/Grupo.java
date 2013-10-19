@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanGrupo {
+public class Grupo {
 	
 	private int codGrupo;
 	private String nomeGrupo;

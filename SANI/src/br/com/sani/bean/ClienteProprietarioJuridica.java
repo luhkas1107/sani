@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanClienteProprietarioJuridica {
+public class ClienteProprietarioJuridica {
 	
 	private ClienteProprietario codCliPropietario;
 	

@@ -1,13 +1,13 @@
 package br.com.sani.bean;
 
-public class BeanVenda {
+public class Venda {
 	
 	private int codTransacao;
 	private String dataTransacao;
 	private int	numeroContrado;
 	private String arqContrato;
 	
-	private BeanProposta codProposta;
+	private Proposta codProposta;
 	
 	//Getters & Setters
 	
@@ -35,10 +35,10 @@ public class BeanVenda {
 	public void setArqContrato(String arqContrato) {
 		this.arqContrato = arqContrato;
 	}
-	public BeanProposta getCodProposta() {
+	public Proposta getCodProposta() {
 		return codProposta;
 	}
-	public void setCodProposta(BeanProposta codProposta) {
+	public void setCodProposta(Proposta codProposta) {
 		this.codProposta = codProposta;
 	}
 

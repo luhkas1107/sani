@@ -167,6 +167,22 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnCadastro.add(mntmMetas);
 		
+		JMenu mnVenda = new JMenu("Venda");
+		menuBarArquivo.add(mnVenda);
+		
+		JMenuItem mntmIniciarVenda = new JMenuItem("Iniciar Venda");
+		mntmIniciarVenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					new frmVenda();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		mnVenda.add(mntmIniciarVenda);
+		
 		JMenu mnConsulta = new JMenu("Consulta");
 		menuBarArquivo.add(mnConsulta);
 		

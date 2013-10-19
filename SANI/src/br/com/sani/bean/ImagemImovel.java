@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanImagemImovel {
+public class ImagemImovel {
 	
 	private byte[] idImagem;
 	private String dataImagem;

@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanImovel {
+public class Imovel {
 	
 	private int codImovel;
 	private String cep;
@@ -11,7 +11,7 @@ public class BeanImovel {
 	private String metragemImovel;
 	
 	private Endereco endereco;
-	private BeanCorretor corretor;
+	private Corretor corretor;
 	private ClienteProprietario cliProprietario;
 	
 	//Getters & Setters
@@ -22,10 +22,10 @@ public class BeanImovel {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	public BeanCorretor getCorretor() {
+	public Corretor getCorretor() {
 		return corretor;
 	}
-	public void setCorretor(BeanCorretor corretor) {
+	public void setCorretor(Corretor corretor) {
 		this.corretor = corretor;
 	}
 	public ClienteProprietario getCliProprietario() {

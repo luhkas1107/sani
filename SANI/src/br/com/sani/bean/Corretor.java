@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanCorretor {
+public class Corretor {
 	
 	private int codCorretor;
 	private String cep;

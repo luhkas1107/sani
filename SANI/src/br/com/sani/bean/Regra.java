@@ -1,6 +1,6 @@
 package br.com.sani.bean;
 
-public class BeanRegra {
+public class Regra {
 	
 	private int codRegra;
 	private String descRegra;
