@@ -11,6 +11,7 @@ public class ClienteCompradorJuridica {
 	private String inscricaoEstadual;
 	private Date dataFundacao;
 	private String ramoAtividade;
+	private String email;
 	
 	private ClienteComprador clienteComprador;
 	
@@ -59,6 +60,12 @@ public class ClienteCompradorJuridica {
 	}
 	public void setClienteComprador(ClienteComprador clienteComprador) {
 		this.clienteComprador = clienteComprador;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }
