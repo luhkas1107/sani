@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import br.com.sani.bean.ClienteCompradorFisica;
 import br.com.sani.bean.ClienteProprietario;
@@ -227,6 +228,11 @@ public class ClienteProprietarioFisicaDAO {
 		}
 		
 		return retorno;
+	}
+
+	public List<ClienteProprietario> consultarTodosClientes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
