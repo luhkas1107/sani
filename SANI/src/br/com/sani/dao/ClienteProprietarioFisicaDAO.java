@@ -229,10 +229,5 @@ public class ClienteProprietarioFisicaDAO {
 		
 		return retorno;
 	}
-
-	public List<ClienteProprietario> consultarTodosClientes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }
