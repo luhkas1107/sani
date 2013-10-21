@@ -29,7 +29,7 @@ import br.com.sani.dao.ClienteProprietarioFisicaDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.SwingUtil;
 
-public class frmMostraProprietario extends JFrame implements MouseListener {
+public class frmConsultaClienteProprietario extends JFrame implements MouseListener {
 
 	private JPanel contentPane;
 	private JTextField txtFieldConsultaNomeClienteComprador;
@@ -42,7 +42,7 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new frmMostraProprietario();
+					new frmConsultaClienteProprietario();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,9 +53,9 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 	/**
 	 * Create the frame.
 	 */
-	public frmMostraProprietario() {
+	public frmConsultaClienteProprietario() {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmMostraProprietario.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteProprietario.class.getResource("/br/com/images/home_badge.png")));
 		setTitle("Escolha o Propriet\u00E1rio");
 		setBounds(100, 100, 690, 450);
 		contentPane = new JPanel();
@@ -132,7 +132,7 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 				//Remove o Usuario Selecionado
 			}
 		});
-		lblRemove.setIcon(new ImageIcon(frmMostraProprietario.class.getResource("/br/com/images/delete-.png")));
+		lblRemove.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/delete-.png")));
 		lblRemove.setBounds(583, 361, 25, 25);
 		panel.add(lblRemove);
 		
@@ -145,7 +145,7 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 				JOptionPane.showMessageDialog(null, "Teste");
 			}
 		});
-		lblEdit.setIcon(new ImageIcon(frmMostraProprietario.class.getResource("/br/com/images/edit-.png")));
+		lblEdit.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/edit-.png")));
 		lblEdit.setBounds(618, 361, 25, 25);
 		panel.add(lblEdit);
 		
@@ -159,7 +159,7 @@ public class frmMostraProprietario extends JFrame implements MouseListener {
 				buscar();
 			}
 		});
-		lblSearch.setIcon(new ImageIcon(frmMostraProprietario.class.getResource("/br/com/images/search-ico.png")));
+		lblSearch.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/search-ico.png")));
 		lblSearch.setBounds(618, 33, 25, 25);
 		panel.add(lblSearch);
 		

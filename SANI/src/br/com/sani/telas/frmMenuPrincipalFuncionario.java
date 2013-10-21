@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -119,8 +120,14 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 		JMenuItem mntmPropriedades = new JMenuItem("Propriedades");
 		mntmPropriedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmCadastroPropriedade frameCadProp = new frmCadastroPropriedade();
-			frameCadProp.setVisible(true);
+			frmCadastroPropriedade frameCadProp;
+			try {
+				frameCadProp = new frmCadastroPropriedade();
+				frameCadProp.setVisible(true);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			}
 		});
 		mnCadastro.add(mntmPropriedades);
