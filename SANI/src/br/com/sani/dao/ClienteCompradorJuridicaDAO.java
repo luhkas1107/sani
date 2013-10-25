@@ -142,7 +142,7 @@ public class ClienteCompradorJuridicaDAO {
 			conn.commit(); //se tudo ocorrer sem erros ele commita a transação no banco de dados
 		}catch(SQLException e){
 			conn.rollback(); // caso aconteca algum erro, ele reverte a alteracao no banco de dados
-			throw new DAOException(e);
+			throw new DAOException(e); //ta apontado aq com erro
 		}finally{
 			DbUtil.close(conn, statement, result);
 		}
