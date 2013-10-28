@@ -8,7 +8,6 @@ public class VendaDAO {
 	
 	//ATUALIZAR
 	
-	//EXCLUIR
-	
+	//EXCLUIR	
 	
 }
