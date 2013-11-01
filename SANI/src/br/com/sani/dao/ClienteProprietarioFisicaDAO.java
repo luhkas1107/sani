@@ -15,67 +15,68 @@ import br.com.sani.util.DbUtil;
 public class ClienteProprietarioFisicaDAO {
 
 	private static final String EXCLUIR_CLIENTE_PROPRIETARIO_FISICA = 
-			"delete from TB_CLI_PROP_FISICA where COD_CLI_PROPRIETARIO = ?; "+
-			"delete from TB_CLIENTE_PROPRIETARIO where COD_CLI_PROPRIETARIO = ?; ";
+			"delete from tbClienteProprietarioFisica where codCliProprietario = ?; "+
+			"delete from TB_CLIENTE_PROPRIETARIO where codCliProprietario = ?; ";
 		
 	private static final String INSERIR_CLIENTE_PROPRIETARIO_FISICA =
-			"INSERT INTO TB_CLIENTE_PROPRIETARIO ( "+
-			"	COD_CLI_PROPRIETARIO, "+
-			"	CEP, "+
-			"	NR_ENDERECO, "+
-			"	COMPL_ENDERECO, "+
-			"	TEL_CLI_PROPRIETARIO, "+
-			"	CEL_CLI_PROPRIETARIO) "+
+			"INSERT INTO tbClienteProprietario ( "+
+			"	codCliProprietario, "+
+			"	cep, "+
+			"	numeroEndereco, "+
+			"	complementoEndereco, "+
+			"	telCliProprietario, "+
+			"	celCliProprietario) "+
 			"VALUES (?,?,?,?,?,?); "+
 						
-			"INSERT INTO TB_CLI_PROP_FISICA ( "+
-			"	COD_CLI_PROPRIETARIO, "+
-			"	NOME_PESSOA, "+
-			"	RG_PESSOA, "+
-			"	CPF_PESSOA, "+
-			"	DT_NASCIMENTO, "+
-			"	SEXO_PESSOA, "+
-			"	EST_CIVIL_PESSOA, "+
-			"	RENDA, "+
-			"	PROFISSAO, "+
-			"	EMAIL )"+
-			"VALUES (?,?,?,?,?,?,?,?,?,?)";
+			"INSERT INTO tbClienteProprietarioFisica ( "+
+			"	codCliProprietario, "+
+			"	nomePessoa, "+
+			"	rgPessoa, "+
+			"	cpfPessoa, "+
+			"	dtNasc, "+
+			"	dtFalescimento, "+
+			"	sexoPessoa, "+ 
+			"	estadoCivilPessoa"+
+			"	renda, "+
+			"	profissao, "+
+			"	email )"+
+			"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		
 	private static final String ATUALIZAR_CLIENTE_PROPRIETARIO_FISICA =
-			"UPDATE TB_CLIENTE_PROPRIETARIO SET "+
-			"	CEP = ?, "+
-			"	NR_ENDERECO = ?, "+
-			"	COMPL_ENDERECO = ?, "+
-			"	TEL_CLI_PROPRIETARIO = ?, "+
-			"	CEL_CLI_PROPRIETARIO = ? "+
-			"WHERE COD_CLI_PROPRIETARIO = ?; "+
+			"UPDATE tbClienteProprietario SET "+
+			"	cep = ?, "+
+			"	numeroEndereco = ?, "+
+			"	complementoEndereco = ?, "+
+			"	telCliProprietario = ?, "+
+			"	celCliProprietario = ? "+
+			"WHERE codCliProprietario = ?; "+
 			
-			"UPDATE TB_CLIENTE_PROP_FISICA SET "+
-			"	NOME_PESSOA = ?, "+
-			"	RG_PESSOA = ?, "+
-			"	CPF_PESSOA = ?, "+
-			"	DT_NASCIMENTO = ?, "+
-			"	SEXO_PESSOA = ?, "+
-			"	EST_CIVIL_PESSOA = ?, "+
-			"	RENDA = ?, "+
-			"	PROFISSAO = ?, "+
-			"	EMAIL = ? "+
-			"WHERE COD_CLI_PROPRIETARIO = ?";
+			"UPDATE tbClienteProprietarioFisica SET "+
+			"	nomePessoa = ?, "+
+			"	rgPessoa = ?, "+
+			"	cpfPessoa = ?, "+
+			"	dtNasc = ?, "+
+			"	sexoPessoa = ?, "+
+			"	estadoCivilPessoa = ?, "+
+			"	renda = ?, "+
+			"	profissao = ?, "+
+			"	email = ? "+
+			"WHERE codCliProprietario = ?";
 	
 	private static final  String CONSULTA_CLIENTE_PROPRIETARIO_FISICA =
-			"select * from TB_CLI_PROP_FISICA order by NOME_PESSOA";
+			"select * from tbClienteProprietarioFisica order by nomePessoa";
 	
 	private static final  String CONSULTA_CLIENTE_PROPRIETARIO_FISICA_NOME =
-			"select * from TB_CLI_PROP_FISICA where NOME_PESSOA like ? order by NOME_PESSOA";
+			"select * from tbClienteProprietarioFisica where nomePessoa like ? order by nomePessoa";
 		
 	private static final  String CONSULTA_CLIENTE_PROPRIETARIO_FISICA_ID = 
-			"select * from TB_CLI_PROP_FISICA where COD_CLI_PROPRIETARIO = ?";
+			"select * from tbClienteProprietarioFisica where codCliProprietario = ?";
 		
 	private static final String CONSULTA_CLIENTE_TODOS = 
-			"select * from TB_CLI_PROP_FISICA";
+			"select * from tbClienteProprietarioFisica";
 	
 	private static final String BUSCAR_NOVO_ID = 
-			"SELECT ISNULL(MAX(COD_CLI_PROPRIETARIO), 0) + 1 AS NOVO_ID FROM TB_CLIENTE_PROPRIETARIO";
+			"SELECT ISNULL(MAX(codCliProprietario), 0) + 1 AS NOVO_ID FROM tbClienteProprietario";
 	
 		
 

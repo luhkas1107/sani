@@ -8,7 +8,7 @@ CREATE TABLE tbClienteComprador (
   codCliComprador     NUMERIC (11) NOT NULL ,
   cep                 VARCHAR (8) NOT NULL ,
   numeroEndereco      NUMERIC (11) NOT NULL ,
-  complementoEndereco VARCHAR (255) NOT NULL ,
+  complementoEndereco VARCHAR (1024) NOT NULL ,
   telCliComprador     VARCHAR (10) NOT NULL ,
   celCliComprador     VARCHAR (11) ,
 
@@ -47,7 +47,8 @@ GO
 
 CREATE TABLE tbClienteCompradorJuridica (
   codCliComprador     NUMERIC (11) NOT NULL ,
-  razaoSocial         VARCHAR (255) NOT NULL ,
+  razaoSocial         VARCHAR (1024) NOT NULL ,
+  email               VARCHAR (120) NOT NULL,
   cnpj                VARCHAR (14) NOT NULL ,
   inscricaoEstadual   VARCHAR (30) NOT NULL ,
   dtFundacao          DATE NOT NULL ,

@@ -346,6 +346,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		//preenche com os dados
 		cliJur.setRazaoSocial(TelaUtil.getCampoObrigatorio(txtRazaoSocial, true));
 		cliJur.setCnpj(TelaUtil.getCpf(ftCnpj, true));
+		cliJur.setEmail(TelaUtil.getEmail(txtEmail));
 		cliJur.setInscricaoEstadual(TelaUtil.getCampoObrigatorio(ftInscEstadual, true));
 		cliJur.setDataFundacao(TelaUtil.getDateFromDatePicker(dtFundacao));
 		cliJur.setRamoAtividade(cbRamoAtuacao.getSelectedItem().toString().substring(0, 1));

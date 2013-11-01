@@ -33,7 +33,8 @@ public class ClienteCompradorJuridicaDAO {
 					
 			"INSERT INTO tbClienteCompradorJuridica ( "+
 			"	codCliComprador, "+
-			"   razaoSocial, "+
+			"   razaoSocial, "+ 
+			"	email,"+
 			"	cnpj, "+
 			"	inscricaoEstadual, "+
 			"	dtFundacao, "+
@@ -52,6 +53,7 @@ public class ClienteCompradorJuridicaDAO {
 			"UPDATE tbClienteCompradorJuridica SET "+
 			//"	codCliComprador = ?, "+
 			"	razaoSocial = ?, "+
+			"	email,"+
 			"	cnpj = ?, "+
 			"	inscricaoEstadual = ?, "+
 			"	dtFundacao = ?, "+

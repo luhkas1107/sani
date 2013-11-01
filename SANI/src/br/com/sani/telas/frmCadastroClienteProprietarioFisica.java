@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -25,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import br.com.sani.bean.ClienteProprietario;
+import br.com.sani.bean.ClienteProprietarioFisica;
 import br.com.sani.bean.Endereco;
 import br.com.sani.dao.ClienteProprietarioFisicaDAO;
 import br.com.sani.dao.EnderecoDAO;
@@ -36,7 +38,7 @@ import br.com.sani.util.TelaUtil;
 
 import com.toedter.calendar.JDateChooser;
 
-public class frmCadastroClienteProprietario extends JFrame {
+public class frmCadastroClienteProprietarioFisica extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNomeClienteProprietario;
@@ -54,6 +56,10 @@ public class frmCadastroClienteProprietario extends JFrame {
 	private JTextField txtSiteClienteProprietario;
 	
 	private JRadioButton rdbtnMasculinoCadastroClienteProprietario;
+	private JComboBox cbEstadoCivilClienteProprietarioFisica;
+	
+	private int modo = 0;
+	private ClienteProprietarioFisica cadastro;
 
 	/**
 	 * Launch the application.
@@ -62,7 +68,7 @@ public class frmCadastroClienteProprietario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCadastroClienteProprietario frame = new frmCadastroClienteProprietario();
+					frmCadastroClienteProprietarioFisica frame = new frmCadastroClienteProprietarioFisica();
 					frame.setVisible(true);
 				} catch (Throwable e) {
 					e.printStackTrace();
@@ -75,9 +81,9 @@ public class frmCadastroClienteProprietario extends JFrame {
 	 * Create the frame.
 	 * @throws Throwable 
 	 */
-	public frmCadastroClienteProprietario() throws Throwable {
+	public frmCadastroClienteProprietarioFisica() throws Throwable {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietario.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/home_badge.png")));
 		setTitle("Cadastro Cliente Propriet\u00E1rio");
 		setResizable(false);
 		setBounds(100, 100, 700, 500);
@@ -127,11 +133,11 @@ public class frmCadastroClienteProprietario extends JFrame {
 		lblEstadoCivilCadastroClienteProprietario.setBounds(442, 27, 70, 14);
 		panelInformacoesPessoais.add(lblEstadoCivilCadastroClienteProprietario);
 		
-		JComboBox comboBoxEstadoCivilCadastroClienteProprietario = new JComboBox();
-		comboBoxEstadoCivilCadastroClienteProprietario.setBounds(512, 24, 137, 20);
-		panelInformacoesPessoais.add(comboBoxEstadoCivilCadastroClienteProprietario);
-		comboBoxEstadoCivilCadastroClienteProprietario.setModel(new DefaultComboBoxModel(new String[] {"Solteiro (a)", "Casado (a)", "Divorciado (a)", "Vi\u00FAvo (a)"}));
-		comboBoxEstadoCivilCadastroClienteProprietario.setToolTipText("Solteiro (a)\r\nCasado (a)\r\nDivorciado (a)\r\nVi\u00FAvo (a)");
+		cbEstadoCivilClienteProprietarioFisica = new JComboBox();
+		cbEstadoCivilClienteProprietarioFisica.setBounds(512, 24, 137, 20);
+		panelInformacoesPessoais.add(cbEstadoCivilClienteProprietarioFisica);
+		cbEstadoCivilClienteProprietarioFisica.setModel(new DefaultComboBoxModel(new String[] {"Solteiro (a)", "Casado (a)", "Divorciado (a)", "Vi\u00FAvo (a)"}));
+		cbEstadoCivilClienteProprietarioFisica.setToolTipText("Solteiro (a)\r\nCasado (a)\r\nDivorciado (a)\r\nVi\u00FAvo (a)");
 		
 		JLabel lblNacionalidadeCadastroClienteProprietario = new JLabel("Nacionalidade:");
 		lblNacionalidadeCadastroClienteProprietario.setBounds(432, 60, 74, 14);
@@ -286,22 +292,27 @@ public class frmCadastroClienteProprietario extends JFrame {
 		panelInfo.add(chckbxPredio);
 		
 		JButton btnLimparCamposCadastroClienteProprietario = new JButton("Limpar Campos");
-		btnLimparCamposCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietario.class.getResource("/br/com/images/clear.png")));
+		btnLimparCamposCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/clear.png")));
 		btnLimparCamposCadastroClienteProprietario.setBounds(472, 27, 145, 30);
 		panelInfo.add(btnLimparCamposCadastroClienteProprietario);
 		
 		JButton btnCancelarCadastroClienteProprietario = new JButton("Cancelar");
-		btnCancelarCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietario.class.getResource("/br/com/images/delete-.png")));
+		btnCancelarCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/delete-.png")));
 		btnCancelarCadastroClienteProprietario.setBounds(472, 68, 145, 30);
 		panelInfo.add(btnCancelarCadastroClienteProprietario);
 		
 		JButton btnSalvarCadastroClienteProprietario = new JButton("Cadastrar");
-		btnSalvarCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietario.class.getResource("/br/com/images/save.png")));
+		btnSalvarCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/save.png")));
 		btnSalvarCadastroClienteProprietario.setBounds(472, 109, 145, 30);
 		panelInfo.add(btnSalvarCadastroClienteProprietario);
 		btnSalvarCadastroClienteProprietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				salvarClienteProprietario();
+				try {
+					salvarClienteProprietario();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnCancelarCadastroClienteProprietario.addActionListener(new ActionListener() {
@@ -337,29 +348,38 @@ public class frmCadastroClienteProprietario extends JFrame {
 		txtSiteClienteProprietario.setText("");
 	}
 	
-	public ClienteProprietario getBean() throws EntradaUsuarioException{
+	public ClienteProprietarioFisica getBean() throws EntradaUsuarioException{
+		
 		ClienteProprietario CliProp = new ClienteProprietario();
-		CliProp.setNome(TelaUtil.getCampoObrigatorio(txtNomeClienteProprietario, true));
-		CliProp.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoCadastroClienteProprietario));
-		CliProp.setCpf(TelaUtil.getCpf(ftCpfClienteProprietario, true));
-		CliProp.setRg(TelaUtil.getRg(ftRgClienteProprietario, true));
-		CliProp.setRenda(TelaUtil.getCampoObrigatorio(txtNacionalidadeClienteProprietario, false));
-		//CliProp.setEstadoCivil(estadoCivil[comboBoxEstadoCivilCadastroClienteProprietario.getSelectedIndex()]);
-		CliProp.setEndereco(TelaUtil.getCampoObrigatorio(txtEnderecoClienteProprietario, true));
+		
 		CliProp.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroClienteProprietario, true));
 		CliProp.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoClienteProprietario, true));
 		CliProp.setCep(TelaUtil.getCep(ftCepClienteProprietario, true));
-		CliProp.setEmailPessoal(TelaUtil.getEmail(ftEmailClienteProprietario));
-		CliProp.setSiteClienteProprietario(TelaUtil.getCampoObrigatorio(txtSiteClienteProprietario, false));
-		CliProp.setTelefoneResidencial(TelaUtil.getTelefone(ftTelefoneResidencialClienteProprietario, false));
-		CliProp.setTelefoneCelular(TelaUtil.getCelular(ftTelefoneCelularClienteProprietario, true));
+		CliProp.setTelefone(TelaUtil.getTelefone(ftTelefoneResidencialClienteProprietario, false));
+		CliProp.setCelular(TelaUtil.getCelular(ftTelefoneCelularClienteProprietario, true));
 		
-		return CliProp;
+		if(this.modo == 1){
+			CliProp.setCodCliProprietario(cadastro.getClienteProprietarioFisica().getCodCliProprietario());
+		}
+		
+		ClienteProprietarioFisica CliPropFisica = new ClienteProprietarioFisica();
+		
+		CliPropFisica.setNome(TelaUtil.getCampoObrigatorio(txtNomeClienteProprietario, true));
+		CliPropFisica.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoCadastroClienteProprietario));
+		CliPropFisica.setCpf(TelaUtil.getCpf(ftCpfClienteProprietario, true));
+		CliPropFisica.setRg(TelaUtil.getRg(ftRgClienteProprietario, true));
+		//CliPropFisica.setRenda(TelaUtil.getCampoObrigatorio(txtNacionalidadeClienteProprietario, false));
+		CliPropFisica.setEstadoCivil(cbEstadoCivilClienteProprietarioFisica.getSelectedItem().toString().substring(0, 1));
+		CliPropFisica.setEmail(TelaUtil.getEmail(ftEmailClienteProprietario));
+		
+		return CliPropFisica;		
+		
+		
 	}
 	
-	private void salvarClienteProprietario(){
+	private void salvarClienteProprietario() throws SQLException{
 		try{
-			ClienteProprietario CliProp = getBean();
+			ClienteProprietarioFisica CliProp = getBean();
 			new ClienteProprietarioFisicaDAO().inserirClienteProprietarioFisica(CliProp);
 			limpaFormulario();
 			JOptionPane.showMessageDialog(this, "Transação efetuada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);

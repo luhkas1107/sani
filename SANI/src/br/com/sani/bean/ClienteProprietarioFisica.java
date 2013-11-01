@@ -88,4 +88,13 @@ public class ClienteProprietarioFisica {
 		this.email = email;
 	}
 	
+	
+	public ClienteProprietario getClienteProprietarioFisica() {
+		return codCliProprietario;
+	}
+
+	public void setClienteProprietario(ClienteProprietario codCliProprietario) {
+		this.codCliProprietario = codCliProprietario;
+	}
+	
 }
