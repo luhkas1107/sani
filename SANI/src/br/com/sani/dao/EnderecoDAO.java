@@ -13,27 +13,27 @@ public class EnderecoDAO {
 	
 	private static final String QUERY_BUSCAR_POR_CEP=
 			"SELECT " +
-			"			EN.CEP," +
-			"			EN.ENDERECO," +
-			"			CID.CIDADE," +
-			"			CID.UF," +
-			"			BAI.BAIRRO " +
+			"			en.cep," +
+			"			en.endereco," +
+			"			cid.cidade," +
+			"			cid.uf," +
+			"			bai.bairro " +
 			"FROM " +
-			"		tbEndereco as EN " +
-			"			inner join tbCidade as CID " +
-			"				on EN.ID_CIDADE = CID.ID_CIDADE " +
-			"			inner join tbBairro as BAI " +
-			"				on EN.ID_BAIRRO = BAI.ID_BAIRRO " +
+			"		tbEndereco as en " +
+			"			inner join tbCidade as cid " +
+			"				on en.idCidade = cid.idCidade " +
+			"			inner join tbBairro as bai " +
+			"				on en.idBairro = bai.idBairro " +
 			"WHERE EN.CEP = ?";
 	
 	private static Endereco getBean(ResultSet result) throws DAOException, SQLException{
 		Endereco end = new Endereco();
 		
-		end.setCep(result.getString("CEP"));
-		end.setEndereco(result.getString("ENDERECO"));
-		end.setBairro(result.getString("BAIRRO"));
-		end.setCidade(result.getString("CIDADE"));
-		end.setEstado(result.getString("UF"));
+		end.setCep(result.getString("cep"));
+		end.setEndereco(result.getString("endereco"));
+		end.setBairro(result.getString("bairro"));
+		end.setCidade(result.getString("cidade"));
+		end.setEstado(result.getString("uf"));
 		
 		return end;
 		

@@ -1,729 +1,295 @@
--- Gerado por Oracle SQL Developer Data Modeler 3.3.0.747
---   em:        2013-10-11 03:05:51 BRT
---   site:      SQL Server 2008
---   tipo:      SQL Server 2008
-
-
-
-
-CREATE
-  TABLE TB_CLIENTE_COMPRADOR
-  (
-    COD_CLI_COMPRADOR NUMERIC (11) NOT NULL ,
-    CEP               VARCHAR (8) NOT NULL ,
-    NR_ENDERECO       NUMERIC (11) NOT NULL ,
-    COMPL_ENDERECO    VARCHAR (255) NOT NULL ,
-    TEL_CLI_COMPRADOR VARCHAR (10) NOT NULL ,
-    CEL_CLI_COMPRADOR VARCHAR (11) ,
-    CONSTRAINT PK_TB_CLIENTE_COMPRADOR PRIMARY KEY CLUSTERED (COD_CLI_COMPRADOR
-    )
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE DATABASE SANI
 GO
 
-CREATE
-  TABLE TB_CLIENTE_PROPRIETARIO
-  (
-    COD_CLI_PROPRIETARIO NUMERIC (11) NOT NULL ,
-    CEP                  VARCHAR (8) NOT NULL ,
-    NR_ENDERECO          NUMERIC (11) NOT NULL ,
-    COMPL_ENDERECO       VARCHAR (120) ,
-    TEL_CLI_PROPRIETARIO VARCHAR (10) NOT NULL ,
-    CEL_CLI_PROPRIETARIO VARCHAR (11) ,
-    CONSTRAINT "TB_CLIENTE_PROPRIETARIO PK" PRIMARY KEY CLUSTERED (
-    COD_CLI_PROPRIETARIO)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+USE SANI
 GO
 
-CREATE
-  TABLE TB_CLI_COMP_FISICA
-  (
-    COD_CLI_COMPRADOR NUMERIC (11) NOT NULL ,
-    NOME_PESSOA       VARCHAR (120) NOT NULL ,
-    RG_PESSOA         VARCHAR (16) NOT NULL ,
-    CPF_PESSOA        VARCHAR (11) NOT NULL ,
-    DT_NASCIMENTO     DATE NOT NULL ,
-    DT_FALESCIMENTO   DATE ,
-    SEXO_PESSOA       CHAR NOT NULL DEFAULT 'F' ,
-    EST_CIVIL_PESSOA  CHAR NOT NULL ,
-    RENDA             NUMERIC (11,2) NOT NULL ,
-    PROFISSAO         VARCHAR (255) NOT NULL ,
-    EMAIL             VARCHAR (120) NOT NULL ,
-    CONSTRAINT "TB_CLI_COMP_FISICA PK" PRIMARY KEY CLUSTERED (COD_CLI_COMPRADOR
-    )
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbClienteComprador (
+  codCliComprador     NUMERIC (11) NOT NULL ,
+  cep                 VARCHAR (8) NOT NULL ,
+  numeroEndereco      NUMERIC (11) NOT NULL ,
+  complementoEndereco VARCHAR (255) NOT NULL ,
+  telCliComprador     VARCHAR (10) NOT NULL ,
+  celCliComprador     VARCHAR (11) ,
+
+  CONSTRAINT PK_tbClienteComprador PRIMARY KEY (codCliComprador)
+ )
 GO
 
-CREATE
-  TABLE TB_CLI_COMP_JURIDICA
-  (
-    COD_CLI_COMPRADOR    NUMERIC (11) NOT NULL ,
-    RAZAO_SOCIAL         VARCHAR (255) NOT NULL ,
-    CNPJ_PESSOA          VARCHAR (14) NOT NULL ,
-    INSC_ESTADUAL_PESSOA VARCHAR (30) NOT NULL ,
-    DT_FUNDACAO          DATE NOT NULL ,
-    RAMO_ATIVIDADE       VARCHAR (80) NOT NULL ,
-    CONSTRAINT "TB_CLI_COMP_JURIDICA PK" PRIMARY KEY CLUSTERED (
-    COD_CLI_COMPRADOR)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbClienteProprietario (
+  codCliProprietario  NUMERIC (11) NOT NULL ,
+  cep                 VARCHAR (8) NOT NULL ,
+  numeroEndereco      NUMERIC (11) NOT NULL ,
+  complementoEndereco VARCHAR (120) ,
+  telCliProprietario  VARCHAR (10) NOT NULL ,
+  celCliProprietario  VARCHAR (11) ,
+
+  CONSTRAINT PK_tbClienteProprietario PRIMARY KEY (codCliProprietario)
+)
 GO
 
-CREATE
-  TABLE TB_CLI_PROP_FISICA
-  (
-    COD_CLI_PROPRIETARIO NUMERIC (11) NOT NULL ,
-    NOME_PESSOA          VARCHAR (120) NOT NULL ,
-    RG_PESSOA            VARCHAR (16) NOT NULL ,
-    CPF_PESSOA           VARCHAR (11) NOT NULL ,
-    DT_NASCIMENTO        DATE NOT NULL ,
-    DT_FALESCIMENTO      DATE ,
-    SEXO_PESSOA          CHAR NOT NULL DEFAULT 'F' ,
-    EST_CIVIL_PESSOA     CHAR NOT NULL ,
-    RENDA             NUMERIC (11,2) NOT NULL ,
-    PROFISSAO         VARCHAR (255) NOT NULL ,
-    EMAIL             VARCHAR (120) NOT NULL ,
-    CONSTRAINT "TB_CLI_PROP_FISICA PK" PRIMARY KEY CLUSTERED (
-    COD_CLI_PROPRIETARIO)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbClienteCompradorFisica (
+  codCliComprador   NUMERIC (11) NOT NULL ,
+  nomePessoa        VARCHAR (120) NOT NULL ,
+  rgPessoa          VARCHAR (16) NOT NULL ,
+  cpfPessoa         VARCHAR (11) NOT NULL ,
+  dtNasc            DATE NOT NULL ,
+  dtFalescimento    DATE ,
+  sexoPessoa        CHAR NOT NULL DEFAULT 'M' ,
+  estadoCivilPessoa CHAR NOT NULL ,
+  renda             NUMERIC (11,2) NOT NULL ,
+  profissao         VARCHAR (255) NOT NULL ,
+  email             VARCHAR (120) NOT NULL ,
+
+  CONSTRAINT PK_tbClienteCompradorFisica PRIMARY KEY (codCliComprador)
+)
 GO
 
-CREATE
-  TABLE TB_CLI_PROP_JURIDICA
-  (
-    COD_CLI_PROPRIETARIO NUMERIC (11) NOT NULL ,
-    RAZAO_SOCIAL         VARCHAR (255) NOT NULL ,
-    CNPJ_PESSOA          VARCHAR (14) NOT NULL ,
-    INSC_ESTADUAL_PESSOA VARCHAR (30) NOT NULL ,
-    DT_FUNDACAO          DATE NOT NULL ,
-    RAMO_ATIVIDADE       VARCHAR (80) NOT NULL ,
-    CONSTRAINT "TB_CLI_PROP_JURIDICA PK" PRIMARY KEY CLUSTERED (
-    COD_CLI_PROPRIETARIO)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbClienteCompradorJuridica (
+  codCliComprador     NUMERIC (11) NOT NULL ,
+  razaoSocial         VARCHAR (255) NOT NULL ,
+  cnpj                VARCHAR (14) NOT NULL ,
+  inscricaoEstadual   VARCHAR (30) NOT NULL ,
+  dtFundacao          DATE NOT NULL ,
+  ramoAtividade       VARCHAR (1024) NOT NULL ,
+
+  CONSTRAINT PK_tbClienteCompradorJuridica PRIMARY KEY (codCliComprador)
+)
 GO
 
-CREATE
-  TABLE TB_CORRETOR
-  (
-    COD_CORRETOR       NUMERIC (11) NOT NULL ,
-    CEP                VARCHAR (8) NOT NULL ,
-    NR_ENDERECO        NUMERIC (11) NOT NULL ,
-    COMPL_ENDERECO     VARCHAR (255) NOT NULL ,
-    NOME_CORRETOR      VARCHAR (120) NOT NULL ,
-    CPF_CORRETOR       VARCHAR (11) NOT NULL ,
-    RG_CORRETOR        VARCHAR (16) NOT NULL ,
-    NR_CRECI_CORRETOR  VARCHAR (50) NOT NULL ,
-    SEXO_CORRETOR      CHAR NOT NULL DEFAULT 'F' ,
-    DT_NASCIMENTO      DATE NOT NULL ,
-    EST_CIVIL_CORRETOR CHAR NOT NULL ,
-    CONSTRAINT "TB_CORRETOR PK" PRIMARY KEY CLUSTERED (COD_CORRETOR)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbClienteProprietarioFisica (
+  codCliProprietario  NUMERIC (11) NOT NULL ,
+  nomePessoa          VARCHAR (120) NOT NULL ,
+  rgPessoa            VARCHAR (16) NOT NULL ,
+  cpfPessoa           VARCHAR (11) NOT NULL ,
+  dtNasc              DATE NOT NULL ,
+  dtFalescimento      DATE ,
+  sexoPessoa          CHAR NOT NULL DEFAULT 'M' ,
+  estadoCivilPessoa   CHAR NOT NULL ,
+  renda               NUMERIC (11,2) NOT NULL ,
+  profissao           VARCHAR (255) NOT NULL ,
+  email               VARCHAR (120) NOT NULL ,
+  
+  CONSTRAINT PK_tbClienteProprietarioFisica PRIMARY KEY (codCliProprietario)
+)
 GO
 
-CREATE
-  TABLE TB_GRUPO
-  (
-    COD_GRUPO  NUMERIC (11) NOT NULL ,
-    NOME_GRUPO VARCHAR (30) NOT NULL ,
-    CONSTRAINT "TB_GRUPO PK" PRIMARY KEY CLUSTERED (COD_GRUPO)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbClienteProprietarioJuridica (
+  codCliProprietario  NUMERIC (11) NOT NULL ,
+  razaoSocial         VARCHAR (255) NOT NULL ,
+  cnpj                VARCHAR (14) NOT NULL ,
+  inscricaoEstadual   VARCHAR (30) NOT NULL ,
+  dtFundacao          DATE NOT NULL ,
+  ramoAtividade       VARCHAR (1024) NOT NULL ,
+  CONSTRAINT PK_tbClienteProprietarioJuridica PRIMARY KEY (codCliProprietario)
+)
 GO
 
-CREATE
-  TABLE TB_IMAGENS_IMOVEL
-  (
-    ID_IMAGEM  NUMERIC (11) NOT NULL ,
-    COD_IMOVEL NUMERIC (11) NOT NULL ,
-    DT_IMAGEM  DATE NOT NULL ,
-    CONSTRAINT "TB_IMAGENS_IMOVEL PK" PRIMARY KEY CLUSTERED (ID_IMAGEM,
-    COD_IMOVEL)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbCorretor (
+  codCorretor           NUMERIC (11) NOT NULL ,
+  cep                   VARCHAR (8) NOT NULL ,
+  numeroEndereco        NUMERIC (11) NOT NULL ,
+  complementoEndereco   VARCHAR (255) NOT NULL ,
+  nomeCorretor          VARCHAR (120) NOT NULL ,
+  cpfCorretor           VARCHAR (11) NOT NULL ,
+  rgCorretor            VARCHAR (16) NOT NULL ,
+  numeroCreciCorretor   VARCHAR (50) NOT NULL ,
+  sexoCorretor          CHAR NOT NULL DEFAULT 'M' ,
+  dtNasc                DATE NOT NULL ,
+  estadoCivilCorretor   CHAR NOT NULL ,
+
+  CONSTRAINT PK_tbCorretor PRIMARY KEY (codCorretor)
+)
 GO
 
-CREATE
-  TABLE TB_IMOVEL
-  (
-    COD_IMOVEL           NUMERIC (11) NOT NULL ,
-    COD_CORRETOR         NUMERIC (11) NOT NULL ,
-    COD_CLI_PROPRIETARIO NUMERIC (11) NOT NULL ,
-    CEP                  VARCHAR (8) NOT NULL ,
-    NR_ENDERECO          NUMERIC (11) NOT NULL ,
-    COMPL_ENDERECO       VARCHAR (255) ,
-    TP_IMOVEL            CHAR NOT NULL DEFAULT 'AP' ,
-    ST_IMOVEL            CHAR NOT NULL DEFAULT 'DV' ,
-    METRAGEM_IMOVEL      NUMERIC (11,2) NOT NULL ,
-    CONSTRAINT "TB_PROPRIEDADE PK" PRIMARY KEY CLUSTERED (COD_IMOVEL)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbGrupo (
+  codGrupo  NUMERIC (11) NOT NULL ,
+  nomeGrupo VARCHAR (30) NOT NULL ,
+
+  CONSTRAINT PK_tbGrupo PRIMARY KEY (codGrupo)
+)
 GO
 
-CREATE
-  TABLE TB_LISTA_REGRA
-  (
-    COD_GRUPO NUMERIC (11) NOT NULL ,
-    COD_REGRA NUMERIC (11) NOT NULL ,
-    CONSTRAINT "TB_LISTA_REGRA PK" PRIMARY KEY CLUSTERED (COD_GRUPO, COD_REGRA)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbImagensPropriedade (
+  idImagem        NUMERIC (11) NOT NULL ,
+  codPropriedade  NUMERIC (11) NOT NULL ,
+  dtImagem        DATE NOT NULL ,
+
+  CONSTRAINT PK_tbImagensPropriedade PRIMARY KEY (idImagem, codPropriedade)
+)
 GO
 
-CREATE
-  TABLE TB_METAS
-  (
-    COD_META     NUMERIC (11) NOT NULL ,
-    COD_CORRETOR NUMERIC (11) NOT NULL ,
-    DT_INICIO    DATE NOT NULL ,
-    DT_FINAL     DATE NOT NULL ,
-    VALOR_META   VARCHAR (255) NOT NULL ,
-    CONSTRAINT "TB_METAS PK" PRIMARY KEY CLUSTERED (COD_META)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbPropriedade (
+  codPropriedade       NUMERIC (11) NOT NULL ,
+  codCorretor          NUMERIC (11) NOT NULL ,
+  codCliProprietario   NUMERIC (11) NOT NULL ,
+  cep                  VARCHAR (8) NOT NULL ,
+  numeroEndereco       NUMERIC (11) NOT NULL ,
+  complementoEndereco  VARCHAR (255) ,
+  tipoPropriedade      CHAR NOT NULL DEFAULT 'Apto' ,
+  situacaoPropriedade  CHAR NOT NULL DEFAULT 'DispVenda' ,
+  metragemPropriedade  NUMERIC (11,2) NOT NULL ,
+
+  CONSTRAINT PK_tbPropriedade PRIMARY KEY (codPropriedade)
+)
 GO
 
-CREATE
-  TABLE TB_PROPOSTA
-  (
-    COD_PROPOSTA      NUMERIC (11) NOT NULL ,
-    COD_CLI_COMPRADOR NUMERIC (11) NOT NULL ,
-    COD_IMOVEL        NUMERIC (11) NOT NULL ,
-    VL_PROPOSTA       NUMERIC (11,2) NOT NULL ,
-    VALIDADE_PROPOSTA DATE NOT NULL ,
-    ESTADO_PROPOSTA   CHAR NOT NULL DEFAULT 'N' ,
-    ST_PROPOSTA       CHAR NOT NULL DEFAULT 'A' ,
-    CONSTRAINT "TB_PROPOSTA PK" PRIMARY KEY CLUSTERED (COD_PROPOSTA)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbListaRegra (
+  codGrupo NUMERIC (11) NOT NULL ,
+  codRegra NUMERIC (11) NOT NULL ,
+
+  CONSTRAINT PK_tbListaRegra PRIMARY KEY (codGrupo, codRegra)
+)
 GO
 
-CREATE
-  TABLE TB_REGRA
-  (
-    COD_REGRA  NUMERIC (11) NOT NULL ,
-    DESC_REGRA VARCHAR (30) NOT NULL ,
-    CONSTRAINT "TB_REGRA PK" PRIMARY KEY CLUSTERED (COD_REGRA)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbMetas (
+  codMeta      NUMERIC (11) NOT NULL ,
+  codCorretor  NUMERIC (11) NOT NULL ,
+  dtInicio     DATE NOT NULL ,
+  dtFinal      DATE NOT NULL ,
+  descrMeta    VARCHAR (255) NOT NULL ,
+
+  CONSTRAINT PK_tbMetas PRIMARY KEY (codMeta)
+)
 GO
 
-CREATE
-  TABLE TB_USUARIO
-  (
-    USER_NAME     VARCHAR (50) NOT NULL ,
-    SENHA         VARCHAR (50) NOT NULL ,
-    NOME_COMPLETO VARCHAR (120) NOT NULL ,
-    EMAIL         VARCHAR (255) NOT NULL ,
-    COD_GRUPO     NUMERIC (11) NOT NULL ,
-    CONSTRAINT "TB_USUARIO PK" PRIMARY KEY CLUSTERED (USER_NAME)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbProposta (
+  codProposta       NUMERIC (11) NOT NULL ,
+  codCliComprador   NUMERIC (11) NOT NULL ,
+  codPropriedade    NUMERIC (11) NOT NULL ,
+  ValorProposta     NUMERIC (11,2) NOT NULL ,
+  validadeProposta  DATE NOT NULL ,
+  estadoProposta    CHAR NOT NULL DEFAULT 'Negada' ,
+  statusProposta    CHAR NOT NULL DEFAULT 'Ativa' ,
+
+  CONSTRAINT PK_tbProposta PRIMARY KEY (codProposta)
+)
 GO
 
-CREATE
-  TABLE TB_VENDA_LOCACAO
-  (
-    COD_TRANSACAO NUMERIC (11) NOT NULL ,
-    DT_TRANSACAO  DATE NOT NULL ,
-    NR_CONTRATO   NUMERIC (11) NOT NULL ,
-    ARQ_CONTRATO VARBINARY NOT NULL ,
-    COD_PROPOSTA NUMERIC (11) NOT NULL ,
-    CONSTRAINT "TB_VENDA_LOCACAO PK" PRIMARY KEY CLUSTERED (COD_TRANSACAO)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbRegra (
+  codRegra    NUMERIC (11) NOT NULL ,
+  descrRegra  VARCHAR (30) NOT NULL ,
+
+  CONSTRAINT PK_tbRegra PRIMARY KEY (codRegra)
+)
 GO
 
-CREATE
-  TABLE tbBairro
-  (
-    ID_BAIRRO INTEGER NOT NULL ,
-    BAIRRO    VARCHAR (150) NOT NULL ,
-    ID_CIDADE INTEGER NOT NULL ,
-    CONSTRAINT "tbBairro PK" PRIMARY KEY CLUSTERED (ID_BAIRRO)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbUsuario (
+  usuario       VARCHAR (50) NOT NULL ,
+  senha         VARCHAR (50) NOT NULL ,
+  nome          VARCHAR (120) NOT NULL ,
+  email         VARCHAR (255) NOT NULL ,
+  codGrupo      NUMERIC (11) NOT NULL ,
+
+  CONSTRAINT PK_tbUsuario PRIMARY KEY (usuario)
+)
 GO
 
-CREATE
-  TABLE tbCidade
-  (
-    ID_CIDADE INTEGER NOT NULL ,
-    CIDADE    VARCHAR (150) NOT NULL ,
-    UF        VARCHAR (2) NOT NULL ,
-    CONSTRAINT "tbCidade PK" PRIMARY KEY CLUSTERED (ID_CIDADE)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbVendaLocacao (
+  codTransacao      NUMERIC (11) NOT NULL ,
+  dtTransacao       DATE NOT NULL ,
+  numeroContrato    NUMERIC (11) NOT NULL ,
+  arqContrato       VARBINARY NOT NULL ,
+  codProposta       NUMERIC (11) NOT NULL ,
+
+  CONSTRAINT PK_tbVendaLocacao PRIMARY KEY (codTransacao)
+)
 GO
 
-CREATE
-  TABLE tbEndereco
-  (
-    CEP       VARCHAR (8) NOT NULL DEFAULT '' ,
-    ENDERECO  VARCHAR (150) NOT NULL DEFAULT '' ,
-    ID_CIDADE INTEGER NOT NULL ,
-    ID_BAIRRO INTEGER NOT NULL ,
-    CONSTRAINT "tbEndereco PK" PRIMARY KEY CLUSTERED (CEP)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
+CREATE TABLE tbCidade (
+  idCidade  INTEGER NOT NULL ,
+  cidade    VARCHAR (255) NOT NULL ,
+  uf        VARCHAR (2) NOT NULL ,
+
+  CONSTRAINT PK_tbCidade PRIMARY KEY (idCidade)
+)
 GO
 
-ALTER TABLE tbEndereco
-ADD CONSTRAINT FK_BAIRRO_ENDERECO FOREIGN KEY
-(
-ID_BAIRRO
+CREATE TABLE tbBairro (
+  idBairro INTEGER NOT NULL ,
+  bairro   VARCHAR (255) NOT NULL ,
+  idCidade INTEGER NOT NULL ,
+
+  CONSTRAINT PK_tbBairro PRIMARY KEY (idBairro)
 )
-REFERENCES tbBairro
-(
-ID_BAIRRO
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
 GO
 
-ALTER TABLE tbBairro
-ADD CONSTRAINT FK_CIDADE_BAIRRO FOREIGN KEY
-(
-ID_CIDADE
+CREATE TABLE tbEndereco (
+  cep       VARCHAR (8) NOT NULL DEFAULT '' ,
+  endereco  VARCHAR (255) NOT NULL DEFAULT '' ,
+  idCidade  INTEGER NOT NULL ,
+  idBairro  INTEGER NOT NULL ,
+
+  CONSTRAINT PK_tbEndereco PRIMARY KEY (cep)
 )
-REFERENCES tbCidade
-(
-ID_CIDADE
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
 GO
 
-ALTER TABLE tbEndereco
-ADD CONSTRAINT FK_CIDADE_ENDERECO FOREIGN KEY
-(
-ID_CIDADE
-)
-REFERENCES tbCidade
-(
-ID_CIDADE
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbEndereco ADD CONSTRAINT FK_Bairro_Endereco FOREIGN KEY(idBairro) REFERENCES tbBairro(idBairro)
 GO
 
-ALTER TABLE TB_CLI_COMP_FISICA
-ADD CONSTRAINT FK_CLI_COMP_PESS_FIS FOREIGN KEY
-(
-COD_CLI_COMPRADOR
-)
-REFERENCES TB_CLIENTE_COMPRADOR
-(
-COD_CLI_COMPRADOR
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbBairro ADD CONSTRAINT FK_Cidade_Bairro FOREIGN KEY(idCidade) REFERENCES tbCidade(idCidade)
 GO
 
-ALTER TABLE TB_CLI_COMP_JURIDICA
-ADD CONSTRAINT FK_CLI_COMP_PESS_JUR FOREIGN KEY
-(
-COD_CLI_COMPRADOR
-)
-REFERENCES TB_CLIENTE_COMPRADOR
-(
-COD_CLI_COMPRADOR
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbEndereco ADD CONSTRAINT FK_Cidade_Endereco FOREIGN KEY(idCidade) REFERENCES tbCidade(idCidade)
 GO
 
-ALTER TABLE TB_PROPOSTA
-ADD CONSTRAINT FK_CLI_COMP_PROPOSTA FOREIGN KEY
-(
-COD_CLI_COMPRADOR
-)
-REFERENCES TB_CLIENTE_COMPRADOR
-(
-COD_CLI_COMPRADOR
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbClienteCompradorFisica ADD CONSTRAINT FK_ClienteCompradorFisica FOREIGN KEY(codCliComprador) REFERENCES tbClienteComprador(codCliComprador)
 GO
 
-ALTER TABLE TB_IMOVEL
-ADD CONSTRAINT FK_CLI_PROPRIETARIO_IMOVEL FOREIGN KEY
-(
-COD_CLI_PROPRIETARIO
-)
-REFERENCES TB_CLIENTE_PROPRIETARIO
-(
-COD_CLI_PROPRIETARIO
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbClienteCompradorJuridica ADD CONSTRAINT FK_ClienteCompradorJuridica FOREIGN KEY(codCliComprador) REFERENCES tbClienteComprador(codCliComprador)
 GO
 
-ALTER TABLE TB_CLI_PROP_FISICA
-ADD CONSTRAINT FK_CLI_PROP_PESS_FISI FOREIGN KEY
-(
-COD_CLI_PROPRIETARIO
-)
-REFERENCES TB_CLIENTE_PROPRIETARIO
-(
-COD_CLI_PROPRIETARIO
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbProposta ADD CONSTRAINT FK_ClienteComprador_Proposta FOREIGN KEY(codCliComprador) REFERENCES tbClienteComprador(codCliComprador)
 GO
 
-ALTER TABLE TB_CLI_PROP_JURIDICA
-ADD CONSTRAINT FK_CLI_PROP_PESS_JUR FOREIGN KEY
-(
-COD_CLI_PROPRIETARIO
-)
-REFERENCES TB_CLIENTE_PROPRIETARIO
-(
-COD_CLI_PROPRIETARIO
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbPropriedade ADD CONSTRAINT FK_ClienteProprietario_IMOVEL FOREIGN KEY(codCliProprietario) REFERENCES tbClienteProprietario(codCliProprietario)
 GO
 
-ALTER TABLE TB_IMOVEL
-ADD CONSTRAINT FK_CORRETOR_IMOVEL FOREIGN KEY
-(
-COD_CORRETOR
-)
-REFERENCES TB_CORRETOR
-(
-COD_CORRETOR
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbClienteProprietarioFisica ADD CONSTRAINT FK_ClienteProprietarioFisica FOREIGN KEY(codCliProprietario) REFERENCES tbClienteProprietario(codCliProprietario)
 GO
 
-ALTER TABLE TB_METAS
-ADD CONSTRAINT FK_CORRETOR_META FOREIGN KEY
-(
-COD_CORRETOR
-)
-REFERENCES TB_CORRETOR
-(
-COD_CORRETOR
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbClienteProprietarioJuridica ADD CONSTRAINT FK_ClienteProprietarioJuridica FOREIGN KEY(codCliProprietario) REFERENCES tbClienteProprietario(codCliProprietario)
 GO
 
-ALTER TABLE TB_CLIENTE_COMPRADOR
-ADD CONSTRAINT FK_ENDERECO_CLI_COMP FOREIGN KEY
-(
-CEP
-)
-REFERENCES tbEndereco
-(
-CEP
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbPropriedade ADD CONSTRAINT FK_Corretor_Propriedade FOREIGN KEY(codCorretor) REFERENCES tbCorretor(codCorretor)
 GO
 
-ALTER TABLE TB_CLIENTE_PROPRIETARIO
-ADD CONSTRAINT FK_ENDERECO_CLI_PROP FOREIGN KEY
-(
-CEP
-)
-REFERENCES tbEndereco
-(
-CEP
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbMetas ADD CONSTRAINT FK_Corretor_Meta FOREIGN KEY(codCorretor) REFERENCES tbCorretor(codCorretor)
 GO
 
-ALTER TABLE TB_CORRETOR
-ADD CONSTRAINT FK_ENDERECO_CORRETOR FOREIGN KEY
-(
-CEP
-)
-REFERENCES tbEndereco
-(
-CEP
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbClienteComprador ADD CONSTRAINT FK_Endereco_ClienteComprador FOREIGN KEY(cep) REFERENCES tbEndereco(cep)
 GO
 
-ALTER TABLE TB_IMOVEL
-ADD CONSTRAINT FK_ENDERECO_IMOVEL FOREIGN KEY
-(
-CEP
-)
-REFERENCES tbEndereco
-(
-CEP
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbClienteProprietario ADD CONSTRAINT FK_Endereco_ClienteProprietario FOREIGN KEY(cep) REFERENCES tbEndereco(cep)
 GO
 
-ALTER TABLE TB_LISTA_REGRA
-ADD CONSTRAINT FK_GRUPO_LISTA FOREIGN KEY
-(
-COD_GRUPO
-)
-REFERENCES TB_GRUPO
-(
-COD_GRUPO
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbCorretor ADD CONSTRAINT FK_Endereco_Corretor FOREIGN KEY(cep) REFERENCES tbEndereco(cep)
 GO
 
-ALTER TABLE TB_USUARIO
-ADD CONSTRAINT FK_GRUPO_USUARIO FOREIGN KEY
-(
-COD_GRUPO
-)
-REFERENCES TB_GRUPO
-(
-COD_GRUPO
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbPropriedade ADD CONSTRAINT FK_Endereco_Propriedade FOREIGN KEY(cep) REFERENCES tbEndereco(cep)
 GO
 
-ALTER TABLE TB_IMAGENS_IMOVEL
-ADD CONSTRAINT FK_IMOVEL_IMAGENS FOREIGN KEY
-(
-COD_IMOVEL
-)
-REFERENCES TB_IMOVEL
-(
-COD_IMOVEL
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbListaRegra ADD CONSTRAINT FK_Grupo_Lista FOREIGN KEY(codGrupo) REFERENCES tbGrupo(codGrupo)
 GO
 
-ALTER TABLE TB_PROPOSTA
-ADD CONSTRAINT FK_IMOVEL_PROPOSTA FOREIGN KEY
-(
-COD_IMOVEL
-)
-REFERENCES TB_IMOVEL
-(
-COD_IMOVEL
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbUsuario ADD CONSTRAINT FK_Grupo_Usuario FOREIGN KEY(codGrupo) REFERENCES tbGrupo(codGrupo)
 GO
 
-ALTER TABLE TB_VENDA_LOCACAO
-ADD CONSTRAINT FK_PROPOSTA_VENDA_LOC FOREIGN KEY
-(
-COD_PROPOSTA
-)
-REFERENCES TB_PROPOSTA
-(
-COD_PROPOSTA
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbImagensPropriedade ADD CONSTRAINT FK_Propriedade_Imagens FOREIGN KEY(codPropriedade) REFERENCES tbPropriedade(codPropriedade)
 GO
 
-ALTER TABLE TB_LISTA_REGRA
-ADD CONSTRAINT Relation_20 FOREIGN KEY
-(
-COD_REGRA
-)
-REFERENCES TB_REGRA
-(
-COD_REGRA
-)
-ON
-DELETE
-  NO ACTION ON
-UPDATE NO ACTION
+ALTER TABLE tbProposta ADD CONSTRAINT FK_Propriedade_Proposta FOREIGN KEY(codPropriedade) REFERENCES tbPropriedade(codPropriedade)
 GO
 
+ALTER TABLE tbVendaLocacao ADD CONSTRAINT FK_Proposta_VendaLoc FOREIGN KEY(codProposta) REFERENCES tbProposta(codProposta)
+GO
 
--- Relatório do Resumo do Oracle SQL Developer Data Modeler: 
--- 
--- CREATE TABLE                            19
--- CREATE INDEX                             0
--- ALTER TABLE                             21
--- CREATE VIEW                              0
--- CREATE PACKAGE                           0
--- CREATE PACKAGE BODY                      0
--- CREATE PROCEDURE                         0
--- CREATE FUNCTION                          0
--- CREATE TRIGGER                           0
--- ALTER TRIGGER                            0
--- CREATE DATABASE                          0
--- CREATE DEFAULT                           0
--- CREATE INDEX ON VIEW                     0
--- CREATE ROLLBACK SEGMENT                  0
--- CREATE ROLE                              0
--- CREATE RULE                              0
--- CREATE PARTITION FUNCTION                0
--- CREATE PARTITION SCHEME                  0
--- 
--- DROP DATABASE                            0
--- 
--- ERRORS                                   0
--- WARNINGS                                 0
+-- ALTER TABLE tbListaRegra ADD CONSTRAINT Relation_20 FOREIGN KEY(codRegra) REFERENCES tbRegra(codRegra)
+-- GO
+
+
+select * from tbEndereco where cep like '06213090'
+
+--Delete
+use master
+drop database SANI

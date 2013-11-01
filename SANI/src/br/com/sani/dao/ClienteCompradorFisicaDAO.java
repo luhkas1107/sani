@@ -13,65 +13,65 @@ import br.com.sani.util.DbUtil;
 public class ClienteCompradorFisicaDAO {
 
 	private static final String EXCLUIR_CLIENTE_COMPRADOR_FISICA = 
-			"delete from TB_CLI_COMP_FISICA where COD_CLI_COMPRADOR = ?; "+
-			"delete from TB_CLIENTE_COMPRADOR where COD_CLI_COMPRADOR = ?; ";
+			"delete from tbClienteCompradorFisica where codCliComprador = ?; "+
+			"delete from tbClienteComprador where codCliComprador = ?; ";
 	
 	private static final String INSERIR_CLIENTE_COMPRADOR_FISICA =
-			"INSERT INTO TB_CLIENTE_COMPRADOR ( "+
-			"	COD_CLI_COMPRADOR, "+
-			"	CEP, "+
-			"	NR_ENDERECO, "+
-			"	COMPL_ENDERECO, "+
-			"	TEL_CLI_COMPRADOR, "+
-			"	CEL_CLI_COMPRADOR) "+
+			"INSERT INTO tbClienteComprador ( "+
+			"	codCliComprador, "+
+			"	cep, "+
+			"	numeroEndereco, "+
+			"	complementoEndereco, "+
+			"	telCliComprador, "+
+			"	celCliComprador) "+
 			"VALUES (?,?,?,?,?,?); "+
 			
-			"INSERT INTO TB_CLI_COMP_FISICA ( "+
-			"	COD_CLI_COMPRADOR, "+
-			"	NOME_PESSOA, "+
-			"	RG_PESSOA, "+
-			"	CPF_PESSOA, "+
-			"	DT_NASCIMENTO, "+
-			"	SEXO_PESSOA, "+
-			"	EST_CIVIL_PESSOA, "+
-			"	RENDA, "+
-			"	PROFISSAO, "+
-			"	EMAIL )"+
+			"INSERT INTO tbClienteCompradorFisica ( "+
+			"	codCliComprador, "+
+			"	nomePessoa, "+
+			"	rgPessoa, "+
+			"	cpfPessoa, "+
+			"	dtNasc, "+
+			"	sexoPessoa, "+
+			"	estadoCivilPessoa, "+
+			"	renda, "+
+			"	profissao, "+
+			"	email )"+
 			"VALUES (?,?,?,?,?,?,?,?,?,?)";
 	
 	private static final String ATUALIZAR_CLIENTE_COMPRADOR_FISICA =
-			"UPDATE TB_CLIENTE_COMPRADOR SET "+
-			"	CEP = ?, "+
-			"	NR_ENDERECO = ?, "+
-			"	COMPL_ENDERECO = ?, "+
-			"	TEL_CLI_COMPRADOR = ?, "+
-			"	CEL_CLI_COMPRADOR = ? "+
-			"WHERE COD_CLI_COMPRADOR = ?; "+
+			"UPDATE tbClienteComprador SET "+
+			"	cep = ?, "+
+			"	numeroEndereco = ?, "+
+			"	complementoEndereco = ?, "+
+			"	telCliComprador = ?, "+
+			"	celCliComprador = ? "+
+			"WHERE codCliComprador = ?; "+
 			
 			"UPDATE TB_CLI_COMP_FISICA SET "+
-			"	NOME_PESSOA = ?, "+
-			"	RG_PESSOA = ?, "+
-			"	CPF_PESSOA = ?, "+
-			"	DT_NASCIMENTO = ?, "+
-			"	SEXO_PESSOA = ?, "+
-			"	EST_CIVIL_PESSOA = ?, "+
-			"	RENDA = ?, "+
-			"	PROFISSAO = ?, "+
-			"	EMAIL = ? "+
-			"WHERE COD_CLI_COMPRADOR = ?";
+			"	nomePessoa = ?, "+
+			"	rgPessoa = ?, "+
+			"	cpfPessoa = ?, "+
+			"	dtNasc = ?, "+
+			"	sexoPessoa = ?, "+
+			"	estadoCivilPessoa = ?, "+
+			"	renda = ?, "+
+			"	profissao = ?, "+
+			"	email = ? "+
+			"WHERE codCliComprador = ?";
 	
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA =
-			"select * from TB_CLI_COMP_FISICA order by NOME_PESSOA";
+			"select * from tbClienteCompradorFisica order by nomePessoa";
 
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA_NOME =
-			"select * from TB_CLI_COMP_FISICA where NOME_PESSOA like ? order by NOME_PESSOA";
+			"select * from tbClienteCompradorFisica where nomePessoa like ? order by nomePessoa";
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_FISICA_ID = 
-			"select * from TB_CLI_COMP_FISICA where COD_CLI_COMPRADOR = ?";
+			"select * from tbClienteCompradorFisica where codCliComprador = ?";
 	
 	private static final String BUSCAR_NOVO_ID = 
-			"SELECT ISNULL(MAX(COD_CLI_COMPRADOR), 0) + 1 AS NOVO_ID FROM TB_CLIENTE_COMPRADOR";
+			"SELECT ISNULL(MAX(codCliComprador), 0) + 1 AS NOVO_ID FROM tbClienteComprador";
 	
 	private ClienteComprador getBean(ResultSet result) throws SQLException, DAOException{
 		ClienteComprador cliComp = new ClienteComprador();

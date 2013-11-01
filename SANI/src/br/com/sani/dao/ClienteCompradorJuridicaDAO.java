@@ -18,45 +18,45 @@ import br.com.sani.util.DbUtil;
 public class ClienteCompradorJuridicaDAO {
 
 	private static final String EXCLUIR_CLIENTE_COMPRADOR_JURIDICA = 
-			"delete from TB_CLI_COMP_JURIDICA where COD_CLI_COMPRADOR = ?; "+
-			"delete from TB_CLIENTE_COMPRADOR where COD_CLI_COMPRADOR = ?; ";			
+			"delete from tbClienteCompradorJuridica where codCliComprador = ?; "+
+			"delete from tbClienteComprador where codCliComprador = ?; ";		
 	
 	private static final String INSERIR_CLIENTE_COMPRADOR_JURIDICA =
-			"INSERT INTO TB_CLIENTE_COMPRADOR ( "+
-			"	COD_CLI_COMPRADOR, "+
-			"	CEP, "+
-			"	NR_ENDERECO, "+
-			"	COMPL_ENDERECO, "+
-			"	TEL_CLI_COMPRADOR, "+
-			"	CEL_CLI_COMPRADOR) "+
+			"INSERT INTO tbClienteComprador ( "+
+			"	codCliComprador, "+
+			"	cep, "+
+			"	numeroEndereco, "+
+			"	complementoEndereco, "+
+			"	telCliComprador, "+
+			"	celCliComprador) "+
 			"VALUES (?,?,?,?,?,?); "+
 					
-			"INSERT INTO TB_CLI_COMP_JURIDICA ( "+
-			"	COD_CLI_COMPRADOR, "+
-			"   RAZAO_SOCIAL, "+
-			"	CNPJ_PESSOA, "+
-			"	INSC_ESTADUAL_PESSOA, "+
-			"	DT_FUNDACAO, "+
-			"	RAMO_ATIVIDADE)"+
+			"INSERT INTO tbClienteCompradorJuridica ( "+
+			"	codCliComprador, "+
+			"   razaoSocial, "+
+			"	cnpj, "+
+			"	inscricaoEstadual, "+
+			"	dtFundacao, "+
+			"	ramoAtividade)"+
 			"VALUES (?,?,?,?,?,?)";
 	
 	private static final String ATUALIZAR_CLIENTE_COMPRADOR_JURIDICA =
-			"UPDATE TB_CLIENTE_COMPRADOR SET "+
-			"	CEP = ?, "+
-			"	NR_ENDERECO = ?, "+
-			"	COMPL_ENDERECO = ?, "+
-			"	TEL_CLI_COMPRADOR = ?, "+
-			"	CEL_CLI_COMPRADOR = ? "+
-			"WHERE COD_CLI_COMPRADOR = ?; "+
+			"UPDATE tbClienteComprador SET "+
+			"	cep = ?, "+
+			"	numeroEndereco = ?, "+
+			"	complementoEndereco = ?, "+
+			"	telCliComprador = ?, "+
+			"	celCliComprador = ? "+
+			"WHERE codCliComprador = ?; "+
 					
-			"UPDATE TB_CLI_COMP_JURIDICA SET "+
-			"	COD_CLI_COMPRADOR = ?, "+
-			"	RAZAO_SOCIAL = ?, "+
-			"	CNPJ_PESSOA = ?, "+
-			"	INSC_ESTADUAL_PESSOA = ?, "+
-			"	DT_FUNDACAO = ?, "+
-			"	RAMO_ATIVIDADE = ?, "+
-			"WHERE COD_CLI_COMPRADOR = ?";
+			"UPDATE tbClienteCompradorJuridica SET "+
+			//"	codCliComprador = ?, "+
+			"	razaoSocial = ?, "+
+			"	cnpj = ?, "+
+			"	inscricaoEstadual = ?, "+
+			"	dtFundacao = ?, "+
+			"	ramoAtividade = ?, "+
+			"WHERE codCliComprador = ?";
 	
 	/*private static final String VALIDAR_LOGIN_SENHA = 
 		"select "+
@@ -68,16 +68,16 @@ public class ClienteCompradorJuridicaDAO {
 			"cc.senha_funcionario = ?";*/
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_JURIDICA =
-			"select * from TB_CLIENTE_COMPRADOR order by RAZAO_SOCIAL";
+			"select * from tbClienteCompradorJuridica order by razaoSocial";
 
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_JURIDICA_NOME =
-			"select * from TB_CLIENTE_COMPRADOR where RAZAO_SOCIAL like ? order by RAZAO_SOCIAL";
+			"select * from tbClienteCompradorJuridica where razaoSocial like ? order by razaoSocial";
 	
 	private static final  String CONSULTA_CLIENTE_COMPRADOR_JURIDICA_ID = 
-			"select * from TB_CLIENTE_COMPRADOR where COD_CLI_COMPRADOR = ?";
+			"select * from tbClienteCompradorJuridica where codCliComprador = ?";
 	
 	private static final String BUSCAR_NOVO_ID = 
-			"SELECT ISNULL(MAX(COD_CLI_COMPRADOR), 0) + 1 AS NOVO_ID FROM TB_CLIENTE_COMPRADOR";
+			"SELECT ISNULL(MAX(codCliComprador), 0) + 1 AS NOVO_ID FROM tbClienteComprador";
 	
 	private ClienteComprador getBean(ResultSet result) throws SQLException, DAOException{
 		ClienteComprador cliComp = new ClienteComprador();
