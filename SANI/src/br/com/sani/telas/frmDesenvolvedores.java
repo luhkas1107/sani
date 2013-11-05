@@ -59,7 +59,7 @@ public class frmDesenvolvedores extends JFrame {
 		JTextPane txtpnSaniSistema = new JTextPane();
 		txtpnSaniSistema.setBackground(SystemColor.control);
 		txtpnSaniSistema.setEditable(false);
-		txtpnSaniSistema.setText("SANI - Sistema Administrador de Neg\u00F3cios Imobili\u00E1rios\r\n\r\nProgramador: Andr\u00E9 Eduardo\r\nDesigner: Andr\u00E9 Eduardo, Anne Helen, Caroline Chaves e Victor Ramos\r\nBanco de Dados: Andr\u00E9 Eduardo, Anne Helen, Caroline Chaves e Victor Ramos\r\nDocumenta\u00E7\u00E3o T\u00E9cnica: Anne Helen, Caroline Chaves e Victor Ramos\r\n\r\nAgradecimentos Especias: Tamires Pereira e Caroline Ara\u00FAjo");
+		txtpnSaniSistema.setText("SANI - Sistema Administrador de Neg\u00F3cios Imobili\u00E1rios\r\n\r\nProgramador: Andr\u00E9 Eduardo\r\nDesigner: Andr\u00E9 Eduardo, Anne Helen, Caroline Chaves e Victor Ramos\r\nBanco de Dados: Andr\u00E9 Eduardo, Anne Helen e Caio Vinicius\r\nSite: Anne Helen, Caio Vinicius, Caroline Chaves e Victor Ramos\r\nDocumenta\u00E7\u00E3o T\u00E9cnica: Anne Helen, Caroline Chaves e Victor Ramos");
 		txtpnSaniSistema.setBounds(10, 63, 399, 128);
 		contentPane.add(txtpnSaniSistema);
 		
