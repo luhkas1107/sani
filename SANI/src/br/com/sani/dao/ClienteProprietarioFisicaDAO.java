@@ -210,6 +210,29 @@ public class ClienteProprietarioFisicaDAO {
 	
 	//CONSULTA NOME
 	
+
+	public ClienteProprietario consultarTodosClientes() throws DAOException {
+		Connection conn = DbUtil.getConnection();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		ClienteProprietario retorno = null;
+		try{
+			statement = conn.prepareStatement(CONSULTA_CLIENTE_TODOS);
+			//statement.setInt(1, );
+			result = statement.executeQuery();
+			if(result.next()){
+				retorno = getBean(result);
+			}
+		}catch(SQLException e){
+			throw new DAOException(e);
+		}finally{
+			DbUtil.close(conn, statement, result);
+		}
+		return retorno;
+	}
+	
+	
+	
 	public ClienteProprietario consultaPorCod(int codCliProprietario) throws DAOException{
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
@@ -230,5 +253,5 @@ public class ClienteProprietarioFisicaDAO {
 		
 		return retorno;
 	}
-	
+
 }

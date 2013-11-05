@@ -334,17 +334,17 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 		label.setBounds(264, 90, 50, 14);
 		pnEndereco.add(label);
 		
-		JLabel label_1 = new JLabel("CEP:");
-		label_1.setBounds(21, 30, 32, 14);
-		pnEndereco.add(label_1);
+		JLabel lblCep = new JLabel("CEP:");
+		lblCep.setBounds(21, 30, 32, 14);
+		pnEndereco.add(lblCep);
 		
-		JLabel label_2 = new JLabel("Endere\u00E7o:\r\n");
-		label_2.setBounds(21, 60, 58, 14);
-		pnEndereco.add(label_2);
+		JLabel lblEndereco = new JLabel("Endere\u00E7o:\r\n");
+		lblEndereco.setBounds(21, 60, 58, 14);
+		pnEndereco.add(lblEndereco);
 		
-		JLabel label_3 = new JLabel("Complemento:");
-		label_3.setBounds(21, 153, 69, 14);
-		pnEndereco.add(label_3);
+		JLabel lblComplemento = new JLabel("Complemento:");
+		lblComplemento.setBounds(21, 153, 69, 14);
+		pnEndereco.add(lblComplemento);
 		
 		txtNumero = new JTextField();
 		txtNumero.setName("N\u00FAmero Residencial");
@@ -352,9 +352,9 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 		txtNumero.setBounds(326, 87, 86, 20);
 		pnEndereco.add(txtNumero);
 		
-		JLabel label_4 = new JLabel("Bairro:");
-		label_4.setBounds(21, 90, 46, 14);
-		pnEndereco.add(label_4);
+		JLabel lblBairro = new JLabel("Bairro:");
+		lblBairro.setBounds(21, 90, 46, 14);
+		pnEndereco.add(lblBairro);
 		
 		txtBairro = new JTextField();
 		txtBairro.setEditable(false);
@@ -362,9 +362,9 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 		txtBairro.setBounds(94, 87, 154, 20);
 		pnEndereco.add(txtBairro);
 		
-		JLabel label_5 = new JLabel("Cidade:");
-		label_5.setBounds(21, 122, 46, 14);
-		pnEndereco.add(label_5);
+		JLabel lblCidade = new JLabel("Cidade:");
+		lblCidade.setBounds(21, 122, 46, 14);
+		pnEndereco.add(lblCidade);
 		
 		txtCidade = new JTextField();
 		txtCidade.setEditable(false);

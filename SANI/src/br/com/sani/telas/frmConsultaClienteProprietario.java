@@ -188,10 +188,10 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		Object[] object = new Object[4];
 		int i = 0;
 		
-		object[i++] = pro.getId();
+		/*object[i++] = pro.getId();
 		object[i++] = pro.getNome();
 		object[i++] = pro.getEndereco();
-		object[i++] = pro.getTelefoneCelular();
+		object[i++] = pro.getTelefoneCelular();*/
 		
 		dtm.addRow(object);
 	}
