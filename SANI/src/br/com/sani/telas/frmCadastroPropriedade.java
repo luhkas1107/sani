@@ -26,6 +26,7 @@ import javax.swing.border.TitledBorder;
 import br.com.sani.bean.ClienteProprietarioFisica;
 import br.com.sani.bean.Endereco;
 import br.com.sani.dao.EnderecoDAO;
+import br.com.sani.exception.EntradaUsuarioException;
 import br.com.sani.util.ImagePanel;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
@@ -33,6 +34,9 @@ import br.com.sani.util.TelaUtil;
 import java.awt.Font;
 import java.awt.Cursor;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
 public class frmCadastroPropriedade extends JFrame {
 
@@ -60,6 +64,15 @@ public class frmCadastroPropriedade extends JFrame {
 	private ImagePanel imagem4;
 	private ImagePanel imagem5;
 	private ImagePanel imagem6;
+	
+	//Byte IMAGENS
+	
+	private byte[] foto1;
+	private byte[] foto2;
+	private byte[] foto3;
+	private byte[] foto4;
+	private byte[] foto5;
+	private byte[] foto6;
 
 	/**
 	 * Launch the application.
@@ -362,36 +375,101 @@ public class frmCadastroPropriedade extends JFrame {
 		//Imagens
 		
 		imagem1 = new ImagePanel(null);
+		imagem1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					escolherFoto1();
+				} catch (EntradaUsuarioException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		imagem1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem1.setBounds(10, 26, 96, 85);
 		panelImagem.add(imagem1);
 		imagem1.setLayout(null);
 		
 		imagem2 = new ImagePanel(null);
+		imagem2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					escolherFoto2();
+				} catch (EntradaUsuarioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		imagem2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem2.setBounds(112, 26, 92, 85);
 		panelImagem.add(imagem2);
 		imagem2.setLayout(null);
 		
 		imagem3 = new ImagePanel(null);
+		imagem3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					escolherFoto3();
+				} catch (EntradaUsuarioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		imagem3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem3.setBounds(10, 117, 96, 85);
 		panelImagem.add(imagem3);
 		imagem3.setLayout(null);
 		
 		imagem4 = new ImagePanel(null);
+		imagem4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					escolherFoto4();
+				} catch (EntradaUsuarioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		imagem4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem4.setBounds(112, 117, 92, 85);
 		panelImagem.add(imagem4);
 		imagem4.setLayout(null);
 		
 		imagem5 = new ImagePanel(null);
+		imagem5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					escolherFoto5();
+				} catch (EntradaUsuarioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		imagem5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem5.setBounds(10, 208, 96, 85);
 		panelImagem.add(imagem5);
 		imagem5.setLayout(null);
 		
 		imagem6 = new ImagePanel(null);
+		imagem6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					escolherFoto6();
+				} catch (EntradaUsuarioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
 		imagem6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem6.setBounds(112, 206, 92, 87);
 		panelImagem.add(imagem6);
@@ -494,4 +572,41 @@ public class frmCadastroPropriedade extends JFrame {
 		txtNumero.setText("");
 		txtComplementoPropriedade.setText("");
 	}
+	
+	private void escolherFoto1() throws EntradaUsuarioException {
+		JTextField foto = new JTextField();
+		
+		this.foto1 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+	}
+	
+	private void escolherFoto2() throws EntradaUsuarioException {
+		JTextField foto = new JTextField();
+		
+		this.foto2 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+	}
+	
+	private void escolherFoto3() throws EntradaUsuarioException {
+		JTextField foto = new JTextField();
+		
+		this.foto3 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+	}
+	
+	private void escolherFoto4() throws EntradaUsuarioException {
+		JTextField foto = new JTextField();
+		
+		this.foto4 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+	}
+	
+	private void escolherFoto5() throws EntradaUsuarioException {
+		JTextField foto = new JTextField();
+		
+		this.foto5 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+	}
+	
+	private void escolherFoto6() throws EntradaUsuarioException {
+		JTextField foto = new JTextField();
+		
+		this.foto6 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+	}
+	
 }

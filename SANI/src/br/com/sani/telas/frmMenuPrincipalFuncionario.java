@@ -147,9 +147,9 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 		JMenuItem mntmClienteProprietario = new JMenuItem("Cliente Propriet\u00E1rio");
 		mntmClienteProprietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmCadastroClienteProprietario frameCadCliProp;
+			frmCadastroClienteProprietarioFisica frameCadCliProp;
 			try {
-				frameCadCliProp = new frmCadastroClienteProprietario();
+				frameCadCliProp = new frmCadastroClienteProprietarioFisica();
 				frameCadCliProp.setVisible(true);
 			} catch (Throwable e) {
 				// TODO Auto-generated catch block
