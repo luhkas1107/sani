@@ -213,7 +213,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
 		mntmClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmConsultaClientes frameConsCli = new frmConsultaClientes();
+				frmConsultaClienteComprador frameConsCli = new frmConsultaClienteComprador();
 				frameConsCli.setVisible(true);
 			}
 		});

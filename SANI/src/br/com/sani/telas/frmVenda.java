@@ -25,8 +25,11 @@ import br.com.sani.dao.EnderecoDAO;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
+import br.com.sani.telas.frmConsultaPropriedade;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
 
 public class frmVenda extends JFrame {
 
@@ -44,6 +47,9 @@ public class frmVenda extends JFrame {
 	private JTextField txtNomeProprietario;
 	private JTextField txtCpfProprietario;
 	private JTextField txtRgProprietario;
+	private JTextField txtNomeComprador;
+	private JTextField txtCpfComprador;
+	private JTextField txtRgComprador;
 	//private JTextField txtCidade;
 	//private JTextField txtBairro;
 	//private JTextField txtEstado;
@@ -70,7 +76,7 @@ public class frmVenda extends JFrame {
 	 */
 	public frmVenda() throws ParseException {
 		setResizable(false);
-		setType(Type.UTILITY);
+		setType(Type.POPUP);
 		SwingUtil.lookWindows(this);
 		setTitle("Venda");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmVenda.class.getResource("/br/com/images/HOME.png")));
@@ -102,6 +108,7 @@ public class frmVenda extends JFrame {
 		panelPropriedade.add(lblCep);
 		
 		ftCep = new JFormattedTextField(Mascara.setMaskCepInTf(ftCep));
+		ftCep.setEditable(false);
 		ftCep.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -117,6 +124,7 @@ public class frmVenda extends JFrame {
 		panelPropriedade.add(lblNumero);
 		
 		txtNumero = new JTextField();
+		txtNumero.setEditable(false);
 		txtNumero.setBounds(302, 93, 104, 20);
 		panelPropriedade.add(txtNumero);
 		txtNumero.setColumns(10);
@@ -126,6 +134,7 @@ public class frmVenda extends JFrame {
 		panelPropriedade.add(lblComplemento);
 		
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setBounds(98, 160, 308, 20);
 		panelPropriedade.add(textField);
 		textField.setColumns(10);
@@ -160,6 +169,16 @@ public class frmVenda extends JFrame {
 		panelPropriedade.add(txtEstado);
 		txtEstado.setColumns(10);
 		
+		JButton btnProcurarPropriedade = new JButton("Procurar");
+		btnProcurarPropriedade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmConsultaPropriedade frmCProp = new frmConsultaPropriedade();
+				frmCProp.setVisible(true);
+			}
+		});
+		btnProcurarPropriedade.setBounds(285, 30, 115, 20);
+		panelPropriedade.add(btnProcurarPropriedade);
+		
 		JPanel panelCorretor = new JPanel();
 		panelCorretor.setBorder(new TitledBorder(null, "Vendedor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelCorretor.setBounds(10, 11, 433, 138);
@@ -179,7 +198,7 @@ public class frmVenda extends JFrame {
 				frmCF.setVisible(true);
 			}
 		});
-		btnProcurarVendedor.setBounds(308, 63, 115, 20);
+		btnProcurarVendedor.setBounds(285, 32, 115, 20);
 		panelCorretor.add(btnProcurarVendedor);
 		btnProcurarVendedor.setIcon(null);
 		
@@ -236,6 +255,8 @@ public class frmVenda extends JFrame {
 		JButton btnProcurarProprietario = new JButton("Procurar");
 		btnProcurarProprietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frmConsultaClienteProprietario frmCCliProp = new frmConsultaClienteProprietario();
+				frmCCliProp.setVisible(true);
 			}
 		});
 		btnProcurarProprietario.setBounds(66, 107, 105, 20);
@@ -250,6 +271,52 @@ public class frmVenda extends JFrame {
 		txtRgProprietario.setBounds(66, 76, 105, 20);
 		panelProprietario.add(txtRgProprietario);
 		txtRgProprietario.setColumns(10);
+		
+		JPanel panelComprador = new JPanel();
+		panelComprador.setLayout(null);
+		panelComprador.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Comprador", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelComprador.setBounds(453, 160, 243, 138);
+		contentPane.add(panelComprador);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(10, 22, 31, 14);
+		panelComprador.add(lblNome);
+		
+		txtNomeComprador = new JTextField();
+		txtNomeComprador.setEditable(false);
+		txtNomeComprador.setColumns(10);
+		txtNomeComprador.setBounds(66, 19, 167, 20);
+		panelComprador.add(txtNomeComprador);
+		
+		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf.setBounds(18, 53, 23, 14);
+		panelComprador.add(lblCpf);
+		
+		txtCpfComprador = new JTextField();
+		txtCpfComprador.setEditable(false);
+		txtCpfComprador.setColumns(10);
+		txtCpfComprador.setBounds(66, 50, 105, 20);
+		panelComprador.add(txtCpfComprador);
+		
+		JButton btnProcurarComprador = new JButton("Procurar");
+		btnProcurarComprador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmConsultaClienteComprador frmCCliComp = new frmConsultaClienteComprador();
+				frmCCliComp.setVisible(true);
+			}
+		});
+		btnProcurarComprador.setBounds(66, 107, 105, 20);
+		panelComprador.add(btnProcurarComprador);
+		
+		JLabel label_2 = new JLabel("RG:");
+		label_2.setBounds(23, 78, 18, 14);
+		panelComprador.add(label_2);
+		
+		txtRgComprador = new JTextField();
+		txtRgComprador.setEditable(false);
+		txtRgComprador.setColumns(10);
+		txtRgComprador.setBounds(66, 76, 105, 20);
+		panelComprador.add(txtRgComprador);
 	}
 	
 	private void buscarEndereco(){
@@ -269,5 +336,4 @@ public class frmVenda extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	
 }
