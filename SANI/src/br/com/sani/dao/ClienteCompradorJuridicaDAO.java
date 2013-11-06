@@ -32,14 +32,14 @@ public class ClienteCompradorJuridicaDAO {
 			"VALUES (?,?,?,?,?,?); "+
 					
 			"INSERT INTO tbClienteCompradorJuridica ( "+
-			"	codCliComprador, "+
+       			"	codCliComprador, "+
 			"   razaoSocial, "+ 
 			"	email,"+
 			"	cnpj, "+
 			"	inscricaoEstadual, "+
 			"	dtFundacao, "+
 			"	ramoAtividade)"+
-			"VALUES (?,?,?,?,?,?)";
+			"VALUES (?,?,?,?,?,?,?)";
 	
 	private static final String ATUALIZAR_CLIENTE_COMPRADOR_JURIDICA =
 			"UPDATE tbClienteComprador SET "+
@@ -127,7 +127,7 @@ public class ClienteCompradorJuridicaDAO {
 			statement = conn.prepareStatement(INSERIR_CLIENTE_COMPRADOR_JURIDICA);
 			statement.setInt(1, getNovoId());
 			statement.setString(2, cliComp.getClienteComprador().getCep());
-			statement.setString(3, cliComp.getClienteComprador().getNumeroEndereco());
+			statement.setInt(3, Integer.parseInt(cliComp.getClienteComprador().getNumeroEndereco()));//pode ser aqui
 			statement.setString(4, cliComp.getClienteComprador().getComplementoEndereco());
 			statement.setString(5, cliComp.getClienteComprador().getTelefone());
 			statement.setString(6, cliComp.getClienteComprador().getCelular());
@@ -135,11 +135,12 @@ public class ClienteCompradorJuridicaDAO {
 			int codigo = getNovoId();
 			statement.setInt(7, codigo);//pega o código que vai ser inserido na tabela pai
 			statement.setString(8, cliComp.getRazaoSocial());
-			statement.setString(9, cliComp.getCnpj());
-			statement.setString(10, cliComp.getInscricaoEstadual());
-			statement.setDate(11, DbUtil.getSqlDate(cliComp.getDataFundacao()));
-			statement.setString(12, cliComp.getRamoAtividade());
-			
+			statement.setString(9, cliComp.getEmail());
+			statement.setString(10, cliComp.getCnpj());
+			statement.setString(11, cliComp.getInscricaoEstadual());
+			statement.setDate(12, DbUtil.getSqlDate(cliComp.getDataFundacao()));
+			statement.setString(13, cliComp.getRamoAtividade());
+					
 			statement.executeUpdate();
 			conn.commit(); //se tudo ocorrer sem erros ele commita a transação no banco de dados
 		}catch(SQLException e){

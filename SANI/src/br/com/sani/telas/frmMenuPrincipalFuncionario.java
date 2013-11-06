@@ -58,38 +58,20 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 		JMenuBar menuBarArquivo = new JMenuBar();
 		setJMenuBar(menuBarArquivo);
 		
-		JMenu mnArquivo = new JMenu("Arquivo");
-		menuBarArquivo.add(mnArquivo);
+		JMenu mnConfiguracoes = new JMenu("Arquivo");
+		menuBarArquivo.add(mnConfiguracoes);
 		
-		JMenuItem mntmImportar = new JMenuItem("Importar...");
-		mntmImportar.addActionListener(new ActionListener() {
+		JMenuItem mntmBackup = new JMenuItem("Backup");
+		mntmBackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Função não liberada\n" +
 				"Função estará disponível em breve!");
 			}
 		});
-		mnArquivo.add(mntmImportar);
-		
-		JMenuItem mntmExportar = new JMenuItem("Exportar...");
-		mntmExportar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Função não liberada\n" +
-				"Função estará disponível em breve!");
-			}
-		});
-		mnArquivo.add(mntmExportar);
-		
-		JMenuItem mntmImprimir = new JMenuItem("Imprimir");
-		mntmImprimir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Função não liberada\n" +
-				"Função estará disponível em breve!");
-			}
-		});
-		mnArquivo.add(mntmImprimir);
+		mnConfiguracoes.add(mntmBackup);
 		
 		JSeparator separator = new JSeparator();
-		mnArquivo.add(separator);
+		mnConfiguracoes.add(separator);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
 		mntmSair.addActionListener(new ActionListener() {
@@ -97,7 +79,7 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 			System.exit(0);
 			}
 		});
-		mnArquivo.add(mntmSair);
+		mnConfiguracoes.add(mntmSair);
 		
 		JMenu mnCadastro = new JMenu("Cadastro");
 		menuBarArquivo.add(mnCadastro);

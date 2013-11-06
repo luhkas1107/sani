@@ -71,6 +71,19 @@ public class TelaUtil {
 		}
 	}
 	
+	public static String getCnpj(JFormattedTextField ftCnpj, boolean obrigatorio) throws EntradaUsuarioException{
+		String cnpj = ftCnpj.getText().replace(".", "").replace("-", "").replace("/", "").trim();
+		if(obrigatorio == true){
+			if(cnpj.equals("") || "".equals(cnpj)){
+				throw new EntradaUsuarioException(ftCnpj, "Valor inválido no campo " + ftCnpj.getName());
+			} else{
+				return cnpj;
+			}
+		}else{
+			return cnpj;
+		}
+	}
+	
 	public static String getRg(JFormattedTextField ftRg, boolean obrigatorio) throws EntradaUsuarioException{
 		String rg = ftRg.getText().replace(".", "").replace("-", "").trim();
 		if(obrigatorio == true){
@@ -119,7 +132,7 @@ public class TelaUtil {
 	}
 	
 	public static String getTelefone(JFormattedTextField ftTelefone, boolean obrigatorio) throws EntradaUsuarioException{
-		String valor = ftTelefone.getText().replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
+		String valor = ftTelefone.getText().replace("(", "").replace(")", "").replace(" ", "").replace("-", "").trim();
 		if(obrigatorio == true){
 			if(valor.equals("") || "".equals("")){
 				throw new EntradaUsuarioException(ftTelefone, "Campo " + ftTelefone.getName() + " Obrigatório!");
@@ -132,7 +145,7 @@ public class TelaUtil {
 	}
 	
 	public static String getCelular(JFormattedTextField ftCelular, boolean obrigatorio) throws EntradaUsuarioException{
-		String valor = ftCelular.getText().replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
+		String valor = ftCelular.getText().replace("(", "").replace(")", "").replace(" ", "").replace("-", "").trim();
 		if(obrigatorio == true){
 			if(valor.equals("") || "".equals(valor)){
 				throw new EntradaUsuarioException(ftCelular, "Campo " + ftCelular.getName() + " Obrigatório!");

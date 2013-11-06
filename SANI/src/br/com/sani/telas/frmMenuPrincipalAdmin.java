@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.Wallpaper;
+import javax.swing.ImageIcon;
 
 public class frmMenuPrincipalAdmin extends JFrame {
 
@@ -60,38 +61,22 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JMenuBar menuBarArquivo = new JMenuBar();
 		setJMenuBar(menuBarArquivo);
 		
-		JMenu mnArquivo = new JMenu("Arquivo");
-		menuBarArquivo.add(mnArquivo);
+		JMenu mnConfiuguracoes = new JMenu("Configuracoes");
+		mnConfiuguracoes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/settings2.png")));
+		mnConfiuguracoes.setSelectedIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/1383795642_143829.ico")));
+		menuBarArquivo.add(mnConfiuguracoes);
 		
-		JMenuItem mntmImportar = new JMenuItem("Importar...");
-		mntmImportar.addActionListener(new ActionListener() {
+		JMenuItem mntmBackup = new JMenuItem("Backup ...");
+		mntmBackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(null, "Função não liberada\n" +
 				"Função estará disponível em breve!");
 			}
 		});
-		mnArquivo.add(mntmImportar);
-		
-		JMenuItem mntmExportar = new JMenuItem("Exportar...");
-		mntmExportar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Função não liberada\n" +
-				"Função estará disponível em breve!");
-			}
-		});
-		mnArquivo.add(mntmExportar);
-		
-		JMenuItem mntmImprimir = new JMenuItem("Imprimir");
-		mntmImprimir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Função não liberada\n" +
-				"Função estará disponível em breve!");
-			}
-		});
-		mnArquivo.add(mntmImprimir);
+		mnConfiuguracoes.add(mntmBackup);
 		
 		JSeparator separator = new JSeparator();
-		mnArquivo.add(separator);
+		mnConfiuguracoes.add(separator);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
 		mntmSair.addActionListener(new ActionListener() {
@@ -99,9 +84,10 @@ public class frmMenuPrincipalAdmin extends JFrame {
 			System.exit(0);
 			}
 		});
-		mnArquivo.add(mntmSair);
+		mnConfiuguracoes.add(mntmSair);
 		
 		JMenu mnCadastro = new JMenu("Cadastro");
+		mnCadastro.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cadastro.png")));
 		menuBarArquivo.add(mnCadastro);
 		
 		JMenuItem mntmFuncionarios = new JMenuItem("Funcion\u00E1rios");
@@ -175,6 +161,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnCadastro.add(mntmMetas);
 		
 		JMenu mnVenda = new JMenu("Venda");
+		mnVenda.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/money.png")));
 		menuBarArquivo.add(mnVenda);
 		
 		JMenuItem mntmIniciarVenda = new JMenuItem("Iniciar Venda");
@@ -191,6 +178,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnVenda.add(mntmIniciarVenda);
 		
 		JMenu mnConsulta = new JMenu("Consulta");
+		mnConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/search.png")));
 		menuBarArquivo.add(mnConsulta);
 		
 		JMenuItem mntmPropriedadesConsulta = new JMenuItem("Propriedades");
@@ -236,6 +224,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConsulta.add(mntmMetasConsulta);
 		
 		JMenu mnRelatorio = new JMenu("Relat\u00F3rio");
+		mnRelatorio.setIcon(new ImageIcon("C:\\Users\\usuario\\git\\SANI\\sani\\SANI\\src\\br\\com\\images\\report.png"));
 		menuBarArquivo.add(mnRelatorio);
 		
 		JMenuItem mntmEmitirRelatorio = new JMenuItem("Emitir Relat\u00F3rio...");
@@ -248,6 +237,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnRelatorio.add(mntmEmitirRelatorio);
 		
 		JMenu mnAjuda = new JMenu("Ajuda");
+		mnAjuda.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/help.png")));
 		menuBarArquivo.add(mnAjuda);
 		
 		JMenuItem mntmTutorialDoSistema = new JMenuItem("Tutorial do Sistema");

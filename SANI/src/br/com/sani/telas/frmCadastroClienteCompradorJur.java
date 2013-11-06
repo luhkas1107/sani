@@ -340,17 +340,19 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 			cliComprador.setCodCliComprador(cadastro.getClienteComprador().getCodCliComprador());
 		}
 		
+		//aprende essa frase: deixa pra mim filinhooooooooo...
+		
 		//agora eu vou instancia a classe filha que depende de um ID que ja foi inserido para ser inserida
 		ClienteCompradorJuridica cliJur = new ClienteCompradorJuridica();
 		
 		//preenche com os dados
 		cliJur.setRazaoSocial(TelaUtil.getCampoObrigatorio(txtRazaoSocial, true));
-		cliJur.setCnpj(TelaUtil.getCpf(ftCnpj, true));
+		cliJur.setCnpj(TelaUtil.getCnpj(ftCnpj, true));
 		cliJur.setEmail(TelaUtil.getEmail(txtEmail));
-		cliJur.setInscricaoEstadual(TelaUtil.getCampoObrigatorio(ftInscEstadual, true));
+		cliJur.setInscricaoEstadual(TelaUtil.getCampoObrigatorio(ftInscEstadual, true).replace(".", ""));
 		cliJur.setDataFundacao(TelaUtil.getDateFromDatePicker(dtFundacao));
 		cliJur.setRamoAtividade(cbRamoAtuacao.getSelectedItem().toString().substring(0, 1));
-		//cliJur.setEmail(TelaUtil.getEmail(txtEmail));
+		cliJur.setEmail(TelaUtil.getEmail(txtEmail));
 		cliJur.setClienteComprador(cliComprador); //agora seto dentro da filha a classe pai.
 		
 		return cliJur;
