@@ -63,7 +63,6 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		
 		JMenu mnConfiuguracoes = new JMenu("Configuracoes");
 		mnConfiuguracoes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/settings2.png")));
-		mnConfiuguracoes.setSelectedIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/1383795642_143829.ico")));
 		menuBarArquivo.add(mnConfiuguracoes);
 		
 		JMenuItem mntmBackup = new JMenuItem("Backup ...");
@@ -224,7 +223,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConsulta.add(mntmMetasConsulta);
 		
 		JMenu mnRelatorio = new JMenu("Relat\u00F3rio");
-		mnRelatorio.setIcon(new ImageIcon("C:\\Users\\usuario\\git\\SANI\\sani\\SANI\\src\\br\\com\\images\\report.png"));
+		mnRelatorio.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/report1.png")));
 		menuBarArquivo.add(mnRelatorio);
 		
 		JMenuItem mntmEmitirRelatorio = new JMenuItem("Emitir Relat\u00F3rio...");
