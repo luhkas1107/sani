@@ -173,7 +173,8 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		try{
 			DefaultTableModel dtm =(DefaultTableModel) table.getModel();
 			dtm.setRowCount(0);
-			List<ClienteProprietario> lista = new ClienteProprietarioFisicaDAO().consultarTodosClientes();
+			@SuppressWarnings("unchecked")
+			List<ClienteProprietario> lista = (List<ClienteProprietario>) new ClienteProprietarioFisicaDAO().consultarTodosClientes();
 			if(lista != null){
 				for(ClienteProprietario p : lista){
 					addTable(dtm, p);
@@ -196,7 +197,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		dtm.addRow(object);
 	}
 	
-	public void retornarRequisicao(){
+/*	public void retornarRequisicao(){
 		int row = table.getSelectedRow();
 		try{
 			if(row != -1){
@@ -208,7 +209,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		}catch (DAOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public void fechar(){
 		this.dispose();
@@ -218,7 +219,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 	public void mouseClicked(MouseEvent event) {
 		if(event.getSource() == table){
 			if(event.getClickCount() > 1){
-				retornarRequisicao();
+				//retornarRequisicao();
 			}
 		}
 		

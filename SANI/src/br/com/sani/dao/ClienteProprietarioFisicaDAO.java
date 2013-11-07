@@ -158,6 +158,7 @@ public class ClienteProprietarioFisicaDAO {
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
+		
 		try{
 			statement = conn.prepareStatement(ATUALIZAR_CLIENTE_PROPRIETARIO_FISICA);
 			statement.setString(1, cliComp.getCodCliProprietario().getCep());
@@ -230,8 +231,6 @@ public class ClienteProprietarioFisicaDAO {
 		}
 		return retorno;
 	}
-	
-	
 	
 	public ClienteProprietario consultarClienteProprietarioID(int codCliProprietario) throws DAOException{
 		Connection conn = DbUtil.getConnection();

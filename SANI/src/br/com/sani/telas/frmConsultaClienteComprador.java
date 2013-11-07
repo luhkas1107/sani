@@ -161,6 +161,9 @@ public class frmConsultaClienteComprador extends JFrame {
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(table, popupMenu);
 		
+		
+		//FAZER A EDIÇÃO!!!
+		
 		smEditarRegistro = new JMenuItem("Editar Registro");
 		popupMenu.add(smEditarRegistro);
 		
@@ -198,6 +201,7 @@ public class frmConsultaClienteComprador extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				//Faz a Busca no BD
+				buscar();
 			}
 		});
 		lblSearch.setIcon(new ImageIcon(frmConsultaClienteComprador.class.getResource("/br/com/images/search-ico.png")));
@@ -277,10 +281,7 @@ public class frmConsultaClienteComprador extends JFrame {
 		//verifica se realmente tem alguma linha selecionada
 		if(row != -1){
 			int codigo = Integer.parseInt((String) table.getValueAt(row, 0));//retorna a id da primeira coluna
-			
-		}
-		
-		
+		}		
 	}
 	
 	private static void addPopup(Component component, final JPopupMenu popup) {
