@@ -275,24 +275,12 @@ public class frmConsultaClienteComprador extends JFrame {
 		int row = table.getSelectedRow();//pega linha selecionada
 		
 		//verifica se realmente tem alguma linha selecionada
-		if(row != -1){
+/*		if(row != -1){
 			int codigo = 
-		}
+		}*/
+		
+		//paramo aqui
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {

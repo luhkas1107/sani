@@ -141,6 +141,54 @@ public class ClienteCompradorFisicaDAO {
 		return retorno;
 	}
 	
+	private Object getBeanGeral(ResultSet result) throws DAOException, SQLException{
+		ClienteCompradorFisica cf = new ClienteCompradorFisica();
+		ClienteCompradorJuridica cj = new ClienteCompradorJuridica();
+		ClienteComprador c = new ClienteComprador();
+		
+		
+		Object retorno = new Object();
+		
+		c.setCodCliComprador(result.getInt("codCliComprador"));
+		c.setTelefone(result.getString("telCliComprador"));
+		c.setCelular(result.getString(""));
+		c.setCep(result.getString(""));
+		c.setComplementoEndereco(result.getString(""));
+		c.setNumeroEndereco(result.getString(""));
+		
+		String shit = result.getString("razaoSocial");
+		
+		if(shit == null){
+			cf.setNome(result.getString("nomePessoa"));
+			cf.setCpf(result.getString("cpfPessoa"));
+			cf.setEmail(result.getString("email"));
+			cf.setDataNascimento(DbUtil.getJavaDate(result, ""));
+			cf.setEstadoCivil(result.getString(""));
+			cf.setProfissao(result.getString(""));
+			cf.setRenda(result.getDouble(""));
+			cf.setRg(result.getString(""));
+			cf.setSexo(result.getString(""));
+			
+			cf.setClienteComprador(c);
+			
+			retorno = cf;
+		}else{
+			cj.setRazaoSocial(result.getString("razaoSocial"));
+			cj.setEmail(result.getString(20));
+			cj.setCnpj(result.getString("cnpj"));
+			cj.setDataFundacao(DbUtil.getJavaDate(result, ""));
+			cj.setInscricaoEstadual(result.getString(""));
+			cj.setRamoAtividade(result.getString(""));
+			
+			cj.setClienteComprador(c);
+			
+			retorno = cj;
+		}
+	
+		
+		return retorno;
+	}
+	
 	/**
 	 * Este método busca no banco de dados qual vai ser o próximo numero do código
 	 * @return um numero inteiro
