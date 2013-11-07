@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import br.com.sani.util.DbUtilBackup;
+
 public class BackupDAO {
 	
 	private static final String BACKUP_NOVO = 
@@ -17,7 +19,7 @@ public class BackupDAO {
 		
 
 
-	public static boolean backup_novo(String caminho) throws exception{		
+	public static boolean backup_novo(String caminho) throws Exception{		
 		Connection conn = DbUtilBackup.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -27,14 +29,14 @@ public class BackupDAO {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
-			throw new exception(e);
+			throw new Exception(e);
 		} finally {
 			DbUtilBackup.close(conn, statement, result);
 		}
 		return true;		
 	}
 
-	public static boolean backup_restore(String caminho) throws exception{		
+	public static boolean backup_restore(String caminho) throws Exception{		
 		Connection conn = DbUtilBackup.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -44,7 +46,7 @@ public class BackupDAO {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
-			throw new exception(e);
+			throw new Exception(e);
 		} finally {
 			DbUtilBackup.close(conn, statement, result);
 		}
