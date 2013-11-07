@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.sani.bean.ClienteComprador;
 import br.com.sani.bean.ClienteCompradorFisica;
+import br.com.sani.bean.ClienteCompradorJuridica;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.DbUtil;
 
@@ -73,15 +76,69 @@ public class ClienteCompradorFisicaDAO {
 	private static final String BUSCAR_NOVO_ID = 
 			"SELECT ISNULL(MAX(codCliComprador), 0) + 1 AS NOVO_ID FROM tbClienteComprador";
 	
-	private ClienteComprador getBean(ResultSet result) throws SQLException, DAOException{
-		ClienteComprador cliComp = new ClienteComprador();
+	private static final String QUERY_BUSCAR_TODOS = 
+			"SELECT "+
+			"	C.*, "+
+			"	F.*, "+
+			"	J.* "+
+			"FROM tbClienteComprador C "+
+			"		LEFT JOIN tbClienteCompradorFisica F "+
+			"	ON C.codCliComprador = F.codCliComprador "+
+			"		LEFT JOIN tbClienteCompradorJuridica J "+
+			"	ON C.codCliComprador = J.codCliComprador";
+	
+	private static final String QUERY_BUSCAR_POR_CODIGO = 
+			"SELECT "+
+			"	C.*, "+
+			"	F.*, "+
+			"	J.* "+
+			"FROM tbClienteComprador C "+
+			"		LEFT JOIN tbClienteCompradorFisica F "+
+			"	ON C.codCliComprador = F.codCliComprador "+
+			"		LEFT JOIN tbClienteCompradorJuridica J "+
+			"	ON C.codCliComprador = J.codCliComprador "+
+			"WHERE C.codCliComprador = ?";
+	
+	/**
+	 * Esse metodo so serve para consultas que envolvam telas de consulta... consultas
+	 * que envolvam edicao de dados devem ser usado outro metodo, que vou explicar dps
+	 * @param result
+	 * @return
+	 * @throws SQLException
+	 * @throws DAOException
+	 */
+	private Object getBean(ResultSet result) throws SQLException, DAOException{
+		ClienteCompradorFisica cf = new ClienteCompradorFisica();
+		ClienteCompradorJuridica cj = new ClienteCompradorJuridica();
+		ClienteComprador c = new ClienteComprador();
 		
-		cliComp.setCodCliComprador(result.getInt(""));
-		cliComp.setCep(result.getString(""));
-		cliComp.setNumeroEndereco(result.getString(""));
-		cliComp.setComplementoEndereco(result.getString(""));
+		Object retorno = new Object();
+		
+		c.setCodCliComprador(result.getInt("codCliComprador"));
+		c.setTelefone(result.getString("telCliComprador"));
+		
+		String shit = result.getString("razaoSocial");
+		
+		if(shit == null){
+			cf.setNome(result.getString("nomePessoa"));
+			cf.setCpf(result.getString("cpfPessoa"));
+			cf.setEmail(result.getString("email"));
 			
-		return cliComp;
+			cf.setClienteComprador(c);
+			
+			retorno = cf;
+		}else{
+			cj.setRazaoSocial(result.getString("razaoSocial"));
+			cj.setEmail(result.getString(20));
+			cj.setCnpj(result.getString("cnpj"));
+			
+			cj.setClienteComprador(c);
+			
+			retorno = cj;
+		}
+	
+		
+		return retorno;
 	}
 	
 	/**
@@ -203,24 +260,46 @@ public class ClienteCompradorFisicaDAO {
 	
 	//CONSULTA NOME
 	
-	public ClienteComprador consultaPorCod(int codCliComprador) throws DAOException{
+//	public ClienteComprador consultaPorCod(int codCliComprador) throws DAOException{
+//		Connection conn = DbUtil.getConnection();
+//		PreparedStatement statement = null;
+//		ResultSet result = null;
+//		ClienteComprador retorno = null;
+//		try{
+//			statement = conn.prepareStatement(CONSULTA_CLIENTE_COMPRADOR_FISICA_ID);
+//			statement.setInt(1, codCliComprador);
+//			result = statement.executeQuery();
+//			if(result.next()){
+//				retorno = getBean(result);
+//			}
+//		}catch(SQLException e){
+//			throw new DAOException(e);
+//		}finally{
+//			DbUtil.close(conn, statement, result);
+//		}
+//		
+//		return retorno;
+//	}
+	
+	//metodo pronto
+	public List<Object> buscarTodos() throws DAOException{
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
-		ClienteComprador retorno = null;
+		List<Object> retorno = new ArrayList<Object>();
 		try{
-			statement = conn.prepareStatement(CONSULTA_CLIENTE_COMPRADOR_FISICA_ID);
-			statement.setInt(1, codCliComprador);
+			statement = conn.prepareStatement(QUERY_BUSCAR_TODOS);
 			result = statement.executeQuery();
-			if(result.next()){
-				retorno = getBean(result);
+			while(result.next()){
+				Object temp = getBean(result);
+				retorno.add(temp);
 			}
 		}catch(SQLException e){
 			throw new DAOException(e);
 		}finally{
 			DbUtil.close(conn, statement, result);
 		}
-		
+
 		return retorno;
 	}
 	

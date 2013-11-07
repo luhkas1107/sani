@@ -86,6 +86,12 @@ public class Mascara {
 		return mk.valueToString(cpf);
 	}
 	
+	public static Object setMaskCnpjInTable(String cnpj) throws java.text.ParseException {
+		MaskFormatter mk = new MaskFormatter("##.###.###/####-##");
+		mk.setValueContainsLiteralCharacters(false);
+		return mk.valueToString(cnpj);
+	}
+	
 	public static Object setMaskCepInTable(String cep) throws java.text.ParseException {
 		MaskFormatter mk = new MaskFormatter("#####-###");
 		mk.setValueContainsLiteralCharacters(false);
