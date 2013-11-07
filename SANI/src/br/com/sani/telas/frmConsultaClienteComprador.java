@@ -276,7 +276,7 @@ public class frmConsultaClienteComprador extends JFrame {
 		
 		//verifica se realmente tem alguma linha selecionada
 		if(row != -1){
-			int codigo = Integer.parseInt((String) table.getValueAt(row, 0);//retorna a id da primeira coluna
+			int codigo = Integer.parseInt((String) table.getValueAt(row, 0));//retorna a id da primeira coluna
 			
 		}
 		

@@ -233,7 +233,7 @@ public class ClienteProprietarioFisicaDAO {
 	
 	
 	
-	public ClienteProprietario consultaPorCod(int codCliProprietario) throws DAOException{
+	public ClienteProprietario consultarClienteProprietarioID(int codCliProprietario) throws DAOException{
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;

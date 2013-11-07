@@ -202,7 +202,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 			if(row != -1){
 				int id = Integer.parseInt((String) table.getValueAt(row, 0));
 				ClienteProprietario cliPro = new ClienteProprietarioFisicaDAO().consultarClienteProprietarioID(id);
-				frmCadastroPropriedade.setProprietario(cliPro);
+				frmCadastroPropriedade.setCodCliProprietario(cliPro);
 				dispose();
 			}
 		}catch (DAOException e) {
