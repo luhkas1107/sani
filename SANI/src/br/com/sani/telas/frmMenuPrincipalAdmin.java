@@ -5,9 +5,11 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.io.File;
 import java.text.ParseException;
 
+import javax.swing.AbstractButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -15,16 +17,42 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.Wallpaper;
+
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class frmMenuPrincipalAdmin extends JFrame {
 
 	private JPanel contentPane;
+	private JMenuItem mntmSair;
+	private JMenuItem mntmFazerBackup;
+	private JMenuItem mntmRestaurarBackup;
+	private JMenu mnCadastro;
+	private JMenu mnClientes;
+	private JMenuItem mntmClienteComprador;
+	private JMenuItem mntmClienteProprietario;
+	private JMenuItem mntmFuncionarios;
+	private JMenuItem mntmMetas;
+	private JMenu mnVenda;
+	private JMenuItem mntmIniciarVenda;
+	private JMenu mnConsulta;
+	private JMenuItem mntmPropriedadesConsulta;
+	private JMenuItem mntmClientes;
+	private JMenuItem mntmFuncionariosConsulta;
+	private JMenuItem mntmMetasConsulta;
+	private JMenu mnAjuda;
+	private JMenuItem mntmTutorialDoSistema;
+	private JMenuItem mntmDesenvolvedores;
+	private JMenuItem mntmSobre;
+	private JMenuItem mnConfiguracoes;
 
 	/**
 	 * Launch the application.
@@ -65,16 +93,16 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JMenu mnConfiuguracoes = new JMenu("Configuracoes");
 		mnConfiuguracoes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/settings2.png")));
 		menuBarArquivo.add(mnConfiuguracoes);
-		
+
 		JMenu mnBackup = new JMenu("Backup ...");
 		mnBackup.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/backup.png")));
 		mnConfiuguracoes.add(mnBackup);
 		
-		JMenuItem mntmFazerBackup = new JMenuItem("Fazer Backup");
+		mntmFazerBackup = new JMenuItem("Fazer Backup");
 		mntmFazerBackup.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/backup.png")));
 		mnBackup.add(mntmFazerBackup);
 		
-		JMenuItem mntmRestaurarBackup = new JMenuItem("Restaurar Backup");
+		mntmRestaurarBackup = new JMenuItem("Restaurar Backup");
 		mntmRestaurarBackup.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/restore.png")));
 		mntmRestaurarBackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -93,7 +121,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JSeparator separator = new JSeparator();
 		mnConfiuguracoes.add(separator);
 		
-		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair = new JMenuItem("Sair");
 		mntmSair.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/exit.png")));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -102,11 +130,11 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnConfiuguracoes.add(mntmSair);
 		
-		JMenu mnCadastro = new JMenu("Cadastro");
+		mnCadastro = new JMenu("Cadastro");
 		mnCadastro.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cadastro.png")));
 		menuBarArquivo.add(mnCadastro);
 		
-		JMenuItem mntmFuncionarios = new JMenuItem("Funcion\u00E1rios");
+		mntmFuncionarios = new JMenuItem("Funcion\u00E1rios");
 		mntmFuncionarios.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/func.png")));
 		mntmFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -138,11 +166,11 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnCadastro.add(mntmPropriedades);
 		
-		JMenu mnClientes = new JMenu("Clientes");
+		mnClientes = new JMenu("Clientes");
 		mnClientes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliente.png")));
 		mnCadastro.add(mnClientes);
 		
-		JMenuItem mntmClienteComprador = new JMenuItem("Cliente Comprador");
+		mntmClienteComprador = new JMenuItem("Cliente Comprador");
 		mntmClienteComprador.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliComp.png")));
 		mntmClienteComprador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -152,7 +180,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnClientes.add(mntmClienteComprador);
 		
-		JMenuItem mntmClienteProprietario = new JMenuItem("Cliente Propriet\u00E1rio");
+		mntmClienteProprietario = new JMenuItem("Cliente Propriet\u00E1rio");
 		mntmClienteProprietario.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliProp.png")));
 		mntmClienteProprietario.setHorizontalAlignment(SwingConstants.LEFT);
 		mntmClienteProprietario.addActionListener(new ActionListener() {
@@ -173,7 +201,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 
 		mnCadastro.add(mntmFuncionarios);
 				
-		JMenuItem mntmMetas = new JMenuItem("Metas");
+		mntmMetas = new JMenuItem("Metas");
 		mntmMetas.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/meta.png")));
 		mntmMetas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -183,11 +211,11 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnCadastro.add(mntmMetas);
 		
-		JMenu mnVenda = new JMenu("Venda");
+		mnVenda = new JMenu("Venda");
 		mnVenda.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/money.png")));
 		menuBarArquivo.add(mnVenda);
 		
-		JMenuItem mntmIniciarVenda = new JMenuItem("Iniciar Venda");
+		mntmIniciarVenda = new JMenuItem("Iniciar Venda");
 		mntmIniciarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -201,11 +229,11 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnVenda.add(mntmIniciarVenda);
 		
-		JMenu mnConsulta = new JMenu("Consulta");
+		mnConsulta = new JMenu("Consulta");
 		mnConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/search.png")));
 		menuBarArquivo.add(mnConsulta);
 		
-		JMenuItem mntmPropriedadesConsulta = new JMenuItem("Propriedades");
+		mntmPropriedadesConsulta = new JMenuItem("Propriedades");
 		mntmPropriedadesConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/house.png")));
 		mntmPropriedadesConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -215,7 +243,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnConsulta.add(mntmPropriedadesConsulta);
 		
-		JMenuItem mntmFuncionariosConsulta = new JMenuItem("Funcion\u00E1rios");
+		mntmFuncionariosConsulta = new JMenuItem("Funcion\u00E1rios");
 		mntmFuncionariosConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/func.png")));
 		mntmFuncionariosConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -224,7 +252,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 			}
 		});
 		
-		JMenuItem mntmClientes = new JMenuItem("Clientes");
+		mntmClientes = new JMenuItem("Clientes");
 		mntmClientes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliente.png")));
 		mntmClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -235,7 +263,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConsulta.add(mntmClientes);
 		mnConsulta.add(mntmFuncionariosConsulta);
 		
-		JMenuItem mntmMetasConsulta = new JMenuItem("Metas");
+		mntmMetasConsulta = new JMenuItem("Metas");
 		mntmMetasConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/meta.png")));
 		mntmMetasConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -264,11 +292,11 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnRelatorio.add(mntmEmitirRelatorio);
 		
-		JMenu mnAjuda = new JMenu("Ajuda");
+		mnAjuda = new JMenu("Ajuda");
 		mnAjuda.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/help.png")));
 		menuBarArquivo.add(mnAjuda);
 		
-		JMenuItem mntmTutorialDoSistema = new JMenuItem("Tutorial do Sistema");
+		mntmTutorialDoSistema = new JMenuItem("Tutorial do Sistema");
 		mntmTutorialDoSistema.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/tuto.png")));
 		mntmTutorialDoSistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -290,7 +318,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		mnAjuda.add(mntmTutorialDoSistema);
 		
-		JMenuItem mntmDesenvolvedores = new JMenuItem("Desenvolvedores");
+		mntmDesenvolvedores = new JMenuItem("Desenvolvedores");
 		mntmDesenvolvedores.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/dev.png")));
 		mntmDesenvolvedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -304,7 +332,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		JSeparator separator_1 = new JSeparator();
 		mnAjuda.add(separator_1);
 		
-		JMenuItem mntmSobre = new JMenuItem("Sobre...");
+		mntmSobre = new JMenuItem("Sobre...");
 		mntmSobre.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/info2.png")));
 		mntmSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
