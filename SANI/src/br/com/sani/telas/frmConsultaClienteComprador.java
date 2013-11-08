@@ -174,6 +174,7 @@ public class frmConsultaClienteComprador extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				//Remove o Usuario Selecionado
+				
 			}
 		});
 		lblRemove.setIcon(new ImageIcon(frmConsultaClienteComprador.class.getResource("/br/com/images/delete-.png")));
@@ -214,7 +215,6 @@ public class frmConsultaClienteComprador extends JFrame {
 	public void fechar(){
 		this.dispose();
 	}
-	
 	
 	//metodo que executa a pesquisa, dps vc add os filtros
 	private void buscar(){
@@ -275,13 +275,23 @@ public class frmConsultaClienteComprador extends JFrame {
 	
 	
 	//metodo que joga o item para edicao
-	private void editarRegistro() {
+	private void editar() {
 		int row = table.getSelectedRow();//pega linha selecionada
 		
 		//verifica se realmente tem alguma linha selecionada
 		if(row != -1){
 			int codigo = Integer.parseInt((String) table.getValueAt(row, 0));//retorna a id da primeira coluna
 		}		
+	}
+	
+	private void deletar(){
+		//deleta cliente selecionado
+		int row = table.getSelectedRow();//pega linha selecionada
+		
+		//verifica se realmente tem alguma linha selecionada
+		if(row != -1){
+			int codigo = Integer.parseInt((String) table.getValueAt(row, 0));//retorna a id da primeira coluna
+		}
 	}
 	
 	private static void addPopup(Component component, final JPopupMenu popup) {

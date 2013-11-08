@@ -124,10 +124,18 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConfiuguracoes.add(separator);
 		
 		mntmSair = new JMenuItem("Sair");
+		mntmSair.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 		mntmSair.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/exit.png")));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			System.exit(0);
+				
+				int resposta = 0; 
+				resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente Sair?", "ATENÇÃO!!!", resposta, JOptionPane.WARNING_MESSAGE);
+				
+				if (resposta == JOptionPane.YES_OPTION) {
+					// verifica se o usuário clicou no botão YES
+					System.exit(0);				 
+				}
 			}
 		});
 		mnConfiuguracoes.add(mntmSair);
@@ -137,6 +145,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		menuBarArquivo.add(mnCadastro);
 		
 		mntmFuncionarios = new JMenuItem("Funcion\u00E1rios");
+		mntmFuncionarios.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 		mntmFuncionarios.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/func.png")));
 		mntmFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -174,6 +183,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnCadastro.add(mnClientes);
 		
 		mntmClienteComprador = new JMenuItem("Cliente Comprador");
+		mntmClienteComprador.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 		mntmClienteComprador.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliComp.png")));
 		mntmClienteComprador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -184,6 +194,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnClientes.add(mntmClienteComprador);
 		
 		mntmClienteProprietario = new JMenuItem("Cliente Propriet\u00E1rio");
+		mntmClienteProprietario.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 		mntmClienteProprietario.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliProp.png")));
 		mntmClienteProprietario.setHorizontalAlignment(SwingConstants.LEFT);
 		mntmClienteProprietario.addActionListener(new ActionListener() {
@@ -205,6 +216,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnCadastro.add(mntmFuncionarios);
 				
 		mntmMetas = new JMenuItem("Metas");
+		mntmMetas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 		mntmMetas.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/meta.png")));
 		mntmMetas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -219,6 +231,8 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		menuBarArquivo.add(mnVenda);
 		
 		mntmIniciarVenda = new JMenuItem("Iniciar Venda");
+		mntmIniciarVenda.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/start.png")));
+		mntmIniciarVenda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.CTRL_MASK));
 		mntmIniciarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -237,6 +251,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		menuBarArquivo.add(mnConsulta);
 		
 		mntmPropriedadesConsulta = new JMenuItem("Propriedades");
+		mntmPropriedadesConsulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.ALT_MASK));
 		mntmPropriedadesConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/house.png")));
 		mntmPropriedadesConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -247,6 +262,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConsulta.add(mntmPropriedadesConsulta);
 		
 		mntmFuncionariosConsulta = new JMenuItem("Funcion\u00E1rios");
+		mntmFuncionariosConsulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_MASK));
 		mntmFuncionariosConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/func.png")));
 		mntmFuncionariosConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -256,6 +272,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		
 		mntmClientes = new JMenuItem("Clientes");
+		mntmClientes.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.ALT_MASK));
 		mntmClientes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliente.png")));
 		mntmClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -267,6 +284,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConsulta.add(mntmFuncionariosConsulta);
 		
 		mntmMetasConsulta = new JMenuItem("Metas");
+		mntmMetasConsulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_MASK));
 		mntmMetasConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/meta.png")));
 		mntmMetasConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -304,20 +322,8 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mntmTutorialDoSistema.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/tuto.png")));
 		mntmTutorialDoSistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/**JOptionPane.showMessageDialog(null, "Função não liberada\n" +
-				"Função estará disponível em breve!");**/
-				
 				//Abre o Manual
-				
-				File pdf = new File("src/br/com/sani/doc/help.pdf");
-				try {  
-				  Desktop.getDesktop().open(pdf);  
-				} catch(Exception ex) {  
-				  ex.printStackTrace();  
-				  JOptionPane.showMessageDialog(null, "Erro: " + ex);  
-				}
-				
-				
+				pdf();
 			}
 		});
 		mnAjuda.add(mntmTutorialDoSistema);
@@ -347,6 +353,20 @@ public class frmMenuPrincipalAdmin extends JFrame {
 			}
 		});
 		mnAjuda.add(mntmSobre);
+		
+	}
+	
+	public void pdf(){
+		File pdf = new File("src/br/com/sani/doc/help.pdf");
+		try {  
+		  Desktop.getDesktop().open(pdf);  
+		} catch(Exception ex) {  
+		  ex.printStackTrace();  
+		  JOptionPane.showMessageDialog(null, "Erro: " + ex);  
+		}
+	}
+	
+	public void usuarioLogado(){
 		
 	}
 }

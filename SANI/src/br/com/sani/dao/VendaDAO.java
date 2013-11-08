@@ -4,6 +4,11 @@ public class VendaDAO {
 
 	//CADASTRAR
 	
+	/*select from tbCorretor
+	nomeCorretor
+	cpfCorretor
+	numeroCreciCorretor*/
+	
 	//CONSULTAR
 	
 	//ATUALIZAR

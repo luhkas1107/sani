@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import br.com.sani.util.SwingUtil;
+import javax.swing.ImageIcon;
 
 public class frmLogin extends JFrame implements KeyListener {
 
@@ -64,45 +65,42 @@ public class frmLogin extends JFrame implements KeyListener {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmLogin.class.getResource("/br/com/images/user3.png")));
 		setTitle("Login - SANI v0.3.4");
-		setBounds(100, 100, 335, 195);
+		setBounds(100, 100, 318, 325);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(47, 57, 46, 14);
+		lblLogin.setBounds(37, 192, 29, 14);
 		contentPane.add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(47, 85, 46, 14);
+		lblSenha.setBounds(32, 217, 34, 14);
 		contentPane.add(lblSenha);
 		
-		JLabel lblLogin_1 = new JLabel("LOGIN");
-		lblLogin_1.setFont(new Font("Verdana", Font.BOLD, 14));
-		lblLogin_1.setBounds(138, 11, 74, 32);
-		contentPane.add(lblLogin_1);
-		
 		txtLogin = new JTextField();
-		txtLogin.setBounds(103, 54, 134, 20);
+		txtLogin.setBounds(87, 186, 134, 20);
 		contentPane.add(txtLogin);
 		txtLogin.setColumns(10);
 		
 		passwordField = new JPasswordField();
 		passwordField.addKeyListener(this);
-		passwordField.setBounds(103, 82, 134, 20);
+		passwordField.setBounds(87, 214, 134, 20);
 		contentPane.add(passwordField);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setIcon(new ImageIcon(frmLogin.class.getResource("/br/com/images/delete-.png")));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			System.exit(0);
 			}
 		});
-		btnCancelar.setBounds(10, 125, 89, 23);
+		btnCancelar.setBounds(10, 254, 103, 32);
 		contentPane.add(btnCancelar);
 		
 		JButton btnLogar = new JButton("Logar");
+		btnLogar.setIcon(new ImageIcon(frmLogin.class.getResource("/br/com/images/start.png")));
 		btnLogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -110,8 +108,13 @@ public class frmLogin extends JFrame implements KeyListener {
 			}
 		});
 		
-		btnLogar.setBounds(230, 125, 89, 23);
+		btnLogar.setBounds(213, 254, 89, 32);
 		contentPane.add(btnLogar);
+		
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(frmLogin.class.getResource("/br/com/images/HOME.png")));
+		lblLogo.setBounds(68, 0, 173, 179);
+		contentPane.add(lblLogo);
 		
 		setLocationRelativeTo(null);		
 	}
@@ -126,12 +129,12 @@ public class frmLogin extends JFrame implements KeyListener {
 		//COLOCAR userAdm.equals(getUser) && senhaAdm.equals(getPassword)){
 		
 		if(userAdm.equals("admin")&& senhaAdm.equals("admin")){
-			frmMenuPrincipalAdmin frameMPA = new frmMenuPrincipalAdmin();
-			frameMPA.setVisible(true);
+			frmMenuPrincipalAdmin admin = new frmMenuPrincipalAdmin();
+			admin.setVisible(true);
 			fechaLogin();
-		}else if(userFunc.equals("teste") && senhaFunc.equals("teste")){
-			frmMenuPrincipalFuncionario frameMPF = new frmMenuPrincipalFuncionario();
-			frameMPF.setVisible(true);
+		}else if(userFunc.equals("func") && senhaFunc.equals("func")){
+			frmMenuPrincipalFuncionario func = new frmMenuPrincipalFuncionario();
+			func.setVisible(true);
 			fechaLogin();
 		}else{
 			JOptionPane.showMessageDialog(null, "Login e/ou Senha Incorretos!");
