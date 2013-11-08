@@ -42,7 +42,7 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import javax.swing.JMenuItem;
 
-public class frmConsultaClienteComprador extends JFrame {
+public class frmConsultaClientes extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtFieldConsultaNomeClienteComprador;
@@ -58,7 +58,7 @@ public class frmConsultaClienteComprador extends JFrame {
 			public void run() {
 				try {
 					//sempre que a tela for carregada ele ja pesquisa
-					new frmConsultaClienteComprador();
+					new frmConsultaClientes();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,7 +66,7 @@ public class frmConsultaClienteComprador extends JFrame {
 		});
 	}
 	
-	public frmConsultaClienteComprador(){
+	public frmConsultaClientes(){
 		initComponents();
 		buscar(); // tem que ser antes do setVisible, vamos testar
 		setVisible(true);
@@ -75,7 +75,7 @@ public class frmConsultaClienteComprador extends JFrame {
 
 	public void initComponents() {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteComprador.class.getResource("/br/com/images/search.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClientes.class.getResource("/br/com/images/search.png")));
 		setTitle("Consulta de Cliente Comprador");
 		setBounds(100, 100, 690, 450);
 		contentPane = new JPanel();
@@ -177,7 +177,7 @@ public class frmConsultaClienteComprador extends JFrame {
 				
 			}
 		});
-		lblRemove.setIcon(new ImageIcon(frmConsultaClienteComprador.class.getResource("/br/com/images/delete-.png")));
+		lblRemove.setIcon(new ImageIcon(frmConsultaClientes.class.getResource("/br/com/images/delete-.png")));
 		lblRemove.setBounds(583, 361, 25, 25);
 		panel.add(lblRemove);
 		
@@ -191,7 +191,7 @@ public class frmConsultaClienteComprador extends JFrame {
 				JOptionPane.showMessageDialog(null, "Teste");
 			}
 		});
-		lblEdit.setIcon(new ImageIcon(frmConsultaClienteComprador.class.getResource("/br/com/images/edit-.png")));
+		lblEdit.setIcon(new ImageIcon(frmConsultaClientes.class.getResource("/br/com/images/edit-.png")));
 		lblEdit.setBounds(618, 361, 25, 25);
 		panel.add(lblEdit);
 		
@@ -205,7 +205,7 @@ public class frmConsultaClienteComprador extends JFrame {
 				buscar();
 			}
 		});
-		lblSearch.setIcon(new ImageIcon(frmConsultaClienteComprador.class.getResource("/br/com/images/search-ico.png")));
+		lblSearch.setIcon(new ImageIcon(frmConsultaClientes.class.getResource("/br/com/images/search-ico.png")));
 		lblSearch.setBounds(618, 56, 25, 25);
 		panel.add(lblSearch);
 		

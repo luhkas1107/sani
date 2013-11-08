@@ -313,7 +313,7 @@ public class frmVenda extends JFrame {
 		lblProcuraComprador.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frmConsultaClienteComprador comprador = new frmConsultaClienteComprador();
+				frmConsultaClientes comprador = new frmConsultaClientes();
 				comprador.setVisible(true);
 			}
 		});

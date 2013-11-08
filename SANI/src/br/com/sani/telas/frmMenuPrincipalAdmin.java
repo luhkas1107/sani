@@ -276,7 +276,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mntmClientes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliente.png")));
 		mntmClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmConsultaClienteComprador frameConsCli = new frmConsultaClienteComprador();
+				frmConsultaClientes frameConsCli = new frmConsultaClientes();
 				frameConsCli.setVisible(true);
 			}
 		});
