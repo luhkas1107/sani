@@ -152,7 +152,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		
 		JMenuItem mntmPropriedades = new JMenuItem("Propriedades");
-		mntmPropriedades.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
+		mntmPropriedades.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 		mntmPropriedades.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/house.png")));
 		mntmPropriedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
