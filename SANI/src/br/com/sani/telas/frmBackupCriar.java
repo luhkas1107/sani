@@ -128,7 +128,7 @@ public class frmBackupCriar extends JDialog {
 		separator.setBounds(0, 54, 471, 2);
 		contentPanel.add(separator);
 		
-		JLabel lblBackup = new JLabel("Backup");
+		JLabel lblBackup = new JLabel("Fazer Backup");
 		lblBackup.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBackup.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblBackup.setBounds(0, 11, 440, 32);
