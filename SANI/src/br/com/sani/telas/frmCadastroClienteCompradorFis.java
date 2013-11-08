@@ -110,7 +110,7 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 	public void montarComponentes() throws ParseException {
 		SwingUtil.lookWindows(this);
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteCompradorFis.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteCompradorFis.class.getResource("/br/com/images/cliente.png")));
 		setTitle("Cadastro Cliente Comprador / Pessoa Física");
 		setBounds(100, 100, 725, 521);
 		contentPane = new JPanel();

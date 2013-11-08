@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.Wallpaper;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class frmMenuPrincipalAdmin extends JFrame {
 
@@ -65,19 +66,35 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConfiuguracoes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/settings2.png")));
 		menuBarArquivo.add(mnConfiuguracoes);
 		
-		JMenuItem mntmBackup = new JMenuItem("Backup ...");
-		mntmBackup.addActionListener(new ActionListener() {
+		JMenu mnBackup = new JMenu("Backup ...");
+		mnBackup.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/backup.png")));
+		mnConfiuguracoes.add(mnBackup);
+		
+		JMenuItem mntmFazerBackup = new JMenuItem("Fazer Backup");
+		mntmFazerBackup.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/backup.png")));
+		mnBackup.add(mntmFazerBackup);
+		
+		JMenuItem mntmRestaurarBackup = new JMenuItem("Restaurar Backup");
+		mntmRestaurarBackup.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/restore.png")));
+		mntmRestaurarBackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Função não liberada\n" +
-				"Função estará disponível em breve!");
+				frmBackupRestaurar restaura = new frmBackupRestaurar();
+				restaura.setVisible(true);
 			}
 		});
-		mnConfiuguracoes.add(mntmBackup);
+		mnBackup.add(mntmRestaurarBackup);
+		mntmFazerBackup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmBackupCriar backup = new frmBackupCriar();
+				backup.setVisible(true);
+			}
+		});
 		
 		JSeparator separator = new JSeparator();
 		mnConfiuguracoes.add(separator);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/exit.png")));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			System.exit(0);
@@ -90,6 +107,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		menuBarArquivo.add(mnCadastro);
 		
 		JMenuItem mntmFuncionarios = new JMenuItem("Funcion\u00E1rios");
+		mntmFuncionarios.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/func.png")));
 		mntmFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			frmCadastroFuncionario frameCadFun = null;
@@ -104,6 +122,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		
 		JMenuItem mntmPropriedades = new JMenuItem("Propriedades");
+		mntmPropriedades.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/house.png")));
 		mntmPropriedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			frmCadastroPropriedade frameCadProp;
@@ -120,9 +139,11 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnCadastro.add(mntmPropriedades);
 		
 		JMenu mnClientes = new JMenu("Clientes");
+		mnClientes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliente.png")));
 		mnCadastro.add(mnClientes);
 		
 		JMenuItem mntmClienteComprador = new JMenuItem("Cliente Comprador");
+		mntmClienteComprador.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliComp.png")));
 		mntmClienteComprador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			frmCadastroClienteCompradorFis frameCCC = new frmCadastroClienteCompradorFis(null);
@@ -132,6 +153,8 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnClientes.add(mntmClienteComprador);
 		
 		JMenuItem mntmClienteProprietario = new JMenuItem("Cliente Propriet\u00E1rio");
+		mntmClienteProprietario.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliProp.png")));
+		mntmClienteProprietario.setHorizontalAlignment(SwingConstants.LEFT);
 		mntmClienteProprietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmCadastroClienteProprietarioFisica frameCadCliProp;
@@ -151,6 +174,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnCadastro.add(mntmFuncionarios);
 				
 		JMenuItem mntmMetas = new JMenuItem("Metas");
+		mntmMetas.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/meta.png")));
 		mntmMetas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			frmCadastroMetas frameCadMetas = new frmCadastroMetas();
@@ -181,6 +205,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		menuBarArquivo.add(mnConsulta);
 		
 		JMenuItem mntmPropriedadesConsulta = new JMenuItem("Propriedades");
+		mntmPropriedadesConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/house.png")));
 		mntmPropriedadesConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			frmConsultaPropriedade frameConsProp = new frmConsultaPropriedade();
@@ -190,6 +215,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConsulta.add(mntmPropriedadesConsulta);
 		
 		JMenuItem mntmFuncionariosConsulta = new JMenuItem("Funcion\u00E1rios");
+		mntmFuncionariosConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/func.png")));
 		mntmFuncionariosConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmConsultaFuncionario frameConsFun = new frmConsultaFuncionario();
@@ -198,6 +224,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		});
 		
 		JMenuItem mntmClientes = new JMenuItem("Clientes");
+		mntmClientes.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/cliente.png")));
 		mntmClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmConsultaClienteComprador frameConsCli = new frmConsultaClienteComprador();
@@ -208,6 +235,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConsulta.add(mntmFuncionariosConsulta);
 		
 		JMenuItem mntmMetasConsulta = new JMenuItem("Metas");
+		mntmMetasConsulta.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/meta.png")));
 		mntmMetasConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			frmConsultaMetas frameConsMetas;
@@ -240,6 +268,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		menuBarArquivo.add(mnAjuda);
 		
 		JMenuItem mntmTutorialDoSistema = new JMenuItem("Tutorial do Sistema");
+		mntmTutorialDoSistema.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/tuto.png")));
 		mntmTutorialDoSistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/**JOptionPane.showMessageDialog(null, "Função não liberada\n" +
@@ -261,6 +290,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnAjuda.add(mntmTutorialDoSistema);
 		
 		JMenuItem mntmDesenvolvedores = new JMenuItem("Desenvolvedores");
+		mntmDesenvolvedores.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/dev.png")));
 		mntmDesenvolvedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			frmDesenvolvedores frameDev = new frmDesenvolvedores();
@@ -274,6 +304,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnAjuda.add(separator_1);
 		
 		JMenuItem mntmSobre = new JMenuItem("Sobre...");
+		mntmSobre.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/info2.png")));
 		mntmSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			frmAbout frameSobre = new frmAbout();

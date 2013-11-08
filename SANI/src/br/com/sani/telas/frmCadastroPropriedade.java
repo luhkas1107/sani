@@ -98,7 +98,7 @@ public class frmCadastroPropriedade extends JFrame {
 		SwingUtil.lookWindows(this);
 		setResizable(false);
 		setTitle("Cadastro de Propriedade");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroPropriedade.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroPropriedade.class.getResource("/br/com/images/house.png")));
 		setBounds(100, 100, 709, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

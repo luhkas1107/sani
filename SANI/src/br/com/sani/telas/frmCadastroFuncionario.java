@@ -102,7 +102,7 @@ public class frmCadastroFuncionario extends JFrame {
 		SwingUtil.lookWindows(this);
 		setResizable(false);
 		setTitle("Cadastro Funcionario");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroFuncionario.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroFuncionario.class.getResource("/br/com/images/func.png")));
 		setBounds(100, 100, 700, 511);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -53,7 +53,7 @@ public class frmConsultaPropriedade extends JFrame {
 	public frmConsultaPropriedade() {
 		SwingUtil.lookWindows(this);
 		setTitle("Consulta de Propriedades");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaPropriedade.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaPropriedade.class.getResource("/br/com/images/search.png")));
 		setBounds(100, 100, 690, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

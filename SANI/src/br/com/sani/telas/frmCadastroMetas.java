@@ -57,7 +57,7 @@ public class frmCadastroMetas extends JFrame {
 	 */
 	public frmCadastroMetas() {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroMetas.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroMetas.class.getResource("/br/com/images/meta.png")));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTitle("Cadastro de Metas");
 		setResizable(false);

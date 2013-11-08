@@ -12,7 +12,7 @@ public class DbUtilBackup {
 	private static final String DRIVER_JDBC = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 	
 	private static final String USUARIO_DB = "sa";
-	private static final String SENHA_USUARIO_DB = "123";
+	private static final String SENHA_USUARIO_DB = "12345678";
 	
 	static {
 		try {

@@ -56,7 +56,7 @@ public class frmConsultaFuncionario extends JFrame {
 	public frmConsultaFuncionario() {
 		SwingUtil.lookWindows(this);
 		setTitle("Consulta Funcion\u00E1rio");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaFuncionario.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaFuncionario.class.getResource("/br/com/images/search.png")));
 		setBounds(100, 100, 690, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

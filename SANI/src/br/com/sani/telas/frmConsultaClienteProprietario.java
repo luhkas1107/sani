@@ -55,7 +55,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 	 */
 	public frmConsultaClienteProprietario() {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteProprietario.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteProprietario.class.getResource("/br/com/images/search.png")));
 		setTitle("Escolha o Propriet\u00E1rio");
 		setBounds(100, 100, 690, 450);
 		contentPane = new JPanel();

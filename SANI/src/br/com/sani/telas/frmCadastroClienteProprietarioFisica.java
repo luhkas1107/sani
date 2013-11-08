@@ -83,7 +83,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 	 */
 	public frmCadastroClienteProprietarioFisica() throws Throwable {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/cliente.png")));
 		setTitle("Cadastro Cliente Propriet\u00E1rio");
 		setResizable(false);
 		setBounds(100, 100, 700, 500);

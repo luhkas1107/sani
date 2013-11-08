@@ -75,7 +75,7 @@ public class frmConsultaClienteComprador extends JFrame {
 
 	public void initComponents() {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteComprador.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteComprador.class.getResource("/br/com/images/search.png")));
 		setTitle("Consulta de Cliente Comprador");
 		setBounds(100, 100, 690, 450);
 		contentPane = new JPanel();

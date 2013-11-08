@@ -41,9 +41,9 @@ public class frmDesenvolvedores extends JFrame {
 	 * Create the frame.
 	 */
 	public frmDesenvolvedores() {
-		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Andr\u00E9\\Desktop\\TCC\\agt_home.png"));
 		setType(Type.UTILITY);
+		SwingUtil.lookWindows(this);
+		//setIconImage(Toolkit.getDefaultToolkit().getImage(frmMenuPrincipalAdmin.class.getResource("/br/com/images/home_badge.png")));
 		setTitle("Desenvolvedores");
 		setBounds(100, 100, 430, 220);
 		contentPane = new JPanel();

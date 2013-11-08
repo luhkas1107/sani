@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.sani.dao.BackupDAO;
 import br.com.sani.util.SwingUtil;
+import javax.swing.ImageIcon;
 
 public class frmBackupRestaurar extends JDialog {
 
@@ -37,7 +38,7 @@ public class frmBackupRestaurar extends JDialog {
 	String nomeArquivo = "";
 	String extensaoArquivo =".bak";
 	
-	String arquivo2 =null;
+	String arquivoFinal =null;
 	
 	public static void main(String[] args) {
 		try {
@@ -54,9 +55,9 @@ public class frmBackupRestaurar extends JDialog {
 	 */
 	public frmBackupRestaurar() {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteComprador.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmBackupRestaurar.class.getResource("/br/com/images/restore.png")));
 		setTitle("Restaurar Backup");
-		setBounds(100, 100, 450, 212);
+		setBounds(100, 100, 487, 220);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -65,6 +66,7 @@ public class frmBackupRestaurar extends JDialog {
 		this.setLocation((screen.width - this.getSize().width) / 2, (screen.height - this.getSize().height) / 2);
 
 		JButton btnSalvar = new JButton("Restaurar");
+		btnSalvar.setIcon(new ImageIcon(frmBackupRestaurar.class.getResource("/br/com/images/restore.png")));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String text = txtCaminho.getText();
@@ -74,7 +76,7 @@ public class frmBackupRestaurar extends JDialog {
 				caminho = text.replace("C:","c:");
 				
 
-        		System.out.println(arquivo2);
+        		System.out.println(arquivoFinal);
         		System.out.println(caminho);
         		
             		
@@ -115,24 +117,25 @@ public class frmBackupRestaurar extends JDialog {
 			
 			}
 		});
-		btnSalvar.setBounds(320, 145, 104, 23);
+		btnSalvar.setBounds(334, 139, 120, 32);
 		contentPanel.add(btnSalvar);
 		
 		JButton btnProcurar = new JButton("Procurar");
+		btnProcurar.setIcon(new ImageIcon(frmBackupRestaurar.class.getResource("/br/com/images/search-ico.png")));
 		btnProcurar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser arquivo = new JFileChooser();
-				arquivo2 =null;
+				arquivoFinal =null;
 				arquivo.setVisible(true);
 				
 				int result = arquivo.showOpenDialog(null);
 				if(result == JFileChooser.APPROVE_OPTION){
-            		arquivo2 = arquivo.getSelectedFile().toString();//.concat(".bak");
-            		txtCaminho.setText(arquivo2);
+            		arquivoFinal = arquivo.getSelectedFile().toString();//.concat(".bak");
+            		txtCaminho.setText(arquivoFinal);
            		
-            		File file = new File(arquivo2);
-            		System.out.println(arquivo2);
+            		File file = new File(arquivoFinal);
+            		System.out.println(arquivoFinal);
             		System.out.println(file);
             		
             		/**if(file.exists()){
@@ -142,11 +145,11 @@ public class frmBackupRestaurar extends JDialog {
             						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             				if(opcao==JOptionPane.YES_OPTION){
             					caminho = Class.class.getResource("/").toString();	
-            	            	caminho = arquivo2.replace("/","\\\\");
-            	            	caminho = arquivo2.replace("file:\\\\","");
-            	            	caminho = arquivo2.replace("C:","c:");
+            	            	caminho = arquivoFinal.replace("/","\\\\");
+            	            	caminho = arquivoFinal.replace("file:\\\\","");
+            	            	caminho = arquivoFinal.replace("C:","c:");
             	            	JOptionPane.showMessageDialog(null, caminho);
-            	            	JOptionPane.showMessageDialog(null, arquivo2);
+            	            	JOptionPane.showMessageDialog(null, arquivoFinal);
                     			
             	            	
          						try {
@@ -168,11 +171,11 @@ public class frmBackupRestaurar extends JDialog {
             		}else{
             			
             			caminho = Class.class.getResource("/").toString();	
-    	            	caminho = arquivo2.replace("/","\\\\");
-    	            	caminho = arquivo2.replace("file:\\\\","");
-    	            	caminho = arquivo2.replace("C:","c:");
+    	            	caminho = arquivoFinal.replace("/","\\\\");
+    	            	caminho = arquivoFinal.replace("file:\\\\","");
+    	            	caminho = arquivoFinal.replace("C:","c:");
     	            	JOptionPane.showMessageDialog(null, caminho);
-    	            	JOptionPane.showMessageDialog(null, arquivo2);
+    	            	JOptionPane.showMessageDialog(null, arquivoFinal);
             			
             			
  						try {
@@ -193,22 +196,23 @@ public class frmBackupRestaurar extends JDialog {
 			
 			}
 		});
-		btnProcurar.setBounds(341, 89, 89, 23);
+		btnProcurar.setBounds(328, 84, 133, 32);
 		contentPanel.add(btnProcurar);
 		 
 		txtCaminho = new JTextField();
-		txtCaminho.setBounds(65, 90, 266, 20);
-		txtCaminho.setText("c:\\SANI\\Backup\\");
+		txtCaminho.setEditable(false);
+		txtCaminho.setBounds(58, 90, 266, 20);
+		//txtCaminho.setText("c:\\SANI\\Backup\\");
 		contentPanel.add(txtCaminho);
 		
 		txtCaminho.setColumns(10);
 		
-		JLabel lblDestino = new JLabel("Destino");
-		lblDestino.setBounds(10, 93, 56, 14);
+		JLabel lblDestino = new JLabel("Destino:");
+		lblDestino.setBounds(10, 93, 40, 14);
 		contentPanel.add(lblDestino);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 54, 440, 2);
+		separator.setBounds(0, 54, 471, 2);
 		contentPanel.add(separator);
 		
 		JLabel lblBackup = new JLabel("Backup");
@@ -217,14 +221,15 @@ public class frmBackupRestaurar extends JDialog {
 		lblBackup.setBounds(0, 11, 440, 32);
 		contentPanel.add(lblBackup);
 		
-		JButton btnVoltar = new JButton("Voltar");
+		JButton btnVoltar = new JButton("Cancelar");
+		btnVoltar.setIcon(new ImageIcon(frmBackupRestaurar.class.getResource("/br/com/images/delete-.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			setVisible(false);
 			
 			}
 		});
-		btnVoltar.setBounds(10, 145, 89, 23);
+		btnVoltar.setBounds(10, 139, 104, 32);
 		contentPanel.add(btnVoltar);
 	}
 }

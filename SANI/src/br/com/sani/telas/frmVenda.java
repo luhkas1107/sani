@@ -79,7 +79,7 @@ public class frmVenda extends JFrame {
 		setType(Type.POPUP);
 		SwingUtil.lookWindows(this);
 		setTitle("Venda");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmVenda.class.getResource("/br/com/images/HOME.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmVenda.class.getResource("/br/com/images/money.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 712, 412);
 		contentPane = new JPanel();

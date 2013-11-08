@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -36,9 +37,10 @@ public class frmBackupCriar extends JDialog {
 	File arquivo, dir; 
 	String caminho, caminhoImagem;
 	String nomeArquivo = "";
-	String extensaoArquivo =".bak";
+	String extensaoArquivo = ".bak";
+	JButton btnProcurar = new JButton();
 	
-	String arquivo2 =null;
+	String arquivoFinal = null;
 	
 	public static void main(String[] args) {
 		try {
@@ -55,9 +57,9 @@ public class frmBackupCriar extends JDialog {
 	 */
 	public frmBackupCriar() {
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteComprador.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmBackupCriar.class.getResource("/br/com/images/backup.png")));
 		setTitle("Novo Backup");
-		setBounds(100, 100, 450, 212);
+		setBounds(100, 100, 487, 220);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -66,6 +68,7 @@ public class frmBackupCriar extends JDialog {
 		this.setLocation((screen.width - this.getSize().width) / 2, (screen.height - this.getSize().height) / 2);
 
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setIcon(new ImageIcon(frmBackupCriar.class.getResource("/br/com/images/save.png")));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String text = txtCaminho.getText();
@@ -75,7 +78,7 @@ public class frmBackupCriar extends JDialog {
 				caminho = text.replace("C:","c:");
 				
 
-        		System.out.println(arquivo2);
+        		System.out.println(arquivoFinal);
         		System.out.println(caminho);
         					
  						try {
@@ -90,58 +93,39 @@ public class frmBackupCriar extends JDialog {
 						}
 			}
 		});
-		btnSalvar.setBounds(335, 145, 89, 23);
+		btnSalvar.setBounds(342, 139, 104, 32);
 		contentPanel.add(btnSalvar);
 		
 		JButton btnProcurar = new JButton("Procurar");
+		btnProcurar.setIcon(new ImageIcon(frmBackupCriar.class.getResource("/br/com/images/search-ico.png")));
 		btnProcurar.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser arquivo = new JFileChooser();
-				
-				arquivo2 =null;
-				
-				arquivo.setVisible(true);
-				
-				
-				int result = arquivo.showSaveDialog(null);
-				
-            	
-            	if(result == JFileChooser.APPROVE_OPTION){
-            		arquivo2 = arquivo.getSelectedFile().toString().concat(".bak");
-            		txtCaminho.setText(arquivo2);
-            	
-            		
-            		File file = new File(arquivo2);
-            		System.out.println(arquivo2);
-            		System.out.println(file);
-            	
-            	}
-			
+				backup();
 			}
 		});
-		btnProcurar.setBounds(341, 89, 89, 23);
+		btnProcurar.setBounds(328, 84, 133, 32);
 		contentPanel.add(btnProcurar);
 		Date hora = new Date();
-		String formato = "HHmmss";
+		String formato = "ddMMyyHHmmSS";
 		
 		DateFormat dateformatMedium = new SimpleDateFormat(formato);
 		
-		String agora = dateformatMedium.format(hora);
+		String agora = ("backupSANI-" +dateformatMedium.format(hora));
 		 
 		txtCaminho = new JTextField();
-		txtCaminho.setBounds(65, 90, 266, 20);
-		txtCaminho.setText("c:\\SANI\\Backup\\"+agora+".bak");
+		txtCaminho.setEditable(false);
+		txtCaminho.setBounds(58, 90, 266, 20);
+		//txtCaminho.setText("C:\\SANI\\Backup\\"+agora+".bak");
 		contentPanel.add(txtCaminho);
 		
 		txtCaminho.setColumns(10);
 		
-		JLabel lblDestino = new JLabel("Destino");
-		lblDestino.setBounds(10, 93, 56, 14);
+		JLabel lblDestino = new JLabel("Destino:");
+		lblDestino.setBounds(10, 93, 40, 14);
 		contentPanel.add(lblDestino);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(0, 54, 440, 2);
+		separator.setBounds(0, 54, 471, 2);
 		contentPanel.add(separator);
 		
 		JLabel lblBackup = new JLabel("Backup");
@@ -150,14 +134,35 @@ public class frmBackupCriar extends JDialog {
 		lblBackup.setBounds(0, 11, 440, 32);
 		contentPanel.add(lblBackup);
 		
-		JButton btnVoltar = new JButton("Voltar");
+		JButton btnVoltar = new JButton("Cancelar");
+		btnVoltar.setIcon(new ImageIcon(frmBackupCriar.class.getResource("/br/com/images/delete-.png")));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			setVisible(false);
 			
 			}
 		});
-		btnVoltar.setBounds(10, 145, 89, 23);
+		btnVoltar.setBounds(10, 139, 104, 32);
 		contentPanel.add(btnVoltar);
 	}
+	
+	public void backup(){
+		
+		JFileChooser arquivo = new JFileChooser();
+		arquivoFinal = null;
+		arquivo.setVisible(true);
+					
+		int result = arquivo.showSaveDialog(null);
+		            	
+    	if(result == JFileChooser.APPROVE_OPTION){
+    		arquivoFinal = arquivo.getSelectedFile().toString().concat(".bak");
+    		txtCaminho.setText(arquivoFinal);
+    	            		
+    		File file = new File(arquivoFinal);
+    		System.out.println(arquivoFinal);
+    		System.out.println(file);
+    	
+    	}
+	}
+	
 }

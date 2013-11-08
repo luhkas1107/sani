@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
@@ -27,6 +28,7 @@ import javax.swing.JTextPane;
 import org.jdesktop.swingx.JXDatePicker;
 
 import br.com.sani.exception.EntradaUsuarioException;
+import br.com.sani.telas.frmBackupCriar;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -396,5 +398,4 @@ public class TelaUtil {
 		}
 		return arrayAux;
 	}
-
 }

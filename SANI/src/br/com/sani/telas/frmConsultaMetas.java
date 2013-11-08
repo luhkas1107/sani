@@ -65,7 +65,7 @@ public class frmConsultaMetas extends JFrame {
 	public frmConsultaMetas() throws Throwable {
 		SwingUtil.lookWindows(this);
 		setTitle("Consulta Metas");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaMetas.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaMetas.class.getResource("/br/com/images/search.png")));
 		setBounds(100, 100, 690, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

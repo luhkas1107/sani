@@ -12,11 +12,20 @@ import br.com.sani.util.DbUtilBackup;
 public class BackupDAO {
 	
 	private static final String BACKUP_NOVO = 
-			"backup database venda2 to disk=? ";
+			"backup database SANI to disk=? ";
+/*	
+	private static final String BACKUP_CLIENTE_COMPRADOR =
+			"backup table tbClienteComprador from SANI to disk=?" +
+			"backup table tbClienteCompradorFisica from SANI to disk=?" +
+			"backup table tbClienteCompradorJuridica from SANI to disk=?";
+	
+	private static final String BACKUP_CLIENTE_PROPRIETARIO =
+			"backup table tbClienteProprietario SANI to disk=?" +
+			"backup table tbClienteProprietarioFisica SANI to disk=?" +
+			"backup table tbClienteProprietarioJuridica SANI to disk=?";*/
 	
 	private static final String BACKUP_RESTORE =
-			"RESTORE DATABASE venda2 FROM DISK=? with replace ";
-		
+			"RESTORE DATABASE SANI FROM DISK=? with replace ";		
 
 
 	public static boolean backup_novo(String caminho) throws Exception{		
@@ -52,9 +61,6 @@ public class BackupDAO {
 		}
 		return true;		
 	}
-
-	
-	
 	
 
 }
