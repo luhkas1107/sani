@@ -99,10 +99,12 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnConfiuguracoes.add(mnBackup);
 		
 		mntmFazerBackup = new JMenuItem("Fazer Backup");
+		mntmFazerBackup.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK));
 		mntmFazerBackup.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/backup.png")));
 		mnBackup.add(mntmFazerBackup);
 		
 		mntmRestaurarBackup = new JMenuItem("Restaurar Backup");
+		mntmRestaurarBackup.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
 		mntmRestaurarBackup.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/restore.png")));
 		mntmRestaurarBackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -297,6 +299,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		menuBarArquivo.add(mnAjuda);
 		
 		mntmTutorialDoSistema = new JMenuItem("Tutorial do Sistema");
+		mntmTutorialDoSistema.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 		mntmTutorialDoSistema.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/tuto.png")));
 		mntmTutorialDoSistema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -319,6 +322,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnAjuda.add(mntmTutorialDoSistema);
 		
 		mntmDesenvolvedores = new JMenuItem("Desenvolvedores");
+		mntmDesenvolvedores.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0));
 		mntmDesenvolvedores.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/dev.png")));
 		mntmDesenvolvedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -333,6 +337,7 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mnAjuda.add(separator_1);
 		
 		mntmSobre = new JMenuItem("Sobre...");
+		mntmSobre.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0));
 		mntmSobre.setIcon(new ImageIcon(frmMenuPrincipalAdmin.class.getResource("/br/com/images/info2.png")));
 		mntmSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
