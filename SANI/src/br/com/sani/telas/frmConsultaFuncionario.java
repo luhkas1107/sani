@@ -53,7 +53,11 @@ public class frmConsultaFuncionario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmConsultaFuncionario() {
+	public frmConsultaFuncionario(){
+		initComponents();
+	}
+	
+	public void initComponents() {
 		SwingUtil.lookWindows(this);
 		setTitle("Consulta Funcion\u00E1rio");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaFuncionario.class.getResource("/br/com/images/search.png")));

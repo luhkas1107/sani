@@ -5,9 +5,10 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 
-import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -25,11 +26,6 @@ import br.com.sani.dao.EnderecoDAO;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
-import br.com.sani.telas.frmConsultaPropriedade;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Window.Type;
 
 public class frmVenda extends JFrame {
 
@@ -80,8 +76,8 @@ public class frmVenda extends JFrame {
 		SwingUtil.lookWindows(this);
 		setTitle("Venda");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmVenda.class.getResource("/br/com/images/money.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 712, 412);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 712, 436);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -169,18 +165,19 @@ public class frmVenda extends JFrame {
 		panelPropriedade.add(txtEstado);
 		txtEstado.setColumns(10);
 		
-		JButton btnProcurarPropriedade = new JButton("Procurar");
-		btnProcurarPropriedade.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frmConsultaPropriedade frmCProp = new frmConsultaPropriedade();
-				frmCProp.setVisible(true);
+		JLabel lblProcuraCep = new JLabel("");
+		lblProcuraCep.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				
 			}
 		});
-		btnProcurarPropriedade.setBounds(285, 30, 115, 20);
-		panelPropriedade.add(btnProcurarPropriedade);
+		lblProcuraCep.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblProcuraCep.setIcon(new ImageIcon(frmVenda.class.getResource("/br/com/images/search.png")));
+		lblProcuraCep.setBounds(381, 26, 25, 25);
+		panelPropriedade.add(lblProcuraCep);
 		
 		JPanel panelCorretor = new JPanel();
-		panelCorretor.setBorder(new TitledBorder(null, "Vendedor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelCorretor.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Corretor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelCorretor.setBounds(10, 11, 433, 138);
 		contentPane.add(panelCorretor);
 		panelCorretor.setLayout(null);
@@ -190,17 +187,6 @@ public class frmVenda extends JFrame {
 		panelCorretor.add(txtNomeCorretor);
 		txtNomeCorretor.setEditable(false);
 		txtNomeCorretor.setColumns(10);
-		
-		JButton btnProcurarVendedor = new JButton("Procurar");
-		btnProcurarVendedor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmConsultaFuncionario frmCF = new frmConsultaFuncionario();
-				frmCF.setVisible(true);
-			}
-		});
-		btnProcurarVendedor.setBounds(285, 32, 115, 20);
-		panelCorretor.add(btnProcurarVendedor);
-		btnProcurarVendedor.setIcon(null);
 		
 		JLabel lblNomeCorretor = new JLabel("Nome:");
 		lblNomeCorretor.setBounds(21, 35, 37, 14);
@@ -225,6 +211,18 @@ public class frmVenda extends JFrame {
 		txtCreci.setBounds(77, 94, 86, 20);
 		panelCorretor.add(txtCreci);
 		txtCreci.setColumns(10);
+		
+		JLabel lblProcuraCorretor = new JLabel("");
+		lblProcuraCorretor.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				frmConsultaFuncionario corretor = new frmConsultaFuncionario();
+				corretor.setVisible(true);
+			}
+		});
+		lblProcuraCorretor.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblProcuraCorretor.setIcon(new ImageIcon(frmVenda.class.getResource("/br/com/images/search.png")));
+		lblProcuraCorretor.setBounds(381, 32, 25, 25);
+		panelCorretor.add(lblProcuraCorretor);
 		
 		JPanel panelProprietario = new JPanel();
 		panelProprietario.setBorder(new TitledBorder(null, "Proprietario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -252,25 +250,28 @@ public class frmVenda extends JFrame {
 		panelProprietario.add(txtCpfProprietario);
 		txtCpfProprietario.setColumns(10);
 		
-		JButton btnProcurarProprietario = new JButton("Procurar");
-		btnProcurarProprietario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmConsultaClienteProprietario frmCCliProp = new frmConsultaClienteProprietario();
-				frmCCliProp.setVisible(true);
-			}
-		});
-		btnProcurarProprietario.setBounds(66, 107, 105, 20);
-		panelProprietario.add(btnProcurarProprietario);
-		
 		JLabel lblRg = new JLabel("RG:");
-		lblRg.setBounds(23, 78, 18, 14);
+		lblRg.setBounds(23, 84, 18, 14);
 		panelProprietario.add(lblRg);
 		
 		txtRgProprietario = new JTextField();
 		txtRgProprietario.setEditable(false);
-		txtRgProprietario.setBounds(66, 76, 105, 20);
+		txtRgProprietario.setBounds(66, 81, 105, 20);
 		panelProprietario.add(txtRgProprietario);
 		txtRgProprietario.setColumns(10);
+		
+		JLabel lblProcuraProprietario = new JLabel("");
+		lblProcuraProprietario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmConsultaClienteProprietario proprietario = new frmConsultaClienteProprietario();
+				proprietario.setVisible(true);
+			}
+		});
+		lblProcuraProprietario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblProcuraProprietario.setIcon(new ImageIcon(frmVenda.class.getResource("/br/com/images/search.png")));
+		lblProcuraProprietario.setBounds(208, 102, 25, 25);
+		panelProprietario.add(lblProcuraProprietario);
 		
 		JPanel panelComprador = new JPanel();
 		panelComprador.setLayout(null);
@@ -298,25 +299,38 @@ public class frmVenda extends JFrame {
 		txtCpfComprador.setBounds(66, 50, 105, 20);
 		panelComprador.add(txtCpfComprador);
 		
-		JButton btnProcurarComprador = new JButton("Procurar");
-		btnProcurarComprador.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frmConsultaClienteComprador frmCCliComp = new frmConsultaClienteComprador();
-				frmCCliComp.setVisible(true);
-			}
-		});
-		btnProcurarComprador.setBounds(66, 107, 105, 20);
-		panelComprador.add(btnProcurarComprador);
-		
 		JLabel label_2 = new JLabel("RG:");
-		label_2.setBounds(23, 78, 18, 14);
+		label_2.setBounds(23, 84, 18, 14);
 		panelComprador.add(label_2);
 		
 		txtRgComprador = new JTextField();
 		txtRgComprador.setEditable(false);
 		txtRgComprador.setColumns(10);
-		txtRgComprador.setBounds(66, 76, 105, 20);
+		txtRgComprador.setBounds(66, 81, 105, 20);
 		panelComprador.add(txtRgComprador);
+		
+		JLabel lblProcuraComprador = new JLabel("");
+		lblProcuraComprador.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmConsultaClienteComprador comprador = new frmConsultaClienteComprador();
+				comprador.setVisible(true);
+			}
+		});
+		lblProcuraComprador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblProcuraComprador.setIcon(new ImageIcon(frmVenda.class.getResource("/br/com/images/search.png")));
+		lblProcuraComprador.setBounds(208, 102, 25, 25);
+		panelComprador.add(lblProcuraComprador);
+		
+		JButton btnGerarProposta = new JButton("Gerar Proposta");
+		btnGerarProposta.setIcon(new ImageIcon(frmVenda.class.getResource("/br/com/images/report1.png")));
+		btnGerarProposta.setBounds(553, 365, 143, 32);
+		contentPane.add(btnGerarProposta);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setIcon(new ImageIcon(frmVenda.class.getResource("/br/com/images/delete-.png")));
+		btnCancelar.setBounds(10, 365, 143, 32);
+		contentPane.add(btnCancelar);
 	}
 	
 	private void buscarEndereco(){

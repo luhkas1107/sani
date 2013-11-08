@@ -191,7 +191,8 @@ public class frmMenuPrincipalAdmin extends JFrame {
 		mntmIniciarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					new frmVenda();
+					frmVenda venda = new frmVenda();
+					venda.setVisible(true);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
