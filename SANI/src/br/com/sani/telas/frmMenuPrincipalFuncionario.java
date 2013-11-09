@@ -30,7 +30,7 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmMenuPrincipalAdmin frame = new frmMenuPrincipalAdmin();
+					frmMenuPrincipal frame = new frmMenuPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class frmMenuPrincipalFuncionario extends JFrame {
 	public frmMenuPrincipalFuncionario() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		SwingUtil.lookWindows(this);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(frmMenuPrincipalAdmin.class.getResource("/br/com/images/home_badge.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmMenuPrincipal.class.getResource("/br/com/images/home_badge.png")));
 		setTitle("FUNCION\u00C1RIO - Sistema Administrador de Neg\u00F3cios Imobili\u00E1rios - v0.3.4");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 675, 450);

@@ -36,11 +36,9 @@ public class ClienteProprietarioFisicaDAO {
 			"	dtNasc, "+
 			"	dtFalescimento, "+
 			"	sexoPessoa, "+ 
-			"	estadoCivilPessoa"+
-			"	renda, "+
-			"	profissao, "+
+			"	estadoCivilPessoa, "+
 			"	email )"+
-			"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+			"VALUES (?,?,?,?,?,?,?,?,?)";
 		
 	private static final String ATUALIZAR_CLIENTE_PROPRIETARIO_FISICA =
 			"UPDATE tbClienteProprietario SET "+
@@ -126,7 +124,7 @@ public class ClienteProprietarioFisicaDAO {
 			statement = conn.prepareStatement(INSERIR_CLIENTE_PROPRIETARIO_FISICA);
 			statement.setInt(1, getNovoId());
 			statement.setString(2, cliComp.getCodCliProprietario().getCep());
-			statement.setString(3, cliComp.getCodCliProprietario().getNumeroEndereco());
+			statement.setInt(3, Integer.parseInt(cliComp.getCodCliProprietario().getNumeroEndereco()));
 			statement.setString(4, cliComp.getCodCliProprietario().getComplementoEndereco());
 			statement.setString(5, cliComp.getCodCliProprietario().getTelefone());
 			statement.setString(6, cliComp.getCodCliProprietario().getCelular());
@@ -137,11 +135,10 @@ public class ClienteProprietarioFisicaDAO {
 			statement.setString(9, cliComp.getRg());
 			statement.setString(10, cliComp.getCpf());
 			statement.setDate(11, DbUtil.getSqlDate(cliComp.getDataNascimento()));
-			statement.setString(12, cliComp.getSexo());
-			statement.setString(13, cliComp.getEstadoCivil());
-			statement.setDouble(14, cliComp.getRenda());
-			statement.setString(15, cliComp.getProfissao());
-			statement.setString(16, cliComp.getEmail());
+			statement.setDate(12, DbUtil.getSqlDate(cliComp.getDataFalecimento()));
+			statement.setString(13, cliComp.getSexo());
+			statement.setString(14, cliComp.getEstadoCivil());
+			statement.setString(15, cliComp.getEmail());
 			
 			statement.executeUpdate();
 			conn.commit(); //se tudo ocorrer sem erros ele commita a transação no banco de dados

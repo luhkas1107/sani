@@ -5,7 +5,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -22,7 +22,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -36,7 +36,7 @@
 <generatorID>3B0EA4F6-14A4-3E63-D3CF-219D410C7265</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <referedAttribute>098D70C8-57B5-4EDA-2153-0509A444D3C7</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
@@ -50,7 +50,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -64,7 +64,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -77,7 +77,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -90,7 +90,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -103,7 +103,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -116,7 +116,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -129,12 +129,12 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
 <defaultValue>F</defaultValue>
-<use>0</use>
+<use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
-<domain>FBD4D20D-464B-A8D7-2844-BBDBC1935952</domain>
 </Attribute>
 <Attribute name="DT_NASCIMENTO" id="5F6B9F3A-C482-F172-4FFE-652A36FB9E87">
 <createdBy>usuario</createdBy>
@@ -142,7 +142,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -154,11 +154,11 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
-<use>0</use>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
 <logicalDatatype>LOGDT025</logicalDatatype>
-<domain>2773CFDB-55AD-BE13-0BBA-96BD2E2D9572</domain>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -168,7 +168,7 @@
 <generatorID>Gerado pelo usuário</generatorID>
 <ownerDesignName>SANI_BETA</ownerDesignName>
 <engineerTo>
-<item key="2DF1858E-BF08-639F-EE76-B2966B351813" value="true"/>
+<item key="08BE9E3F-25EE-3390-B241-D3656BAE5821" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

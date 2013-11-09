@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -25,8 +26,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import br.com.sani.bean.ClienteProprietario;
+import br.com.sani.bean.ClienteProprietarioFisica;
+import br.com.sani.bean.ClienteProprietarioJuridica;
+import br.com.sani.dao.ClienteProprietarioDAO;
 import br.com.sani.dao.ClienteProprietarioFisicaDAO;
 import br.com.sani.exception.DAOException;
+import br.com.sani.util.FormatarNumero;
+import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
 
 public class frmConsultaClienteProprietario extends JFrame implements MouseListener {
@@ -35,6 +41,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 	private JTextField txtFieldConsultaNomeClienteComprador;
 	private JTable table;
 
+	private int requisicao = 0;
 	/**
 	 * Launch the application.
 	 */
@@ -42,18 +49,25 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new frmConsultaClienteProprietario();
+					new frmConsultaClienteProprietario(0);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	
+	public frmConsultaClienteProprietario(int requisicao){
+		this.requisicao = requisicao;
+		montarComponentes();
+		buscar();
+		setVisible(true);
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	public frmConsultaClienteProprietario() {
+	public void montarComponentes() {
 		SwingUtil.lookWindows(this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteProprietario.class.getResource("/br/com/images/search.png")));
 		setTitle("Escolha o Propriet\u00E1rio");
@@ -104,7 +118,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 				{null, null, null, null},
 			},
 			new String[] {
-				"C\u00F3digo", "Nome", "Endere\u00E7o", "Contato"
+				"C\u00F3digo", "Nome/Raz\u00E3o Social", "CPF/CNPJ", "Telefone"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -114,14 +128,10 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 				return columnEditables[column];
 			}
 		});
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(63);
-		table.getColumnModel().getColumn(1).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(102);
 		table.getColumnModel().getColumn(1).setPreferredWidth(255);
-		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(2).setPreferredWidth(235);
-		table.getColumnModel().getColumn(3).setResizable(false);
-		table.getColumnModel().getColumn(3).setPreferredWidth(86);
+		table.getColumnModel().getColumn(2).setPreferredWidth(155);
+		table.getColumnModel().getColumn(3).setPreferredWidth(111);
 		scrollPane.setViewportView(table);
 		
 		JLabel lblRemove = new JLabel("");
@@ -163,9 +173,6 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		lblSearch.setBounds(618, 33, 25, 25);
 		panel.add(lblSearch);
 		
-		buscar();
-		setVisible(true);
-		
 		setLocationRelativeTo(null);
 	}
 	
@@ -173,43 +180,71 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		try{
 			DefaultTableModel dtm =(DefaultTableModel) table.getModel();
 			dtm.setRowCount(0);
-			@SuppressWarnings("unchecked")
-			List<ClienteProprietario> lista = (List<ClienteProprietario>) new ClienteProprietarioFisicaDAO().consultarTodosClientes();
+			
+			List<Object> lista = new ClienteProprietarioDAO().buscarTodos();
 			if(lista != null){
-				for(ClienteProprietario p : lista){
-					addTable(dtm, p);
+				for(Object obj : lista){
+					addTable(dtm, obj);
 				}
 			}
 		}catch (DAOException e) {
 			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 	}
 	
-	private void addTable(DefaultTableModel dtm, ClienteProprietario pro){
+	private void addTable(DefaultTableModel dtm, Object obj) throws ParseException{
 		Object[] object = new Object[4];
 		int i = 0;
 		
-		/*object[i++] = pro.getId();
-		object[i++] = pro.getNome();
-		object[i++] = pro.getEndereco();
-		object[i++] = pro.getTelefoneCelular();*/
+		if(obj instanceof ClienteProprietarioFisica){
+			ClienteProprietarioFisica cf = (ClienteProprietarioFisica) obj;
+			object[i++] = FormatarNumero.formatNumero(4, cf.getClienteProprietarioFisica().getCodCliProprietario());
+			object[i++] = cf.getNome();
+			object[i++] = Mascara.setMaskCpfInTable(cf.getCpf());
+			object[i++] = Mascara.setMaskTelefoneInTable(cf.getClienteProprietarioFisica().getTelefone());
+		}else{
+			ClienteProprietarioJuridica cj = (ClienteProprietarioJuridica) obj;
+			object[i++] = FormatarNumero.formatNumero(4, cj.getClienteProprietario().getCodCliProprietario());
+			object[i++] = cj.getRazaoSocial();
+			object[i++] = Mascara.setMaskCnpjInTable(cj.getCnpj());
+			object[i++] = Mascara.setMaskTelefoneInTable(cj.getClienteProprietario().getTelefone());
+		}
 		
 		dtm.addRow(object);
 	}
 	
-/*	public void retornarRequisicao(){
+	public void retornarRequisicao(){
 		int row = table.getSelectedRow();
 		try{
 			if(row != -1){
 				int id = Integer.parseInt((String) table.getValueAt(row, 0));
-				ClienteProprietario cliPro = new ClienteProprietarioFisicaDAO().consultarClienteProprietarioID(id);
-				frmCadastroPropriedade.setCodCliProprietario(cliPro);
-				dispose();
+				if(this.requisicao == 1){
+					Object cli = new ClienteProprietarioDAO().buscarPorId(id);
+					Object[] object = new Object[4];
+					if(cli instanceof ClienteProprietarioFisica){
+						object[0] = ((ClienteProprietarioFisica) cli).getClienteProprietarioFisica().getCodCliProprietario();
+						object[1] = ((ClienteProprietarioFisica) cli).getNome();
+						object[2] = Mascara.setMaskCpfInTable(((ClienteProprietarioFisica) cli).getCpf());
+						object[4] = ((ClienteProprietarioFisica) cli).getEmail();
+					}else if(cli instanceof ClienteProprietarioJuridica){
+						object[0] = ((ClienteProprietarioJuridica) cli).getClienteProprietario().getCodCliProprietario();
+						object[1] = ((ClienteProprietarioJuridica) cli).getRazaoSocial();
+						object[2] = Mascara.setMaskCnpjInTable(((ClienteProprietarioJuridica) cli).getCnpj());
+						object[3] = "";
+					}
+					
+					frmCadastroPropriedade.setProprietario(object);
+					dispose();
+				}
 			}
 		}catch (DAOException e) {
 			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	public void fechar(){
 		this.dispose();
@@ -219,7 +254,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 	public void mouseClicked(MouseEvent event) {
 		if(event.getSource() == table){
 			if(event.getClickCount() > 1){
-				//retornarRequisicao();
+				retornarRequisicao();
 			}
 		}
 		

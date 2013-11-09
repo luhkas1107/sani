@@ -129,7 +129,7 @@ public class frmLogin extends JFrame implements KeyListener {
 		//COLOCAR userAdm.equals(getUser) && senhaAdm.equals(getPassword)){
 		
 		if(userAdm.equals("admin")&& senhaAdm.equals("admin")){
-			frmMenuPrincipalAdmin admin = new frmMenuPrincipalAdmin();
+			frmMenuPrincipal admin = new frmMenuPrincipal();
 			admin.setVisible(true);
 			fechaLogin();
 		}else if(userFunc.equals("func") && senhaFunc.equals("func")){

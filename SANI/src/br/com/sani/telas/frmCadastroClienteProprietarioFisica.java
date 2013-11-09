@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -60,6 +61,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 	
 	private int modo = 0;
 	private ClienteProprietarioFisica cadastro;
+	private JDateChooser dtNascimento;
 
 	/**
 	 * Launch the application.
@@ -68,25 +70,33 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCadastroClienteProprietarioFisica frame = new frmCadastroClienteProprietarioFisica();
-					frame.setVisible(true);
+					new frmCadastroClienteProprietarioFisica();
 				} catch (Throwable e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	
+	public frmCadastroClienteProprietarioFisica(){
+		try {
+			montarComponentes();
+			setVisible(true);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Create the frame.
 	 * @throws Throwable 
 	 */
-	public frmCadastroClienteProprietarioFisica() throws Throwable {
+	public void montarComponentes() throws Throwable {
 		SwingUtil.lookWindows(this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/cliente.png")));
 		setTitle("Cadastro Cliente Propriet\u00E1rio");
 		setResizable(false);
-		setBounds(100, 100, 700, 500);
+		setBounds(100, 100, 700, 460);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -98,7 +108,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		
 		JPanel panelInformacoesPessoais = new JPanel();
 		panelInformacoesPessoais.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informa\u00E7\u00F5es B\u00E1sicas*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelInformacoesPessoais.setBounds(10, 11, 677, 278);
+		panelInformacoesPessoais.setBounds(10, 11, 677, 404);
 		contentPane.add(panelInformacoesPessoais);
 		panelInformacoesPessoais.setLayout(null);
 		
@@ -199,6 +209,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		panelSexo.setLayout(null);
 		
 		JRadioButton rdbtnMasculinoCadastroClienteProprietario_1 = new JRadioButton("Masculino");
+		rdbtnMasculinoCadastroClienteProprietario_1.setSelected(true);
 		rdbtnMasculinoCadastroClienteProprietario_1.setBounds(18, 20, 109, 23);
 		panelSexo.add(rdbtnMasculinoCadastroClienteProprietario_1);
 		grupoSexo.add(rdbtnMasculinoCadastroClienteProprietario_1);  
@@ -230,7 +241,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		lblDataNasc.setBounds(443, 90, 63, 14);
 		panelInformacoesPessoais.add(lblDataNasc);
 		
-		JDateChooser dtNascimento = new JDateChooser();
+		dtNascimento = new JDateChooser();
 		dtNascimento.setName("Data de Nascimento");
 		dtNascimento.setBounds(512, 87, 89, 20);
 		panelInformacoesPessoais.add(dtNascimento);
@@ -253,58 +264,20 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		lblEmailCadastroClienteProprietario.setBounds(65, 210, 49, 14);
 		panelInformacoesPessoais.add(lblEmailCadastroClienteProprietario);
 		
-		JPanel panelInfo = new JPanel();
-		panelInfo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo Propriedade*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelInfo.setBounds(10, 300, 677, 168);
-		contentPane.add(panelInfo);
-		panelInfo.setLayout(null);
-		
-		JCheckBox chckbxTerreno = new JCheckBox("Terreno");
-		chckbxTerreno.setBounds(75, 26, 97, 23);
-		panelInfo.add(chckbxTerreno);
-		
-		JCheckBox chckbxGalpao = new JCheckBox("Galp\u00E3o");
-		chckbxGalpao.setBounds(75, 56, 97, 23);
-		panelInfo.add(chckbxGalpao);
-		
-		JCheckBox chckbxSala = new JCheckBox("Sala");
-		chckbxSala.setBounds(75, 86, 97, 23);
-		panelInfo.add(chckbxSala);
-		
-		JCheckBox chckbxImovelRenda = new JCheckBox("Im\u00F3vel para Renda");
-		chckbxImovelRenda.setBounds(75, 116, 117, 23);
-		panelInfo.add(chckbxImovelRenda);
-		
-		JCheckBox chckbxCasa = new JCheckBox("Casa");
-		chckbxCasa.setBounds(242, 26, 97, 23);
-		panelInfo.add(chckbxCasa);
-		
-		JCheckBox chckbxApartamento = new JCheckBox("Apartamento");
-		chckbxApartamento.setBounds(242, 56, 97, 23);
-		panelInfo.add(chckbxApartamento);
-		
-		JCheckBox chckbxSobrado = new JCheckBox("Sobrado");
-		chckbxSobrado.setBounds(242, 86, 97, 23);
-		panelInfo.add(chckbxSobrado);
-		
-		JCheckBox chckbxPredio = new JCheckBox("Pr\u00E9dio");
-		chckbxPredio.setBounds(242, 116, 97, 23);
-		panelInfo.add(chckbxPredio);
-		
 		JButton btnLimparCamposCadastroClienteProprietario = new JButton("Limpar Campos");
+		btnLimparCamposCadastroClienteProprietario.setBounds(349, 357, 145, 30);
+		panelInformacoesPessoais.add(btnLimparCamposCadastroClienteProprietario);
 		btnLimparCamposCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/clear.png")));
-		btnLimparCamposCadastroClienteProprietario.setBounds(472, 27, 145, 30);
-		panelInfo.add(btnLimparCamposCadastroClienteProprietario);
 		
 		JButton btnCancelarCadastroClienteProprietario = new JButton("Cancelar");
+		btnCancelarCadastroClienteProprietario.setBounds(504, 357, 145, 30);
+		panelInformacoesPessoais.add(btnCancelarCadastroClienteProprietario);
 		btnCancelarCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/delete-.png")));
-		btnCancelarCadastroClienteProprietario.setBounds(472, 68, 145, 30);
-		panelInfo.add(btnCancelarCadastroClienteProprietario);
 		
 		JButton btnSalvarCadastroClienteProprietario = new JButton("Cadastrar");
+		btnSalvarCadastroClienteProprietario.setBounds(194, 357, 145, 30);
+		panelInformacoesPessoais.add(btnSalvarCadastroClienteProprietario);
 		btnSalvarCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/save.png")));
-		btnSalvarCadastroClienteProprietario.setBounds(472, 109, 145, 30);
-		panelInfo.add(btnSalvarCadastroClienteProprietario);
 		btnSalvarCadastroClienteProprietario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -348,7 +321,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		txtSiteClienteProprietario.setText("");
 	}
 	
-	public ClienteProprietarioFisica getBean() throws EntradaUsuarioException{
+	public ClienteProprietarioFisica getBean() throws EntradaUsuarioException, ParseException{
 		
 		ClienteProprietario CliProp = new ClienteProprietario();
 		
@@ -368,9 +341,11 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		CliPropFisica.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoCadastroClienteProprietario));
 		CliPropFisica.setCpf(TelaUtil.getCpf(ftCpfClienteProprietario, true));
 		CliPropFisica.setRg(TelaUtil.getRg(ftRgClienteProprietario, true));
-		//CliPropFisica.setRenda(TelaUtil.getCampoObrigatorio(txtNacionalidadeClienteProprietario, false));
 		CliPropFisica.setEstadoCivil(cbEstadoCivilClienteProprietarioFisica.getSelectedItem().toString().substring(0, 1));
 		CliPropFisica.setEmail(TelaUtil.getEmail(ftEmailClienteProprietario));
+		CliPropFisica.setDataNascimento(TelaUtil.getDateFromDateChooser(dtNascimento, true));
+		
+		CliPropFisica.setClienteProprietario(CliProp);
 		
 		return CliPropFisica;		
 		
@@ -386,6 +361,8 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		}catch(DAOException e){
 			e.printStackTrace();
 		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}

@@ -1,23 +1,42 @@
 package br.com.sani.bean;
 
+import java.util.Date;
+
 public class ImagemImovel {
 	
-	private byte[] idImagem;
-	private String dataImagem;
+	private int idImagem;
+	private int propriedade;
+	private byte[] imagem;
+	private Date dataImagem;
 	
-	//Getters & Setters
 	
-	public byte[] getIdImagem() {
+	public int getIdImagem() {
 		return idImagem;
 	}
-	public void setIdImagem(byte[] idImagem) {
+	public void setIdImagem(int idImagem) {
 		this.idImagem = idImagem;
 	}
-	public String getDataImagem() {
+	public int getPropriedade() {
+		return propriedade;
+	}
+	public void setPropriedade(int propriedade) {
+		this.propriedade = propriedade;
+	}
+	public byte[] getImagem() {
+		return imagem;
+	}
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
+	public Date getDataImagem() {
 		return dataImagem;
 	}
-	public void setDataImagem(String dataImagem) {
+	public void setDataImagem(Date dataImagem) {
 		this.dataImagem = dataImagem;
-	}	
+	}
+	
+	
+	
+	
 	
 }

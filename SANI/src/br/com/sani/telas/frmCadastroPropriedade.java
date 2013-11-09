@@ -1,13 +1,21 @@
 package br.com.sani.telas;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
-import java.awt.ScrollPane;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -23,26 +31,27 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import br.com.sani.bean.ClienteProprietarioFisica;
+import br.com.sani.bean.ClienteProprietario;
 import br.com.sani.bean.Endereco;
+import br.com.sani.bean.ImagemImovel;
+import br.com.sani.bean.Propriedade;
 import br.com.sani.dao.EnderecoDAO;
+import br.com.sani.dao.PropriedadeDAO;
+import br.com.sani.exception.DAOException;
 import br.com.sani.exception.EntradaUsuarioException;
 import br.com.sani.util.ImagePanel;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
-import java.awt.Font;
-import java.awt.Cursor;
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import javax.swing.JMenuItem;
 
 public class frmCadastroPropriedade extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtEndereco;
-	private JTextField txtCepPropriedade;
+	private JFormattedTextField txtCepPropriedade;
 	private JTextField txtNumero;
 	private JTextField txtComplementoPropriedade;
 	private static JTextField txtNomeProprietario;
@@ -51,7 +60,7 @@ public class frmCadastroPropriedade extends JFrame {
 	private JTextField txtMetragem;
 	private JFormattedTextField ftCepPropriedade;
 	
-	private static ClienteProprietarioFisica proprietario;
+	private static int proprietario = 0;
 	private JTextField txtBairro;
 	private JTextField txtCidade;
 	private JTextField txtEstado;
@@ -73,6 +82,19 @@ public class frmCadastroPropriedade extends JFrame {
 	private byte[] foto4;
 	private byte[] foto5;
 	private byte[] foto6;
+	private JButton btnExcluir;
+	private JRadioButton rbTerreno;
+	private JRadioButton rbGalpao;
+	private JRadioButton rbSala;
+	private JRadioButton rbImovelRenda;
+	private JRadioButton rbCasa;
+	private JRadioButton rbApartamento;
+	private JRadioButton rbSobrado;
+	private JRadioButton rbPredio;
+	private JRadioButton rbVenda;
+	private JRadioButton rbVendida;
+	private JRadioButton rbAluguel;
+	private JRadioButton rbAlugado;
 
 	/**
 	 * Launch the application.
@@ -117,49 +139,50 @@ public class frmCadastroPropriedade extends JFrame {
 		
 		//RadioButton Comercial
 		
-		JRadioButton rdbtnTerreno = new JRadioButton("Terreno");
-		rdbtnTerreno.setBounds(67, 32, 109, 23);
-		panelTipoPropriedade.add(rdbtnTerreno);
+		rbTerreno = new JRadioButton("Terreno");
+		rbTerreno.setBounds(67, 32, 109, 23);
+		panelTipoPropriedade.add(rbTerreno);
 		
-		JRadioButton rdbtnGalpao = new JRadioButton("Galp\u00E3o");
-		rdbtnGalpao.setBounds(67, 52, 109, 23);
-		panelTipoPropriedade.add(rdbtnGalpao);
+		rbGalpao = new JRadioButton("Galp\u00E3o");
+		rbGalpao.setBounds(67, 52, 109, 23);
+		panelTipoPropriedade.add(rbGalpao);
 		
-		JRadioButton rdbtnSala = new JRadioButton("Sala");
-		rdbtnSala.setBounds(67, 72, 109, 23);
-		panelTipoPropriedade.add(rdbtnSala);
+		rbSala = new JRadioButton("Sala");
+		rbSala.setBounds(67, 72, 109, 23);
+		panelTipoPropriedade.add(rbSala);
 		
-		JRadioButton rdbtnImovelParaRenda = new JRadioButton("Im\u00F3vel para Renda");
-		rdbtnImovelParaRenda.setBounds(67, 92, 147, 23);
-		panelTipoPropriedade.add(rdbtnImovelParaRenda);
+		rbImovelRenda = new JRadioButton("Im\u00F3vel para Renda");
+		rbImovelRenda.setBounds(67, 92, 147, 23);
+		panelTipoPropriedade.add(rbImovelRenda);
 		
-		JRadioButton rdbtnPredio = new JRadioButton("Pr\u00E9dio");
-		rdbtnPredio.setBounds(267, 92, 109, 23);
-		panelTipoPropriedade.add(rdbtnPredio);
+		rbPredio = new JRadioButton("Pr\u00E9dio");
+		rbPredio.setBounds(267, 92, 109, 23);
+		panelTipoPropriedade.add(rbPredio);
 		
-		JRadioButton rdbtnCasa = new JRadioButton("Casa");
-		rdbtnCasa.setBounds(267, 32, 109, 23);
-		panelTipoPropriedade.add(rdbtnCasa);
+		rbCasa = new JRadioButton("Casa");
+		rbCasa.setSelected(true);
+		rbCasa.setBounds(267, 32, 109, 23);
+		panelTipoPropriedade.add(rbCasa);
 		
-		JRadioButton rdbtnApartamento = new JRadioButton("Apartamento");
-		rdbtnApartamento.setBounds(267, 52, 109, 23);
-		panelTipoPropriedade.add(rdbtnApartamento);
+		rbApartamento = new JRadioButton("Apartamento");
+		rbApartamento.setBounds(267, 52, 109, 23);
+		panelTipoPropriedade.add(rbApartamento);
 		
-		JRadioButton rdbtnSobrado = new JRadioButton("Sobrado");
-		rdbtnSobrado.setBounds(267, 72, 109, 23);
-		panelTipoPropriedade.add(rdbtnSobrado);
+		rbSobrado = new JRadioButton("Sobrado");
+		rbSobrado.setBounds(267, 72, 109, 23);
+		panelTipoPropriedade.add(rbSobrado);
 		
 		//Cria ButtonGroup
 		
 		ButtonGroup group = new ButtonGroup();  
-		group.add(rdbtnTerreno);  
-		group.add(rdbtnGalpao);
-		group.add(rdbtnSala);
-		group.add(rdbtnImovelParaRenda);
-		group.add(rdbtnCasa);
-		group.add(rdbtnApartamento);
-		group.add(rdbtnSobrado);
-		group.add(rdbtnPredio);
+		group.add(rbTerreno);  
+		group.add(rbGalpao);
+		group.add(rbSala);
+		group.add(rbImovelRenda);
+		group.add(rbCasa);
+		group.add(rbApartamento);
+		group.add(rbSobrado);
+		group.add(rbPredio);
 		
 		//Cria ButtonGroup Estado do Imovel
 		
@@ -172,47 +195,47 @@ public class frmCadastroPropriedade extends JFrame {
 		panelInfoProprietario.setLayout(null);
 		
 		JLabel lblProprietario = new JLabel("Propriet\u00E1rio:");
-		lblProprietario.setBounds(25, 30, 73, 14);
+		lblProprietario.setBounds(45, 30, 60, 14);
 		panelInfoProprietario.add(lblProprietario);
 		
 		JButton btnSelecionarProprietrio = new JButton("Selecionar Propriet\u00E1rio");
 		btnSelecionarProprietrio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmConsultaClienteProprietario frmCons = new frmConsultaClienteProprietario();
-				frmCons.setVisible(true);
+				new frmConsultaClienteProprietario(1);
 			}
 		});
-		btnSelecionarProprietrio.setBounds(96, 26, 232, 23);
+		btnSelecionarProprietrio.setBounds(110, 26, 232, 23);
 		panelInfoProprietario.add(btnSelecionarProprietrio);
 		
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(52, 60, 46, 14);
+		JLabel lblNome = new JLabel("Nome/Raz\u00E3o Social:");
+		lblNome.setBounds(10, 60, 95, 14);
 		panelInfoProprietario.add(lblNome);
 		
-		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setBounds(58, 90, 40, 14);
+		JLabel lblCpf = new JLabel("CPF/CNPJ:");
+		lblCpf.setBounds(53, 90, 52, 14);
 		panelInfoProprietario.add(lblCpf);
 		
 		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(52, 120, 46, 14);
+		lblEmail.setBounds(77, 120, 28, 14);
 		panelInfoProprietario.add(lblEmail);
 		
 		txtNomeProprietario = new JTextField();
+		txtNomeProprietario.setName("Proprietario");
 		txtNomeProprietario.setEditable(false);
-		txtNomeProprietario.setBounds(96, 57, 232, 20);
+		txtNomeProprietario.setBounds(110, 57, 232, 20);
 		panelInfoProprietario.add(txtNomeProprietario);
 		txtNomeProprietario.setColumns(10);
 		
 		txtCpfProprietario = new JTextField();
 		txtCpfProprietario.setEditable(false);
 		txtCpfProprietario.setColumns(10);
-		txtCpfProprietario.setBounds(95, 87, 125, 20);
+		txtCpfProprietario.setBounds(110, 87, 125, 20);
 		panelInfoProprietario.add(txtCpfProprietario);
 		
 		txtEmailProprietario = new JTextField();
 		txtEmailProprietario.setEditable(false);
 		txtEmailProprietario.setColumns(10);
-		txtEmailProprietario.setBounds(96, 117, 232, 20);
+		txtEmailProprietario.setBounds(110, 117, 232, 20);
 		panelInfoProprietario.add(txtEmailProprietario);
 		
 		JPanel panelInfoPropriedade = new JPanel();
@@ -236,6 +259,7 @@ public class frmCadastroPropriedade extends JFrame {
 		panelInfoPropriedade.add(lblCepPropriedade);
 		
 		ftCepPropriedade = new JFormattedTextField(Mascara.setMaskCepInTf(ftCepPropriedade));
+		ftCepPropriedade.setName("Cep");
 		ftCepPropriedade.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
@@ -252,6 +276,7 @@ public class frmCadastroPropriedade extends JFrame {
 		panelInfoPropriedade.add(lblNumeroPropriedade);
 		
 		txtNumero = new JTextField();
+		txtNumero.setName("N\u00FAmero");
 		txtNumero.setBounds(342, 86, 66, 20);
 		txtNumero.setColumns(10);
 		panelInfoPropriedade.add(txtNumero);
@@ -261,6 +286,7 @@ public class frmCadastroPropriedade extends JFrame {
 		panelInfoPropriedade.add(lblComplementoPropriedade);
 		
 		txtComplementoPropriedade = new JTextField();
+		txtComplementoPropriedade.setName("Complemento");
 		txtComplementoPropriedade.setBounds(96, 145, 150, 20);
 		txtComplementoPropriedade.setColumns(10);
 		panelInfoPropriedade.add(txtComplementoPropriedade);
@@ -270,6 +296,7 @@ public class frmCadastroPropriedade extends JFrame {
 		panelInfoPropriedade.add(lblMetragem);
 		
 		txtMetragem = new JTextField();
+		txtMetragem.setName("Metragem");
 		txtMetragem.setBounds(342, 145, 66, 20);
 		panelInfoPropriedade.add(txtMetragem);
 		txtMetragem.setColumns(10);
@@ -304,10 +331,6 @@ public class frmCadastroPropriedade extends JFrame {
 		txtEstado.setBounds(342, 115, 66, 20);
 		panelInfoPropriedade.add(txtEstado);
 		
-		JButton btnBuscarCep = new JButton("Buscar CEP");
-		btnBuscarCep.setBounds(319, 24, 89, 23);
-		panelInfoPropriedade.add(btnBuscarCep);
-		
 		JButton btnLimparCampos = new JButton("Limpar Campos");
 		btnLimparCampos.setIcon(new ImageIcon(frmCadastroPropriedade.class.getResource("/br/com/images/clear.png")));
 		btnLimparCampos.addActionListener(new ActionListener() {
@@ -331,6 +354,7 @@ public class frmCadastroPropriedade extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				inserirPropriedade();
 			}
 		});
 		btnCadastrar.setIcon(new ImageIcon(frmCadastroPropriedade.class.getResource("/br/com/images/save.png")));
@@ -345,26 +369,27 @@ public class frmCadastroPropriedade extends JFrame {
 		
 		//Buttons Estado Imovel
 		
-		JRadioButton rdbtnVenda = new JRadioButton("\u00C0 Venda");
-		rdbtnVenda.setBounds(20, 30, 109, 23);
-		panel.add(rdbtnVenda);
-		grupoEstadoImovel.add(rdbtnVenda);
+		rbVenda = new JRadioButton("\u00C0 Venda");
+		rbVenda.setBounds(20, 30, 109, 23);
+		panel.add(rbVenda);
+		grupoEstadoImovel.add(rbVenda);
 		
-		JRadioButton rdbtnVendida = new JRadioButton("Vendida");
-		rdbtnVendida.setBounds(20, 50, 109, 23);
-		panel.add(rdbtnVendida);
-		grupoEstadoImovel.add(rdbtnVendida);
+		rbVendida = new JRadioButton("Vendida");
+		rbVendida.setBounds(20, 50, 109, 23);
+		panel.add(rbVendida);
+		grupoEstadoImovel.add(rbVendida);
 		
-		JRadioButton rdbtnAluguel = new JRadioButton("Aluguel");
-		rdbtnAluguel.setBounds(20, 70, 109, 23);
-		panel.add(rdbtnAluguel);
-		grupoEstadoImovel.add(rdbtnAluguel);
+		rbAluguel = new JRadioButton("Aluguel");
+		rbAluguel.setSelected(true);
+		rbAluguel.setBounds(20, 70, 109, 23);
+		panel.add(rbAluguel);
+		grupoEstadoImovel.add(rbAluguel);
 		
-		JRadioButton rdbtnAlugado = new JRadioButton("Alugado");
-		rdbtnAlugado.setBounds(20, 90, 109, 23);
-		panel.add(rdbtnAlugado);
-		rdbtnAlugado.setHorizontalAlignment(SwingConstants.LEFT);
-		grupoEstadoImovel.add(rdbtnAlugado);
+		rbAlugado = new JRadioButton("Alugado");
+		rbAlugado.setBounds(20, 90, 109, 23);
+		panel.add(rbAlugado);
+		rbAlugado.setHorizontalAlignment(SwingConstants.LEFT);
+		grupoEstadoImovel.add(rbAlugado);
 		
 		JPanel panelImagem = new JPanel();
 		panelImagem.setBorder(new TitledBorder(null, "Selecionar Imagens", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -377,9 +402,10 @@ public class frmCadastroPropriedade extends JFrame {
 		imagem1 = new ImagePanel(null);
 		imagem1.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent ev) {
 				try {
-					escolherFoto1();
+					if(ev.getClickCount() > 1)
+						escolherFoto1();
 				} catch (EntradaUsuarioException e) {
 					e.printStackTrace();
 				}
@@ -388,14 +414,30 @@ public class frmCadastroPropriedade extends JFrame {
 		imagem1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem1.setBounds(10, 26, 96, 85);
 		panelImagem.add(imagem1);
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(imagem1, popupMenu);
+		
+		JMenuItem mntmLimpar = new JMenuItem("Limpar");
+		mntmLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				foto1 = null;
+				imagem1.setImagem(null);
+				imagem1.repaint();
+				imagem1.revalidate();
+				
+			}
+		});
+		popupMenu.add(mntmLimpar);
 		imagem1.setLayout(null);
 		
 		imagem2 = new ImagePanel(null);
 		imagem2.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent ev) {
 				try {
-					escolherFoto2();
+					if(ev.getClickCount() > 1)	
+						escolherFoto2();
 				} catch (EntradaUsuarioException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -405,14 +447,29 @@ public class frmCadastroPropriedade extends JFrame {
 		imagem2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem2.setBounds(112, 26, 92, 85);
 		panelImagem.add(imagem2);
+		
+		JPopupMenu popupMenu_1 = new JPopupMenu();
+		addPopup(imagem2, popupMenu_1);
+		
+		JMenuItem menuItem = new JMenuItem("Limpar");
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				foto2 = null;
+				imagem2.setImagem(null);
+				imagem2.repaint();
+				imagem2.revalidate();
+			}
+		});
+		popupMenu_1.add(menuItem);
 		imagem2.setLayout(null);
 		
 		imagem3 = new ImagePanel(null);
 		imagem3.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent ev) {
 				try {
-					escolherFoto3();
+					if(ev.getClickCount() > 1)
+						escolherFoto3();
 				} catch (EntradaUsuarioException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -422,14 +479,29 @@ public class frmCadastroPropriedade extends JFrame {
 		imagem3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem3.setBounds(10, 117, 96, 85);
 		panelImagem.add(imagem3);
+		
+		JPopupMenu popupMenu_2 = new JPopupMenu();
+		addPopup(imagem3, popupMenu_2);
+		
+		JMenuItem menuItem_1 = new JMenuItem("Limpar");
+		menuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				foto3 = null;
+				imagem3.setImagem(null);
+				imagem3.repaint();
+				imagem3.revalidate();
+			}
+		});
+		popupMenu_2.add(menuItem_1);
 		imagem3.setLayout(null);
 		
 		imagem4 = new ImagePanel(null);
 		imagem4.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent ev) {
 				try {
-					escolherFoto4();
+					if(ev.getClickCount() > 1)
+						escolherFoto4();
 				} catch (EntradaUsuarioException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -439,14 +511,29 @@ public class frmCadastroPropriedade extends JFrame {
 		imagem4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem4.setBounds(112, 117, 92, 85);
 		panelImagem.add(imagem4);
+		
+		JPopupMenu popupMenu_3 = new JPopupMenu();
+		addPopup(imagem4, popupMenu_3);
+		
+		JMenuItem menuItem_2 = new JMenuItem("Limpar");
+		menuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				foto4 = null;
+				imagem4.setImagem(null);
+				imagem4.repaint();
+				imagem4.revalidate();
+			}
+		});
+		popupMenu_3.add(menuItem_2);
 		imagem4.setLayout(null);
 		
 		imagem5 = new ImagePanel(null);
 		imagem5.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent ev) {
 				try {
-					escolherFoto5();
+					if(ev.getClickCount() > 1)
+						escolherFoto5();
 				} catch (EntradaUsuarioException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -456,14 +543,29 @@ public class frmCadastroPropriedade extends JFrame {
 		imagem5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem5.setBounds(10, 208, 96, 85);
 		panelImagem.add(imagem5);
+		
+		JPopupMenu popupMenu_4 = new JPopupMenu();
+		addPopup(imagem5, popupMenu_4);
+		
+		JMenuItem menuItem_3 = new JMenuItem("Limpar");
+		menuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				foto5 = null;
+				imagem6.setImagem(null);
+				imagem5.repaint();
+				imagem5.revalidate();
+			}
+		});
+		popupMenu_4.add(menuItem_3);
 		imagem5.setLayout(null);
 		
 		imagem6 = new ImagePanel(null);
 		imagem6.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent ev) {
 				try {
-					escolherFoto6();
+					if(ev.getClickCount() > 1)
+						escolherFoto6();
 				} catch (EntradaUsuarioException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -473,16 +575,25 @@ public class frmCadastroPropriedade extends JFrame {
 		imagem6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		imagem6.setBounds(112, 206, 92, 87);
 		panelImagem.add(imagem6);
+		
+		JPopupMenu popupMenu_5 = new JPopupMenu();
+		addPopup(imagem6, popupMenu_5);
+		
+		JMenuItem menuItem_4 = new JMenuItem("Limpar");
+		menuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				foto6 = null;
+				imagem6.setImagem(null);
+				imagem6.repaint();
+				imagem6.revalidate();
+			}
+		});
+		popupMenu_5.add(menuItem_4);
 		imagem6.setLayout(null);
 		
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.setBounds(50, 304, 105, 23);
+		btnExcluir = new JButton("Limpar tudo");
+		btnExcluir.setBounds(112, 307, 92, 23);
 		panelImagem.add(btnExcluir);
-		
-		JLabel lblExcluirImagem = new JLabel("");
-		lblExcluirImagem.setBounds(10, 304, 25, 25);
-		panelImagem.add(lblExcluirImagem);
-		lblExcluirImagem.setIcon(new ImageIcon(frmCadastroPropriedade.class.getResource("/br/com/images/delete-.png")));
 		
 		JLabel lblImagem1 = new JLabel("");
 		lblImagem1.setIcon(new ImageIcon(frmCadastroPropriedade.class.getResource("/br/com/images/imagem.png")));
@@ -558,55 +669,210 @@ public class frmCadastroPropriedade extends JFrame {
 		this.dispose();
 	}
 	
-	public static void setProprietario(ClienteProprietarioFisica p){
-		txtNomeProprietario.setText(p.getNome());
-		txtEmailProprietario.setText(p.getEmail());
-		txtCpfProprietario.setText(p.getCpf());
+	public static void setProprietario(Object[] prop){
+		txtNomeProprietario.setText((String) prop[1]);
+		txtEmailProprietario.setText((String) prop[3]);
+		txtCpfProprietario.setText((String) prop[2]);
 		
-		proprietario = p;
+		proprietario = (Integer) prop[0];
 	}
 	
 	public void limpaFormulario(){
 		txtEndereco.setText("");
-		txtCepPropriedade.setText("");
 		txtNumero.setText("");
 		txtComplementoPropriedade.setText("");
+		txtBairro.setText("");
+		txtCidade.setText("");
+		txtCpfProprietario.setText("");
+		txtEmailProprietario.setText("");
+		txtEstado.setText("");
+		txtMetragem.setText("");
+		txtNomeProprietario.setText("");
+		proprietario = 0;
+		
+		foto1 = null;
+		imagem1.setImagem(null);
+		imagem1.repaint();
+		imagem1.revalidate();
+		
+		foto2 = null;
+		imagem2.setImagem(null);
+		imagem2.repaint();
+		imagem2.revalidate();
+		
+		foto3 = null;
+		imagem3.setImagem(null);
+		imagem3.repaint();
+		imagem3.revalidate();
+		
+		foto4 = null;
+		imagem4.setImagem(null);
+		imagem4.repaint();
+		imagem4.revalidate();
+		
+		foto5 = null;
+		imagem5.setImagem(null);
+		imagem5.repaint();
+		imagem5.revalidate();
+		
+		foto6 = null;
+		imagem6.setImagem(null);
+		imagem6.repaint();
+		imagem6.revalidate();
+		
+		ftCepPropriedade.setText("");
 	}
 	
 	private void escolherFoto1() throws EntradaUsuarioException {
 		JTextField foto = new JTextField();
 		
-		this.foto1 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+		this.foto1 = TelaUtil.showTelaEscolheImage(new File("C:\\Users\\Public\\Pictures"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
 	}
 	
 	private void escolherFoto2() throws EntradaUsuarioException {
 		JTextField foto = new JTextField();
 		
-		this.foto2 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+		this.foto2 = TelaUtil.showTelaEscolheImage(new File("C:\\Users\\Public\\Pictures"), this.imagem2, foto, this, ".jpg", ".gif", ".png");
 	}
 	
 	private void escolherFoto3() throws EntradaUsuarioException {
 		JTextField foto = new JTextField();
 		
-		this.foto3 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+		this.foto3 = TelaUtil.showTelaEscolheImage(new File("C:\\Users\\Public\\Pictures"), this.imagem3, foto, this, ".jpg", ".gif", ".png");
 	}
 	
 	private void escolherFoto4() throws EntradaUsuarioException {
 		JTextField foto = new JTextField();
 		
-		this.foto4 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+		this.foto4 = TelaUtil.showTelaEscolheImage(new File("C:\\Users\\Public\\Pictures"), this.imagem4, foto, this, ".jpg", ".gif", ".png");
 	}
 	
 	private void escolherFoto5() throws EntradaUsuarioException {
 		JTextField foto = new JTextField();
 		
-		this.foto5 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+		this.foto5 = TelaUtil.showTelaEscolheImage(new File("C:\\Users\\Public\\Pictures"), this.imagem5, foto, this, ".jpg", ".gif", ".png");
 	}
 	
 	private void escolherFoto6() throws EntradaUsuarioException {
 		JTextField foto = new JTextField();
 		
-		this.foto6 = TelaUtil.showTelaEscolheImage(new File("C:\\"), this.imagem1, foto, this, ".jpg", ".gif", ".png");
+		this.foto6 = TelaUtil.showTelaEscolheImage(new File("C:\\Users\\Public\\Pictures"), this.imagem6, foto, this, ".jpg", ".gif", ".png");
 	}
 	
+	private Propriedade getBean() throws EntradaUsuarioException{
+		Propriedade p = new Propriedade();
+		ClienteProprietario cli = new ClienteProprietario();
+		
+		if(proprietario != 0){
+			cli.setCodCliProprietario(proprietario);
+		}else{
+			JOptionPane.showMessageDialog(this, "Selecione um proprietario", "Atenção", JOptionPane.WARNING_MESSAGE);
+			throw new EntradaUsuarioException(txtNomeProprietario);
+		}
+		
+		p.setClienteProprietario(cli);
+		p.setCep(TelaUtil.getCep(ftCepPropriedade, true));
+		p.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoPropriedade, false));
+		p.setMetragem(TelaUtil.getCampoObrigatorioFloat(txtMetragem));
+		p.setNumeroEndereco(Integer.parseInt(TelaUtil.getCampoObrigatorio(txtNumero, true)));
+		
+		if(rbCasa.isSelected()){
+			p.setTipoPropriedade("Casa");
+		}else if(rbApartamento.isSelected()){
+			p.setTipoPropriedade("Apto");
+		}else if (rbGalpao.isSelected()) {
+			p.setTipoPropriedade("Galpao");
+		}else if (rbImovelRenda.isSelected()) {
+			p.setTipoPropriedade("IR");
+		}else if (rbPredio.isSelected()) {
+			p.setTipoPropriedade("Predio");
+		}else if (rbSala.isSelected()) {
+			p.setTipoPropriedade("Sala");
+		}else if (rbSobrado.isSelected()) {
+			p.setTipoPropriedade("Sobr");
+		}else if (rbTerreno.isSelected()) {
+			p.setTipoPropriedade("Terr");
+		}
+		
+		if (rbAlugado.isSelected()) {
+			p.setSituacaoPropriedade("Alugado");
+		}else if (rbAluguel.isSelected()) {
+			p.setSituacaoPropriedade("DispAluguel");
+		}else if (rbVenda.isSelected()) {
+			p.setSituacaoPropriedade("DispVenda");
+		}else if (rbVendida.isSelected()) {
+			p.setSituacaoPropriedade("Vendida");
+		}
+		
+		return p;
+	}
+	
+	private List<byte[]> getImagens(){
+		List<byte[]> listaImagens = new ArrayList<byte[]>();
+		
+		if(foto1 != null){
+			listaImagens.add(foto1);
+		}
+		if (foto2 != null) {
+			listaImagens.add(foto2);
+		}
+		if (foto3 != null) {
+			listaImagens.add(foto3);
+		}
+		if (foto4 != null) {
+			listaImagens.add(foto4);
+		}
+		if (foto5 != null) {
+			listaImagens.add(foto5);
+		}
+		if (foto6 != null) {
+			listaImagens.add(foto6);
+		}
+		
+		return listaImagens;
+	}
+	
+	private void inserirPropriedade(){
+		try{
+			PropriedadeDAO dao = new PropriedadeDAO();
+			
+			int codigo = dao.inserirPropriedade(getBean());
+			
+			ImagemImovel img = new ImagemImovel();
+			img.setDataImagem(new Date());
+			img.setPropriedade(codigo);
+
+			List<byte[]> imgs = getImagens();
+			for(byte[] foto : imgs){
+				img.setImagem(foto);
+				dao.inserirImagensPropriedade(img);
+			}
+			
+			JOptionPane.showMessageDialog(this, "Propriedade salva com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+			limpaFormulario();
+		}catch(DAOException e){
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 }

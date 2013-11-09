@@ -1,17 +1,22 @@
 package br.com.sani.bean;
 
+import java.util.Date;
+
 public class ClienteProprietarioJuridica {
 	
-	private ClienteProprietario codCliPropietario;
+	private ClienteProprietario ClienteProprietario;
 	
 	private String razaoSocial;
 	private String cnpj;
 	private String inscEstadual;
-	private String dataFundacao;
+	private Date dataFundacao;
 	private String ramoAtividade;
-	
-	//Getters & Setters
-
+	public ClienteProprietario getClienteProprietario() {
+		return ClienteProprietario;
+	}
+	public void setClienteProprietario(ClienteProprietario clienteProprietario) {
+		ClienteProprietario = clienteProprietario;
+	}
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
@@ -30,10 +35,10 @@ public class ClienteProprietarioJuridica {
 	public void setInscEstadual(String inscEstadual) {
 		this.inscEstadual = inscEstadual;
 	}
-	public String getDataFundacao() {
+	public Date getDataFundacao() {
 		return dataFundacao;
 	}
-	public void setDataFundacao(String dataFundacao) {
+	public void setDataFundacao(Date dataFundacao) {
 		this.dataFundacao = dataFundacao;
 	}
 	public String getRamoAtividade() {
@@ -42,11 +47,8 @@ public class ClienteProprietarioJuridica {
 	public void setRamoAtividade(String ramoAtividade) {
 		this.ramoAtividade = ramoAtividade;
 	}
-	public ClienteProprietario getCodCliPropietario() {
-		return codCliPropietario;
-	}
-	public void setCodCliPropietario(ClienteProprietario codCliPropietario) {
-		this.codCliPropietario = codCliPropietario;
-	}
+	
+	
+	
 	
 }
