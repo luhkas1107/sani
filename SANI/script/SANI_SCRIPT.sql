@@ -103,13 +103,6 @@ CREATE TABLE tbCorretor (
 )
 GO
 
-CREATE TABLE tbGrupo (
-  codGrupo  NUMERIC (11) NOT NULL ,
-  nomeGrupo VARCHAR (30) NOT NULL ,
-
-  CONSTRAINT PK_tbGrupo PRIMARY KEY (codGrupo)
-)
-GO
 
 CREATE TABLE tbImagensPropriedade (
   idImagem        NUMERIC (11) IDENTITY NOT NULL ,
@@ -136,13 +129,6 @@ CREATE TABLE tbPropriedade (
 )
 GO
 
-CREATE TABLE tbListaRegra (
-  codGrupo NUMERIC (11) NOT NULL ,
-  codRegra NUMERIC (11) NOT NULL ,
-
-  CONSTRAINT PK_tbListaRegra PRIMARY KEY (codGrupo, codRegra)
-)
-GO
 
 CREATE TABLE tbMetas (
   codMeta      NUMERIC (11) NOT NULL ,
@@ -171,20 +157,12 @@ CREATE TABLE tbProposta (
 )
 GO
 
-CREATE TABLE tbRegra (
-  codRegra    NUMERIC (11) NOT NULL ,
-  descrRegra  VARCHAR (30) NOT NULL ,
-
-  CONSTRAINT PK_tbRegra PRIMARY KEY (codRegra)
-)
-GO
-
 CREATE TABLE tbUsuario (
   usuario       VARCHAR (50) NOT NULL ,
   senha         VARCHAR (50) NOT NULL ,
   nome          VARCHAR (120) NOT NULL ,
   email         VARCHAR (255) NOT NULL ,
-  codGrupo      NUMERIC (11) NOT NULL ,
+  permissao      VARCHAR (1) NOT NULL ,
 
   CONSTRAINT PK_tbUsuario PRIMARY KEY (usuario)
 )
@@ -271,12 +249,6 @@ GO
 ALTER TABLE tbPropriedade ADD CONSTRAINT FK_Endereco_Propriedade FOREIGN KEY(cep) REFERENCES tbEndereco(cep)
 GO
 
-ALTER TABLE tbListaRegra ADD CONSTRAINT FK_Grupo_Lista FOREIGN KEY(codGrupo) REFERENCES tbGrupo(codGrupo)
-GO
-
-ALTER TABLE tbUsuario ADD CONSTRAINT FK_Grupo_Usuario FOREIGN KEY(codGrupo) REFERENCES tbGrupo(codGrupo)
-GO
-
 ALTER TABLE tbImagensPropriedade ADD CONSTRAINT FK_Propriedade_Imagens FOREIGN KEY(codPropriedade) REFERENCES tbPropriedade(codPropriedade)
 GO
 
@@ -285,13 +257,3 @@ GO
 
 ALTER TABLE tbVendaLocacao ADD CONSTRAINT FK_Proposta_VendaLoc FOREIGN KEY(codProposta) REFERENCES tbProposta(codProposta)
 GO
-
--- ALTER TABLE tbListaRegra ADD CONSTRAINT Relation_20 FOREIGN KEY(codRegra) REFERENCES tbRegra(codRegra)
--- GO
-
-
-select * from tbEndereco where cep like '06213090'
-
---Delete
-use master
-drop database SANI

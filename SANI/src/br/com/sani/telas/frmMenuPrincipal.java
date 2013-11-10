@@ -61,8 +61,7 @@ public class frmMenuPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmMenuPrincipal frame = new frmMenuPrincipal();
-					frame.setVisible(true);
+					new frmMenuPrincipal();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -70,10 +69,16 @@ public class frmMenuPrincipal extends JFrame {
 		});
 	}
 	
+	public frmMenuPrincipal(){
+		montarComponentes();
+		
+		setVisible(true);
+	}
+	
 	/**
 	 * Create the frame.
 	 */
-	public frmMenuPrincipal() {
+	public void montarComponentes() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		SwingUtil.lookWindows(this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmMenuPrincipal.class.getResource("/br/com/images/home_badge.png")));
