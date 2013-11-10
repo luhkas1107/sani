@@ -1,17 +1,23 @@
 package br.com.sani.bean;
 
+import java.util.Date;
+
 public class Proposta {
 	
 	private int codProposta;
-	private String valorProposta;
-	private String validadeProposta;
+	private int codCliComprador;
+	private int codPropriedade;
+	private Double valorProposta;
+	private Date validadeProposta;
 	private String estadoProposta;
 	private String statusProposta;
+	private String formaPagamento;
+	private Date dataProposta;
+	private String tipoProposta;
 	
-	private ClienteComprador codCliComprador;
-	private Imovel codImovel;
+	private ClienteComprador clienteComprador;
+	private Propriedade propriedade;
 	
-	//Getters & Setters
 	
 	public int getCodProposta() {
 		return codProposta;
@@ -19,16 +25,28 @@ public class Proposta {
 	public void setCodProposta(int codProposta) {
 		this.codProposta = codProposta;
 	}
-	public String getValorProposta() {
+	public int getCodCliComprador() {
+		return codCliComprador;
+	}
+	public void setCodCliComprador(int codCliComprador) {
+		this.codCliComprador = codCliComprador;
+	}
+	public int getCodPropriedade() {
+		return codPropriedade;
+	}
+	public void setCodPropriedade(int codPropriedade) {
+		this.codPropriedade = codPropriedade;
+	}
+	public Double getValorProposta() {
 		return valorProposta;
 	}
-	public void setValorProposta(String valorProposta) {
-		this.valorProposta = valorProposta;
+	public void setValorProposta(double d) {
+		this.valorProposta = d;
 	}
-	public String getValidadeProposta() {
+	public Date getValidadeProposta() {
 		return validadeProposta;
 	}
-	public void setValidadeProposta(String validadeProposta) {
+	public void setValidadeProposta(Date validadeProposta) {
 		this.validadeProposta = validadeProposta;
 	}
 	public String getEstadoProposta() {
@@ -43,17 +61,36 @@ public class Proposta {
 	public void setStatusProposta(String statusProposta) {
 		this.statusProposta = statusProposta;
 	}
-	public ClienteComprador getCodCliComprador() {
-		return codCliComprador;
+	public String getFormaPagamento() {
+		return formaPagamento;
 	}
-	public void setCodCliComprador(ClienteComprador codCliComprador) {
-		this.codCliComprador = codCliComprador;
+	public void setFormaPagamento(String formaPagamento) {
+		this.formaPagamento = formaPagamento;
 	}
-	public Imovel getCodImovel() {
-		return codImovel;
+	public Date getDataProposta() {
+		return dataProposta;
 	}
-	public void setCodImovel(Imovel codImovel) {
-		this.codImovel = codImovel;
+	public void setDataProposta(Date dataProposta) {
+		this.dataProposta = dataProposta;
 	}
-
+	public String getTipoProposta() {
+		return tipoProposta;
+	}
+	public void setTipoProposta(String tipoProposta) {
+		this.tipoProposta = tipoProposta;
+	}
+	public ClienteComprador getClienteComprador() {
+		return clienteComprador;
+	}
+	public void setClienteComprador(ClienteComprador clienteComprador) {
+		this.clienteComprador = clienteComprador;
+	}
+	public Propriedade getPropriedade() {
+		return propriedade;
+	}
+	public void setPropriedade(Propriedade propriedade) {
+		this.propriedade = propriedade;
+	}
+	
+	
 }

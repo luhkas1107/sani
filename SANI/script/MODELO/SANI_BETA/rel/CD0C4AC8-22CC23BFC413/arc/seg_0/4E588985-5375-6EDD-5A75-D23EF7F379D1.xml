@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKArc class="oracle.dbtools.crest.model.design.relational.FKArc" directorySegmentName="seg_0" id="4E588985-5375-6EDD-5A75-D23EF7F379D1" name="FKArc_1">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>Gerado pelo usuário</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<mandatory>false</mandatory>
+<reverseArc>true</reverseArc>
+<table>86084C88-350B-2C3B-AEB4-47E682599CF0</table>
+<fkeys>
+<fkeyID>7950D1AC-FBF9-8A9D-F816-78E0AA974AA9</fkeyID>
+<fkeyID>8F81CA89-95AB-E3F9-0F4F-F256012F8698</fkeyID>
+</fkeys>
+</FKArc>

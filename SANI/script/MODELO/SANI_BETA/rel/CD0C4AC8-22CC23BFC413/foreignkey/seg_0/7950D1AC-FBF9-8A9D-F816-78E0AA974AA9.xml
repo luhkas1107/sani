@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7950D1AC-FBF9-8A9D-F816-78E0AA974AA9" name="FK_CLI_COMP_PESS_JUR">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>721A24C3-CC56-C798-F680-1D50EAFD0172</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<arc>4E588985-5375-6EDD-5A75-D23EF7F379D1</arc>
+<containerWithKeyObject>C9A4E057-0A22-9B61-B773-35463C351AB0</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>81E566B9-BD9A-1318-79DC-DA433DB3D1E0</localFKIndex>
+<keyObject>36350C8B-5531-ECEE-36F3-38470D3A56D0</keyObject>
+<mandatory>true</mandatory>
+<transferable>false</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

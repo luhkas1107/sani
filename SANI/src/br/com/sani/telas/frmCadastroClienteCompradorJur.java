@@ -387,7 +387,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 			JOptionPane.showMessageDialog(this, "Dados salvos com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			
 			//limpa o formulario
-			//limparFormulario();
+			limparFormulario();
 		}catch(DAOException e){
 			JOptionPane.showMessageDialog(this, "Erro ao tentar Salvar os Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();

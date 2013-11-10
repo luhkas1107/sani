@@ -11,6 +11,7 @@ CREATE TABLE tbClienteComprador (
   complementoEndereco VARCHAR (1024) NOT NULL ,
   telCliComprador     VARCHAR (10) NOT NULL ,
   celCliComprador     VARCHAR (11) ,
+  tpCliente			  VARCHAR (2) NOT NULL DEFAULT 'PF',
 
   CONSTRAINT PK_tbClienteComprador PRIMARY KEY (codCliComprador)
  )
@@ -23,6 +24,7 @@ CREATE TABLE tbClienteProprietario (
   complementoEndereco VARCHAR (120) ,
   telCliProprietario  VARCHAR (10) NOT NULL ,
   celCliProprietario  VARCHAR (11) ,
+  tpCliente			  VARCHAR (2) NOT NULL DEFAULT 'PF',
 
   CONSTRAINT PK_tbClienteProprietario PRIMARY KEY (codCliProprietario)
 )
@@ -67,8 +69,6 @@ CREATE TABLE tbClienteProprietarioFisica (
   dtFalescimento      DATE ,
   sexoPessoa          CHAR NOT NULL DEFAULT 'M' ,
   estadoCivilPessoa   CHAR NOT NULL ,
-  renda               NUMERIC (11,2) NOT NULL ,
-  profissao           VARCHAR (255) NOT NULL ,
   email               VARCHAR (120) NOT NULL ,
   
   CONSTRAINT PK_tbClienteProprietarioFisica PRIMARY KEY (codCliProprietario)
@@ -103,18 +103,12 @@ CREATE TABLE tbCorretor (
 )
 GO
 
-CREATE TABLE tbGrupo (
-  codGrupo  NUMERIC (11) NOT NULL ,
-  nomeGrupo VARCHAR (30) NOT NULL ,
-
-  CONSTRAINT PK_tbGrupo PRIMARY KEY (codGrupo)
-)
-GO
 
 CREATE TABLE tbImagensPropriedade (
-  idImagem        NUMERIC (11) NOT NULL ,
+  idImagem        NUMERIC (11) IDENTITY NOT NULL ,
   codPropriedade  NUMERIC (11) NOT NULL ,
   dtImagem        DATE NOT NULL ,
+  imagem		  VARBINARY(MAX) NOT NULL,
 
   CONSTRAINT PK_tbImagensPropriedade PRIMARY KEY (idImagem, codPropriedade)
 )
@@ -122,26 +116,19 @@ GO
 
 CREATE TABLE tbPropriedade (
   codPropriedade       NUMERIC (11) NOT NULL ,
-  codCorretor          NUMERIC (11) NOT NULL ,
   codCliProprietario   NUMERIC (11) NOT NULL ,
   cep                  VARCHAR (8) NOT NULL ,
   numeroEndereco       NUMERIC (11) NOT NULL ,
   complementoEndereco  VARCHAR (255) ,
-  tipoPropriedade      CHAR NOT NULL DEFAULT 'Apto' ,
-  situacaoPropriedade  CHAR NOT NULL DEFAULT 'DispVenda' ,
+  tipoPropriedade      VARCHAR (15) NOT NULL,
+  situacaoPropriedade  VARCHAR (15) NOT NULL,
   metragemPropriedade  NUMERIC (11,2) NOT NULL ,
+  valorPropriedade	   NUMERIC (11, 2) NOT NULL,
 
   CONSTRAINT PK_tbPropriedade PRIMARY KEY (codPropriedade)
 )
 GO
 
-CREATE TABLE tbListaRegra (
-  codGrupo NUMERIC (11) NOT NULL ,
-  codRegra NUMERIC (11) NOT NULL ,
-
-  CONSTRAINT PK_tbListaRegra PRIMARY KEY (codGrupo, codRegra)
-)
-GO
 
 CREATE TABLE tbMetas (
   codMeta      NUMERIC (11) NOT NULL ,
@@ -155,23 +142,18 @@ CREATE TABLE tbMetas (
 GO
 
 CREATE TABLE tbProposta (
-  codProposta       NUMERIC (11) NOT NULL ,
+  codProposta       NUMERIC (11) IDENTITY NOT NULL ,
   codCliComprador   NUMERIC (11) NOT NULL ,
   codPropriedade    NUMERIC (11) NOT NULL ,
   ValorProposta     NUMERIC (11,2) NOT NULL ,
   validadeProposta  DATE NOT NULL ,
-  estadoProposta    CHAR NOT NULL DEFAULT 'Negada' ,
-  statusProposta    CHAR NOT NULL DEFAULT 'Ativa' ,
+  estadoProposta    VARCHAR (15) NOT NULL DEFAULT 'Negada' ,
+  statusProposta    VARCHAR (1) NOT NULL DEFAULT 'A' ,
+  formaPagamento	VARCHAR (150) NOT NULL,
+  dataProposta		DATE NOT NULL DEFAULT GETDATE(),
+  tipoProposta		VARCHAR (1)	NOT NULL DEFAULT 'V',
 
   CONSTRAINT PK_tbProposta PRIMARY KEY (codProposta)
-)
-GO
-
-CREATE TABLE tbRegra (
-  codRegra    NUMERIC (11) NOT NULL ,
-  descrRegra  VARCHAR (30) NOT NULL ,
-
-  CONSTRAINT PK_tbRegra PRIMARY KEY (codRegra)
 )
 GO
 
@@ -180,14 +162,14 @@ CREATE TABLE tbUsuario (
   senha         VARCHAR (50) NOT NULL ,
   nome          VARCHAR (120) NOT NULL ,
   email         VARCHAR (255) NOT NULL ,
-  codGrupo      NUMERIC (11) NOT NULL ,
+  permissao      VARCHAR (1) NOT NULL ,
 
   CONSTRAINT PK_tbUsuario PRIMARY KEY (usuario)
 )
 GO
 
 CREATE TABLE tbVendaLocacao (
-  codTransacao      NUMERIC (11) NOT NULL ,
+  codTransacao      NUMERIC (11) IDENTITY NOT NULL ,
   dtTransacao       DATE NOT NULL ,
   numeroContrato    NUMERIC (11) NOT NULL ,
   arqContrato       VARBINARY NOT NULL ,
@@ -252,9 +234,6 @@ GO
 ALTER TABLE tbClienteProprietarioJuridica ADD CONSTRAINT FK_ClienteProprietarioJuridica FOREIGN KEY(codCliProprietario) REFERENCES tbClienteProprietario(codCliProprietario)
 GO
 
-ALTER TABLE tbPropriedade ADD CONSTRAINT FK_Corretor_Propriedade FOREIGN KEY(codCorretor) REFERENCES tbCorretor(codCorretor)
-GO
-
 ALTER TABLE tbMetas ADD CONSTRAINT FK_Corretor_Meta FOREIGN KEY(codCorretor) REFERENCES tbCorretor(codCorretor)
 GO
 
@@ -270,12 +249,6 @@ GO
 ALTER TABLE tbPropriedade ADD CONSTRAINT FK_Endereco_Propriedade FOREIGN KEY(cep) REFERENCES tbEndereco(cep)
 GO
 
-ALTER TABLE tbListaRegra ADD CONSTRAINT FK_Grupo_Lista FOREIGN KEY(codGrupo) REFERENCES tbGrupo(codGrupo)
-GO
-
-ALTER TABLE tbUsuario ADD CONSTRAINT FK_Grupo_Usuario FOREIGN KEY(codGrupo) REFERENCES tbGrupo(codGrupo)
-GO
-
 ALTER TABLE tbImagensPropriedade ADD CONSTRAINT FK_Propriedade_Imagens FOREIGN KEY(codPropriedade) REFERENCES tbPropriedade(codPropriedade)
 GO
 
@@ -284,13 +257,3 @@ GO
 
 ALTER TABLE tbVendaLocacao ADD CONSTRAINT FK_Proposta_VendaLoc FOREIGN KEY(codProposta) REFERENCES tbProposta(codProposta)
 GO
-
--- ALTER TABLE tbListaRegra ADD CONSTRAINT Relation_20 FOREIGN KEY(codRegra) REFERENCES tbRegra(codRegra)
--- GO
-
-
-select * from tbEndereco where cep like '06213090'
-
---Delete
-use master
-drop database SANI

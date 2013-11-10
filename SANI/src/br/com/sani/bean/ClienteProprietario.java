@@ -8,9 +8,33 @@ public class ClienteProprietario {
 	private String complementoEndereco;
 	private String telefone;
 	private String celular;
+	private String tpCliente;
+	
+	private ClienteProprietarioFisica clienteProprietarioFisica;
+	private ClienteProprietarioJuridica clienteProprietarioJuridica;
 	
 	//Getters & Setters
 	
+	public ClienteProprietarioFisica getClienteProprietarioFisica() {
+		return clienteProprietarioFisica;
+	}
+	public String getTpCliente() {
+		return tpCliente;
+	}
+	public void setTpCliente(String tpCliente) {
+		this.tpCliente = tpCliente;
+	}
+	public void setClienteProprietarioFisica(
+			ClienteProprietarioFisica clienteProprietarioFisica) {
+		this.clienteProprietarioFisica = clienteProprietarioFisica;
+	}
+	public ClienteProprietarioJuridica getClienteProprietarioJuridica() {
+		return clienteProprietarioJuridica;
+	}
+	public void setClienteProprietarioJuridica(
+			ClienteProprietarioJuridica clienteProprietarioJuridica) {
+		this.clienteProprietarioJuridica = clienteProprietarioJuridica;
+	}
 	public int getCodCliProprietario() {
 		return codCliProprietario;
 	}

@@ -1,0 +1,107 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C9A4E057-0A22-9B61-B773-35463C351AB0" name="TB_CLI_COMP_JURIDICA">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>265AFE67-4E45-9393-FDA5-1769C0783BAA</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="COD_CLI_COMPRADOR" id="37B89FDE-4666-CB52-C4DE-C2EDBE86B0BB">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>DAAAC27B-FF90-9591-81D6-E3D9461C6DB0</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<delegate>6B3E495E-0F78-C09C-D0D7-E7229FA0BB4D</delegate>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7950D1AC-FBF9-8A9D-F816-78E0AA974AA9" referredColumn="6B3E495E-0F78-C09C-D0D7-E7229FA0BB4D"/>
+</associations>
+</Column>
+<Column name="RAZAO_SOCIAL" id="B653C4DA-BE6C-0795-B3AE-AA65824D9CCA">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>46948871-7B34-65A1-B048-12243740A7F5</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CNPJ_PESSOA" id="38C4504F-D1BB-626D-7652-AE5A5D650051">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>C6E31FE5-419F-B5CA-15E4-BDD1D1F0FEDC</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>14</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INSC_ESTADUAL_PESSOA" id="9522A7A6-3DEC-EE66-8A97-4CEFC8BDB9AB">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>585BFAF9-76FB-D4BE-D01E-71BD1A8C129B</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DT_FUNDACAO" id="8AB160C8-85C1-E70F-4C50-4D3E961BEA60">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>197A2F84-7426-F1BD-542D-0A7CD8421E90</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RAMO_ATIVIDADE" id="74005683-EDD6-90CA-0437-390E56AD02DD">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>6287D177-1C4E-CC36-1384-93A965259FED</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E08C3778-079E-7A2B-0288-C2BD64C1AF6E" name="TB_CLI_COMP_JURIDICA PK">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>2959BED4-6E7B-A88C-7E45-9BCED17719ED</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="37B89FDE-4666-CB52-C4DE-C2EDBE86B0BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="81E566B9-BD9A-1318-79DC-DA433DB3D1E0" name="FK_CLI_COMP_PESS_JUR">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>721A24C3-CC56-C798-F680-1D50EAFD0172</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="37B89FDE-4666-CB52-C4DE-C2EDBE86B0BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="D81542A7-9FFE-29F1-CDCD-908F035099B7" name="FK_ENDERECO_CLI_PROP">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>4BF98CD3-C2AB-D18B-A368-B3C4754C4947</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<containerWithKeyObject>256A18A5-6E49-0919-3A46-7896A9D0EF89</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>302A56ED-FCAC-7A5E-7749-8A1CCC1CE86B</localFKIndex>
+<keyObject>3970AEC4-D3C1-B4CB-7ABE-98C1E845A7BB</keyObject>
+<mandatory>true</mandatory>
+<transferable>false</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

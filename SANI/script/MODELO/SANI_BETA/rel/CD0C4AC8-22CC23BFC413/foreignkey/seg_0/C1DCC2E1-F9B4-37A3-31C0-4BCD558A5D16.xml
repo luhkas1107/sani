@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="C1DCC2E1-F9B4-37A3-31C0-4BCD558A5D16" name="FK_IMOVEL_PROPOSTA">
+<createdBy>windows</createdBy>
+<createdTime>2013-11-09 05:53:19 UTC</createdTime>
+<generatorID>60D9EB16-A795-D29F-719D-AF22D5DB29B8</generatorID>
+<ownerDesignName>SANI_BETA</ownerDesignName>
+<containerWithKeyObject>0E465438-3F5B-B963-480A-41D48C3AF7C8</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>D4188639-1F96-A90E-53E4-C62C750989D3</localFKIndex>
+<keyObject>DB6AA53F-F10F-21E3-8740-8812E1EA6342</keyObject>
+<mandatory>true</mandatory>
+<transferable>false</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

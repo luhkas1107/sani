@@ -9,11 +9,35 @@ public class ClienteComprador {
 	
 	private String telefone;
 	private String celular;
+	private String tpCliente;
+	
+	private ClienteCompradorFisica clienteCompradorFisica;
+	private ClienteCompradorJuridica clienteCompradorJuridica;
 	
 	//Getters & Setters
 	
 	
 	
+	public ClienteCompradorFisica getClienteCompradorFisica() {
+		return clienteCompradorFisica;
+	}
+	public String getTpCliente() {
+		return tpCliente;
+	}
+	public void setTpCliente(String tpCliente) {
+		this.tpCliente = tpCliente;
+	}
+	public void setClienteCompradorFisica(
+			ClienteCompradorFisica clienteCompradorFisica) {
+		this.clienteCompradorFisica = clienteCompradorFisica;
+	}
+	public ClienteCompradorJuridica getClienteCompradorJuridica() {
+		return clienteCompradorJuridica;
+	}
+	public void setClienteCompradorJuridica(
+			ClienteCompradorJuridica clienteCompradorJuridica) {
+		this.clienteCompradorJuridica = clienteCompradorJuridica;
+	}
 	public int getCodCliComprador() {
 		return codCliComprador;
 	}

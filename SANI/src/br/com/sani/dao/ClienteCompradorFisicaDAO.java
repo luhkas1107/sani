@@ -107,15 +107,18 @@ public class ClienteCompradorFisicaDAO {
 	 * @throws SQLException
 	 * @throws DAOException
 	 */
-	private Object getBean(ResultSet result) throws SQLException, DAOException{
+	private ClienteComprador getBean(ResultSet result) throws DAOException, SQLException{
 		ClienteCompradorFisica cf = new ClienteCompradorFisica();
 		ClienteCompradorJuridica cj = new ClienteCompradorJuridica();
 		ClienteComprador c = new ClienteComprador();
 		
-		Object retorno = new Object();
-		
 		c.setCodCliComprador(result.getInt("codCliComprador"));
 		c.setTelefone(result.getString("telCliComprador"));
+		c.setCelular(result.getString("celCliComprador"));
+		c.setCep(result.getString("cep"));
+		c.setComplementoEndereco(result.getString("complementoEndereco"));
+		c.setNumeroEndereco(result.getString("numeroEndereco"));
+		c.setTpCliente(result.getString("tpCliente"));
 		
 		String shit = result.getString("razaoSocial");
 		
@@ -123,70 +126,30 @@ public class ClienteCompradorFisicaDAO {
 			cf.setNome(result.getString("nomePessoa"));
 			cf.setCpf(result.getString("cpfPessoa"));
 			cf.setEmail(result.getString("email"));
+			cf.setDataNascimento(DbUtil.getJavaDate(result, "dtNasc"));
+			cf.setProfissao(result.getString("profissao"));
+			cf.setRenda(result.getDouble("renda"));
+			cf.setRg(result.getString("rgPessoa"));
+			cf.setSexo(result.getString("sexoPessoa"));
 			
 			cf.setClienteComprador(c);
 			
-			retorno = cf;
+			c.setClienteCompradorFisica(cf);
 		}else{
 			cj.setRazaoSocial(result.getString("razaoSocial"));
 			cj.setEmail(result.getString(20));
 			cj.setCnpj(result.getString("cnpj"));
+			cj.setDataFundacao(DbUtil.getJavaDate(result, "dtFundacao"));
+			cj.setInscricaoEstadual(result.getString("inscricaoEstadual"));
+			cj.setRamoAtividade(result.getString("ramoAtividade"));
 			
 			cj.setClienteComprador(c);
 			
-			retorno = cj;
+			c.setClienteCompradorJuridica(cj);
 		}
 	
 		
-		return retorno;
-	}
-	
-	private Object getBeanGeral(ResultSet result) throws DAOException, SQLException{
-		ClienteCompradorFisica cf = new ClienteCompradorFisica();
-		ClienteCompradorJuridica cj = new ClienteCompradorJuridica();
-		ClienteComprador c = new ClienteComprador();
-		
-		
-		Object retorno = new Object();
-		
-		c.setCodCliComprador(result.getInt("codCliComprador"));
-		c.setTelefone(result.getString("telCliComprador"));
-		c.setCelular(result.getString(""));
-		c.setCep(result.getString(""));
-		c.setComplementoEndereco(result.getString(""));
-		c.setNumeroEndereco(result.getString(""));
-		
-		String shit = result.getString("razaoSocial");
-		
-		if(shit == null){
-			cf.setNome(result.getString("nomePessoa"));
-			cf.setCpf(result.getString("cpfPessoa"));
-			cf.setEmail(result.getString("email"));
-			cf.setDataNascimento(DbUtil.getJavaDate(result, ""));
-			cf.setEstadoCivil(result.getString(""));
-			cf.setProfissao(result.getString(""));
-			cf.setRenda(result.getDouble(""));
-			cf.setRg(result.getString(""));
-			cf.setSexo(result.getString(""));
-			
-			cf.setClienteComprador(c);
-			
-			retorno = cf;
-		}else{
-			cj.setRazaoSocial(result.getString("razaoSocial"));
-			cj.setEmail(result.getString(20));
-			cj.setCnpj(result.getString("cnpj"));
-			cj.setDataFundacao(DbUtil.getJavaDate(result, ""));
-			cj.setInscricaoEstadual(result.getString(""));
-			cj.setRamoAtividade(result.getString(""));
-			
-			cj.setClienteComprador(c);
-			
-			retorno = cj;
-		}
-	
-		
-		return retorno;
+		return c;
 	}
 	
 	/**
@@ -306,41 +269,40 @@ public class ClienteCompradorFisicaDAO {
 		}
 	}
 	
-	//CONSULTA NOME
-	
-//	public ClienteComprador consultaPorCod(int codCliComprador) throws DAOException{
-//		Connection conn = DbUtil.getConnection();
-//		PreparedStatement statement = null;
-//		ResultSet result = null;
-//		ClienteComprador retorno = null;
-//		try{
-//			statement = conn.prepareStatement(CONSULTA_CLIENTE_COMPRADOR_FISICA_ID);
-//			statement.setInt(1, codCliComprador);
-//			result = statement.executeQuery();
-//			if(result.next()){
-//				retorno = getBean(result);
-//			}
-//		}catch(SQLException e){
-//			throw new DAOException(e);
-//		}finally{
-//			DbUtil.close(conn, statement, result);
-//		}
-//		
-//		return retorno;
-//	}
 	
 	//metodo pronto
-	public List<Object> buscarTodos() throws DAOException{
+	public List<ClienteComprador> buscarTodos() throws DAOException{
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
-		List<Object> retorno = new ArrayList<Object>();
+		List<ClienteComprador> retorno = new ArrayList<ClienteComprador>();
 		try{
 			statement = conn.prepareStatement(QUERY_BUSCAR_TODOS);
 			result = statement.executeQuery();
 			while(result.next()){
-				Object temp = getBean(result);
+				ClienteComprador temp = getBean(result);
 				retorno.add(temp);
+			}
+		}catch(SQLException e){
+			throw new DAOException(e);
+		}finally{
+			DbUtil.close(conn, statement, result);
+		}
+
+		return retorno;
+	}
+	
+	public ClienteComprador buscarPorCodigo(int codigo) throws DAOException{
+		Connection conn = DbUtil.getConnection();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		ClienteComprador retorno = null;
+		try{
+			statement = conn.prepareStatement(QUERY_BUSCAR_POR_CODIGO);
+			statement.setInt(1, codigo);
+			result = statement.executeQuery();
+			if(result.next()){
+				retorno = getBean(result);
 			}
 		}catch(SQLException e){
 			throw new DAOException(e);
