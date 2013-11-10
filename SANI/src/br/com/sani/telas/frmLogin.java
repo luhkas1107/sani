@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -36,7 +37,7 @@ public class frmLogin extends JFrame implements KeyListener {
 		SplashScreen teste = new SplashScreen();
 		teste.initSplash();
 		
-        for (int i = 0; i < 500000; i++){  
+        for (int i = 0; i < 100000; i++){  
            System.out.println(i);  
            teste.setProgresso(i);
            
@@ -115,14 +116,17 @@ public class frmLogin extends JFrame implements KeyListener {
 	}
 	
 	public void login(){
-		String senha = new String(passwordField.getPassword()); 
-		String  user = txtLogin.getText();
+		String senha = String.copyValueOf(passwordField.getPassword());
+		String user = txtLogin.getText().trim();
 		
 		try {
 			Login login = new LoginDAO().fazerLogin(user, senha);
 			
-			if(login != null && login.getUser().equals(user) && login.getSenha().equals(senha)){
+			if(login != null){
 				new frmMenuPrincipal();
+				dispose();
+			}else{
+				JOptionPane.showMessageDialog(this, "Acesso Negado, login ou senha incorreto!", "Falha no acesso!", JOptionPane.WARNING_MESSAGE);
 			}
 			
 			

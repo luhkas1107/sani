@@ -12,11 +12,12 @@ public class LoginDAO {
 	
 	private static final String FAZER_LOGIN =
 		"select * from tbUsuario where usuario = ? and senha = ?";
+//		"select * from tbUsuario where cast(usuario as varbinary(50)) = cast( ? as varbinary(50)) and cast(senha as varbinary(50)) = cast( ? as varbinary(50))";
 	
 	
 	private Login getBean(ResultSet result) throws DAOException, SQLException{
 		Login l = new Login();
-		
+
 		l.setEmail("email");
 		l.setNome("nome");
 		l.setPermissao("permissao");
