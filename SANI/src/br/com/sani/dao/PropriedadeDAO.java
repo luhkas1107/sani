@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import br.com.sani.bean.ClienteProprietario;
+import br.com.sani.bean.Endereco;
 import br.com.sani.bean.ImagemImovel;
 import br.com.sani.bean.Propriedade;
 import br.com.sani.exception.DAOException;
@@ -24,6 +28,64 @@ public class PropriedadeDAO {
 				"INSERT INTO tbImagensPropriedade "+
 				"values(?,?,?)";
 		
+		private static final String QUERY_BUSCAR_TODOS =
+				"SELECT "+
+				"	P.*, "+
+				"	E.cep, "+
+				"	E.endereco, "+
+				"	B.bairro, "+
+				"	C.cidade, "+
+				"	C.uf "+
+				"FROM tbPropriedade P "+
+				"		INNER JOIN tbEndereco E "+
+				"	ON P.cep = E.cep "+
+				"		INNER JOIN tbBairro B "+
+				"	ON E.idBairro = B.idBairro "+
+				"		INNER JOIN tbCidade C "+
+				"	ON B.idCidade = C.idCidade ";
+		
+		private static final String QUERY_BUSCAR_POR_ID =
+				"SELECT "+
+				"	P.*, "+
+				"	E.cep, "+
+				"	E.endereco, "+
+				"	B.bairro, "+
+				"	C.cidade, "+
+				"	C.uf "+
+				"FROM tbPropriedade P "+
+				"		INNER JOIN tbEndereco E "+
+				"	ON P.cep = E.cep "+
+				"		INNER JOIN tbBairro B "+
+				"	ON E.idBairro = B.idBairro "+
+				"		INNER JOIN tbCidade C "+
+				"	ON B.idCidade = C.idCidade "+
+				"WHERE P.codPropriedade = ?";
+					
+		private Propriedade getBean(ResultSet result) throws DAOException, SQLException{
+			Propriedade p = new Propriedade();
+			ClienteProprietario cli = new ClienteProprietario();
+			Endereco e = new Endereco();
+			
+			e.setCep(result.getString("cep"));
+			e.setEndereco(result.getString("endereco"));
+			e.setBairro(result.getString("bairro"));
+			e.setCidade(result.getString("cidade"));
+			e.setEstado(result.getString("uf"));
+			
+			cli.setCodCliProprietario(result.getInt("codCliProprietario"));
+			p.setClienteProprietario(cli);
+			
+			p.setCodPropriedade(result.getInt("codPropriedade"));
+			p.setComplementoEndereco(result.getString("complementoEndereco"));
+			p.setEndereco(e);
+			p.setMetragem(result.getFloat("metragemPropriedade"));
+			p.setNumeroEndereco(result.getInt("numeroEndereco"));
+			p.setSituacaoPropriedade(result.getString("situacaoPropriedade"));
+			p.setTipoPropriedade(result.getString("tipoPropriedade"));
+			p.setValorPropriedade(result.getFloat("valorPropriedade"));
+			
+			return p;
+		}
 		
 		
 		public int getSequencia() throws DAOException{
@@ -93,6 +155,47 @@ public class PropriedadeDAO {
 			}
 		}
 		
+		public Propriedade buscarPorId(int codigo) throws DAOException{
+			Connection conn = DbUtil.getConnection();
+			PreparedStatement statement = null;
+			ResultSet result = null;
+			Propriedade retorno = null;
+			try{
+				statement = conn.prepareStatement(QUERY_BUSCAR_POR_ID);
+				statement.setInt(1, codigo);
+				result = statement.executeQuery();
+				if(result.next()){
+					retorno = getBean(result);
+				}
+			}catch(SQLException e){
+				throw new DAOException(e);
+			}finally{
+				DbUtil.close(conn, statement, result);
+			}
+			
+			return retorno;
+		}
+		
+		public List<Propriedade> buscarTodos() throws DAOException{
+			Connection conn = DbUtil.getConnection();
+			PreparedStatement statement = null;
+			ResultSet result = null;
+			List<Propriedade> retorno = new ArrayList<Propriedade>();
+			try{
+				statement = conn.prepareStatement(QUERY_BUSCAR_TODOS);
+				result = statement.executeQuery();
+				while(result.next()){
+					Propriedade propriedade = getBean(result);
+					retorno.add(propriedade);
+				}
+			}catch(SQLException e){
+				throw new DAOException(e);
+			}finally{
+				DbUtil.close(conn, statement, result);
+			}
+			
+			return retorno;
+		}
 		
 		
 }

@@ -181,9 +181,9 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 			DefaultTableModel dtm =(DefaultTableModel) table.getModel();
 			dtm.setRowCount(0);
 			
-			List<Object> lista = new ClienteProprietarioDAO().buscarTodos();
+			List<ClienteProprietario> lista = new ClienteProprietarioDAO().buscarTodos();
 			if(lista != null){
-				for(Object obj : lista){
+				for(ClienteProprietario obj : lista){
 					addTable(dtm, obj);
 				}
 			}
@@ -194,22 +194,20 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		}
 	}
 	
-	private void addTable(DefaultTableModel dtm, Object obj) throws ParseException{
+	private void addTable(DefaultTableModel dtm, ClienteProprietario obj) throws ParseException{
 		Object[] object = new Object[4];
 		int i = 0;
 		
-		if(obj instanceof ClienteProprietarioFisica){
-			ClienteProprietarioFisica cf = (ClienteProprietarioFisica) obj;
-			object[i++] = FormatarNumero.formatNumero(4, cf.getClienteProprietarioFisica().getCodCliProprietario());
-			object[i++] = cf.getNome();
-			object[i++] = Mascara.setMaskCpfInTable(cf.getCpf());
-			object[i++] = Mascara.setMaskTelefoneInTable(cf.getClienteProprietarioFisica().getTelefone());
+		if(obj.getTpCliente().equals("PF")){
+			object[i++] = FormatarNumero.formatNumero(4, obj.getClienteProprietarioFisica().getCodCliProprietario().getCodCliProprietario());
+			object[i++] = obj.getClienteProprietarioFisica().getNome();
+			object[i++] = Mascara.setMaskCpfInTable(obj.getClienteProprietarioFisica().getCpf());
+			object[i++] = Mascara.setMaskTelefoneInTable(obj.getClienteProprietarioFisica().getCodCliProprietario().getTelefone());
 		}else{
-			ClienteProprietarioJuridica cj = (ClienteProprietarioJuridica) obj;
-			object[i++] = FormatarNumero.formatNumero(4, cj.getClienteProprietario().getCodCliProprietario());
-			object[i++] = cj.getRazaoSocial();
-			object[i++] = Mascara.setMaskCnpjInTable(cj.getCnpj());
-			object[i++] = Mascara.setMaskTelefoneInTable(cj.getClienteProprietario().getTelefone());
+			object[i++] = FormatarNumero.formatNumero(4, obj.getClienteProprietarioJuridica().getClienteProprietario().getCodCliProprietario());
+			object[i++] = obj.getClienteProprietarioJuridica().getRazaoSocial();
+			object[i++] = Mascara.setMaskCnpjInTable(obj.getClienteProprietarioJuridica().getCnpj());
+			object[i++] = Mascara.setMaskTelefoneInTable(obj.getTelefone());
 		}
 		
 		dtm.addRow(object);
@@ -221,17 +219,18 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 			if(row != -1){
 				int id = Integer.parseInt((String) table.getValueAt(row, 0));
 				if(this.requisicao == 1){
-					Object cli = new ClienteProprietarioDAO().buscarPorId(id);
+					ClienteProprietario cli = new ClienteProprietarioDAO().buscarPorId(id);
 					Object[] object = new Object[4];
-					if(cli instanceof ClienteProprietarioFisica){
-						object[0] = ((ClienteProprietarioFisica) cli).getClienteProprietarioFisica().getCodCliProprietario();
-						object[1] = ((ClienteProprietarioFisica) cli).getNome();
-						object[2] = Mascara.setMaskCpfInTable(((ClienteProprietarioFisica) cli).getCpf());
-						object[4] = ((ClienteProprietarioFisica) cli).getEmail();
-					}else if(cli instanceof ClienteProprietarioJuridica){
-						object[0] = ((ClienteProprietarioJuridica) cli).getClienteProprietario().getCodCliProprietario();
-						object[1] = ((ClienteProprietarioJuridica) cli).getRazaoSocial();
-						object[2] = Mascara.setMaskCnpjInTable(((ClienteProprietarioJuridica) cli).getCnpj());
+					
+					if(cli.getTpCliente().equals("PF")){
+						object[0] = cli.getClienteProprietarioFisica().getCodCliProprietario();
+						object[1] = cli.getClienteProprietarioFisica().getNome();
+						object[2] = Mascara.setMaskCpfInTable(cli.getClienteProprietarioFisica().getCpf());
+						object[4] = cli.getClienteProprietarioFisica().getEmail();
+					}else{
+						object[0] = cli.getCodCliProprietario();
+						object[1] = cli.getClienteProprietarioJuridica().getRazaoSocial();
+						object[2] = Mascara.setMaskCnpjInTable(cli.getClienteProprietarioJuridica().getCnpj());
 						object[3] = "";
 					}
 					

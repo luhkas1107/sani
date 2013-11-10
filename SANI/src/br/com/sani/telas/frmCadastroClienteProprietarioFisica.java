@@ -94,7 +94,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 	public void montarComponentes() throws Throwable {
 		SwingUtil.lookWindows(this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/cliente.png")));
-		setTitle("Cadastro Cliente Propriet\u00E1rio");
+		setTitle("Cadastro Cliente Propriet\u00E1rio - Pessoa Fisica");
 		setResizable(false);
 		setBounds(100, 100, 700, 460);
 		contentPane = new JPanel();

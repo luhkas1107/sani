@@ -6,7 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -19,10 +21,22 @@ import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
+import br.com.sani.bean.ClienteProprietario;
+import br.com.sani.bean.Propriedade;
+import br.com.sani.dao.ClienteProprietarioDAO;
+import br.com.sani.dao.PropriedadeDAO;
+import br.com.sani.exception.DAOException;
+import br.com.sani.util.FormatarNumero;
+import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
+import br.com.sani.util.TelaUtil;
+
 import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class frmConsultaPropriedade extends JFrame {
 
@@ -30,6 +44,8 @@ public class frmConsultaPropriedade extends JFrame {
 	private JTextField txtEndereco;
 	private JTextField txtProprietário;
 	private JTable table;
+	
+	private int requisicao = 0;
 
 	/**
 	 * Launch the application.
@@ -38,19 +54,25 @@ public class frmConsultaPropriedade extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmConsultaPropriedade frame = new frmConsultaPropriedade();
-					frame.setVisible(true);
+					new frmConsultaPropriedade(0);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	
+	public frmConsultaPropriedade(int requisicao){
+		this.requisicao = requisicao;
+		montarComponentes();
+		buscar();
+		setVisible(true);
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	public frmConsultaPropriedade() {
+	public void montarComponentes() {
 		SwingUtil.lookWindows(this);
 		setTitle("Consulta de Propriedades");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaPropriedade.class.getResource("/br/com/images/search.png")));
@@ -102,7 +124,7 @@ public class frmConsultaPropriedade extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				fechar();
+				dispose();
 			}
 		});
 		btnCancelar.setBounds(10, 362, 89, 23);
@@ -113,16 +135,32 @@ public class frmConsultaPropriedade extends JFrame {
 		panel.add(scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				retornaRequisicao();
+			}
+		});
+//		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null, null, null, null},
 			},
 			new String[] {
 				"C\u00F3digo", "Endere\u00E7o", "Propriet\u00E1rio", "Valor R$"
 			}
-		));
-		table.getColumnModel().getColumn(0).setPreferredWidth(50);
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setPreferredWidth(69);
 		table.getColumnModel().getColumn(1).setPreferredWidth(291);
-		table.getColumnModel().getColumn(2).setPreferredWidth(208);
+		table.getColumnModel().getColumn(2).setPreferredWidth(182);
+		table.getColumnModel().getColumn(3).setPreferredWidth(92);
 		scrollPane.setViewportView(table);
 		
 		JLabel lblEdit = new JLabel("");
@@ -148,8 +186,83 @@ public class frmConsultaPropriedade extends JFrame {
 		
 		setLocationRelativeTo(null);
 	}
+	
+	
+	private void buscar(){
+		try {
+			DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+			dtm.setRowCount(0);
 
-	public void fechar() {
-		this.dispose();
+			List<Propriedade> lista = new PropriedadeDAO().buscarTodos();
+			
+			if(lista != null){
+				for(Propriedade p : lista){
+					ClienteProprietario pro = new ClienteProprietarioDAO().buscarPorId(p.getClienteProprietario().getCodCliProprietario());
+					p.setClienteProprietario(pro);
+					addTable(dtm, p);
+				}
+			}
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void addTable(DefaultTableModel dtm, Propriedade p){
+		Object[] object = new Object[4];
+		int i = 0;
+		
+		String proprietario = "";
+		
+		if(p.getClienteProprietario().getTpCliente().equals("PF")){
+			proprietario = p.getClienteProprietario().getClienteProprietarioFisica().getNome();
+		}else{
+			proprietario = p.getClienteProprietario().getClienteProprietarioJuridica().getRazaoSocial();
+		}
+		
+		object[i++] = FormatarNumero.formatNumero(5, p.getCodPropriedade());
+		object[i++] = p.getEndereco().getEndereco() + ", " + p.getNumeroEndereco() + " " + p.getEndereco().getBairro() + " - " + p.getEndereco().getCidade() +
+				"/" + p.getEndereco().getEstado() + " CEP: " + p.getEndereco().getCep();
+		object[i++] = proprietario;
+		object[i++] = TelaUtil.formataDinheiro(p.getValorPropriedade());
+		
+		dtm.addRow(object);
+	}
+	
+	private void retornaRequisicao(){
+		int row = table.getSelectedRow();
+		try{
+			if(row != -1){
+				int codigo = Integer.parseInt((String) table.getValueAt(row, 0));
+				Object[] retorno = new Object[4];
+				if(this.requisicao == 1){
+					Propriedade p = new PropriedadeDAO().buscarPorId(codigo);
+					ClienteProprietario cli = new ClienteProprietarioDAO().buscarPorId(p.getClienteProprietario().getCodCliProprietario());
+					
+					String nmProprietario = "";
+					if(cli.getTpCliente().equals("PF")){
+						nmProprietario = cli.getClienteProprietarioFisica().getNome();
+					}else{
+						nmProprietario = cli.getClienteProprietarioJuridica().getRazaoSocial();
+					}
+					
+					retorno[0] = (int) p.getCodPropriedade();
+					retorno[1] = nmProprietario;
+					retorno[2] = (String) p.getEndereco().getEndereco() + ", " + p.getNumeroEndereco() + " " + p.getEndereco().getBairro() + " - " + p.getEndereco().getCidade() +
+							"/" + p.getEndereco().getEstado() + " CEP: " + p.getEndereco().getCep();
+					retorno[3] = (String) cli.getTelefone();
+					
+					frmGerarProposta.setPropriedade(retorno);
+					dispose();
+				}
+			}
+		}catch(DAOException e){
+			e.printStackTrace();
+		}
 	}
 }
+
+
+
+
+
+

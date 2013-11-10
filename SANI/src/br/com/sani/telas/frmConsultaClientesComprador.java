@@ -22,10 +22,12 @@ import javax.swing.JScrollPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
+import br.com.sani.bean.ClienteComprador;
 import br.com.sani.bean.ClienteCompradorFisica;
 import br.com.sani.bean.ClienteCompradorJuridica;
 import br.com.sani.dao.ClienteCompradorFisicaDAO;
@@ -46,6 +48,9 @@ import java.awt.Component;
 
 import javax.swing.JMenuItem;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 public class frmConsultaClientesComprador extends JFrame {
 
 	private JPanel contentPane;
@@ -63,7 +68,6 @@ public class frmConsultaClientesComprador extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//sempre que a tela for carregada ele ja pesquisa
 					new frmConsultaClientesComprador(0);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,7 +79,7 @@ public class frmConsultaClientesComprador extends JFrame {
 	public frmConsultaClientesComprador(int requisicao){
 		this.requisicao = requisicao;
 		initComponents();
-		buscar(); // tem que ser antes do setVisible, vamos testar
+		buscar(); 
 		setVisible(true);
 	}
 
@@ -143,6 +147,15 @@ public class frmConsultaClientesComprador extends JFrame {
 		panel.add(scrollPane);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() > 1){
+					retornaRequisicao();
+				}
+			}
+		});
+		
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -228,10 +241,10 @@ public class frmConsultaClientesComprador extends JFrame {
 		DefaultTableModel dtm = (DefaultTableModel) table.getModel();//pega o modelo da tabela
 		dtm.setRowCount(0);//define que a primeira linha começa em 0,  se nao fizer ele deixa uma linha em branco
 		try{
-			List<Object> listaClientes = new ClienteCompradorFisicaDAO().buscarTodos();//executa a pesquisa
+			List<ClienteComprador> listaClientes = new ClienteCompradorFisicaDAO().buscarTodos();//executa a pesquisa
 			
 			//precisa percorrer a lista de resultados
-			for(Object item : listaClientes){
+			for(ClienteComprador item : listaClientes){
 				//para cada item lido, chama o metodo que adiciona na tabela
 				addTable(dtm, item);
 				
@@ -247,32 +260,28 @@ public class frmConsultaClientesComprador extends JFrame {
 	
 	
 	//metodo que popula jTable
-	private void addTable(DefaultTableModel dtm, Object obj) throws ParseException{
+	private void addTable(DefaultTableModel dtm, ClienteComprador obj) throws ParseException{
 		Object[] object = new Object[5];//quantidade de colunas da Jtable
 		int i = 0;
 		
 		//popula o array de objetos, e como se cada posicao do array fosse 
 		//uma coluna da tabela
-		if(obj instanceof ClienteCompradorFisica){
-			ClienteCompradorFisica cf = (ClienteCompradorFisica) obj;
-			
-			object[i++] = cf.getClienteComprador().getCodCliComprador();//coluna 1
-			object[i++] = cf.getNome(); //coluna 2
-			object[i++] = Mascara.setMaskCpfInTable(cf.getCpf());//col 3
-			object[i++] = Mascara.setMaskTelefoneInTable(cf.getClienteComprador().getTelefone()); //col 4
-			object[i++] = cf.getEmail(); // col 5
+		if(obj.getTpCliente().equals("PF")){
+			object[i++] = obj.getCodCliComprador();
+			object[i++] = obj.getClienteCompradorFisica().getNome();
+			object[i++] = Mascara.setMaskCpfInTable(obj.getClienteCompradorFisica().getCpf());//col 3
+			object[i++] = Mascara.setMaskTelefoneInTable(obj.getTelefone()); //col 4
+			object[i++] = obj.getClienteCompradorFisica().getEmail(); // col 5
 			
 			//pronto, se for fisica ja ta populado
-		}else if(obj instanceof ClienteCompradorJuridica){
-			ClienteCompradorJuridica cj = (ClienteCompradorJuridica) obj;
+		}else{
 			
-			object[i++] = cj.getClienteComprador().getCodCliComprador(); //col 1
-			object[i++] = cj.getRazaoSocial(); // col 2
-			object[i++] = Mascara.setMaskCnpjInTable(cj.getCnpj()); // col 3 formatada!!!!
-			object[i++] = Mascara.setMaskTelefoneInTable(cj.getClienteComprador().getTelefone()); //col 4 formatada!!!
-			object[i++] = cj.getEmail();
+			object[i++] = obj.getCodCliComprador();
+			object[i++] = obj.getClienteCompradorJuridica().getRazaoSocial();
+			object[i++] = Mascara.setMaskCnpjInTable(obj.getClienteCompradorJuridica().getCnpj()); // col 3 formatada!!!!
+			object[i++] = Mascara.setMaskTelefoneInTable(obj.getTelefone()); //col 4 formatada!!!
+			object[i++] = obj.getClienteCompradorJuridica().getEmail();
 			
-			//pronto, se for juridica ja populado
 		}
 		
 		//agora com o objeto ja pode-se inserir na tabela
@@ -303,10 +312,34 @@ public class frmConsultaClientesComprador extends JFrame {
 	
 	private void retornaRequisicao(){
 		int row = table.getSelectedRow();
-		if(row != -1){
-			int codigo = Integer.parseInt((String) table.getValueAt(row, 0));
-			
-			Object cliente = new ClienteProprietarioFisicaDAO().consultarClienteProprietarioID(codigo);
+		try{
+			if(row != -1){
+				ClienteCompradorFisicaDAO dao = new ClienteCompradorFisicaDAO();
+				int codigo = Integer.parseInt(String.valueOf((Object)table.getValueAt(row, 0)));
+				Object[] retorno = new Object[4];
+				
+				//requisicao 1 = tela Gerar Proposta
+				if(this.requisicao == 1){
+					ClienteComprador cliente = dao.buscarPorCodigo(codigo);
+					
+					if(cliente.getTpCliente().equals("PF")){
+						retorno[0] = cliente.getCodCliComprador();
+						retorno[1] = cliente.getClienteCompradorFisica().getNome();
+						
+						frmGerarProposta.setComprador(retorno);
+						dispose();
+					}else{
+						retorno[0] = cliente.getCodCliComprador();
+						retorno[1] = cliente.getClienteCompradorJuridica().getRazaoSocial();
+						
+						frmGerarProposta.setComprador(retorno);
+						dispose();
+ 					}
+					
+				}
+			}
+		}catch(DAOException e){
+			e.printStackTrace();
 		}
 	}
 	

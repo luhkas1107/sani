@@ -40,19 +40,18 @@ public class ClienteProprietarioDAO {
 	
 	
 	
-	private Object getBean(ResultSet result) throws DAOException, SQLException{
+	private ClienteProprietario getBean(ResultSet result) throws DAOException, SQLException{
 		ClienteProprietarioFisica cf = new ClienteProprietarioFisica();
 		ClienteProprietarioJuridica cj = new ClienteProprietarioJuridica();
 		ClienteProprietario c = new ClienteProprietario();
 		
-		Object retorno = new Object();
-
 		c.setCodCliProprietario(result.getInt("codCliProprietario"));
 		c.setCelular(result.getString("celCliProprietario"));
 		c.setCep(result.getString("cep"));
 		c.setComplementoEndereco(result.getString("complementoEndereco"));
 		c.setNumeroEndereco(result.getString("numeroEndereco"));
 		c.setTelefone(result.getString("telCliProprietario"));
+		c.setTpCliente(result.getString("tpCliente"));
 		
 		String test = result.getString("razaoSocial");
 		
@@ -65,7 +64,7 @@ public class ClienteProprietarioDAO {
 			
 			cj.setClienteProprietario(c);
 			
-			retorno = cj;
+			c.setClienteProprietarioJuridica(cj);
 		}else{
 			cf.setCpf(result.getString("cpfPessoa"));
 			cf.setDataFalecimento(DbUtil.getJavaDate(result, "dtFalescimento"));
@@ -73,31 +72,31 @@ public class ClienteProprietarioDAO {
 			cf.setEmail(result.getString("email"));
 			cf.setEstadoCivil(result.getString("estadoCivilPessoa"));
 			cf.setNome(result.getString("nomePessoa"));
-			cf.setProfissao(result.getString("profissao"));
-			cf.setRenda(result.getDouble("renda"));
+//			cf.setProfissao(result.getString("profissao"));
+//			cf.setRenda(result.getDouble("renda"));
 			cf.setRg(result.getString("rgPessoa"));
 			cf.setSexo(result.getString("sexoPessoa"));
 			
 			cf.setClienteProprietario(c);
 			
-			retorno = cf;
+			c.setClienteProprietarioFisica(cf);
 		}
 		
 		
-		return retorno;
+		return c;
 	}
 	
 	
-	public List<Object> buscarTodos() throws DAOException{
+	public List<ClienteProprietario> buscarTodos() throws DAOException{
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
-		List<Object> retorno = new ArrayList<Object>();
+		List<ClienteProprietario> retorno = new ArrayList<ClienteProprietario>();
 		try{
 			statement = conn.prepareStatement(QUERY_BUSCAR_TODOS);
 			result = statement.executeQuery();
 			while(result.next()){
-				Object temp = getBean(result);
+				ClienteProprietario temp = getBean(result);
 				retorno.add(temp);
 			}
 		}catch(SQLException e){
@@ -109,11 +108,11 @@ public class ClienteProprietarioDAO {
 		return retorno;
 	}
 	
-	public Object buscarPorId(int codigo) throws DAOException{
+	public ClienteProprietario buscarPorId(int codigo) throws DAOException{
 		Connection conn = DbUtil.getConnection();
 		PreparedStatement statement = null;
 		ResultSet result = null;
-		Object retorno = null;
+		ClienteProprietario retorno = null;
 		try{
 			statement = conn.prepareStatement(QUERY_BUSCAR_POR_ID);
 			statement.setInt(1, codigo);

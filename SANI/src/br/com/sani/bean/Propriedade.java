@@ -11,8 +11,22 @@ public class Propriedade {
 	private String tipoPropriedade;
 	private String situacaoPropriedade;
 	private float metragem;
+	private float valorPropriedade;
+	private Endereco endereco;
 	
 	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	public float getValorPropriedade() {
+		return valorPropriedade;
+	}
+	public void setValorPropriedade(float valorPropriedade) {
+		this.valorPropriedade = valorPropriedade;
+	}
 	public int getCodPropriedade() {
 		return codPropriedade;
 	}

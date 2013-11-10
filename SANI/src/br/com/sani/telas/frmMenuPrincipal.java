@@ -198,6 +198,11 @@ public class frmMenuPrincipal extends JFrame {
 		mnClienteProprietrio.add(mntmPessoaFisica_1);
 		
 		JMenuItem mntmPessoaJuridica_1 = new JMenuItem("Pessoa Juridica");
+		mntmPessoaJuridica_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new frmCadastroClienteProprietarioJuridica(null);
+			}
+		});
 		mnClienteProprietrio.add(mntmPessoaJuridica_1);
 				
 		mntmMetas = new JMenuItem("Metas");
@@ -215,8 +220,8 @@ public class frmMenuPrincipal extends JFrame {
 		mnVenda.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/money.png")));
 		menuBarArquivo.add(mnVenda);
 		
-		mntmIniciarVenda = new JMenuItem("Iniciar Venda");
-		mntmIniciarVenda.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/start.png")));
+		mntmIniciarVenda = new JMenuItem("Fechar Venda/Loca\u00E7\u00E3o");
+		mntmIniciarVenda.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/_2Partnership_icon.png")));
 		mntmIniciarVenda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.CTRL_MASK));
 		mntmIniciarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -229,6 +234,15 @@ public class frmMenuPrincipal extends JFrame {
 				}
 			}
 		});
+		
+		JMenuItem mntmPropostaDeVenda = new JMenuItem("Proposta de Venda/Loca\u00E7\u00E3o");
+		mntmPropostaDeVenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new frmGerarProposta();
+			}
+		});
+		mntmPropostaDeVenda.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/_1proposta_icon.png")));
+		mnVenda.add(mntmPropostaDeVenda);
 		mnVenda.add(mntmIniciarVenda);
 		
 		mnConsulta = new JMenu("Consulta");
@@ -240,8 +254,7 @@ public class frmMenuPrincipal extends JFrame {
 		mntmPropriedadesConsulta.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/house.png")));
 		mntmPropriedadesConsulta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmConsultaPropriedade frameConsProp = new frmConsultaPropriedade();
-			frameConsProp.setVisible(true);
+				new frmConsultaPropriedade(0);
 			}
 		});
 		mnConsulta.add(mntmPropriedadesConsulta);
