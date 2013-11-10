@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -30,15 +31,22 @@ import br.com.sani.bean.ClienteProprietarioFisica;
 import br.com.sani.bean.ClienteProprietarioJuridica;
 import br.com.sani.dao.ClienteProprietarioDAO;
 import br.com.sani.dao.ClienteProprietarioFisicaDAO;
+import br.com.sani.dao.ClienteProprietarioJuridicaDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.FormatarNumero;
 import br.com.sani.util.Mascara;
 import br.com.sani.util.SwingUtil;
 
+import javax.swing.JPopupMenu;
+
+import java.awt.Component;
+
+import javax.swing.JMenuItem;
+import javax.swing.border.TitledBorder;
+
 public class frmConsultaClienteProprietario extends JFrame implements MouseListener {
 
 	private JPanel contentPane;
-	private JTextField txtFieldConsultaNomeClienteComprador;
 	private JTable table;
 
 	private int requisicao = 0;
@@ -70,7 +78,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 	public void montarComponentes() {
 		SwingUtil.lookWindows(this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmConsultaClienteProprietario.class.getResource("/br/com/images/search.png")));
-		setTitle("Escolha o Propriet\u00E1rio");
+		setTitle("Consulta de Cliente Propriet\u00E1rio");
 		setBounds(100, 100, 690, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,34 +89,8 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(9, 89, 645, 2);
-		panel.add(separator);
-		
-		JLabel label = new JLabel("Filtro:");
-		label.setBounds(10, 11, 46, 14);
-		panel.add(label);
-		
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(10, 36, 68, 14);
-		panel.add(lblNome);
-		
-		txtFieldConsultaNomeClienteComprador = new JTextField();
-		txtFieldConsultaNomeClienteComprador.setBounds(57, 33, 388, 20);
-		txtFieldConsultaNomeClienteComprador.setColumns(10);
-		panel.add(txtFieldConsultaNomeClienteComprador);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				fechar();
-			}
-		});
-		btnCancelar.setBounds(10, 362, 89, 23);
-		panel.add(btnCancelar);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 102, 623, 254);
+		scrollPane.setBounds(9, 102, 645, 289);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -134,44 +116,27 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		table.getColumnModel().getColumn(3).setPreferredWidth(111);
 		scrollPane.setViewportView(table);
 		
-		JLabel lblRemove = new JLabel("");
-		lblRemove.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblRemove.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//Remove o Usuario Selecionado
-			}
-		});
-		lblRemove.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/delete-.png")));
-		lblRemove.setBounds(583, 361, 25, 25);
-		panel.add(lblRemove);
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(table, popupMenu);
 		
-		JLabel lblEdit = new JLabel("");
-		lblEdit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblEdit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//Edita o Cliente Selecionado
-				JOptionPane.showMessageDialog(null, "Teste");
-			}
-		});
-		lblEdit.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/edit-.png")));
-		lblEdit.setBounds(618, 361, 25, 25);
-		panel.add(lblEdit);
+		JMenuItem mntmEditarCadastro = new JMenuItem("Editar Registro");
+		mntmEditarCadastro.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/edit-.png")));
+		popupMenu.add(mntmEditarCadastro);
 		
-		JLabel lblSearch = new JLabel("");
-		lblSearch.setToolTipText("Pesquisar");
-		lblSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblSearch.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//Faz a Busca no BD
-				buscar();
+		JMenuItem mntmExcluirCadastro = new JMenuItem("Excluir Registro");
+		mntmExcluirCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				excluir();
 			}
 		});
-		lblSearch.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/search-ico.png")));
-		lblSearch.setBounds(618, 33, 25, 25);
-		panel.add(lblSearch);
+		mntmExcluirCadastro.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/delete-.png")));
+		popupMenu.add(mntmExcluirCadastro);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Filtro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(9, 11, 645, 81);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
 		
 		setLocationRelativeTo(null);
 	}
@@ -204,7 +169,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 			object[i++] = Mascara.setMaskCpfInTable(obj.getClienteProprietarioFisica().getCpf());
 			object[i++] = Mascara.setMaskTelefoneInTable(obj.getClienteProprietarioFisica().getCodCliProprietario().getTelefone());
 		}else{
-			object[i++] = FormatarNumero.formatNumero(4, obj.getClienteProprietarioJuridica().getClienteProprietario().getCodCliProprietario());
+			object[i++] = FormatarNumero.formatNumero(4, obj.getCodCliProprietario());
 			object[i++] = obj.getClienteProprietarioJuridica().getRazaoSocial();
 			object[i++] = Mascara.setMaskCnpjInTable(obj.getClienteProprietarioJuridica().getCnpj());
 			object[i++] = Mascara.setMaskTelefoneInTable(obj.getTelefone());
@@ -245,8 +210,30 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		}
 	}
 	
-	public void fechar(){
-		this.dispose();
+	private void excluir(){
+		int row = table.getSelectedRow();
+		try{
+			if(row != -1){
+				int id = Integer.parseInt((String) table.getValueAt(row, 0));
+				ClienteProprietario cliente = new ClienteProprietarioDAO().buscarPorId(id);
+				
+				int question = JOptionPane.showConfirmDialog(this, "Deseja exluir o registro: " + id + " ?", "Atenção!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				
+				if(cliente != null && question == 0){
+					if(cliente.getTpCliente().equals("PF")){
+						new ClienteProprietarioFisicaDAO().exluirClienteProprietarioFisica(id);
+					}else{
+						new ClienteProprietarioJuridicaDAO().exluirClienteProprietarioJuridica(id);
+					}
+					JOptionPane.showMessageDialog(this, "Registro apagado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+					buscar();
+				}
+			}
+		}catch (DAOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -281,5 +268,22 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

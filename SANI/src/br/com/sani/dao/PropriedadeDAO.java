@@ -16,6 +16,11 @@ import br.com.sani.util.DbUtil;
 
 
 public class PropriedadeDAO {
+	
+		private static final String QUERY_EXCLUIR = 
+				"delete from tbImagensPropriedade where codPropriedade = ?; "+
+				"delete from tbProposta where codPropriedade = ?; "+
+				"delete from tbPropriedade where codPropriedade = ? ";
 		
 		private static final String QUERY_SEQUENCIA = 
 				"select isnull(max(codPropriedade), 0) + 1 as NOVO_ID from tbPropriedade";
@@ -195,6 +200,25 @@ public class PropriedadeDAO {
 			}
 			
 			return retorno;
+		}
+		
+		public void exluir(int codigo) throws DAOException{
+			Connection conn = DbUtil.getConnection();
+			PreparedStatement statement = null;
+			ResultSet result = null;
+			try{
+				statement = conn.prepareStatement(QUERY_EXCLUIR);
+				statement.setInt(1, codigo);
+				statement.setInt(2, codigo);
+				statement.setInt(3, codigo);
+				
+				statement.execute();
+				conn.commit();
+			}catch(SQLException e){
+				throw new DAOException(e);
+			}finally{
+				DbUtil.close(conn, statement, result);
+			}
 		}
 		
 		

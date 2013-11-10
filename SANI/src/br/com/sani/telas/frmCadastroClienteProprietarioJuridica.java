@@ -423,28 +423,6 @@ public class frmCadastroClienteProprietarioJuridica extends JFrame {
 		}
 	}
 	
-	/**
-	 * 
-	 */
-	private void exluir(){
-//		//verifica se o usuário que mesmo exluir
-//		int question = JOptionPane.showConfirmDialog(this, "Deseja realmente exluir este cadastro?", "Atenção!!!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-//		if(question == 0){
-//			try{
-//				
-//				//se não der erro ele exibe essa mensagem
-//				JOptionPane.showMessageDialog(this, "Dados exluídos com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-//				
-//				//volta para modo de cadastro
-//				modoCadastro();
-//			}catch(DAOException e){
-//				JOptionPane.showMessageDialog(this, "Erro ao tentar exluir os Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
-//				e.printStackTrace();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-	}
 	
 	private void modoEdicao(ClienteProprietarioJuridica cadastro){
 		setTitle("EDIÇÃO de Cadastro Cliente Proprietario - Pessoa Jurídica");

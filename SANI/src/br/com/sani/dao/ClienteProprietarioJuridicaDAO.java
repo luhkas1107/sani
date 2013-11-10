@@ -29,8 +29,9 @@ public class ClienteProprietarioJuridicaDAO {
 			"	numeroEndereco, "+
 			"	complementoEndereco, "+
 			"	telCliProprietario, "+
-			"	celCliProprietario) "+
-			"VALUES (?,?,?,?,?,?); "+
+			"	celCliProprietario, "+
+			"	tpCliente) "+
+			"VALUES (?,?,?,?,?,?,?); "+
 					
 			"INSERT INTO tbClienteProprietarioJuridica ( "+
        		"	codCliProprietario, "+
@@ -102,14 +103,15 @@ public class ClienteProprietarioJuridicaDAO {
 			statement.setString(4, cliProp.getClienteProprietario().getComplementoEndereco());
 			statement.setString(5, cliProp.getClienteProprietario().getTelefone());
 			statement.setString(6, cliProp.getClienteProprietario().getCelular());
+			statement.setString(7, "PJ");
 			
 			int codigo = getNovoId();
-			statement.setInt(7, codigo);//pega o código que vai ser inserido na tabela pai
-			statement.setString(8, cliProp.getRazaoSocial());
-			statement.setString(9, cliProp.getCnpj());
-			statement.setString(10, cliProp.getInscEstadual());
-			statement.setDate(11, DbUtil.getSqlDate(cliProp.getDataFundacao()));
-			statement.setString(12, cliProp.getRamoAtividade());
+			statement.setInt(8, codigo);//pega o código que vai ser inserido na tabela pai
+			statement.setString(9, cliProp.getRazaoSocial());
+			statement.setString(10, cliProp.getCnpj());
+			statement.setString(11, cliProp.getInscEstadual());
+			statement.setDate(12, DbUtil.getSqlDate(cliProp.getDataFundacao()));
+			statement.setString(13, cliProp.getRamoAtividade());
 					
 			statement.executeUpdate();
 			conn.commit(); //se tudo ocorrer sem erros ele commita a transação no banco de dados

@@ -31,6 +31,7 @@ import br.com.sani.bean.ClienteComprador;
 import br.com.sani.bean.ClienteCompradorFisica;
 import br.com.sani.bean.ClienteCompradorJuridica;
 import br.com.sani.dao.ClienteCompradorFisicaDAO;
+import br.com.sani.dao.ClienteCompradorJuridicaDAO;
 import br.com.sani.dao.ClienteProprietarioFisicaDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.util.Mascara;
@@ -39,6 +40,7 @@ import br.com.sani.util.SwingUtil;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -51,11 +53,11 @@ import javax.swing.JMenuItem;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.border.TitledBorder;
+
 public class frmConsultaClientesComprador extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtFieldConsultaNomeClienteComprador;
-	private JTextField txtFieldConsultaEnderecoClienteComprador;
 	private JTable table;
 	private JMenuItem smEditarRegistro;
 	
@@ -98,52 +100,8 @@ public class frmConsultaClientesComprador extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(9, 89, 645, 2);
-		panel.add(separator);
-		
-		JLabel label = new JLabel("Filtro:");
-		label.setBounds(10, 11, 46, 14);
-		panel.add(label);
-		
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(10, 36, 68, 14);
-		panel.add(lblNome);
-		
-		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
-		lblEndereo.setBounds(325, 36, 78, 14);
-		panel.add(lblEndereo);
-		
-		txtFieldConsultaNomeClienteComprador = new JTextField();
-		txtFieldConsultaNomeClienteComprador.setBounds(57, 33, 259, 20);
-		txtFieldConsultaNomeClienteComprador.setColumns(10);
-		panel.add(txtFieldConsultaNomeClienteComprador);
-		
-		txtFieldConsultaEnderecoClienteComprador = new JTextField();
-		txtFieldConsultaEnderecoClienteComprador.setBounds(395, 33, 259, 20);
-		txtFieldConsultaEnderecoClienteComprador.setColumns(10);
-		panel.add(txtFieldConsultaEnderecoClienteComprador);
-		
-		JLabel lblEstado = new JLabel("Estado:");
-		lblEstado.setBounds(10, 61, 46, 14);
-		panel.add(lblEstado);
-		
-		JComboBox comboBoxEstado = new JComboBox();
-		comboBoxEstado.setModel(new DefaultComboBoxModel(new String[] {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
-		comboBoxEstado.setBounds(57, 58, 45, 20);
-		panel.add(comboBoxEstado);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				fechar();
-			}
-		});
-		btnCancelar.setBounds(10, 362, 89, 23);
-		panel.add(btnCancelar);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 102, 623, 254);
+		scrollPane.setBounds(9, 102, 645, 289);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -185,55 +143,30 @@ public class frmConsultaClientesComprador extends JFrame {
 		//FAZER A EDIÇÃO!!!
 		
 		smEditarRegistro = new JMenuItem("Editar Registro");
+		smEditarRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				editar();
+			}
+		});
+		smEditarRegistro.setIcon(new ImageIcon(frmConsultaClientesComprador.class.getResource("/br/com/images/edit-.png")));
 		popupMenu.add(smEditarRegistro);
 		
-		JLabel lblRemove = new JLabel("");
-		lblRemove.setToolTipText("Apagar Cliente");
-		lblRemove.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblRemove.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//Remove o Usuario Selecionado
-				
+		JMenuItem mntmExcluirRegistro = new JMenuItem("Excluir Registro");
+		mntmExcluirRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				excluir();
 			}
 		});
-		lblRemove.setIcon(new ImageIcon(frmConsultaClientesComprador.class.getResource("/br/com/images/delete-.png")));
-		lblRemove.setBounds(583, 361, 25, 25);
-		panel.add(lblRemove);
+		mntmExcluirRegistro.setIcon(new ImageIcon(frmConsultaClientesComprador.class.getResource("/br/com/images/delete-.png")));
+		popupMenu.add(mntmExcluirRegistro);
 		
-		JLabel lblEdit = new JLabel("");
-		lblEdit.setToolTipText("Editar Cliente");
-		lblEdit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblEdit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//Edita o Cliente Selecionado
-				JOptionPane.showMessageDialog(null, "Teste");
-			}
-		});
-		lblEdit.setIcon(new ImageIcon(frmConsultaClientesComprador.class.getResource("/br/com/images/edit-.png")));
-		lblEdit.setBounds(618, 361, 25, 25);
-		panel.add(lblEdit);
-		
-		JLabel lblSearch = new JLabel("");
-		lblSearch.setToolTipText("Pesquisar Clientes");
-		lblSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblSearch.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//Faz a Busca no BD
-				buscar();
-			}
-		});
-		lblSearch.setIcon(new ImageIcon(frmConsultaClientesComprador.class.getResource("/br/com/images/search-ico.png")));
-		lblSearch.setBounds(618, 56, 25, 25);
-		panel.add(lblSearch);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Filtro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(9, 11, 645, 80);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
 		
 		setLocationRelativeTo(null);		
-	}
-	
-	public void fechar(){
-		this.dispose();
 	}
 	
 	//metodo que executa a pesquisa, dps vc add os filtros
@@ -300,13 +233,29 @@ public class frmConsultaClientesComprador extends JFrame {
 		}		
 	}
 	
-	private void deletar(){
-		//deleta cliente selecionado
-		int row = table.getSelectedRow();//pega linha selecionada
-		
-		//verifica se realmente tem alguma linha selecionada
-		if(row != -1){
-			int codigo = Integer.parseInt((String) table.getValueAt(row, 0));//retorna a id da primeira coluna
+	private void excluir(){
+		int row = table.getSelectedRow();
+		try{
+			if(row != -1){
+				int id = Integer.parseInt(String.valueOf((Object) table.getValueAt(row, 0)));
+				ClienteComprador cliente = new ClienteCompradorFisicaDAO().buscarPorCodigo(id);
+				
+				int question = JOptionPane.showConfirmDialog(this, "Deseja exluir o registro: " + id + " ?", "Atenção!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				
+				if(cliente != null && question == 0){
+					if(cliente.getTpCliente().equals("PF")){
+						new ClienteCompradorFisicaDAO().exluirClienteCompradorFisica(id);
+					}else{
+						new ClienteCompradorJuridicaDAO().exluirClienteCompradorJuridica(id);
+					}
+					JOptionPane.showMessageDialog(this, "Registro apagado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+					buscar();
+				}
+			}
+		}catch (DAOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	

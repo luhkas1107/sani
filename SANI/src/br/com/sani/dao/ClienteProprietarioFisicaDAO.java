@@ -16,7 +16,7 @@ public class ClienteProprietarioFisicaDAO {
 
 	private static final String EXCLUIR_CLIENTE_PROPRIETARIO_FISICA = 
 			"delete from tbClienteProprietarioFisica where codCliProprietario = ?; "+
-			"delete from TB_CLIENTE_PROPRIETARIO where codCliProprietario = ?; ";
+			"delete from tbClienteProprietario where codCliProprietario = ?; ";
 		
 	private static final String INSERIR_CLIENTE_PROPRIETARIO_FISICA =
 			"INSERT INTO tbClienteProprietario ( "+
