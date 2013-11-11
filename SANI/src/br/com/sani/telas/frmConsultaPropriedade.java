@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -31,6 +32,7 @@ import br.com.sani.exception.DAOException;
 import br.com.sani.util.FormatarNumero;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -117,6 +119,11 @@ public class frmConsultaPropriedade extends JFrame {
 		addPopup(table, popupMenu);
 		
 		JMenuItem mntmEditarRegistro = new JMenuItem("Editar Registro");
+		mntmEditarRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				editar();
+			}
+		});
 		mntmEditarRegistro.setIcon(new ImageIcon(frmConsultaPropriedade.class.getResource("/br/com/images/edit-.png")));
 		popupMenu.add(mntmEditarRegistro);
 		
@@ -151,6 +158,24 @@ public class frmConsultaPropriedade extends JFrame {
 					JOptionPane.showMessageDialog(this, "Registro apagado com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
 					buscar();
 				}
+			}
+		}catch (DAOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void editar(){
+		int row = table.getSelectedRow();
+		try{
+			if(row != -1){
+				int id = Integer.parseInt(String.valueOf((Object) table.getValueAt(row, 0)));
+				
+				Propriedade p = new PropriedadeDAO().buscarPorId(id);
+				
+				if(p != null){
+					new frmCadastroPropriedade(p);
+				}
+				
 			}
 		}catch (DAOException e) {
 			e.printStackTrace();

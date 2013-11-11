@@ -120,6 +120,10 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		addPopup(table, popupMenu);
 		
 		JMenuItem mntmEditarCadastro = new JMenuItem("Editar Registro");
+		mntmEditarCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		mntmEditarCadastro.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/edit-.png")));
 		popupMenu.add(mntmEditarCadastro);
 		
@@ -188,10 +192,10 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 					Object[] object = new Object[4];
 					
 					if(cli.getTpCliente().equals("PF")){
-						object[0] = cli.getClienteProprietarioFisica().getCodCliProprietario();
+						object[0] = cli.getCodCliProprietario();
 						object[1] = cli.getClienteProprietarioFisica().getNome();
 						object[2] = Mascara.setMaskCpfInTable(cli.getClienteProprietarioFisica().getCpf());
-						object[4] = cli.getClienteProprietarioFisica().getEmail();
+						object[3] = cli.getClienteProprietarioFisica().getEmail();
 					}else{
 						object[0] = cli.getCodCliProprietario();
 						object[1] = cli.getClienteProprietarioJuridica().getRazaoSocial();

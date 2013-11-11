@@ -27,11 +27,29 @@ public class PropriedadeDAO {
 	
 		private static final String INSERIR_PROPRIEDADE =
 				"INSERT INTO tbPropriedade "+
-				"values(?,?,?,?,?,?,?,?)";
+				"values(?,?,?,?,?,?,?,?,?)";
+		
+		private static final String ATUALIZAR_PROPRIEDADE = 
+				"update tbPropriedade set "
+				+ "codCliProprietario = ?, "
+				+ "cep = ?, "
+				+ "numeroEndereco = ?, "
+				+ "complementoEndereco = ?, "
+				+ "tipoPropriedade = ?, "
+				+ "situacaoPropriedade = ?, "
+				+ "metragemPropriedade = ?, "
+				+ "valorPropriedade = ? "
+				+ "where codPropriedade = ?";
 		
 		private static final String INSERIR_IMAGENS_PROPRIEDADE = 
 				"INSERT INTO tbImagensPropriedade "+
 				"values(?,?,?)";
+		
+		private static final String ATUALIZAR_IMAGENS_PROPRIEDADE = 
+				"update tbImagensPropriedade set "
+				+ "dtImagem = ?, "
+				+ "imagem = ? "
+				+ "where codPropriedade = ? and idImagem = ?";
 		
 		private static final String QUERY_BUSCAR_TODOS =
 				"SELECT "+
@@ -65,6 +83,9 @@ public class PropriedadeDAO {
 				"		INNER JOIN tbCidade C "+
 				"	ON B.idCidade = C.idCidade "+
 				"WHERE P.codPropriedade = ?";
+		
+		private static final String BUSCAR_IMAGENS_POR_PROPRIEDADE =
+				"select * from tbImagensPropriedade where codPropriedade = ?";
 					
 		private Propriedade getBean(ResultSet result) throws DAOException, SQLException{
 			Propriedade p = new Propriedade();
@@ -90,6 +111,17 @@ public class PropriedadeDAO {
 			p.setValorPropriedade(result.getFloat("valorPropriedade"));
 			
 			return p;
+		}
+		
+		private ImagemImovel getBeanImg(ResultSet result) throws DAOException, SQLException{
+			ImagemImovel img = new ImagemImovel();
+			
+			img.setIdImagem(result.getInt("idImagem"));
+			img.setPropriedade(result.getInt("codPropriedade"));
+			img.setDataImagem(DbUtil.getJavaDate(result, "dtImagem"));
+			img.setImagem(result.getBytes("imagem"));
+			
+			return img;
 		}
 		
 		
@@ -129,6 +161,7 @@ public class PropriedadeDAO {
 				statement.setString(6, p.getTipoPropriedade());
 				statement.setString(7, p.getSituacaoPropriedade());
 				statement.setFloat(8, p.getMetragem());
+				statement.setFloat(9, p.getValorPropriedade());
 				
 				statement.executeUpdate();
 				conn.commit();
@@ -141,6 +174,31 @@ public class PropriedadeDAO {
 			return retorno;
 		}
 		
+		public void atualizarPropriedade(Propriedade p) throws DAOException{
+			Connection conn = DbUtil.getConnection();
+			PreparedStatement statement = null;
+			ResultSet result = null;
+			try{
+				statement = conn.prepareStatement(ATUALIZAR_PROPRIEDADE);
+				statement.setInt(1, p.getClienteProprietario().getCodCliProprietario());
+				statement.setString(2, p.getCep());
+				statement.setInt(3, p.getNumeroEndereco());
+				statement.setString(4, p.getComplementoEndereco());
+				statement.setString(5, p.getTipoPropriedade());
+				statement.setString(6, p.getSituacaoPropriedade());
+				statement.setFloat(7, p.getMetragem());
+				statement.setFloat(8, p.getValorPropriedade());
+				statement.setInt(9, p.getCodPropriedade());
+				
+				statement.executeUpdate();
+				conn.commit();
+			}catch(SQLException e){
+				throw new DAOException(e);
+			}finally{
+				DbUtil.close(conn, statement, result);
+			}
+		}
+		
 		public void inserirImagensPropriedade(ImagemImovel img) throws DAOException{
 			Connection conn = DbUtil.getConnection();
 			PreparedStatement statement = null;
@@ -150,6 +208,27 @@ public class PropriedadeDAO {
 				statement.setInt(1, img.getPropriedade());
 				statement.setDate(2, DbUtil.getSqlDate(img.getDataImagem()));
 				statement.setBytes(3, img.getImagem());
+				
+				statement.executeUpdate();
+				conn.commit();
+			}catch(SQLException e){
+				throw new DAOException(e);
+			}finally{
+				DbUtil.close(conn, statement, result);
+			}
+		}
+		
+		public void atualizarImagensPropriedade(ImagemImovel img) throws DAOException{
+			Connection conn = DbUtil.getConnection();
+			PreparedStatement statement = null;
+			ResultSet result = null;
+			try{
+				statement = conn.prepareStatement(ATUALIZAR_IMAGENS_PROPRIEDADE);
+				statement.setDate(1, DbUtil.getSqlDate(img.getDataImagem()));
+				statement.setBytes(2, img.getImagem());
+				
+				statement.setInt(3, img.getPropriedade());
+				statement.setInt(4, img.getIdImagem());
 				
 				statement.executeUpdate();
 				conn.commit();
@@ -219,6 +298,29 @@ public class PropriedadeDAO {
 			}finally{
 				DbUtil.close(conn, statement, result);
 			}
+		}
+		
+		public List<ImagemImovel> buscarImagensPorPropriedade(int codPropriedade) throws DAOException{
+			Connection conn = DbUtil.getConnection();
+			PreparedStatement statement = null;
+			ResultSet result = null;
+			List<ImagemImovel> retorno = new ArrayList<ImagemImovel>();
+			try{
+				statement = conn.prepareStatement(BUSCAR_IMAGENS_POR_PROPRIEDADE);
+				statement.setInt(1, codPropriedade);
+				
+				result = statement.executeQuery();
+				while(result.next()){
+					ImagemImovel img = getBeanImg(result);
+					retorno.add(img);
+				}
+			}catch(SQLException e){
+				throw new DAOException(e);
+			}finally{
+				DbUtil.close(conn, statement, result);
+			}
+			
+			return retorno;
 		}
 		
 		
