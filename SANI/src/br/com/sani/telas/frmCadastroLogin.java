@@ -43,7 +43,11 @@ public class frmCadastroLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frmCadastroLogin() {
+	public frmCadastroLogin(){
+		initComponets();
+	}
+	
+	public void initComponets() {
 		setTitle("Novo Usu\u00E1rio");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroLogin.class.getResource("/br/com/images/user3.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -6,10 +6,11 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.text.ParseException;
 
-import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,12 +23,6 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.Wallpaper;
-
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class frmMenuPrincipal extends JFrame {
 
@@ -123,6 +118,17 @@ public class frmMenuPrincipal extends JFrame {
 				backup.setVisible(true);
 			}
 		});
+		
+		JMenuItem mntmCriarLogin = new JMenuItem("Criar Login");
+		mntmCriarLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmCadastroLogin login = new frmCadastroLogin();
+				login.setVisible(true);
+			}
+		});
+		mntmCriarLogin.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
+		mntmCriarLogin.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/user5.png")));
+		mnConfiuguracoes.add(mntmCriarLogin);
 		
 		JSeparator separator = new JSeparator();
 		mnConfiuguracoes.add(separator);
