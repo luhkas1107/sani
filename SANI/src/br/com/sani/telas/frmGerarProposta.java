@@ -33,7 +33,11 @@ import br.com.sani.util.Mascara;
 import br.com.sani.util.Moeda;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
+
 import java.awt.Toolkit;
+
+import com.google.gdata.data.calendar.CalendarExtendedProperty;
+import com.toedter.calendar.JDateChooser;
 
 public class frmGerarProposta extends JFrame {
 
@@ -45,8 +49,8 @@ public class frmGerarProposta extends JFrame {
 	private JTextField txtValorProposta;
 	private static JTextField txtEndereco;
 	private static JTextField txtProprietario;
-	private JXDatePicker dtProposta;
-	private JXDatePicker dtValidade;
+	private JDateChooser dtProposta;
+	private JDateChooser dtValidade;
 	private JComboBox cbTipoProposta;
 	private static JFormattedTextField ftxTelefone;
 	
@@ -105,8 +109,8 @@ public class frmGerarProposta extends JFrame {
 		panel.add(lblNrProposta);
 		
 		txtProposta = new JTextField();
-		txtProposta.setEditable(false);
 		txtProposta.setBounds(138, 39, 112, 20);
+		txtProposta.setEditable(false);
 		panel.add(txtProposta);
 		txtProposta.setColumns(10);
 		
@@ -115,27 +119,27 @@ public class frmGerarProposta extends JFrame {
 		panel.add(lblClienteComprador);
 		
 		txtCodComprador = new JTextField();
+		txtCodComprador.setBounds(138, 76, 112, 20);
 		txtCodComprador.setName("Cliente Comprador");
 		txtCodComprador.setEditable(false);
-		txtCodComprador.setBounds(138, 76, 112, 20);
 		panel.add(txtCodComprador);
 		txtCodComprador.setColumns(10);
 		
 		txtNomeComprador = new JTextField();
+		txtNomeComprador.setBounds(260, 76, 235, 20);
 		txtNomeComprador.setName("Nome Cliente");
 		txtNomeComprador.setEditable(false);
-		txtNomeComprador.setBounds(260, 76, 235, 20);
 		panel.add(txtNomeComprador);
 		txtNomeComprador.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.setBounds(505, 75, 115, 32);
 		btnPesquisar.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/search-ico.png")));
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new frmConsultaClientesComprador(1);
 			}
 		});
-		btnPesquisar.setBounds(505, 75, 115, 32);
 		panel.add(btnPesquisar);
 		
 		JLabel lblFormaDePagto = new JLabel("Forma de Pagto*:");
@@ -143,8 +147,8 @@ public class frmGerarProposta extends JFrame {
 		panel.add(lblFormaDePagto);
 		
 		txtFormaPagamento = new JTextField();
-		txtFormaPagamento.setName("Forma de pagamento");
 		txtFormaPagamento.setBounds(138, 109, 357, 20);
+		txtFormaPagamento.setName("Forma de pagamento");
 		panel.add(txtFormaPagamento);
 		txtFormaPagamento.setColumns(10);
 		
@@ -152,33 +156,17 @@ public class frmGerarProposta extends JFrame {
 		lblDataProposta.setBounds(49, 148, 79, 14);
 		panel.add(lblDataProposta);
 		
-		dtProposta = new JXDatePicker();
-		dtProposta.setName("Data de Proposta");
-		dtProposta.setFormats(new String[] {"dd/MM/yyyy"});
-		dtProposta.getEditor().setLocation(0, 145);
-		dtProposta.setBounds(138, 145, 113, 20);
-		dtProposta.setDate(new Date());
-		((JButton) dtProposta.getComponent(1)).setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/_Calendar.png")));
-		panel.add(dtProposta);
-		
 		JLabel lblValidadeProposta = new JLabel("Validade Proposta*:");
 		lblValidadeProposta.setBounds(273, 148, 99, 14);
 		panel.add(lblValidadeProposta);
-		
-		dtValidade = new JXDatePicker();
-		dtValidade.setName("Data de Validade Proposta");
-		dtValidade.setFormats(new String[] {"dd/MM/yyyy"});
-		dtValidade.setBounds(382, 144, 113, 22);
-		((JButton) dtValidade.getComponent(1)).setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/_Calendar.png")));
-		panel.add(dtValidade);
 		
 		JLabel lblTipoDeProposta = new JLabel("Tipo de Proposta*:");
 		lblTipoDeProposta.setBounds(281, 185, 91, 14);
 		panel.add(lblTipoDeProposta);
 		
 		cbTipoProposta = new JComboBox();
-		cbTipoProposta.setModel(new DefaultComboBoxModel(new String[] {"Aluguel", "Compra"}));
 		cbTipoProposta.setBounds(382, 182, 113, 20);
+		cbTipoProposta.setModel(new DefaultComboBoxModel(new String[] {"Aluguel", "Compra"}));
 		panel.add(cbTipoProposta);
 		
 		JLabel lblValorPropostaR = new JLabel("Valor Proposta R$*:");
@@ -186,26 +174,26 @@ public class frmGerarProposta extends JFrame {
 		panel.add(lblValorPropostaR);
 		
 		txtValorProposta = new JTextField();
+		txtValorProposta.setBounds(138, 182, 112, 20);
 		txtValorProposta.setName("Valor da proposta");
 		txtValorProposta.setDocument(new Moeda());
 		txtValorProposta.setText("0");
-		txtValorProposta.setBounds(138, 182, 112, 20);
 		panel.add(txtValorProposta);
 		txtValorProposta.setColumns(10);
 		
 		JXTitledSeparator titledSeparator = new JXTitledSeparator();
-		titledSeparator.setTitle("Propriedade*");
 		titledSeparator.setBounds(29, 230, 572, 14);
+		titledSeparator.setTitle("Propriedade*");
 		panel.add(titledSeparator);
 		
 		JButton btnSelecione = new JButton("Pesquisar");
+		btnSelecione.setBounds(505, 255, 115, 32);
 		btnSelecione.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/search-ico.png")));
 		btnSelecione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new frmConsultaPropriedade(1);
 			}
 		});
-		btnSelecione.setBounds(505, 255, 115, 32);
 		panel.add(btnSelecione);
 		
 		JLabel lblCep = new JLabel("Endere\u00E7o:");
@@ -213,8 +201,8 @@ public class frmGerarProposta extends JFrame {
 		panel.add(lblCep);
 		
 		txtEndereco = new JTextField();
-		txtEndereco.setEditable(false);
 		txtEndereco.setBounds(138, 291, 357, 20);
+		txtEndereco.setEditable(false);
 		panel.add(txtEndereco);
 		txtEndereco.setColumns(10);
 		
@@ -223,32 +211,33 @@ public class frmGerarProposta extends JFrame {
 		panel.add(lblProprietario);
 		
 		txtProprietario = new JTextField();
-		txtProprietario.setEditable(false);
 		txtProprietario.setBounds(138, 255, 357, 20);
+		txtProprietario.setEditable(false);
 		panel.add(txtProprietario);
 		txtProprietario.setColumns(10);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(273, 351, 123, 32);
 		btnCancelar.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/delete-.png")));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(273, 351, 123, 32);
 		panel.add(btnCancelar);
 		
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.setBounds(406, 351, 108, 32);
 		btnLimpar.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/clear.png")));
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limparFormulario();
 			}
 		});
-		btnLimpar.setBounds(406, 351, 108, 32);
 		panel.add(btnLimpar);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setBounds(524, 351, 96, 32);
 		btnSalvar.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/save.png")));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -256,16 +245,25 @@ public class frmGerarProposta extends JFrame {
 				pdf();
 			}
 		});
-		btnSalvar.setBounds(524, 351, 96, 32);
 		panel.add(btnSalvar);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setBounds(82, 327, 46, 14);
 		panel.add(lblTelefone);
 		
+		dtProposta = new JDateChooser();
+		dtProposta.setBounds(138, 143, 107, 19);
+		panel.add(dtProposta);
+		dtProposta.setDateFormatString("dd/MM/yyyy");
+		
+		dtValidade = new JDateChooser();
+		dtValidade.setBounds(395, 140, 100, 19);
+		panel.add(dtValidade);
+		dtValidade.setDateFormatString("dd/MM/yyyy");
+		
 		ftxTelefone = new JFormattedTextField(Mascara.setMaskTelefoneInTf(ftxTelefone));
-		ftxTelefone.setEditable(false);
 		ftxTelefone.setBounds(138, 324, 112, 20);
+		ftxTelefone.setEditable(false);
 		panel.add(ftxTelefone);
 		
 		setLocationRelativeTo(null);
@@ -301,10 +299,10 @@ public class frmGerarProposta extends JFrame {
 			throw new EntradaUsuarioException(txtProprietario);
 		}
 		
-		p.setDataProposta(TelaUtil.getDateFromDatePicker(dtProposta));
+		p.setDataProposta(dtProposta.getDate());
 		p.setFormaPagamento(TelaUtil.getCampoObrigatorio(txtFormaPagamento, true));
 		p.setTipoProposta(cbTipoProposta.getSelectedItem().toString().substring(0, 1));
-		p.setValidadeProposta(TelaUtil.getDateFromDatePicker(dtValidade));
+		p.setValidadeProposta(dtValidade.getDate());
 		p.setValorProposta(TelaUtil.getCampoObrigatorioDouble(txtValorProposta));
 		
 		return p;
@@ -347,5 +345,4 @@ public class frmGerarProposta extends JFrame {
 		  JOptionPane.showMessageDialog(null, "Erro: " + ex);  
 		}
 	}
-	
 }

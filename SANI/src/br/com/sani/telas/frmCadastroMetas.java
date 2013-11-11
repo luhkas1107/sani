@@ -131,7 +131,7 @@ public class frmCadastroMetas extends JFrame {
 		
 		dtInicio = new JDateChooser();
 		dtInicio.setDateFormatString("dd/MM/yyyy");
-		dtInicio.setBounds(114, 172, 100, 19);
+		dtInicio.setBounds(96, 167, 100, 19);
 		contentPane.add(dtInicio);
 		
 		dtDataFim = new JDateChooser();
