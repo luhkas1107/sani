@@ -55,7 +55,7 @@ public class frmLogin extends JFrame implements KeyListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmLogin.class.getResource("/br/com/images/user3.png")));
-		setTitle("Login - SANI v0.3.4");
+		setTitle("Login - SANI BETA VERSION 0.9.4");
 		setBounds(100, 100, 488, 262);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

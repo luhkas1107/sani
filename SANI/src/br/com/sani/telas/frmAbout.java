@@ -62,7 +62,7 @@ public class frmAbout extends JFrame {
 		txtpnSaniSistema.setBounds(10, 61, 368, 119);
 		contentPane.add(txtpnSaniSistema);
 		
-		JLabel lblVersion = new JLabel("Vers\u00E3o BETA v0.3.4");
+		JLabel lblVersion = new JLabel("Vers\u00E3o BETA v0.9.4");
 		lblVersion.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		lblVersion.setBounds(124, 36, 109, 14);
 		contentPane.add(lblVersion);
