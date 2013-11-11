@@ -21,8 +21,8 @@ public class LoginDAO {
 		"senha,"+
 		"nome,"+
 		"email,"+
-		"permissao,)"+
-		"VALUES(?,?,?,?,?)";
+		"permissao)"+
+		"VALUES(?,?,?,?,?);";
 	
 	private Login getBean(ResultSet result) throws DAOException, SQLException{
 		Login l = new Login();

@@ -65,8 +65,8 @@ public class frmCadastroLogin extends JFrame {
 		SwingUtil.lookWindows(this);
 		setTitle("Novo Usu\u00E1rio");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroLogin.class.getResource("/br/com/images/user3.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 290, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -140,7 +140,7 @@ public class frmCadastroLogin extends JFrame {
 			}
 		});
 		btnSalvar.setIcon(new ImageIcon(frmCadastroLogin.class.getResource("/br/com/images/save.png")));
-		btnSalvar.setBounds(320, 219, 104, 32);
+		btnSalvar.setBounds(146, 219, 104, 32);
 		contentPane.add(btnSalvar);
 		
 		txtEmail = new JTextField();
