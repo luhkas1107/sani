@@ -1,8 +1,10 @@
 package br.com.sani.telas;
 
+import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -244,6 +246,7 @@ public class frmGerarProposta extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				inserirProposta();
+				pdf();
 			}
 		});
 		btnSalvar.setBounds(307, 360, 89, 23);
@@ -325,6 +328,16 @@ public class frmGerarProposta extends JFrame {
 			e.printStackTrace();
 		} catch (DAOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void pdf(){
+		File pdf = new File("src/br/com/sani/doc/proposta_de_compra.pdf");
+		try {  
+		  Desktop.getDesktop().open(pdf);  
+		} catch(Exception ex) {  
+		  ex.printStackTrace();  
+		  JOptionPane.showMessageDialog(null, "Erro: " + ex);  
 		}
 	}
 	
