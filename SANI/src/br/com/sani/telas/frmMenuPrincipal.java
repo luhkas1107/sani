@@ -153,14 +153,7 @@ public class frmMenuPrincipal extends JFrame {
 		mntmPropriedades.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/house.png")));
 		mntmPropriedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			frmCadastroPropriedade frameCadProp;
-			try {
-				frameCadProp = new frmCadastroPropriedade();
-				frameCadProp.setVisible(true);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				new frmCadastroPropriedade(null);
 			
 			}
 		});
