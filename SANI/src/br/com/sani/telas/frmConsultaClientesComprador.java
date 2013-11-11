@@ -227,10 +227,24 @@ public class frmConsultaClientesComprador extends JFrame {
 	private void editar() {
 		int row = table.getSelectedRow();//pega linha selecionada
 		
-		//verifica se realmente tem alguma linha selecionada
-		if(row != -1){
-			int codigo = Integer.parseInt((String) table.getValueAt(row, 0));//retorna a id da primeira coluna
-		}		
+		try{
+			//verifica se realmente tem alguma linha selecionada
+			if(row != -1){
+				int codigo = Integer.parseInt(String.valueOf((Object) table.getValueAt(row, 0)));
+				
+				ClienteComprador cliente = new ClienteCompradorFisicaDAO().buscarPorCodigo(codigo);
+				
+				if(cliente.getTpCliente().equals("PF")){
+					new frmCadastroClienteCompradorFis(cliente.getClienteCompradorFisica());
+				}else{
+					new frmCadastroClienteCompradorJur(cliente.getClienteCompradorJuridica());
+				}
+				
+				
+			}	
+		}catch(DAOException e){
+			e.printStackTrace();
+		}
 	}
 	
 	private void excluir(){

@@ -51,7 +51,7 @@ public class ClienteCompradorFisicaDAO {
 			"	celCliComprador = ? "+
 			"WHERE codCliComprador = ?; "+
 			
-			"UPDATE TB_CLI_COMP_FISICA SET "+
+			"UPDATE tbClienteCompradorFisica SET "+
 			"	nomePessoa = ?, "+
 			"	rgPessoa = ?, "+
 			"	cpfPessoa = ?, "+
@@ -120,9 +120,8 @@ public class ClienteCompradorFisicaDAO {
 		c.setNumeroEndereco(result.getString("numeroEndereco"));
 		c.setTpCliente(result.getString("tpCliente"));
 		
-		String shit = result.getString("razaoSocial");
 		
-		if(shit == null){
+		if(c.getTpCliente().equals("PF")){
 			cf.setNome(result.getString("nomePessoa"));
 			cf.setCpf(result.getString("cpfPessoa"));
 			cf.setEmail(result.getString("email"));
@@ -137,7 +136,7 @@ public class ClienteCompradorFisicaDAO {
 			c.setClienteCompradorFisica(cf);
 		}else{
 			cj.setRazaoSocial(result.getString("razaoSocial"));
-			cj.setEmail(result.getString(20));
+			cj.setEmail(result.getString(21));
 			cj.setCnpj(result.getString("cnpj"));
 			cj.setDataFundacao(DbUtil.getJavaDate(result, "dtFundacao"));
 			cj.setInscricaoEstadual(result.getString("inscricaoEstadual"));

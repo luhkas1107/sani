@@ -45,7 +45,6 @@ public class frmCadastroClienteProprietarioJuridica extends JFrame {
 	private JTextField txtEndereco;
 	private JTextField txtNumeroResidencia;
 	private JTextField txtComplemento;
-	private JTextField txtEmail;
 	private JFormattedTextField ftCnpj;
 	
 	private String[] estadoCivil = new String[]{"S", "C", "D", "V"};
@@ -100,6 +99,7 @@ public class frmCadastroClienteProprietarioJuridica extends JFrame {
 		SwingUtil.lookWindows(this);
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietarioJuridica.class.getResource("/br/com/images/cliente.png")));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cadastro Cliente Propriet\u00E1rio - Pessoa Juridica");
 		setBounds(100, 100, 747, 450);
 		contentPane = new JPanel();
@@ -251,15 +251,6 @@ public class frmCadastroClienteProprietarioJuridica extends JFrame {
 		lblTelefoneCelularClienteComprador.setBounds(22, 30, 91, 14);
 		panelContato.add(lblTelefoneCelularClienteComprador);
 		
-		JLabel lblEmailClienteComprador = new JLabel("Email: *");
-		lblEmailClienteComprador.setBounds(22, 90, 37, 14);
-		panelContato.add(lblEmailClienteComprador);
-		
-		txtEmail = new JTextField();
-		txtEmail.setBounds(74, 87, 153, 20);
-		panelContato.add(txtEmail);
-		txtEmail.setColumns(10);
-		
 		ftTelefone = new JFormattedTextField(Mascara.setMaskTelefoneInTf(ftTelefone));
 		ftTelefone.setBounds(136, 57, 91, 20);
 		panelContato.add(ftTelefone);
@@ -347,7 +338,7 @@ public class frmCadastroClienteProprietarioJuridica extends JFrame {
 		cliJur.setCnpj(TelaUtil.getCnpj(ftCnpj, true));
 		cliJur.setInscEstadual(TelaUtil.getCampoObrigatorio(ftInscEstadual, true).replace(".", ""));
 		cliJur.setDataFundacao(TelaUtil.getDateFromDatePicker(dtFundacao));
-		cliJur.setRamoAtividade(cbRamoAtuacao.getSelectedItem().toString().substring(0, 1));
+		cliJur.setRamoAtividade(String.valueOf(cbRamoAtuacao.getSelectedIndex()));
 		cliJur.setClienteProprietario(cliProprietario); //agora seto dentro da filha a classe pai.
 		
 		return cliJur;
@@ -438,6 +429,8 @@ public class frmCadastroClienteProprietarioJuridica extends JFrame {
 		ftInscEstadual.setText(cadastro.getInscEstadual());
 		ftTelefone.setText(cadastro.getClienteProprietario().getTelefone());
 		dtFundacao.setDate(cadastro.getDataFundacao());
+		ftCnpj.setText(cadastro.getCnpj());
+		cbRamoAtuacao.setSelectedIndex(Integer.parseInt(cadastro.getRamoAtividade())-1);
 		
 		this.cadastro = cadastro;
 		
@@ -445,7 +438,7 @@ public class frmCadastroClienteProprietarioJuridica extends JFrame {
 	}
 	
 	private void modoCadastro(){
-		//limparFormulario();
+		limparFormulario();
 		setTitle("Cadastro Cliente Proprietario - Pessoa Juridica");
 		btnSalvar.setText("Cadastrar");
 		btnCancelar.setText("Cancelar");
@@ -464,7 +457,6 @@ public class frmCadastroClienteProprietarioJuridica extends JFrame {
 		txtBairro.setText("");
 		txtCidade.setText("");
 		txtComplemento.setText("");
-		txtEmail.setText("");
 		txtEndereco.setText("");
 		txtEstado.setText("");
 		txtNumeroResidencia.setText("");

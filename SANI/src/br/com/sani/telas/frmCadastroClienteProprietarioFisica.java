@@ -29,6 +29,7 @@ import javax.swing.border.TitledBorder;
 import br.com.sani.bean.ClienteProprietario;
 import br.com.sani.bean.ClienteProprietarioFisica;
 import br.com.sani.bean.Endereco;
+import br.com.sani.dao.ClienteProprietarioDAO;
 import br.com.sani.dao.ClienteProprietarioFisicaDAO;
 import br.com.sani.dao.EnderecoDAO;
 import br.com.sani.exception.DAOException;
@@ -42,19 +43,17 @@ import com.toedter.calendar.JDateChooser;
 public class frmCadastroClienteProprietarioFisica extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtNomeClienteProprietario;
+	private JTextField txtNome;
 	
-	private JFormattedTextField ftCpfClienteProprietario;
-	private JFormattedTextField ftRgClienteProprietario;
-	private JTextField txtNacionalidadeClienteProprietario;
-	private JTextField txtEnderecoClienteProprietario;
-	private JTextField txtNumeroClienteProprietario;
-	private JTextField txtComplementoClienteProprietario;
-	private JFormattedTextField ftCepClienteProprietario;
-	private JFormattedTextField ftTelefoneResidencialClienteProprietario;
-	private JFormattedTextField ftTelefoneCelularClienteProprietario;
-	private JFormattedTextField ftEmailClienteProprietario;
-	private JTextField txtSiteClienteProprietario;
+	private JFormattedTextField txtCpf;
+	private JTextField txtRg;
+	private JTextField txtEndereco;
+	private JTextField txtNumero;
+	private JTextField txtComplemento;
+	private JFormattedTextField txtCep;
+	private JFormattedTextField txtTelefone;
+	private JFormattedTextField txtCelular;
+	private JFormattedTextField txtEmail;
 	
 	private JRadioButton rdbtnMasculinoCadastroClienteProprietario;
 	private JComboBox cbEstadoCivilClienteProprietarioFisica;
@@ -62,6 +61,9 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 	private int modo = 0;
 	private ClienteProprietarioFisica cadastro;
 	private JDateChooser dtNascimento;
+	private JButton btnCadastrar;
+	private JButton btnLimpar;
+	private JButton btnCancelar;
 
 	/**
 	 * Launch the application.
@@ -70,7 +72,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new frmCadastroClienteProprietarioFisica();
+					new frmCadastroClienteProprietarioFisica(null);
 				} catch (Throwable e) {
 					e.printStackTrace();
 				}
@@ -78,9 +80,13 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		});
 	}
 	
-	public frmCadastroClienteProprietarioFisica(){
+	public frmCadastroClienteProprietarioFisica(ClienteProprietarioFisica cliente){
 		try {
 			montarComponentes();
+			if(cliente != null){
+				modoEdicao(cliente);
+			}
+			
 			setVisible(true);
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -94,6 +100,7 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 	public void montarComponentes() throws Throwable {
 		SwingUtil.lookWindows(this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/cliente.png")));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cadastro Cliente Propriet\u00E1rio - Pessoa Fisica");
 		setResizable(false);
 		setBounds(100, 100, 700, 460);
@@ -116,24 +123,24 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		lblNomeCadastroClienteProprietario.setBounds(68, 30, 46, 14);
 		panelInformacoesPessoais.add(lblNomeCadastroClienteProprietario);
 		
-		txtNomeClienteProprietario = new JTextField();
-		txtNomeClienteProprietario.setBounds(113, 24, 299, 20);
-		panelInformacoesPessoais.add(txtNomeClienteProprietario);
-		txtNomeClienteProprietario.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setBounds(113, 24, 299, 20);
+		panelInformacoesPessoais.add(txtNome);
+		txtNome.setColumns(10);
 		
 		JLabel lblCpfCadastroClienteProprietario = new JLabel("CPF: *");
 		lblCpfCadastroClienteProprietario.setBounds(74, 90, 40, 14);
 		panelInformacoesPessoais.add(lblCpfCadastroClienteProprietario);
 		
-		ftCpfClienteProprietario = new JFormattedTextField(Mascara.setMaskCpfInTf(ftCpfClienteProprietario));
-		ftCpfClienteProprietario.setBounds(113, 87, 106, 20);
-		panelInformacoesPessoais.add(ftCpfClienteProprietario);
-		ftCpfClienteProprietario.setColumns(10);
+		txtCpf = new JFormattedTextField(Mascara.setMaskCpfInTf(txtCpf));
+		txtCpf.setBounds(113, 87, 106, 20);
+		panelInformacoesPessoais.add(txtCpf);
+		txtCpf.setColumns(10);
 		
-		ftRgClienteProprietario = new JFormattedTextField(Mascara.setMaskRgInTf(ftRgClienteProprietario));
-		ftRgClienteProprietario.setBounds(303, 87, 109, 20);
-		panelInformacoesPessoais.add(ftRgClienteProprietario);
-		ftRgClienteProprietario.setColumns(10);
+		txtRg = new JTextField();
+		txtRg.setBounds(303, 87, 109, 20);
+		panelInformacoesPessoais.add(txtRg);
+		txtRg.setColumns(10);
 		
 		JLabel lblRgCadastroClienteProprietario = new JLabel("RG:");
 		lblRgCadastroClienteProprietario.setBounds(270, 90, 23, 14);
@@ -149,29 +156,20 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		cbEstadoCivilClienteProprietarioFisica.setModel(new DefaultComboBoxModel(new String[] {"Solteiro (a)", "Casado (a)", "Divorciado (a)", "Vi\u00FAvo (a)"}));
 		cbEstadoCivilClienteProprietarioFisica.setToolTipText("Solteiro (a)\r\nCasado (a)\r\nDivorciado (a)\r\nVi\u00FAvo (a)");
 		
-		JLabel lblNacionalidadeCadastroClienteProprietario = new JLabel("Nacionalidade:");
-		lblNacionalidadeCadastroClienteProprietario.setBounds(432, 60, 74, 14);
-		panelInformacoesPessoais.add(lblNacionalidadeCadastroClienteProprietario);
-		
-		txtNacionalidadeClienteProprietario = new JTextField();
-		txtNacionalidadeClienteProprietario.setBounds(512, 57, 137, 20);
-		panelInformacoesPessoais.add(txtNacionalidadeClienteProprietario);
-		txtNacionalidadeClienteProprietario.setColumns(10);
-		
-		txtNumeroClienteProprietario = new JTextField();
-		txtNumeroClienteProprietario.setBounds(303, 118, 109, 20);
-		panelInformacoesPessoais.add(txtNumeroClienteProprietario);
-		txtNumeroClienteProprietario.setColumns(10);
+		txtNumero = new JTextField();
+		txtNumero.setBounds(303, 118, 109, 20);
+		panelInformacoesPessoais.add(txtNumero);
+		txtNumero.setColumns(10);
 		
 		JLabel lblNumeroCadastroClienteProprietario = new JLabel("N\u00FAmero: ");
 		lblNumeroCadastroClienteProprietario.setBounds(247, 120, 55, 14);
 		panelInformacoesPessoais.add(lblNumeroCadastroClienteProprietario);
 		
-		txtEnderecoClienteProprietario = new JTextField();
-		txtEnderecoClienteProprietario.setEditable(false);
-		txtEnderecoClienteProprietario.setBounds(113, 147, 299, 20);
-		panelInformacoesPessoais.add(txtEnderecoClienteProprietario);
-		txtEnderecoClienteProprietario.setColumns(10);
+		txtEndereco = new JTextField();
+		txtEndereco.setEditable(false);
+		txtEndereco.setBounds(113, 147, 299, 20);
+		panelInformacoesPessoais.add(txtEndereco);
+		txtEndereco.setColumns(10);
 		
 		JLabel lblEnderecoCadastroClienteProprietario = new JLabel("Endere\u00E7o:");
 		lblEnderecoCadastroClienteProprietario.setBounds(51, 150, 63, 14);
@@ -181,30 +179,30 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		lblComplementoCadastroClienteProprietario.setBounds(33, 180, 70, 14);
 		panelInformacoesPessoais.add(lblComplementoCadastroClienteProprietario);
 		
-		txtComplementoClienteProprietario = new JTextField();
-		txtComplementoClienteProprietario.setBounds(113, 177, 299, 20);
-		panelInformacoesPessoais.add(txtComplementoClienteProprietario);
-		txtComplementoClienteProprietario.setColumns(10);
+		txtComplemento = new JTextField();
+		txtComplemento.setBounds(113, 177, 299, 20);
+		panelInformacoesPessoais.add(txtComplemento);
+		txtComplemento.setColumns(10);
 		
 		JLabel lblCepCadastroClienteProprietario = new JLabel("CEP: *");
 		lblCepCadastroClienteProprietario.setBounds(74, 120, 40, 14);
 		panelInformacoesPessoais.add(lblCepCadastroClienteProprietario);
 		
-		ftCepClienteProprietario = new JFormattedTextField(Mascara.setMaskCepInTf(ftCepClienteProprietario));
-		ftCepClienteProprietario.setBounds(113, 118, 106, 20);
-		panelInformacoesPessoais.add(ftCepClienteProprietario);
-		ftCepClienteProprietario.addFocusListener(new FocusAdapter() {
+		txtCep = new JFormattedTextField(Mascara.setMaskCepInTf(txtCep));
+		txtCep.setBounds(113, 118, 106, 20);
+		panelInformacoesPessoais.add(txtCep);
+		txtCep.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				buscarEndereco();
-				txtNumeroClienteProprietario.requestFocus();
+				txtNumero.requestFocus();
 			}
 		});
-		ftCepClienteProprietario.setColumns(10);
+		txtCep.setColumns(10);
 		
 		JPanel panelSexo = new JPanel();
 		panelSexo.setBorder(new TitledBorder(null, "Sexo*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelSexo.setBounds(512, 121, 137, 74);
+		panelSexo.setBounds(442, 87, 137, 74);
 		panelInformacoesPessoais.add(panelSexo);
 		panelSexo.setLayout(null);
 		
@@ -223,77 +221,71 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		lblTelefoneResidencialCadastroClienteProprietario.setBounds(28, 60, 86, 14);
 		panelInformacoesPessoais.add(lblTelefoneResidencialCadastroClienteProprietario);
 		
-		ftTelefoneResidencialClienteProprietario = new JFormattedTextField(Mascara.setMaskTelefoneInTf(ftTelefoneResidencialClienteProprietario));
-		ftTelefoneResidencialClienteProprietario.setBounds(113, 55, 106, 20);
-		panelInformacoesPessoais.add(ftTelefoneResidencialClienteProprietario);
-		ftTelefoneResidencialClienteProprietario.setColumns(10);
+		txtTelefone = new JFormattedTextField(Mascara.setMaskTelefoneInTf(txtTelefone));
+		txtTelefone.setBounds(113, 55, 106, 20);
+		panelInformacoesPessoais.add(txtTelefone);
+		txtTelefone.setColumns(10);
 		
 		JLabel lblTelefoneCelularCadastroClienteProprietario = new JLabel("Telefone Cel: *");
 		lblTelefoneCelularCadastroClienteProprietario.setBounds(225, 60, 81, 14);
 		panelInformacoesPessoais.add(lblTelefoneCelularCadastroClienteProprietario);
 		
-		ftTelefoneCelularClienteProprietario = new JFormattedTextField(Mascara.setMaskCelularInTf(ftTelefoneCelularClienteProprietario));
-		ftTelefoneCelularClienteProprietario.setBounds(306, 55, 106, 20);
-		panelInformacoesPessoais.add(ftTelefoneCelularClienteProprietario);
-		ftTelefoneCelularClienteProprietario.setColumns(10);
+		txtCelular = new JFormattedTextField(Mascara.setMaskCelularInTf(txtCelular));
+		txtCelular.setBounds(306, 55, 106, 20);
+		panelInformacoesPessoais.add(txtCelular);
+		txtCelular.setColumns(10);
 		
 		JLabel lblDataNasc = new JLabel("Data Nasc.:");
-		lblDataNasc.setBounds(443, 90, 63, 14);
+		lblDataNasc.setBounds(442, 57, 63, 14);
 		panelInformacoesPessoais.add(lblDataNasc);
 		
 		dtNascimento = new JDateChooser();
 		dtNascimento.setName("Data de Nascimento");
-		dtNascimento.setBounds(512, 87, 89, 20);
+		dtNascimento.setBounds(511, 54, 89, 20);
 		panelInformacoesPessoais.add(dtNascimento);
 		
-		txtSiteClienteProprietario = new JTextField();
-		txtSiteClienteProprietario.setBounds(113, 239, 299, 20);
-		panelInformacoesPessoais.add(txtSiteClienteProprietario);
-		txtSiteClienteProprietario.setColumns(10);
-		
-		ftEmailClienteProprietario = new JFormattedTextField();
-		ftEmailClienteProprietario.setBounds(113, 208, 299, 20);
-		panelInformacoesPessoais.add(ftEmailClienteProprietario);
-		ftEmailClienteProprietario.setColumns(10);
-		
-		JLabel lblSiteCadastroClienteProprietario = new JLabel("Site:");
-		lblSiteCadastroClienteProprietario.setBounds(68, 240, 46, 14);
-		panelInformacoesPessoais.add(lblSiteCadastroClienteProprietario);
+		txtEmail = new JFormattedTextField();
+		txtEmail.setBounds(113, 208, 299, 20);
+		panelInformacoesPessoais.add(txtEmail);
+		txtEmail.setColumns(10);
 		
 		JLabel lblEmailCadastroClienteProprietario = new JLabel("Email: *");
 		lblEmailCadastroClienteProprietario.setBounds(65, 210, 49, 14);
 		panelInformacoesPessoais.add(lblEmailCadastroClienteProprietario);
 		
-		JButton btnLimparCamposCadastroClienteProprietario = new JButton("Limpar Campos");
-		btnLimparCamposCadastroClienteProprietario.setBounds(349, 357, 145, 30);
-		panelInformacoesPessoais.add(btnLimparCamposCadastroClienteProprietario);
-		btnLimparCamposCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/clear.png")));
+		btnLimpar = new JButton("Limpar Campos");
+		btnLimpar.setBounds(351, 352, 145, 30);
+		panelInformacoesPessoais.add(btnLimpar);
+		btnLimpar.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/clear.png")));
 		
-		JButton btnCancelarCadastroClienteProprietario = new JButton("Cancelar");
-		btnCancelarCadastroClienteProprietario.setBounds(504, 357, 145, 30);
-		panelInformacoesPessoais.add(btnCancelarCadastroClienteProprietario);
-		btnCancelarCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/delete-.png")));
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(506, 352, 145, 30);
+		panelInformacoesPessoais.add(btnCancelar);
+		btnCancelar.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/delete-.png")));
 		
-		JButton btnSalvarCadastroClienteProprietario = new JButton("Cadastrar");
-		btnSalvarCadastroClienteProprietario.setBounds(194, 357, 145, 30);
-		panelInformacoesPessoais.add(btnSalvarCadastroClienteProprietario);
-		btnSalvarCadastroClienteProprietario.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/save.png")));
-		btnSalvarCadastroClienteProprietario.addActionListener(new ActionListener() {
+		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(196, 352, 145, 30);
+		panelInformacoesPessoais.add(btnCadastrar);
+		btnCadastrar.setIcon(new ImageIcon(frmCadastroClienteProprietarioFisica.class.getResource("/br/com/images/save.png")));
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					salvarClienteProprietario();
+					if(modo == 0){
+						salvarClienteProprietario();
+					}else if(modo == 1){
+						atualizar();
+					}
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-		btnCancelarCadastroClienteProprietario.addActionListener(new ActionListener() {
+		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				fechar();
 			}
 		});
-		btnLimparCamposCadastroClienteProprietario.addActionListener(new ActionListener() {
+		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				limpaFormulario();
 			}
@@ -307,29 +299,27 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 	}
 	
 	public void limpaFormulario(){
-		txtNomeClienteProprietario.setText("");
-		ftCpfClienteProprietario.setText("");
-		ftRgClienteProprietario.setText("");
-		txtNacionalidadeClienteProprietario.setText("");
-		txtEnderecoClienteProprietario.setText("");
-		txtNumeroClienteProprietario.setText("");
-		txtComplementoClienteProprietario.setText("");
-		ftCepClienteProprietario.setText("");
-		ftTelefoneResidencialClienteProprietario.setText("");
-		ftTelefoneCelularClienteProprietario.setText("");
-		ftEmailClienteProprietario.setText("");
-		txtSiteClienteProprietario.setText("");
+		txtNome.setText("");
+		txtCpf.setText("");
+		txtRg.setText("");
+		txtEndereco.setText("");
+		txtNumero.setText("");
+		txtComplemento.setText("");
+		txtCep.setText("");
+		txtTelefone.setText("");
+		txtCelular.setText("");
+		txtEmail.setText("");
 	}
 	
 	public ClienteProprietarioFisica getBean() throws EntradaUsuarioException, ParseException{
 		
 		ClienteProprietario CliProp = new ClienteProprietario();
 		
-		CliProp.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumeroClienteProprietario, true));
-		CliProp.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoClienteProprietario, true));
-		CliProp.setCep(TelaUtil.getCep(ftCepClienteProprietario, true));
-		CliProp.setTelefone(TelaUtil.getTelefone(ftTelefoneResidencialClienteProprietario, false));
-		CliProp.setCelular(TelaUtil.getCelular(ftTelefoneCelularClienteProprietario, true));
+		CliProp.setNumeroEndereco(TelaUtil.getCampoObrigatorio(txtNumero, true));
+		CliProp.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplemento, true));
+		CliProp.setCep(TelaUtil.getCep(txtCep, true));
+		CliProp.setTelefone(TelaUtil.getTelefone(txtTelefone, false));
+		CliProp.setCelular(TelaUtil.getCelular(txtCelular, true));
 		
 		if(this.modo == 1){
 			CliProp.setCodCliProprietario(cadastro.getClienteProprietarioFisica().getCodCliProprietario());
@@ -337,12 +327,12 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		
 		ClienteProprietarioFisica CliPropFisica = new ClienteProprietarioFisica();
 		
-		CliPropFisica.setNome(TelaUtil.getCampoObrigatorio(txtNomeClienteProprietario, true));
+		CliPropFisica.setNome(TelaUtil.getCampoObrigatorio(txtNome, true));
 		CliPropFisica.setSexo(TelaUtil.getCharSexo(rdbtnMasculinoCadastroClienteProprietario));
-		CliPropFisica.setCpf(TelaUtil.getCpf(ftCpfClienteProprietario, true));
-		CliPropFisica.setRg(TelaUtil.getRg(ftRgClienteProprietario, true));
+		CliPropFisica.setCpf(TelaUtil.getCpf(txtCpf, true));
+		CliPropFisica.setRg(TelaUtil.getCampoObrigatorio(txtRg, true));
 		CliPropFisica.setEstadoCivil(cbEstadoCivilClienteProprietarioFisica.getSelectedItem().toString().substring(0, 1));
-		CliPropFisica.setEmail(TelaUtil.getEmail(ftEmailClienteProprietario));
+		CliPropFisica.setEmail(TelaUtil.getEmail(txtEmail));
 		CliPropFisica.setDataNascimento(TelaUtil.getDateFromDateChooser(dtNascimento, true));
 		
 		CliPropFisica.setClienteProprietario(CliProp);
@@ -350,6 +340,33 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 		return CliPropFisica;		
 		
 		
+	}
+	
+	/**
+	 * Este método atualiza os dados no banco
+	 */
+	private void atualizar(){
+		try{
+			ClienteProprietarioFisica bean = getBean(); //mando ele coletar os dados da tela e validadar
+			ClienteProprietarioFisicaDAO dao = new ClienteProprietarioFisicaDAO();
+			
+			dao.atualizarClienteProprietarioFisica(bean);
+			
+			//se não der erro ele exibe essa mensagem
+			JOptionPane.showMessageDialog(this, "Dados atualizados com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+			
+			//volta para modo de cadastro
+			modoCadastro();
+		}catch(DAOException e){
+			JOptionPane.showMessageDialog(this, "Erro ao tentar Atualizar os Dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void salvarClienteProprietario() throws SQLException{
@@ -369,19 +386,49 @@ public class frmCadastroClienteProprietarioFisica extends JFrame {
 	
 	private void buscarEndereco(){
 		try{
-			Endereco endereco = new EnderecoDAO().buscarPorCep(TelaUtil.getCep(ftCepClienteProprietario, true));
+			Endereco endereco = new EnderecoDAO().buscarPorCep(TelaUtil.getCep(txtCep, true));
 			if(endereco != null){
-				txtEnderecoClienteProprietario.setText(endereco.getEndereco());
+				txtEndereco.setText(endereco.getEndereco());
 				//txtCidade.setText(endereco.getCidade());
 				//txtBairro.setText(endereco.getBairro());
 				//txtEstado.setText(endereco.getEstado());
 			}else{
 				JOptionPane.showMessageDialog(null, "O cep digitado não existe!");
-				ftCepClienteProprietario.setText("");
-				ftCepClienteProprietario.requestFocus();
+				txtCep.setText("");
+				txtCep.requestFocus();
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	private void modoEdicao(ClienteProprietarioFisica cadastro){
+		setTitle("EDIÇÃO de Cadastro Cliente Proprietario / Pessoa Física");
+		btnCadastrar.setText("Salvar");
+		this.modo = 1;
+		
+		txtNome.setText(cadastro.getNome());
+		txtComplemento.setText(cadastro.getCodCliProprietario().getComplementoEndereco());
+		txtEmail.setText(cadastro.getEmail());
+		txtNumero.setText(cadastro.getCodCliProprietario().getNumeroEndereco());
+		txtRg.setText(cadastro.getRg());
+		txtCelular.setText(cadastro.getCodCliProprietario().getCelular());
+		txtCep.setText(cadastro.getCodCliProprietario().getCep());
+		txtCpf.setText(cadastro.getCpf());
+		txtTelefone.setText(cadastro.getCodCliProprietario().getTelefone());
+		dtNascimento.setDate(cadastro.getDataNascimento());
+		
+		this.cadastro = cadastro;
+		
+		buscarEndereco();
+	}
+	
+	private void modoCadastro(){
+		limpaFormulario();
+		setTitle("Cadastro Cliente Proprietario / Pessoa Física");
+		btnCadastrar.setText("Cadastrar");
+		this.modo = 0;
+		
+		this.cadastro = null;
 	}
 }

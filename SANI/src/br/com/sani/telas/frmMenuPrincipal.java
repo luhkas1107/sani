@@ -196,7 +196,7 @@ public class frmMenuPrincipal extends JFrame {
 		JMenuItem mntmPessoaFisica_1 = new JMenuItem("Pessoa Fisica");
 		mntmPessoaFisica_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new frmCadastroClienteProprietarioFisica();
+				new frmCadastroClienteProprietarioFisica(null);
 			}
 		});
 		mnClienteProprietrio.add(mntmPessoaFisica_1);

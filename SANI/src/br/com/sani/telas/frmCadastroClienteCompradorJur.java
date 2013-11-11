@@ -464,11 +464,9 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 		
 		txtRazaoSocial.setText(cadastro.getRazaoSocial());
 		txtComplemento.setText(cadastro.getClienteComprador().getComplementoEndereco());
-		//txtEmail.setText(cadastro.getEmail());
+		txtEmail.setText(cadastro.getEmail());
 		txtNumeroResidencia.setText(cadastro.getClienteComprador().getNumeroEndereco());
-		//txtProfissao.setText(cadastro.getProfissao());
-		//txtRenda.setText(TelaUtil.formataDinheiro(cadastro.getRenda()));
-		//txtRg.setText(cadastro.getRg());
+		ftCnpj.setText(cadastro.getCnpj());
 		ftCelular.setText(cadastro.getClienteComprador().getCelular());
 		ftCep.setText(cadastro.getClienteComprador().getCep());
 		ftInscEstadual.setText(cadastro.getInscricaoEstadual());
@@ -481,7 +479,7 @@ public class frmCadastroClienteCompradorJur extends JFrame {
 	}
 	
 	private void modoCadastro(){
-		//limparFormulario();
+		limparFormulario();
 		setTitle("Cadastro Cliente Comprador / Pessoa Física");
 		btnSalvar.setText("Cadastrar");
 		btnCancelar.setText("Cancelar");

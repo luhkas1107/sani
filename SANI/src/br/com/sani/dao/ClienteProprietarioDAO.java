@@ -53,14 +53,12 @@ public class ClienteProprietarioDAO {
 		c.setTelefone(result.getString("telCliProprietario"));
 		c.setTpCliente(result.getString("tpCliente"));
 		
-		String test = result.getString("razaoSocial");
-		
-		if(test != null){
+		if(c.getTpCliente().equals("PJ")){
 			cj.setCnpj(result.getString("cnpj"));
 			cj.setDataFundacao(DbUtil.getJavaDate(result, "dtFundacao"));
 			cj.setInscEstadual(result.getString("inscricaoEstadual"));
 			cj.setRamoAtividade(result.getString("ramoAtividade"));
-			cj.setRazaoSocial(test);
+			cj.setRazaoSocial(result.getString("razaoSocial"));
 			
 			cj.setClienteProprietario(c);
 			
@@ -72,8 +70,6 @@ public class ClienteProprietarioDAO {
 			cf.setEmail(result.getString("email"));
 			cf.setEstadoCivil(result.getString("estadoCivilPessoa"));
 			cf.setNome(result.getString("nomePessoa"));
-//			cf.setProfissao(result.getString("profissao"));
-//			cf.setRenda(result.getDouble("renda"));
 			cf.setRg(result.getString("rgPessoa"));
 			cf.setSexo(result.getString("sexoPessoa"));
 			

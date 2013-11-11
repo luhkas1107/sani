@@ -122,6 +122,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		JMenuItem mntmEditarCadastro = new JMenuItem("Editar Registro");
 		mntmEditarCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				editar();
 			}
 		});
 		mntmEditarCadastro.setIcon(new ImageIcon(frmConsultaClienteProprietario.class.getResource("/br/com/images/edit-.png")));
@@ -210,6 +211,28 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		}catch (DAOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void editar() {
+		int row = table.getSelectedRow();//pega linha selecionada
+		
+		try{
+			if(row != -1){
+				int codigo = Integer.parseInt(String.valueOf((Object) table.getValueAt(row, 0)));
+				
+				ClienteProprietario cliente = new ClienteProprietarioDAO().buscarPorId(codigo);
+				
+				if(cliente.getTpCliente().equals("PF")){
+					new frmCadastroClienteProprietarioFisica(cliente.getClienteProprietarioFisica());
+				}else{
+					new frmCadastroClienteProprietarioJuridica(cliente.getClienteProprietarioJuridica());
+				}
+				
+				
+			}	
+		}catch(DAOException e){
 			e.printStackTrace();
 		}
 	}

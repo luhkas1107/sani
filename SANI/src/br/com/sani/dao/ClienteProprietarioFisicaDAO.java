@@ -56,8 +56,6 @@ public class ClienteProprietarioFisicaDAO {
 			"	dtNasc = ?, "+
 			"	sexoPessoa = ?, "+
 			"	estadoCivilPessoa = ?, "+
-			"	renda = ?, "+
-			"	profissao = ?, "+
 			"	email = ? "+
 			"WHERE codCliProprietario = ?";
 	
@@ -171,10 +169,8 @@ public class ClienteProprietarioFisicaDAO {
 			statement.setDate(10, DbUtil.getSqlDate(cliComp.getDataNascimento()));
 			statement.setString(11, cliComp.getSexo());
 			statement.setString(12, cliComp.getEstadoCivil());
-			statement.setDouble(13, cliComp.getRenda());
-			statement.setString(14, cliComp.getProfissao());
-			statement.setString(15, cliComp.getEmail());
-			statement.setInt(16, cliComp.getCodCliProprietario().getCodCliProprietario());
+			statement.setString(13, cliComp.getEmail());
+			statement.setInt(14, cliComp.getCodCliProprietario().getCodCliProprietario());
 			
 			statement.executeUpdate();
 			conn.commit(); //se tudo ocorrer sem erros ele commita a transação no banco de dados

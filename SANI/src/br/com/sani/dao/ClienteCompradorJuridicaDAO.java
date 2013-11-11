@@ -52,13 +52,12 @@ public class ClienteCompradorJuridicaDAO {
 			"WHERE codCliComprador = ?; "+
 					
 			"UPDATE tbClienteCompradorJuridica SET "+
-			//"	codCliComprador = ?, "+
 			"	razaoSocial = ?, "+
-			"	email,"+
+			"	email = ?, "+
 			"	cnpj = ?, "+
 			"	inscricaoEstadual = ?, "+
 			"	dtFundacao = ?, "+
-			"	ramoAtividade = ?, "+
+			"	ramoAtividade = ? "+
 			"WHERE codCliComprador = ?";
 	
 	/*private static final String VALIDAR_LOGIN_SENHA = 
@@ -167,13 +166,13 @@ public class ClienteCompradorJuridicaDAO {
 			statement.setString(5, cliComp.getClienteComprador().getCelular());
 			statement.setInt(6, cliComp.getClienteComprador().getCodCliComprador());
 			
-			int codigo = getNovoId();
-			statement.setInt(7, codigo);//pega o código que vai ser inserido na tabela pai
-			statement.setString(8, cliComp.getRazaoSocial());
+			statement.setString(7, cliComp.getRazaoSocial());
+			statement.setString(8, cliComp.getEmail());
 			statement.setString(9, cliComp.getCnpj());
 			statement.setString(10, cliComp.getInscricaoEstadual());
 			statement.setDate(11, DbUtil.getSqlDate(cliComp.getDataFundacao()));
 			statement.setString(12, cliComp.getRamoAtividade());
+			statement.setInt(13, cliComp.getClienteComprador().getCodCliComprador());
 			
 			statement.executeUpdate();
 			conn.commit(); //se tudo ocorrer sem erros ele commita a transação no banco de dados

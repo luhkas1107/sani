@@ -570,7 +570,6 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 	private void modoEdicao(ClienteCompradorFisica cadastro){
 		setTitle("EDIÇÃO de Cadastro Cliente Comprador / Pessoa Física");
 		btnCadastrar.setText("Salvar");
-		btnCancelar.setText("Deletar");
 		this.modo = 1;
 		
 		txtNome.setText(cadastro.getNome());
@@ -595,7 +594,6 @@ public class frmCadastroClienteCompradorFis extends JFrame {
 		limparFormulario();
 		setTitle("Cadastro Cliente Comprador / Pessoa Física");
 		btnCadastrar.setText("Cadastrar");
-		btnCancelar.setText("Cancelar");
 		this.modo = 0;
 		
 		this.cadastro = null;
