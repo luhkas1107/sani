@@ -1,6 +1,7 @@
 package br.com.sani.telas;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -23,8 +24,10 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -35,17 +38,16 @@ import br.com.sani.bean.ClienteProprietario;
 import br.com.sani.bean.Endereco;
 import br.com.sani.bean.ImagemImovel;
 import br.com.sani.bean.Propriedade;
+import br.com.sani.dao.ClienteProprietarioDAO;
 import br.com.sani.dao.EnderecoDAO;
 import br.com.sani.dao.PropriedadeDAO;
 import br.com.sani.exception.DAOException;
 import br.com.sani.exception.EntradaUsuarioException;
 import br.com.sani.util.ImagePanel;
 import br.com.sani.util.Mascara;
+import br.com.sani.util.Moeda;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import javax.swing.JMenuItem;
 
 public class frmCadastroPropriedade extends JFrame {
 
@@ -95,6 +97,11 @@ public class frmCadastroPropriedade extends JFrame {
 	private JRadioButton rbVendida;
 	private JRadioButton rbAluguel;
 	private JRadioButton rbAlugado;
+	private JTextField txtValor;
+	
+	private int modo = 0;
+	private int codPropriedade = 0;
+	ImagemImovel[] imgs = new ImagemImovel[6];
 
 	/**
 	 * Launch the application.
@@ -103,20 +110,33 @@ public class frmCadastroPropriedade extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frmCadastroPropriedade frame = new frmCadastroPropriedade();
-					frame.setVisible(true);
+					new frmCadastroPropriedade(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	
+	public frmCadastroPropriedade(Propriedade p){
+		try {
+			montarComponentes();
+			if(p != null){
+				modoEdicao(p);
+			}
+			
+			setVisible(true);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	/**
 	 * Create the frame.
 	 * @throws ParseException 
 	 */
-	public frmCadastroPropriedade() throws ParseException {
+	public void montarComponentes() throws ParseException {
 		SwingUtil.lookWindows(this);
 		setResizable(false);
 		setTitle("Cadastro de Propriedade");
@@ -240,7 +260,7 @@ public class frmCadastroPropriedade extends JFrame {
 		
 		JPanel panelInfoPropriedade = new JPanel();
 		panelInfoPropriedade.setBorder(new TitledBorder(null, "Informa\u00E7\u00F5es Propriedade*", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelInfoPropriedade.setBounds(10, 323, 457, 179);
+		panelInfoPropriedade.setBounds(10, 323, 457, 200);
 		contentPane.add(panelInfoPropriedade);
 		panelInfoPropriedade.setLayout(null);
 		
@@ -331,6 +351,17 @@ public class frmCadastroPropriedade extends JFrame {
 		txtEstado.setBounds(342, 115, 66, 20);
 		panelInfoPropriedade.add(txtEstado);
 		
+		JLabel lblValor = new JLabel("Valor*:");
+		lblValor.setBounds(48, 175, 37, 14);
+		panelInfoPropriedade.add(lblValor);
+		
+		txtValor = new JTextField();
+		txtValor.setBounds(96, 172, 86, 20);
+		txtValor.setDocument(new Moeda());
+		txtValor.setName("Valor da propriedade");
+		panelInfoPropriedade.add(txtValor);
+		txtValor.setColumns(10);
+		
 		JButton btnLimparCampos = new JButton("Limpar Campos");
 		btnLimparCampos.setIcon(new ImageIcon(frmCadastroPropriedade.class.getResource("/br/com/images/clear.png")));
 		btnLimparCampos.addActionListener(new ActionListener() {
@@ -354,7 +385,11 @@ public class frmCadastroPropriedade extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				inserirPropriedade();
+				if(modo == 0){
+					inserirPropriedade();
+				}else if(modo == 1){
+					atualizarPropriedade();
+				}
 			}
 		});
 		btnCadastrar.setIcon(new ImageIcon(frmCadastroPropriedade.class.getResource("/br/com/images/save.png")));
@@ -393,7 +428,7 @@ public class frmCadastroPropriedade extends JFrame {
 		
 		JPanel panelImagem = new JPanel();
 		panelImagem.setBorder(new TitledBorder(null, "Selecionar Imagens", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelImagem.setBounds(477, 161, 214, 341);
+		panelImagem.setBounds(477, 161, 214, 362);
 		contentPane.add(panelImagem);
 		panelImagem.setLayout(null);
 		
@@ -592,7 +627,7 @@ public class frmCadastroPropriedade extends JFrame {
 		imagem6.setLayout(null);
 		
 		btnExcluir = new JButton("Limpar tudo");
-		btnExcluir.setBounds(112, 307, 92, 23);
+		btnExcluir.setBounds(112, 328, 92, 23);
 		panelImagem.add(btnExcluir);
 		
 		JLabel lblImagem1 = new JLabel("");
@@ -674,7 +709,7 @@ public class frmCadastroPropriedade extends JFrame {
 		txtEmailProprietario.setText((String) prop[3]);
 		txtCpfProprietario.setText((String) prop[2]);
 		
-		proprietario = (Integer) prop[0];
+		proprietario = (int) prop[0];
 	}
 	
 	public void limpaFormulario(){
@@ -688,6 +723,7 @@ public class frmCadastroPropriedade extends JFrame {
 		txtEstado.setText("");
 		txtMetragem.setText("");
 		txtNomeProprietario.setText("");
+		txtValor.setText("0");
 		proprietario = 0;
 		
 		foto1 = null;
@@ -770,11 +806,16 @@ public class frmCadastroPropriedade extends JFrame {
 			throw new EntradaUsuarioException(txtNomeProprietario);
 		}
 		
+		if(this.modo == 1){
+			p.setCodPropriedade(codPropriedade);
+		}
+		
 		p.setClienteProprietario(cli);
 		p.setCep(TelaUtil.getCep(ftCepPropriedade, true));
 		p.setComplementoEndereco(TelaUtil.getCampoObrigatorio(txtComplementoPropriedade, false));
 		p.setMetragem(TelaUtil.getCampoObrigatorioFloat(txtMetragem));
 		p.setNumeroEndereco(Integer.parseInt(TelaUtil.getCampoObrigatorio(txtNumero, true)));
+		p.setValorPropriedade(TelaUtil.getCampoObrigatorioFloat(txtValor));
 		
 		if(rbCasa.isSelected()){
 			p.setTipoPropriedade("Casa");
@@ -855,6 +896,129 @@ public class frmCadastroPropriedade extends JFrame {
 		} catch (EntradaUsuarioException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void atualizarPropriedade(){
+		try{
+			PropriedadeDAO dao = new PropriedadeDAO();
+			
+			dao.atualizarPropriedade(getBean());
+			
+			ImagemImovel img = new ImagemImovel();
+			img.setDataImagem(new Date());
+			img.setPropriedade(codPropriedade);
+			int cont = 0;
+
+			List<byte[]> im = getImagens();
+			for(byte[] foto : im){
+				img.setIdImagem(imgs[cont++].getIdImagem());
+				img.setImagem(foto);
+				dao.atualizarImagensPropriedade(img);
+			}
+			
+			JOptionPane.showMessageDialog(this, "Propriedade atualizada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+			limpaFormulario();
+			modoCadastro();
+		}catch(DAOException e){
+			e.printStackTrace();
+		} catch (EntradaUsuarioException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void modoEdicao(Propriedade p){
+		this.modo = 1;
+		setTitle("Edição de Registro de Propriedade");
+		try {
+			ClienteProprietario cli = new ClienteProprietarioDAO().buscarPorId(p.getClienteProprietario().getCodCliProprietario());
+			
+			String cpf = "";
+			String nome = "";
+			String email = "";
+			
+			if(cli.getTpCliente().equals("PF")){
+				cpf = cli.getClienteProprietarioFisica().getCpf();
+				nome = cli.getClienteProprietarioFisica().getNome();
+				email = cli.getClienteProprietarioFisica().getEmail();
+			}else{
+				cpf = cli.getClienteProprietarioJuridica().getCnpj();
+				nome = cli.getClienteProprietarioJuridica().getRazaoSocial();
+			}
+			
+			List<ImagemImovel> listaImagem = new PropriedadeDAO().buscarImagensPorPropriedade(p.getCodPropriedade());
+			int cont = 0;
+			
+			for(ImagemImovel img : listaImagem){
+				imgs[cont++] = img;
+			}
+			
+			codPropriedade = p.getCodPropriedade();
+			txtEndereco.setText(p.getEndereco().getEndereco());
+			ftCepPropriedade.setText(p.getEndereco().getCep());
+			txtNumero.setText(String.valueOf(p.getNumeroEndereco()));
+			txtComplementoPropriedade.setText(p.getComplementoEndereco());
+			txtBairro.setText(p.getEndereco().getBairro());
+			txtCidade.setText(p.getEndereco().getCidade());
+			txtCpfProprietario.setText(cpf);
+			txtEmailProprietario.setText(email);
+			txtEstado.setText(p.getEndereco().getEstado());
+			txtMetragem.setText(String.valueOf(p.getMetragem()));
+			txtNomeProprietario.setText(nome);
+			txtValor.setText(TelaUtil.formatDocumentMoney(p.getValorPropriedade()));
+			proprietario = p.getCodPropriedade();
+			
+			
+			if(imgs[0] != null){
+				foto1 = imgs[0].getImagem();
+				imagem1.setImagem(foto1);
+				imagem1.repaint();
+				imagem1.revalidate();
+			}
+			
+			if(imgs[1] != null){
+				foto2 = imgs[1].getImagem();
+				imagem2.setImagem(foto2);
+				imagem2.repaint();
+				imagem2.revalidate();
+			}
+				
+			if(imgs[2] != null){
+				foto3 = imgs[2].getImagem();
+				imagem3.setImagem(foto3);
+				imagem3.repaint();
+				imagem3.revalidate();
+			}
+				
+			if(imgs[3] != null){
+				foto4 = imgs[3].getImagem();
+				imagem4.setImagem(foto4);
+				imagem4.repaint();
+				imagem4.revalidate();
+			}
+				
+			if(imgs[4] != null){
+				foto5 = imgs[4].getImagem();
+				imagem5.setImagem(foto5);
+				imagem5.repaint();
+				imagem5.revalidate();
+			}
+				
+			if(imgs[5] != null){
+				foto6 = imgs[5].getImagem();
+				imagem6.setImagem(foto6);
+				imagem6.repaint();
+				imagem6.revalidate();
+			}
+			
+		}catch (DAOException e) {
+			e.printStackTrace();
+		}
+			
+	}
+	
+	private void modoCadastro(){
+		setTitle("Cadastro de Propriedade");
+		this.modo = 0;
 	}
 	
 	

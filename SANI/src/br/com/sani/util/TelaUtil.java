@@ -35,6 +35,16 @@ import com.toedter.calendar.JDateChooser;
 
 public class TelaUtil {
 	
+	public static String formatDocumentMoney(double valor){
+		String val = String.valueOf(valor);
+		
+		if((val.length()-val.indexOf(".")) < 3){
+			val += "0";
+		}
+		
+		return val.replace(".", "");
+	}
+	
 	public static String getSenha(JPasswordField pfSenha, JPasswordField pfConfirmacaoSenha) throws EntradaUsuarioException{
 		String senha = String.copyValueOf(pfSenha.getPassword()).trim();
 		String confirmacao = String.copyValueOf(pfConfirmacaoSenha.getPassword()).trim();
