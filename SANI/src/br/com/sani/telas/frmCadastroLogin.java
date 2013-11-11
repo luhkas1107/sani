@@ -1,20 +1,32 @@
 package br.com.sani.telas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JFormattedTextField;
-import javax.swing.JComboBox;
+import java.sql.SQLException;
+import java.text.ParseException;
+
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import br.com.sani.exception.DAOException;
+import br.com.sani.exception.EntradaUsuarioException;
+import br.com.sani.login.Login;
+import br.com.sani.login.LoginDAO;
+import br.com.sani.util.SwingUtil;
+import br.com.sani.util.TelaUtil;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class frmCadastroLogin extends JFrame {
 
@@ -23,6 +35,8 @@ public class frmCadastroLogin extends JFrame {
 	private JTextField txtUser;
 	private JPasswordField psfSenha;
 	private JPasswordField psfConfSenha;
+	private JComboBox comboBox;
+	private JTextField txtEmail;
 
 	/**
 	 * Launch the application.
@@ -48,6 +62,7 @@ public class frmCadastroLogin extends JFrame {
 	}
 	
 	public void initComponets() {
+		SwingUtil.lookWindows(this);
 		setTitle("Novo Usu\u00E1rio");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmCadastroLogin.class.getResource("/br/com/images/user3.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,11 +114,7 @@ public class frmCadastroLogin extends JFrame {
 		psfConfSenha.setBounds(123, 108, 127, 20);
 		contentPane.add(psfConfSenha);
 		
-		JFormattedTextField ftEmail = new JFormattedTextField();
-		ftEmail.setBounds(123, 143, 127, 20);
-		contentPane.add(ftEmail);
-		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Administrador", "Normal"}));
 		comboBox.setBounds(123, 177, 127, 20);
 		contentPane.add(comboBox);
@@ -114,8 +125,55 @@ public class frmCadastroLogin extends JFrame {
 		contentPane.add(btnCancelar);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					inserirLogin();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (EntradaUsuarioException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnSalvar.setIcon(new ImageIcon(frmCadastroLogin.class.getResource("/br/com/images/save.png")));
 		btnSalvar.setBounds(320, 219, 104, 32);
 		contentPane.add(btnSalvar);
+		
+		txtEmail = new JTextField();
+		txtEmail.setBounds(123, 143, 127, 20);
+		contentPane.add(txtEmail);
+		txtEmail.setColumns(10);
+	}
+	
+	private Login getBean() throws DAOException, SQLException, EntradaUsuarioException{
+				
+		Login l = new Login();
+		
+		l.setNome(TelaUtil.getCampoObrigatorio(txtNome, true));
+		l.setUser(TelaUtil.getCampoObrigatorio(txtUser, true));
+		l.setSenha(TelaUtil.getSenha(psfSenha, psfConfSenha));
+		l.setEmail(TelaUtil.getEmail(txtEmail));
+		l.setPermissao(comboBox.getSelectedItem().toString().substring(0, 1));
+				
+		return l;
+	}
+	
+	private void inserirLogin() throws SQLException, EntradaUsuarioException{
+		try {
+			Login l = getBean();
+			new LoginDAO().inserir(l);
+			JOptionPane.showMessageDialog(this, "Login gerada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+			limparFormulario();
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void limparFormulario(){
+		
 	}
 }
