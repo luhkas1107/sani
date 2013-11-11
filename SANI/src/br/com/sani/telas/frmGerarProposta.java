@@ -33,6 +33,7 @@ import br.com.sani.util.Mascara;
 import br.com.sani.util.Moeda;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
+import java.awt.Toolkit;
 
 public class frmGerarProposta extends JFrame {
 
@@ -68,6 +69,7 @@ public class frmGerarProposta extends JFrame {
 	}
 	
 	public frmGerarProposta(){
+		setIconImage(Toolkit.getDefaultToolkit().getImage(frmGerarProposta.class.getResource("/br/com/images/_1proposta_icon.png")));
 		try {
 			montarComponentes();
 			
@@ -127,12 +129,13 @@ public class frmGerarProposta extends JFrame {
 		txtNomeComprador.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/search-ico.png")));
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new frmConsultaClientesComprador(1);
 			}
 		});
-		btnPesquisar.setBounds(505, 75, 89, 23);
+		btnPesquisar.setBounds(505, 75, 115, 32);
 		panel.add(btnPesquisar);
 		
 		JLabel lblFormaDePagto = new JLabel("Forma de Pagto*:");
@@ -195,13 +198,14 @@ public class frmGerarProposta extends JFrame {
 		titledSeparator.setBounds(29, 230, 572, 14);
 		panel.add(titledSeparator);
 		
-		JButton btnSelecione = new JButton("Selecione");
+		JButton btnSelecione = new JButton("Pesquisar");
+		btnSelecione.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/search-ico.png")));
 		btnSelecione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new frmConsultaPropriedade(1);
 			}
 		});
-		btnSelecione.setBounds(505, 255, 89, 23);
+		btnSelecione.setBounds(505, 255, 115, 32);
 		panel.add(btnSelecione);
 		
 		JLabel lblCep = new JLabel("Endere\u00E7o:");
@@ -225,31 +229,34 @@ public class frmGerarProposta extends JFrame {
 		txtProprietario.setColumns(10);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/delete-.png")));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(505, 360, 89, 23);
+		btnCancelar.setBounds(273, 351, 123, 32);
 		panel.add(btnCancelar);
 		
 		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/clear.png")));
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limparFormulario();
 			}
 		});
-		btnLimpar.setBounds(406, 360, 89, 23);
+		btnLimpar.setBounds(406, 351, 108, 32);
 		panel.add(btnLimpar);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setIcon(new ImageIcon(frmGerarProposta.class.getResource("/br/com/images/save.png")));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				inserirProposta();
 				pdf();
 			}
 		});
-		btnSalvar.setBounds(307, 360, 89, 23);
+		btnSalvar.setBounds(524, 351, 96, 32);
 		panel.add(btnSalvar);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");

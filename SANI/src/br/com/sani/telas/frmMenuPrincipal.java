@@ -77,7 +77,7 @@ public class frmMenuPrincipal extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		SwingUtil.lookWindows(this);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(frmMenuPrincipal.class.getResource("/br/com/images/home_badge.png")));
-		setTitle("ADMINISTRADOR - Sistema Administrador de Negócios Imobiliários - v0.3.4");
+		setTitle("Sistema Administrador de Neg\u00F3cios Imobili\u00E1rios - BETA VERSION 0.9.4");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 675, 450);
 		contentPane = new Wallpaper();
@@ -210,6 +210,7 @@ public class frmMenuPrincipal extends JFrame {
 		mnClienteProprietrio.add(mntmPessoaJuridica_1);
 				
 		mntmMetas = new JMenuItem("Metas");
+		mntmMetas.setEnabled(false);
 		mntmMetas.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
 		mntmMetas.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/meta.png")));
 		mntmMetas.addActionListener(new ActionListener() {
@@ -286,6 +287,7 @@ public class frmMenuPrincipal extends JFrame {
 		mnClientes_1.add(mntmClienteProprietrio);
 		
 		mntmMetasConsulta = new JMenuItem("Metas");
+		mntmMetasConsulta.setEnabled(false);
 		mntmMetasConsulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_MASK));
 		mntmMetasConsulta.setIcon(new ImageIcon(frmMenuPrincipal.class.getResource("/br/com/images/meta.png")));
 		mntmMetasConsulta.addActionListener(new ActionListener() {
