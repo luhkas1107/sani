@@ -43,6 +43,9 @@ import java.awt.Component;
 
 import javax.swing.JMenuItem;
 import javax.swing.border.TitledBorder;
+import org.jdesktop.xswingx.JXSearchField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class frmConsultaClienteProprietario extends JFrame implements MouseListener {
 
@@ -50,6 +53,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 	private JTable table;
 
 	private int requisicao = 0;
+	private JXSearchField txtFiltro;
 	/**
 	 * Launch the application.
 	 */
@@ -90,7 +94,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(9, 102, 645, 289);
+		scrollPane.setBounds(9, 76, 645, 315);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -139,9 +143,21 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Filtro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(9, 11, 645, 81);
+		panel_1.setBounds(9, 11, 645, 57);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
+		
+		txtFiltro = new JXSearchField();
+		txtFiltro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				buscar();
+			}
+		});
+		txtFiltro.setPrompt("Digite o nome ou raz\u00E3o social");
+		txtFiltro.setToolTipText("Digite o nome ou raz\u00E3o social");
+		txtFiltro.setBounds(153, 24, 482, 22);
+		panel_1.add(txtFiltro);
 		
 		setLocationRelativeTo(null);
 	}
@@ -151,7 +167,7 @@ public class frmConsultaClienteProprietario extends JFrame implements MouseListe
 			DefaultTableModel dtm =(DefaultTableModel) table.getModel();
 			dtm.setRowCount(0);
 			
-			List<ClienteProprietario> lista = new ClienteProprietarioDAO().buscarTodos();
+			List<ClienteProprietario> lista = new ClienteProprietarioDAO().buscarPorNome(txtFiltro.getText());
 			if(lista != null){
 				for(ClienteProprietario obj : lista){
 					addTable(dtm, obj);

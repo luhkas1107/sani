@@ -54,6 +54,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.border.TitledBorder;
+import org.jdesktop.xswingx.JXSearchField;
 
 public class frmConsultaClientesComprador extends JFrame {
 
@@ -62,6 +63,7 @@ public class frmConsultaClientesComprador extends JFrame {
 	private JMenuItem smEditarRegistro;
 	
 	private int requisicao = 0; //guarda o numero da tela que chamou, zero siginifica que ninguem chamou
+	private JXSearchField txtFiltro;
 
 	/**
 	 * Launch the application.
@@ -101,7 +103,7 @@ public class frmConsultaClientesComprador extends JFrame {
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(9, 102, 645, 289);
+		scrollPane.setBounds(9, 79, 645, 312);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -162,9 +164,21 @@ public class frmConsultaClientesComprador extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Filtro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(9, 11, 645, 80);
+		panel_1.setBounds(9, 11, 645, 57);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
+		
+		txtFiltro = new JXSearchField();
+		txtFiltro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				buscar();
+			}
+		});
+		txtFiltro.setToolTipText("Digite o nome ou raz\u00E3o social");
+		txtFiltro.setPrompt("Digite o nome ou raz\u00E3o social");
+		txtFiltro.setBounds(95, 24, 540, 22);
+		panel_1.add(txtFiltro);
 		
 		setLocationRelativeTo(null);		
 	}
@@ -174,7 +188,7 @@ public class frmConsultaClientesComprador extends JFrame {
 		DefaultTableModel dtm = (DefaultTableModel) table.getModel();//pega o modelo da tabela
 		dtm.setRowCount(0);//define que a primeira linha começa em 0,  se nao fizer ele deixa uma linha em branco
 		try{
-			List<ClienteComprador> listaClientes = new ClienteCompradorFisicaDAO().buscarTodos();//executa a pesquisa
+			List<ClienteComprador> listaClientes = new ClienteCompradorFisicaDAO().buscarPorNome(txtFiltro.getText());//executa a pesquisa
 			
 			//precisa percorrer a lista de resultados
 			for(ClienteComprador item : listaClientes){

@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/sqljdbc4.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="lib/itext-1.4.jar.zip"/>
+	<classpathentry kind="lib" path="xswingx-0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -71,7 +71,7 @@ public class LoginDAO {
 			statement.setString(2, l.getSenha());
 			statement.setString(3, l.getNome());
 			statement.setString(4, l.getEmail());
-			statement.setString(1, l.getPermissao());
+			statement.setString(5, l.getPermissao());
 			
 			statement.executeUpdate();
 			conn.commit();

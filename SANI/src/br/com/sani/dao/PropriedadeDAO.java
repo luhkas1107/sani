@@ -67,6 +67,29 @@ public class PropriedadeDAO {
 				"		INNER JOIN tbCidade C "+
 				"	ON B.idCidade = C.idCidade ";
 		
+		private static final String QUERY_BUSCAR_POR_NOME =
+				"SELECT "+
+				"	P.*, "+ 
+				"	E.cep,  "+
+				"	E.endereco, "+ 
+				"	B.bairro,  "+
+				"	C.cidade,  "+
+				"	C.uf  "+
+				"FROM tbPropriedade P "+ 
+				"		INNER JOIN tbEndereco E "+ 
+				"	ON P.cep = E.cep  "+
+				"		INNER JOIN tbBairro B "+ 
+				"	ON E.idBairro = B.idBairro  "+
+				"		INNER JOIN tbCidade C  "+
+				"	ON B.idCidade = C.idCidade "+
+				"		INNER JOIN tbClienteProprietario CL "+
+				"	ON P.codCliProprietario = CL.codCliProprietario "+
+				"		LEFT JOIN tbClienteProprietarioFisica CF "+
+				"	ON CL.codCliProprietario = CF.codCliProprietario "+
+				"		LEFT JOIN tbClienteProprietarioJuridica CJ "+
+				"	ON CL.codCliProprietario = CJ.codCliProprietario "+
+				"WHERE CF.nomePessoa LIKE ? OR CJ.razaoSocial LIKE ?";
+				
 		private static final String QUERY_BUSCAR_POR_ID =
 				"SELECT "+
 				"	P.*, "+
@@ -267,6 +290,31 @@ public class PropriedadeDAO {
 			List<Propriedade> retorno = new ArrayList<Propriedade>();
 			try{
 				statement = conn.prepareStatement(QUERY_BUSCAR_TODOS);
+				result = statement.executeQuery();
+				while(result.next()){
+					Propriedade propriedade = getBean(result);
+					retorno.add(propriedade);
+				}
+			}catch(SQLException e){
+				throw new DAOException(e);
+			}finally{
+				DbUtil.close(conn, statement, result);
+			}
+			
+			return retorno;
+		}
+		
+		public List<Propriedade> buscarPorNome(String nome) throws DAOException{
+			nome += "%";
+			Connection conn = DbUtil.getConnection();
+			PreparedStatement statement = null;
+			ResultSet result = null;
+			List<Propriedade> retorno = new ArrayList<Propriedade>();
+			try{
+				statement = conn.prepareStatement(QUERY_BUSCAR_POR_NOME);
+				statement.setString(1, nome);
+				statement.setString(2, nome);
+				
 				result = statement.executeQuery();
 				while(result.next()){
 					Propriedade propriedade = getBean(result);

@@ -35,6 +35,9 @@ import br.com.sani.util.TelaUtil;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import org.jdesktop.xswingx.JXSearchField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class frmConsultaPropriedade extends JFrame {
 
@@ -42,6 +45,7 @@ public class frmConsultaPropriedade extends JFrame {
 	private JTable table;
 	
 	private int requisicao = 0;
+	private JXSearchField txtFiltro;
 
 	/**
 	 * Launch the application.
@@ -83,7 +87,7 @@ public class frmConsultaPropriedade extends JFrame {
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 102, 645, 289);
+		scrollPane.setBounds(10, 80, 645, 311);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -138,9 +142,26 @@ public class frmConsultaPropriedade extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Filtro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(10, 11, 644, 81);
+		panel_1.setBounds(10, 11, 644, 58);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
+		
+		txtFiltro = new JXSearchField();
+		txtFiltro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				buscar();
+			}
+		});
+		txtFiltro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				buscar();
+			}
+		});
+		txtFiltro.setPrompt("Digite o nome do Proprietario");
+		txtFiltro.setToolTipText("Digite o nome do Proprietario");
+		txtFiltro.setBounds(130, 25, 504, 22);
+		panel_1.add(txtFiltro);
 		
 		setLocationRelativeTo(null);
 	}
@@ -188,7 +209,7 @@ public class frmConsultaPropriedade extends JFrame {
 			DefaultTableModel dtm = (DefaultTableModel) table.getModel();
 			dtm.setRowCount(0);
 
-			List<Propriedade> lista = new PropriedadeDAO().buscarTodos();
+			List<Propriedade> lista = new PropriedadeDAO().buscarPorNome(txtFiltro.getText());
 			
 			if(lista != null){
 				for(Propriedade p : lista){

@@ -87,6 +87,18 @@ public class ClienteCompradorFisicaDAO {
 			"		LEFT JOIN tbClienteCompradorJuridica J "+
 			"	ON C.codCliComprador = J.codCliComprador";
 	
+	private static final String QUERY_BUSCAR_POR_NOME = 
+			"SELECT "+
+			"	C.*, "+
+			"	F.*, "+
+			"	J.* "+
+			"FROM tbClienteComprador C "+
+			"		LEFT JOIN tbClienteCompradorFisica F "+
+			"	ON C.codCliComprador = F.codCliComprador "+
+			"		LEFT JOIN tbClienteCompradorJuridica J "+
+			"	ON C.codCliComprador = J.codCliComprador "+
+			"WHERE F.nomePessoa LIKE ? OR J.razaoSocial LIKE ?";
+	
 	private static final String QUERY_BUSCAR_POR_CODIGO = 
 			"SELECT "+
 			"	C.*, "+
@@ -277,6 +289,30 @@ public class ClienteCompradorFisicaDAO {
 		List<ClienteComprador> retorno = new ArrayList<ClienteComprador>();
 		try{
 			statement = conn.prepareStatement(QUERY_BUSCAR_TODOS);
+			result = statement.executeQuery();
+			while(result.next()){
+				ClienteComprador temp = getBean(result);
+				retorno.add(temp);
+			}
+		}catch(SQLException e){
+			throw new DAOException(e);
+		}finally{
+			DbUtil.close(conn, statement, result);
+		}
+
+		return retorno;
+	}
+	
+	public List<ClienteComprador> buscarPorNome(String nome) throws DAOException{
+		nome += "%";
+		Connection conn = DbUtil.getConnection();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		List<ClienteComprador> retorno = new ArrayList<ClienteComprador>();
+		try{
+			statement = conn.prepareStatement(QUERY_BUSCAR_POR_NOME);
+			statement.setString(1, nome);
+			statement.setString(2, nome);
 			result = statement.executeQuery();
 			while(result.next()){
 				ClienteComprador temp = getBean(result);
