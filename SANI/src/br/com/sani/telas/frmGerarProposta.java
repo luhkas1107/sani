@@ -296,6 +296,7 @@ public class frmGerarProposta extends JFrame {
 		}
 		
 		p.setDataProposta(dtProposta.getDate());
+		p.setDataFinalProposta(dtValidade.getDate());
 		p.setFormaPagamento(TelaUtil.getCampoObrigatorio(txtFormaPagamento, true));
 		p.setTipoProposta(cbTipoProposta.getSelectedItem().toString().substring(0, 1));
 		p.setValidadeProposta(dtValidade.getDate());

@@ -12,7 +12,8 @@ public class Proposta {
 	private String estadoProposta;
 	private String statusProposta;
 	private String formaPagamento;
-	private Date dataProposta;
+	private Date dataInicialProposta;
+	private Date dataFinalProposta;
 	private String tipoProposta;
 	
 	private ClienteComprador clienteComprador;
@@ -68,11 +69,19 @@ public class Proposta {
 		this.formaPagamento = formaPagamento;
 	}
 	public Date getDataProposta() {
-		return dataProposta;
+		return dataInicialProposta;
 	}
 	public void setDataProposta(Date dataProposta) {
-		this.dataProposta = dataProposta;
+		this.dataInicialProposta = dataProposta;
 	}
+	
+	public Date getDataFinalProposta() {
+		return dataFinalProposta;
+	}
+	public void setDataFinalProposta(Date dataProposta) {
+		this.dataFinalProposta = dataProposta;
+	}
+	
 	public String getTipoProposta() {
 		return tipoProposta;
 	}
