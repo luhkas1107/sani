@@ -2,11 +2,11 @@ package br.com.sani.telas;
 
 import java.awt.Desktop;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.ParseException;
-import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -21,7 +21,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.JXTitledSeparator;
 
 import br.com.sani.bean.Proposta;
@@ -34,9 +33,6 @@ import br.com.sani.util.Moeda;
 import br.com.sani.util.SwingUtil;
 import br.com.sani.util.TelaUtil;
 
-import java.awt.Toolkit;
-
-import com.google.gdata.data.calendar.CalendarExtendedProperty;
 import com.toedter.calendar.JDateChooser;
 
 public class frmGerarProposta extends JFrame {
